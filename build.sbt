@@ -44,14 +44,13 @@ lazy val core = Project("omf-schema-resolver", file("."))
 
     libraryDependencies ++=
       Seq(
-        //"gov.nasa.jpl.imce" %% "jpl-omf-schema-tables" % Settings.versions.jpl_omf_schema_tables,
+        "gov.nasa.jpl.imce" %% "jpl-omf-schema-tables" % Settings.versions.jpl_omf_schema_tables,
 
         "gov.nasa.jpl.imce" %% "imce.third_party.scala_graph_libraries"
         % Versions_scala_graph_libraries.version artifacts
         Artifact("imce.third_party.scala_graph_libraries", "zip", "zip", Some("resource"), Seq(), None, Map())
       )
   )
-  .dependsOn(ProjectRef(file("/home/rouquett/git/jpl.omf.schema.tables"), "tablesJVM"))
 
 def dynamicScriptsResourceSettings(dynamicScriptsProjectName: Option[String] = None): Seq[Setting[_]] = {
 

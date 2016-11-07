@@ -4,5 +4,7 @@
 .idea/
 target/
 local.*
+*links.json
 project/project/
 local.*
+target
