@@ -15,7 +15,7 @@
  * limitations under the License.
  * License Terms
  */
- 
+
 package gov.nasa.jpl.imce.omf.schema.resolver.impl
 
 import gov.nasa.jpl.imce.omf.schema._
