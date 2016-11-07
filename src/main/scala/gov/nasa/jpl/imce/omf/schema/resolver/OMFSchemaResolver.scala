@@ -25,5 +25,4 @@ case class OMFSchemaResolver private[resolver]
 
 object OMFSchemaResolver {
 
-
 }
