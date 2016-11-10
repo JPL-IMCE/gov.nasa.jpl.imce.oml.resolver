@@ -45,13 +45,13 @@
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <span class="name">TerminologyAxiom</span><span class="result"> extends <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyAxiom">api.TerminologyAxiom</span> with <a href="Axiom.html" class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.Axiom">Axiom</a></span>
+        <span class="name">TerminologyAxiom</span><span class="result"> extends <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyAxiom">api.TerminologyAxiom</span> with <a href="TerminologyThing.html" class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyThing">TerminologyThing</a></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="Axiom.html" class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.Axiom">Axiom</a>, <a href="TerminologyStatement.html" class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyStatement">TerminologyStatement</a>, <a href="TerminologyThing.html" class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyThing">TerminologyThing</a>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyAxiom">api.TerminologyAxiom</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.Axiom">api.Axiom</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyStatement">api.TerminologyStatement</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyThing">api.TerminologyThing</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="TerminologyThing.html" class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyThing">TerminologyThing</a>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyAxiom">api.TerminologyAxiom</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyThing">api.TerminologyThing</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div><div class="toggleContainer block">
             <span class="toggle">Known Subclasses</span>
             <div class="subClasses hiddenContent"><a href="BundledTerminologyAxiom.html" class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.BundledTerminologyAxiom">BundledTerminologyAxiom</a>, <a href="ConceptDesignationTerminologyGraphAxiom.html" class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.ConceptDesignationTerminologyGraphAxiom">ConceptDesignationTerminologyGraphAxiom</a>, <a href="TerminologyExtensionAxiom.html" class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyExtensionAxiom">TerminologyExtensionAxiom</a>, <a href="TerminologyNestingAxiom.html" class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyNestingAxiom">TerminologyNestingAxiom</a></div>
@@ -72,7 +72,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyAxiom"><span>TerminologyAxiom</span></li><li class="in" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.Axiom"><span>Axiom</span></li><li class="in" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyStatement"><span>TerminologyStatement</span></li><li class="in" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyThing"><span>TerminologyThing</span></li><li class="in" name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyAxiom"><span>TerminologyAxiom</span></li><li class="in" name="gov.nasa.jpl.imce.omf.schema.resolver.api.Axiom"><span>Axiom</span></li><li class="in" name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyStatement"><span>TerminologyStatement</span></li><li class="in" name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyThing"><span>TerminologyThing</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyAxiom"><span>TerminologyAxiom</span></li><li class="in" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyThing"><span>TerminologyThing</span></li><li class="in" name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyAxiom"><span>TerminologyAxiom</span></li><li class="in" name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyThing"><span>TerminologyThing</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -95,24 +95,7 @@
 
         <div id="values" class="values members">
               <h3>Abstract Value Members</h3>
-              <ol><li name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyStatement#graph" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="graph:gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyBox"></a>
-      <a id="graph:api.TerminologyBox"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">graph</span><span class="result">: <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyBox">api.TerminologyBox</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyAxiom@graph:gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyBox" title="Permalink" target="_top">
-        <img src="../../../../../../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>TerminologyStatement</dd></dl></div>
-    </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyAxiom#source" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+              <ol><li name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyAxiom#source" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="source:gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyBox"></a>
       <a id="source:api.TerminologyBox"></a>
       <h4 class="signature">
@@ -530,18 +513,10 @@
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.Axiom">
-              <h3>Inherited from <a href="Axiom.html" class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.Axiom">Axiom</a></h3>
-            </div><div class="parent" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyStatement">
-              <h3>Inherited from <a href="TerminologyStatement.html" class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyStatement">TerminologyStatement</a></h3>
-            </div><div class="parent" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyThing">
+        <div class="parent" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyThing">
               <h3>Inherited from <a href="TerminologyThing.html" class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyThing">TerminologyThing</a></h3>
             </div><div class="parent" name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyAxiom">
               <h3>Inherited from <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyAxiom">api.TerminologyAxiom</span></h3>
-            </div><div class="parent" name="gov.nasa.jpl.imce.omf.schema.resolver.api.Axiom">
-              <h3>Inherited from <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.Axiom">api.Axiom</span></h3>
-            </div><div class="parent" name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyStatement">
-              <h3>Inherited from <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyStatement">api.TerminologyStatement</span></h3>
             </div><div class="parent" name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyThing">
               <h3>Inherited from <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyThing">api.TerminologyThing</span></h3>
             </div><div class="parent" name="scala.AnyRef">
