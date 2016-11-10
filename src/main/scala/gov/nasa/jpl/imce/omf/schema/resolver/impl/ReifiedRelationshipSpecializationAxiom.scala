@@ -22,7 +22,6 @@ import gov.nasa.jpl.imce.omf.schema._
 
 case class ReifiedRelationshipSpecializationAxiom private[impl] 
 (
- override val graph: resolver.api.TerminologyBox,
  override val uuid: java.util.UUID,
  override val subRelationship: resolver.api.ReifiedRelationship,
  override val superRelationship: resolver.api.ReifiedRelationship
@@ -34,7 +33,7 @@ extends resolver.api.ReifiedRelationshipSpecializationAxiom
   /*
    * Get the sub (child) entity
    */
-  override val child
+  val child
   : resolver.api.Term
   = {
     subRelationship
@@ -44,7 +43,7 @@ extends resolver.api.ReifiedRelationshipSpecializationAxiom
 /*
    * Get the super (parent) entity
    */
-  override val parent
+  val parent
   : resolver.api.Term
   = {
     superRelationship

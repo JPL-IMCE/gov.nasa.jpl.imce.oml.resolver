@@ -22,7 +22,6 @@ import gov.nasa.jpl.imce.omf.schema._
 
 case class IRIScalarRestrictionAxiom private[impl] 
 (
- override val graph: resolver.api.TerminologyBox,
  override val uuid: java.util.UUID,
  override val length: scala.Option[scala.Int],
  override val maxLength: scala.Option[scala.Int],

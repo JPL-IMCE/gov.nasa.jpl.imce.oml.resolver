@@ -22,7 +22,6 @@ import gov.nasa.jpl.imce.omf.schema._
 
 case class TerminologyExtensionAxiom private[impl] 
 (
- override val graph: resolver.api.TerminologyBox,
  override val uuid: java.util.UUID,
  override val extendedTerminology: resolver.api.TerminologyBox,
  override val extendingTerminology: resolver.api.TerminologyBox

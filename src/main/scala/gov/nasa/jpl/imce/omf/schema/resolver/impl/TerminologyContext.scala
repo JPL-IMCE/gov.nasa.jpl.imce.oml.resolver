@@ -16,23 +16,67 @@
  * License Terms
  */
 
- 
 package gov.nasa.jpl.imce.omf.schema.resolver.impl
+
+import java.util.UUID
 
 import gov.nasa.jpl.imce.omf.schema._
 
 import scalax.collection.GraphPredef._
 import scalax.collection.immutable.Graph
-import scala.collection.immutable.Set
+import scala.collection.immutable.{Map,Set}
 
-case class TerminologyContext private[impl]
-(g: Graph[TerminologyBox, TerminologyEdge])
+import scala.{None,Option,PartialFunction,Some,StringContext}
+import scala.util.{Failure,Success,Try}
+import scala.Predef.ArrowAssoc
+
+case class TerminologyContext private[resolver]
+(g: Graph[resolver.api.TerminologyBox, TerminologyEdge] = Graph[resolver.api.TerminologyBox, TerminologyEdge]())
 extends resolver.api.TerminologyContext
 {
 
+  def topologicalOrder()
+  : Try[g.TopologicalOrder[resolver.api.TerminologyBox]]
+  = g
+    .topologicalSort()
+    .fold[Try[g.TopologicalOrder[resolver.api.TerminologyBox]]](
+    (cycleNode: g.NodeT) =>
+      Failure(new java.lang.IllegalArgumentException(
+        s"TerminologyContext circularity on node: $cycleNode in graph $g")),
+    (order: g.TopologicalOrder[g.NodeT]) =>
+      Success(order.toOuter))
+
+  def findFirstStartingFrom[T]
+  (b: resolver.api.TerminologyBox,
+   pf: PartialFunction[resolver.api.TerminologyBox, T])
+  : Option[T]
+  = g.get(b).outerNodeTraverser.collectFirst(pf)
+
   override val nodes
-  : Set[_ <: resolver.api.TerminologyBox]
+  : Map[UUID, resolver.api.TerminologyBox]
+  = g.nodes.toOuter.map(t => t.uuid -> t).toMap
+
+  override val graphs
+  : Map[UUID, resolver.api.TerminologyGraph]
   = g.nodes.toOuter
+    .flatMap {
+      case t: resolver.api.TerminologyGraph =>
+        Some(t.uuid -> t)
+      case _ =>
+        None
+    }
+    .toMap
+
+  override val bundles
+  : Map[UUID, resolver.api.Bundle]
+  = g.nodes.toOuter
+    .flatMap {
+      case t: resolver.api.Bundle =>
+        Some(t.uuid -> t)
+      case _ =>
+        None
+    }
+    .toMap
 
   override val bottomNodes
   : Set[_ <: resolver.api.TerminologyBox]
@@ -41,4 +85,12 @@ extends resolver.api.TerminologyContext
   override val rootNodes
   : Set[_ <: resolver.api.TerminologyBox]
   = g.nodes.filter(0 == _.outDegree).toOuterNodes.to[Set]
+
+}
+
+object TerminologyContext {
+
+  def initialize()
+  : TerminologyContext
+  = TerminologyContext()
 }

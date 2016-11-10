@@ -32,44 +32,12 @@ extends resolver.api.TerminologyGraph
   with TerminologyBox
 {
 
-  /*
-   * c, if there is a unique axiom
-   * TerminologyNestingAxiom(nestedTerminology=this, nestingContext=c, nestingTerminology=_)
-   */
-  override val nestingConcept
-  : scala.Option[resolver.api.Concept]
+  override def withStatements
+  (s: scala.collection.immutable.Set[_ <: resolver.api.TerminologyStatement]
+  )
+  : resolver.api.TerminologyBox
   = {
-  			  terminologyAxioms
-  			      .selectByKindOf { case tnx:resolver.api.TerminologyNestingAxiom => tnx }
-  			      .headOption
-  			      .map(_.nestingContext)
-  			}
-  
-  
-/*
-   * p, if there is a unique axiom
-   * TerminologyNestingAxiom(nestedTerminology=this, nestingContext=_, nestingTerminology=p)
-   */
-  override val nestingParent
-  : scala.Option[resolver.api.TerminologyBox]
-  = {
-  			  terminologyAxioms
-  			      .selectByKindOf { case tnx:resolver.api.TerminologyNestingAxiom => tnx }
-  			      .headOption
-  			      .map(_.nestingTerminology)
-  			}
-  
-  
-/*
-   * the set e from all axioms
-   * TerminologyExtensionAxiom(extendedTerminology=e, extendingTerminology=this)
-   */
-  override val extendedGraphs
-  : scala.collection.immutable.Set[_ <: resolver.api.TerminologyBox]
-  = {
-  			  terminologyAxioms
-  			      .selectByKindOf { case tex:resolver.api.TerminologyExtensionAxiom => tex }
-  			      .map(_.extendedTerminology)
+  			  copy(statements = this.statements ++ s)
   			}
   
 

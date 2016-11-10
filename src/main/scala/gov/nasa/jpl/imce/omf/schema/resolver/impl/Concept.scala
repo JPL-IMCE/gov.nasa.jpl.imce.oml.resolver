@@ -22,7 +22,6 @@ import gov.nasa.jpl.imce.omf.schema._
 
 case class Concept private[impl] 
 (
- override val graph: resolver.api.TerminologyBox,
  override val uuid: java.util.UUID,
  override val isAbstract: scala.Boolean,
  override val name: gov.nasa.jpl.imce.omf.schema.tables.LocalName,

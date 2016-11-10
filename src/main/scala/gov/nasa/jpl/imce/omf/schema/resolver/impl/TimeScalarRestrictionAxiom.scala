@@ -22,7 +22,6 @@ import gov.nasa.jpl.imce.omf.schema._
 
 case class TimeScalarRestrictionAxiom private[impl] 
 (
- override val graph: resolver.api.TerminologyBox,
  override val uuid: java.util.UUID,
  override val maxExclusive: scala.Option[gov.nasa.jpl.imce.omf.schema.tables.LexicalTime],
  override val maxInclusive: scala.Option[gov.nasa.jpl.imce.omf.schema.tables.LexicalTime],

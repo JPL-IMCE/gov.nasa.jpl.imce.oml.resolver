@@ -22,7 +22,6 @@ import gov.nasa.jpl.imce.omf.schema._
 
 case class BundledTerminologyAxiom private[impl] 
 (
- override val graph: resolver.api.TerminologyBox,
  override val uuid: java.util.UUID,
  override val bundle: resolver.api.Bundle,
  override val bundledTerminology: resolver.api.TerminologyBox

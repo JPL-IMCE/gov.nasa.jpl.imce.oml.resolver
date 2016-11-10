@@ -22,7 +22,6 @@ import gov.nasa.jpl.imce.omf.schema._
 
 case class AspectSpecializationAxiom private[impl] 
 (
- override val graph: resolver.api.TerminologyBox,
  override val uuid: java.util.UUID,
  override val subEntity: resolver.api.Entity,
  override val superAspect: resolver.api.Aspect

@@ -35,8 +35,6 @@ lazy val core = Project("omf-schema-resolver", file("."))
     // include all test artifacts
     publishArtifact in Test := true,
 
-    scalaSource in Test := baseDirectory.value / "test",
-
     extractArchives := {},
 
     resolvers += Resolver.bintrayRepo("jpl-imce", "gov.nasa.jpl.imce"),

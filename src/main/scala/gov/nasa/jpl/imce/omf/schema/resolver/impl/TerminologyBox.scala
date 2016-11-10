@@ -28,63 +28,128 @@ extends resolver.api.TerminologyBox
 
   /*
    * A map for the subset of statements that are
-   * entities terms indexed by their iri.
+   * entities terms indexed by their uuid.
    */
-  override val entities
-  : scala.collection.immutable.Map[java.net.URI, resolver.api.Entity]
+  val entities
+  : scala.collection.immutable.Map[java.util.UUID, resolver.api.Entity]
   = {
   			  import scala.Predef.ArrowAssoc
   			  statements
   			  .selectByKindOf { case e: Entity => e }
-  			  .map(e => java.net.URI.create(e.iri) -> e)
+  			  .map(e => e.uuid -> e)
   			  .toMap
   			}
   
   
 /*
    * A map for the subset of statements that are
-   * datatype terms indexed by their iri.
+   * aspects terms indexed by their uuid.
    */
-  override val dataRelationships
-  : scala.collection.immutable.Map[java.net.URI, resolver.api.DataRelationship]
+  val aspects
+  : scala.collection.immutable.Map[java.util.UUID, resolver.api.Aspect]
+  = {
+  			  import scala.Predef.ArrowAssoc
+  			  statements
+  			  .selectByKindOf { case a: Aspect => a }
+  			  .map(a => a.uuid -> a)
+  			  .toMap
+  			}
+  
+  
+/*
+   * A map for the subset of statements that are
+   * concepts terms indexed by their uuid.
+   */
+  val concepts
+  : scala.collection.immutable.Map[java.util.UUID, resolver.api.Concept]
+  = {
+  			  import scala.Predef.ArrowAssoc
+  			  statements
+  			  .selectByKindOf { case c: Concept => c }
+  			  .map(c => c.uuid -> c)
+  			  .toMap
+  			}
+  
+  
+/*
+   * A map for the subset of statements that are
+   * reified relationship terms indexed by their uuid.
+   */
+  val reifiedRelationships
+  : scala.collection.immutable.Map[java.util.UUID, resolver.api.ReifiedRelationship]
+  = {
+  			  import scala.Predef.ArrowAssoc
+  			  statements
+  			  .selectByKindOf { case r: ReifiedRelationship => r }
+  			  .map(r => r.uuid -> r)
+  			  .toMap
+  			}
+  
+  
+/*
+   * A map for the subset of statements that are
+   * datatype terms indexed by their uuid.
+   */
+  val dataRelationships
+  : scala.collection.immutable.Map[java.util.UUID, resolver.api.DataRelationship]
   = {
   			  import scala.Predef.ArrowAssoc
   			  statements
   			  .selectByKindOf { case dr: DataRelationship => dr }
-  			  .map(dr => java.net.URI.create(dr.iri) -> dr)
+  			  .map(dr => dr.uuid -> dr)
   			  .toMap
   			}
   
   
 /*
    * A map for the subset of statements that are
-   * datatype terms indexed by their iri.
+   * datatype terms indexed by their uuid.
    */
-  override val datatypes
-  : scala.collection.immutable.Map[java.net.URI, resolver.api.Datatype]
+  val datatypes
+  : scala.collection.immutable.Map[java.util.UUID, resolver.api.Datatype]
   = {
   			  import scala.Predef.ArrowAssoc
   			  statements
   			  .selectByKindOf { case dt: Datatype => dt }
-  			  .map(dt => java.net.URI.create(dt.iri) -> dt)
+  			  .map(dt => dt.uuid -> dt)
   			  .toMap
   			}
   
   
 /*
-   * The subset of axioms about terminologies.
+   * A map for the subset of statements that are
+   * scalar datatype terms indexed by their uuid.
    */
-  override val terminologyAxioms
-  : scala.collection.immutable.Set[_ <: resolver.api.TerminologyAxiom]
+  val scalars
+  : scala.collection.immutable.Map[java.util.UUID, resolver.api.Scalar]
   = {
-  			  statements.selectByKindOf { case tx: TerminologyAxiom => tx }
+  			  import scala.Predef.ArrowAssoc
+  			  statements
+  			  .selectByKindOf { case s: Scalar => s }
+  			  .map(s => s.uuid -> s)
+  			  .toMap
+  			}
+  
+  
+/*
+   * A map for the subset of statements that are
+   * structured datatype terms indexed by their uuid.
+   */
+  val structures
+  : scala.collection.immutable.Map[java.util.UUID, resolver.api.Structure]
+  = {
+  			  import scala.Predef.ArrowAssoc
+  			  statements
+  			  .selectByKindOf { case s: Structure => s }
+  			  .map(s => s.uuid -> s)
+  			  .toMap
   			}
   
   
 /*
    * The subset of axioms about terms.
    */
-  override val termAxioms
+  val termAxioms
   : scala.collection.immutable.Set[_ <: resolver.api.TermAxiom]
   = {
   			  statements.selectByKindOf { case tx: TermAxiom => tx }

@@ -22,7 +22,6 @@ import gov.nasa.jpl.imce.omf.schema._
 
 case class ConceptSpecializationAxiom private[impl] 
 (
- override val graph: resolver.api.TerminologyBox,
  override val uuid: java.util.UUID,
  override val subConcept: resolver.api.Concept,
  override val superConcept: resolver.api.Concept

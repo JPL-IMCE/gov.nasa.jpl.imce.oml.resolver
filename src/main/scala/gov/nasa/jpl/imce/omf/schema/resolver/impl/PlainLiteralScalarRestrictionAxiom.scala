@@ -22,7 +22,6 @@ import gov.nasa.jpl.imce.omf.schema._
 
 case class PlainLiteralScalarRestrictionAxiom private[impl] 
 (
- override val graph: resolver.api.TerminologyBox,
  override val uuid: java.util.UUID,
  override val language: scala.Option[gov.nasa.jpl.imce.omf.schema.tables.Language],
  override val length: scala.Option[scala.Int],

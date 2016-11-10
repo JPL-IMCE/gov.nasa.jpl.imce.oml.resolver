@@ -22,7 +22,6 @@ import gov.nasa.jpl.imce.omf.schema._
 
 case class NumericScalarRestrictionAxiom private[impl] 
 (
- override val graph: resolver.api.TerminologyBox,
  override val uuid: java.util.UUID,
  override val maxExclusive: scala.Option[gov.nasa.jpl.imce.omf.schema.tables.LexicalNumber],
  override val maxInclusive: scala.Option[gov.nasa.jpl.imce.omf.schema.tables.LexicalNumber],

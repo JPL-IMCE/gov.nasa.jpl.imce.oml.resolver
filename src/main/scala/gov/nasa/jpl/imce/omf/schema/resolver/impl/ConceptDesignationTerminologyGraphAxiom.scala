@@ -22,14 +22,12 @@ import gov.nasa.jpl.imce.omf.schema._
 
 case class ConceptDesignationTerminologyGraphAxiom private[impl] 
 (
- override val graph: resolver.api.TerminologyBox,
  override val uuid: java.util.UUID,
  override val designatedConceptTerminology: resolver.api.TerminologyBox,
  override val designatedConcept: resolver.api.Concept,
  override val designationTerminologyGraph: resolver.api.TerminologyGraph
 )
 extends resolver.api.ConceptDesignationTerminologyGraphAxiom
-  with TermAxiom
   with TerminologyAxiom
 {
 

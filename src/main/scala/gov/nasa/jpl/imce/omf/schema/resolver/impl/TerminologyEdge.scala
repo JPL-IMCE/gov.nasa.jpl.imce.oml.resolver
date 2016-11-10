@@ -18,13 +18,15 @@
 
 package gov.nasa.jpl.imce.omf.schema.resolver.impl
 
+import gov.nasa.jpl.imce.omf.schema._
+
 import scalax.collection.GraphEdge.{DiEdge, EdgeCopy, ExtendedKey, NodeProduct}
 import scalax.collection.GraphPredef.OuterEdge
 import scala.collection.immutable.Seq
 import scala.{Product,StringContext}
 
 case class TerminologyEdge[N]
-(override val nodes: Product, tAxiom: TerminologyAxiom)
+(override val nodes: Product, tAxiom: resolver.api.TerminologyAxiom)
   extends DiEdge[N](nodes)
     with ExtendedKey[N]
     with EdgeCopy[TerminologyEdge]
@@ -38,7 +40,9 @@ case class TerminologyEdge[N]
 object TerminologyEdge {
 
   def apply
-  (from: TerminologyBox, to: TerminologyBox, tAxiom:TerminologyAxiom)
+  (from: resolver.api.TerminologyBox,
+   to: resolver.api.TerminologyBox,
+   tAxiom:resolver.api.TerminologyAxiom)
   = new TerminologyEdge[TerminologyBox](NodeProduct(from, to), tAxiom)
 
 }

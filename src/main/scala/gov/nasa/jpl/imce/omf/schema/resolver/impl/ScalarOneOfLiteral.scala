@@ -22,7 +22,6 @@ import gov.nasa.jpl.imce.omf.schema._
 
 case class ScalarOneOfLiteral private[impl] 
 (
- override val graph: resolver.api.TerminologyBox,
  override val uuid: java.util.UUID,
  override val axiom: resolver.api.ScalarOneOfRestrictionAxiom,
  override val value: gov.nasa.jpl.imce.omf.schema.tables.LexicalValue

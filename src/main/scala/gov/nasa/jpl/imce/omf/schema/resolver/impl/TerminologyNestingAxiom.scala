@@ -22,7 +22,6 @@ import gov.nasa.jpl.imce.omf.schema._
 
 case class TerminologyNestingAxiom private[impl] 
 (
- override val graph: resolver.api.TerminologyBox,
  override val uuid: java.util.UUID,
  override val nestedTerminology: resolver.api.TerminologyGraph,
  override val nestingContext: resolver.api.Concept,

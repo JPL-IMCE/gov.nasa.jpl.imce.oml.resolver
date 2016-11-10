@@ -22,6 +22,6 @@ import gov.nasa.jpl.imce.omf.schema._
 
 trait TerminologyAxiom
 extends resolver.api.TerminologyAxiom
-  with Axiom
+  with TerminologyThing
 {
 }

@@ -22,7 +22,6 @@ import gov.nasa.jpl.imce.omf.schema._
 
 case class ScalarOneOfRestrictionAxiom private[impl] 
 (
- override val graph: resolver.api.TerminologyBox,
  override val uuid: java.util.UUID,
  override val restrictedScalar: resolver.api.Scalar,
  override val scalar: resolver.api.Scalar

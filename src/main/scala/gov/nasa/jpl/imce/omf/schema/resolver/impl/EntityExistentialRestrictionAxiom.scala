@@ -22,7 +22,6 @@ import gov.nasa.jpl.imce.omf.schema._
 
 case class EntityExistentialRestrictionAxiom private[impl] 
 (
- override val graph: resolver.api.TerminologyBox,
  override val uuid: java.util.UUID,
  override val restrictedDomain: resolver.api.Entity,
  override val restrictedRange: resolver.api.Entity,

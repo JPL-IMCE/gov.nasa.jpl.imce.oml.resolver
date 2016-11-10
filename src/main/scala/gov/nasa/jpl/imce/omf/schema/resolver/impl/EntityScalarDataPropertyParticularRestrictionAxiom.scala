@@ -22,7 +22,6 @@ import gov.nasa.jpl.imce.omf.schema._
 
 case class EntityScalarDataPropertyParticularRestrictionAxiom private[impl] 
 (
- override val graph: resolver.api.TerminologyBox,
  override val uuid: java.util.UUID,
  override val literalValue: gov.nasa.jpl.imce.omf.schema.tables.LexicalValue,
  override val scalarProperty: resolver.api.EntityScalarDataProperty

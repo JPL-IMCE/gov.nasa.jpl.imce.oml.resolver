@@ -30,4 +30,14 @@ case class Bundle private[impl]
 extends resolver.api.Bundle
   with TerminologyBox
 {
+
+  override def withStatements
+  (s: scala.collection.immutable.Set[_ <: resolver.api.TerminologyStatement]
+  )
+  : resolver.api.TerminologyBox
+  = {
+  			  copy(statements = this.statements ++ s)
+  			}
+  
+
 }
