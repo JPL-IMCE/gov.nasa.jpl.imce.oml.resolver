@@ -30,13 +30,13 @@ import scala.collection.parallel.immutable.ParSeq
 
 case class OMFSchemaResolver private[resolver]
 (context: impl.TerminologyContext,
- invalid: tables.OMFTables) {
+ invalid: tables.OMFSchemaTables) {
 
 }
 
 object OMFSchemaResolver {
 
-  def resolve(t: tables.OMFTables)
+  def resolve(t: tables.OMFSchemaTables)
   : Try[OMFSchemaResolver]
   = for {
     init <- Try.apply(OMFSchemaResolver(impl.TerminologyContext(), t))

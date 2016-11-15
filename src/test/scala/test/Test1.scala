@@ -4,7 +4,7 @@ import java.io.File
 import java.lang.System
 
 import gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver
-import gov.nasa.jpl.imce.omf.schema.tables.OMFTables
+import gov.nasa.jpl.imce.omf.schema.tables.OMFSchemaTables
 
 import scala.Predef.refArrayOps
 import scala.util.{Failure, Success}
@@ -32,7 +32,7 @@ object Test1 {
 
     val result =
       for {
-        tables <- OMFTables.loadOMFTables(new File(omfSchemaJsonZipFile))
+        tables <- OMFSchemaTables.loadOMFSchemaTables(new File(omfSchemaJsonZipFile))
         _ = System.out.println(s"... loaded tables")
         resolver <- OMFSchemaResolver.resolve(tables)
         _ = System.out.println(s"... resolved tables")
