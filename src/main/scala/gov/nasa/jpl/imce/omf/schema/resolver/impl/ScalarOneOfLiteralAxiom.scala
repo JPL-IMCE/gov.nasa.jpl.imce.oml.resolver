@@ -20,17 +20,13 @@ package gov.nasa.jpl.imce.omf.schema.resolver.impl
 
 import gov.nasa.jpl.imce.omf.schema._
 
-case class TimeScalarRestrictionAxiom private[impl] 
+case class ScalarOneOfLiteralAxiom private[impl] 
 (
  override val uuid: java.util.UUID,
- override val maxExclusive: scala.Option[gov.nasa.jpl.imce.omf.schema.tables.LexicalTime],
- override val maxInclusive: scala.Option[gov.nasa.jpl.imce.omf.schema.tables.LexicalTime],
- override val minExclusive: scala.Option[gov.nasa.jpl.imce.omf.schema.tables.LexicalTime],
- override val minInclusive: scala.Option[gov.nasa.jpl.imce.omf.schema.tables.LexicalTime],
- override val restrictedScalar: resolver.api.Scalar,
- override val scalar: resolver.api.Scalar
+ override val axiom: resolver.api.ScalarOneOfRestriction,
+ override val value: gov.nasa.jpl.imce.omf.schema.tables.LexicalValue
 )
-extends resolver.api.TimeScalarRestrictionAxiom
-  with ScalarRestrictionAxiom
+extends resolver.api.ScalarOneOfLiteralAxiom
+  with Axiom
 {
 }

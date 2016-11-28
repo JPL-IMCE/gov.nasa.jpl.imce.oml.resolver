@@ -24,25 +24,9 @@ case class EntityScalarDataPropertyUniversalRestrictionAxiom private[impl]
 (
  override val uuid: java.util.UUID,
  override val scalarProperty: resolver.api.EntityScalarDataProperty,
- override val scalarRestriction: resolver.api.ScalarRestrictionAxiom
+ override val scalarRestriction: resolver.api.DataRange
 )
 extends resolver.api.EntityScalarDataPropertyUniversalRestrictionAxiom
   with EntityScalarDataPropertyRestrictionAxiom
-  with SpecializationAxiom
 {
-
-  val child
-  : resolver.api.Term
-  = {
-    scalarProperty
-  }
-  
-  
-val parent
-  : resolver.api.Term
-  = {
-  			  scalarRestriction.restrictedScalar
-  			}
-  
-
 }

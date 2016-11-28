@@ -20,8 +20,30 @@ package gov.nasa.jpl.imce.omf.schema.resolver.impl
 
 import gov.nasa.jpl.imce.omf.schema._
 
-trait ScalarRestrictionAxiom
-extends resolver.api.ScalarRestrictionAxiom
-  with ScalarRangeAxiom
+trait RestrictedDataRange
+extends resolver.api.RestrictedDataRange
+  with DataRange
+  with SpecializationAxiom
 {
+
+  /*
+   * Get the sub (child) entity
+   */
+  val child
+  : resolver.api.Term
+  = {
+    this
+  }
+  
+  
+/*
+   * Get the super (parent) entity
+   */
+  val parent
+  : resolver.api.Term
+  = {
+    restrictedRange
+  }
+  
+
 }

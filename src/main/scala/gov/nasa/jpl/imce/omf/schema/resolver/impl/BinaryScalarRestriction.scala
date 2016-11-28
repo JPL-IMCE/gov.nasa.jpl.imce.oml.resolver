@@ -20,17 +20,17 @@ package gov.nasa.jpl.imce.omf.schema.resolver.impl
 
 import gov.nasa.jpl.imce.omf.schema._
 
-case class NumericScalarRestrictionAxiom private[impl] 
+case class BinaryScalarRestriction private[impl] 
 (
  override val uuid: java.util.UUID,
- override val maxExclusive: scala.Option[gov.nasa.jpl.imce.omf.schema.tables.LexicalNumber],
- override val maxInclusive: scala.Option[gov.nasa.jpl.imce.omf.schema.tables.LexicalNumber],
- override val minExclusive: scala.Option[gov.nasa.jpl.imce.omf.schema.tables.LexicalNumber],
- override val minInclusive: scala.Option[gov.nasa.jpl.imce.omf.schema.tables.LexicalNumber],
- override val restrictedScalar: resolver.api.Scalar,
- override val scalar: resolver.api.Scalar
+ override val name: gov.nasa.jpl.imce.omf.schema.tables.LocalName,
+ override val iri: gov.nasa.jpl.imce.omf.schema.tables.IRI,
+ override val length: scala.Option[scala.Int],
+ override val maxLength: scala.Option[scala.Int],
+ override val minLength: scala.Option[scala.Int],
+ override val restrictedRange: resolver.api.DataRange
 )
-extends resolver.api.NumericScalarRestrictionAxiom
-  with ScalarRestrictionAxiom
+extends resolver.api.BinaryScalarRestriction
+  with RestrictedDataRange
 {
 }

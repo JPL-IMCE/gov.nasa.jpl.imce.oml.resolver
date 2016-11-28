@@ -20,16 +20,8 @@ package gov.nasa.jpl.imce.omf.schema.resolver.impl
 
 import gov.nasa.jpl.imce.omf.schema._
 
-case class BinaryScalarRestrictionAxiom private[impl] 
-(
- override val uuid: java.util.UUID,
- override val length: scala.Option[scala.Int],
- override val maxLength: scala.Option[scala.Int],
- override val minLength: scala.Option[scala.Int],
- override val restrictedScalar: resolver.api.Scalar,
- override val scalar: resolver.api.Scalar
-)
-extends resolver.api.BinaryScalarRestrictionAxiom
-  with ScalarRestrictionAxiom
+trait DataRange
+extends resolver.api.DataRange
+  with Datatype
 {
 }

@@ -20,13 +20,14 @@ package gov.nasa.jpl.imce.omf.schema.resolver.impl
 
 import gov.nasa.jpl.imce.omf.schema._
 
-case class ScalarOneOfRestrictionAxiom private[impl] 
+case class ScalarOneOfRestriction private[impl] 
 (
  override val uuid: java.util.UUID,
- override val restrictedScalar: resolver.api.Scalar,
- override val scalar: resolver.api.Scalar
+ override val name: gov.nasa.jpl.imce.omf.schema.tables.LocalName,
+ override val iri: gov.nasa.jpl.imce.omf.schema.tables.IRI,
+ override val restrictedRange: resolver.api.DataRange
 )
-extends resolver.api.ScalarOneOfRestrictionAxiom
-  with ScalarRestrictionAxiom
+extends resolver.api.ScalarOneOfRestriction
+  with RestrictedDataRange
 {
 }

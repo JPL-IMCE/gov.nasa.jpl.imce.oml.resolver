@@ -27,6 +27,6 @@ case class Scalar private[impl]
  override val iri: gov.nasa.jpl.imce.omf.schema.tables.IRI
 )
 extends resolver.api.Scalar
-  with Datatype
+  with DataRange
 {
 }

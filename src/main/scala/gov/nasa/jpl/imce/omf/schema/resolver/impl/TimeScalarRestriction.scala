@@ -20,8 +20,18 @@ package gov.nasa.jpl.imce.omf.schema.resolver.impl
 
 import gov.nasa.jpl.imce.omf.schema._
 
-trait ScalarRangeAxiom
-extends resolver.api.ScalarRangeAxiom
-  with TermAxiom
+case class TimeScalarRestriction private[impl] 
+(
+ override val uuid: java.util.UUID,
+ override val name: gov.nasa.jpl.imce.omf.schema.tables.LocalName,
+ override val iri: gov.nasa.jpl.imce.omf.schema.tables.IRI,
+ override val maxExclusive: scala.Option[gov.nasa.jpl.imce.omf.schema.tables.LexicalTime],
+ override val maxInclusive: scala.Option[gov.nasa.jpl.imce.omf.schema.tables.LexicalTime],
+ override val minExclusive: scala.Option[gov.nasa.jpl.imce.omf.schema.tables.LexicalTime],
+ override val minInclusive: scala.Option[gov.nasa.jpl.imce.omf.schema.tables.LexicalTime],
+ override val restrictedRange: resolver.api.DataRange
+)
+extends resolver.api.TimeScalarRestriction
+  with RestrictedDataRange
 {
 }

@@ -20,17 +20,18 @@ package gov.nasa.jpl.imce.omf.schema.resolver.impl
 
 import gov.nasa.jpl.imce.omf.schema._
 
-case class StringScalarRestrictionAxiom private[impl] 
+case class IRIScalarRestriction private[impl] 
 (
  override val uuid: java.util.UUID,
+ override val name: gov.nasa.jpl.imce.omf.schema.tables.LocalName,
+ override val iri: gov.nasa.jpl.imce.omf.schema.tables.IRI,
  override val length: scala.Option[scala.Int],
  override val maxLength: scala.Option[scala.Int],
  override val minLength: scala.Option[scala.Int],
  override val pattern: scala.Option[gov.nasa.jpl.imce.omf.schema.tables.Pattern],
- override val restrictedScalar: resolver.api.Scalar,
- override val scalar: resolver.api.Scalar
+ override val restrictedRange: resolver.api.DataRange
 )
-extends resolver.api.StringScalarRestrictionAxiom
-  with ScalarRestrictionAxiom
+extends resolver.api.IRIScalarRestriction
+  with RestrictedDataRange
 {
 }
