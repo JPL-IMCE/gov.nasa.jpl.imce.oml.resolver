@@ -23,6 +23,7 @@ import gov.nasa.jpl.imce.omf.schema._
 case class EntityScalarDataPropertyUniversalRestrictionAxiom private[impl] 
 (
  override val uuid: java.util.UUID,
+ override val restrictedEntity: resolver.api.Entity,
  override val scalarProperty: resolver.api.EntityScalarDataProperty,
  override val scalarRestriction: resolver.api.DataRange
 )

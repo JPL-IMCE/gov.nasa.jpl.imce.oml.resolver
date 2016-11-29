@@ -24,6 +24,7 @@ case class EntityScalarDataPropertyParticularRestrictionAxiom private[impl]
 (
  override val uuid: java.util.UUID,
  override val literalValue: gov.nasa.jpl.imce.omf.schema.tables.LexicalValue,
+ override val restrictedEntity: resolver.api.Entity,
  override val scalarProperty: resolver.api.EntityScalarDataProperty
 )
 extends resolver.api.EntityScalarDataPropertyParticularRestrictionAxiom
