@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.omf.schema._
 
 case class AnonymousConceptTaxonomyAxiom private[impl] 
 (
- override val bundle: resolver.api.Bundle,
+ override val uuid: java.util.UUID,
  override val disjointTaxonomyParent: resolver.api.ConceptTreeDisjunction
 )
 extends resolver.api.AnonymousConceptTaxonomyAxiom

@@ -91,7 +91,6 @@ object OMFSchemaResolver {
       gi + impl.Bundle(java.util.UUID.fromString(b.uuid), b.kind, b.name, b.iri,
         boxStatements=Set.empty,
         bundleStatements=Set.empty,
-        disjointUnionOfConceptsAxioms=Set.empty,
         terminologyBundleAxioms=Set.empty)
     }
 

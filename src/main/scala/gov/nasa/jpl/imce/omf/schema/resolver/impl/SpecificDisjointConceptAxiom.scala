@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.omf.schema._
 
 case class SpecificDisjointConceptAxiom private[impl] 
 (
- override val bundle: resolver.api.Bundle,
+ override val uuid: java.util.UUID,
  override val disjointLeaf: resolver.api.Concept,
  override val disjointTaxonomyParent: resolver.api.ConceptTreeDisjunction
 )

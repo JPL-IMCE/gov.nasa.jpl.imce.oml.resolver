@@ -22,5 +22,6 @@ import gov.nasa.jpl.imce.omf.schema._
 
 trait DisjointUnionOfConceptsAxiom
 extends resolver.api.DisjointUnionOfConceptsAxiom
+  with TerminologyBundleStatement
 {
 }

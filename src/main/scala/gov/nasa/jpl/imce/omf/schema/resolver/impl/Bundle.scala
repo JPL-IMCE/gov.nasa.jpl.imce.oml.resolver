@@ -28,7 +28,6 @@ case class Bundle private[impl]
  override val iri: gov.nasa.jpl.imce.omf.schema.tables.IRI,
  override val boxStatements: scala.collection.immutable.Set[_ <: resolver.api.TerminologyBoxStatement],
  override val bundleStatements: scala.collection.immutable.Set[_ <: resolver.api.TerminologyBundleStatement],
- override val disjointUnionOfConceptsAxioms: scala.collection.immutable.Set[_ <: resolver.api.DisjointUnionOfConceptsAxiom],
  override val terminologyBundleAxioms: scala.collection.immutable.Set[_ <: resolver.api.TerminologyBundleAxiom]
 )
 extends resolver.api.Bundle
