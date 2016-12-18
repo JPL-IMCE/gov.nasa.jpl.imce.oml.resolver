@@ -74,7 +74,7 @@ object OMFSchemaResolver {
   : Try[OMFSchemaResolver]
   = {
     val gN = resolver.invalid.terminologyGraphs.foldLeft(resolver.context.g) {(gi, t) =>
-      gi + impl.TerminologyGraph(java.util.UUID.fromString(t.uuid), t.kind, t.name, t.iri, statements=Set.empty)
+      gi + impl.TerminologyGraph(java.util.UUID.fromString(t.uuid), t.kind, t.name, t.iri, boxStatements=Set.empty)
     }
 
     val r = resolver.copy(
@@ -88,7 +88,11 @@ object OMFSchemaResolver {
   : Try[OMFSchemaResolver]
   = {
     val gN = resolver.invalid.bundles.foldLeft(resolver.context.g) {(gi, b) =>
-      gi + impl.Bundle(java.util.UUID.fromString(b.uuid), b.name, b.iri, statements=Set.empty)
+      gi + impl.Bundle(java.util.UUID.fromString(b.uuid), b.kind, b.name, b.iri,
+        boxStatements=Set.empty,
+        bundleStatements=Set.empty,
+        disjointUnionOfConceptsAxioms=Set.empty,
+        terminologyBundleAxioms=Set.empty)
     }
 
     val r = resolver.copy(
@@ -124,7 +128,7 @@ object OMFSchemaResolver {
         impl.Aspect(uuid=UUID.fromString(e.uuid), name=e.name, iri=e.iri)
       }
       .toSet.seq
-    val result = g - n0 + n0.withStatements(s)
+    val result = g - n0 + n0.withBoxStatements(s)
     result
   }
 
@@ -166,7 +170,7 @@ object OMFSchemaResolver {
         impl.Concept(uuid=UUID.fromString(e.uuid), isAbstract=e.isAbstract, name=e.name, iri=e.iri)
       }
       .toSet.seq
-    val result = g - n0 + n0.withStatements(s)
+    val result = g - n0 + n0.withBoxStatements(s)
     result
   }
 
@@ -208,7 +212,7 @@ object OMFSchemaResolver {
         impl.Scalar(uuid=UUID.fromString(e.uuid), name=e.name, iri=e.iri)
       }
       .toSet.seq
-    val result = g - n0 + n0.withStatements(s)
+    val result = g - n0 + n0.withBoxStatements(s)
     result
   }
 
@@ -250,7 +254,7 @@ object OMFSchemaResolver {
         impl.Structure(uuid=UUID.fromString(e.uuid), name=e.name, iri=e.iri)
       }
       .toSet.seq
-    val result = g - n0 + n0.withStatements(s)
+    val result = g - n0 + n0.withBoxStatements(s)
     result
   }
 

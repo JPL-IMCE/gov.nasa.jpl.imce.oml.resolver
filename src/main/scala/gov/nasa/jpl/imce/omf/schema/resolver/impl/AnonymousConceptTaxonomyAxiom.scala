@@ -20,8 +20,13 @@ package gov.nasa.jpl.imce.omf.schema.resolver.impl
 
 import gov.nasa.jpl.imce.omf.schema._
 
-trait Axiom
-extends resolver.api.Axiom
-  with TerminologyBoxStatement
+case class AnonymousConceptTaxonomyAxiom private[impl] 
+(
+ override val bundle: resolver.api.Bundle,
+ override val disjointTaxonomyParent: resolver.api.ConceptTreeDisjunction
+)
+extends resolver.api.AnonymousConceptTaxonomyAxiom
+  with DisjointUnionOfConceptsAxiom
+  with ConceptTreeDisjunction
 {
 }

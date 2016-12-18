@@ -40,5 +40,6 @@ case class ReifiedRelationship private[impl]
 )
 extends resolver.api.ReifiedRelationship
   with EntityRelationship
+  with Entity
 {
 }

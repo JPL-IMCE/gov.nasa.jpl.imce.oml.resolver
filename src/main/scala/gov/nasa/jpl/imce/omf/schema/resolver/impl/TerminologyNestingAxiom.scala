@@ -28,7 +28,7 @@ case class TerminologyNestingAxiom private[impl]
  override val nestingTerminology: resolver.api.TerminologyBox
 )
 extends resolver.api.TerminologyNestingAxiom
-  with TerminologyAxiom
+  with TerminologyBoxAxiom
 {
 
   /*

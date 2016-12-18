@@ -26,7 +26,7 @@ case class EntityScalarDataProperty private[impl]
  override val name: gov.nasa.jpl.imce.omf.schema.tables.LocalName,
  override val iri: gov.nasa.jpl.imce.omf.schema.tables.IRI,
  override val domain: resolver.api.Entity,
- override val range: resolver.api.Scalar
+ override val range: resolver.api.DataRange
 )
 extends resolver.api.EntityScalarDataProperty
   with DataRelationship

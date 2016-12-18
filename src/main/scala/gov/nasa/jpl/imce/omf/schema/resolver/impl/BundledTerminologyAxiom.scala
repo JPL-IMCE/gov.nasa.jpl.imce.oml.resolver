@@ -23,11 +23,11 @@ import gov.nasa.jpl.imce.omf.schema._
 case class BundledTerminologyAxiom private[impl] 
 (
  override val uuid: java.util.UUID,
- override val bundle: resolver.api.Bundle,
- override val bundledTerminology: resolver.api.TerminologyBox
+ override val bundledTerminology: resolver.api.TerminologyBox,
+ override val terminologyBundle: resolver.api.Bundle
 )
 extends resolver.api.BundledTerminologyAxiom
-  with TerminologyAxiom
+  with TerminologyBundleAxiom
 {
 
   /*
@@ -36,7 +36,7 @@ extends resolver.api.BundledTerminologyAxiom
   override val source
   : resolver.api.TerminologyBox
   = {
-    bundle
+    terminologyBundle
   }
   
   

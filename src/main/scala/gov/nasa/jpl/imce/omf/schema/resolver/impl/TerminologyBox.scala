@@ -34,7 +34,7 @@ extends resolver.api.TerminologyBox
   : scala.collection.immutable.Map[java.util.UUID, resolver.api.Entity]
   = {
   			  import scala.Predef.ArrowAssoc
-  			  statements
+  			  boxStatements
   			  .selectByKindOf { case e: Entity => e }
   			  .map(e => e.uuid -> e)
   			  .toMap
@@ -49,7 +49,7 @@ extends resolver.api.TerminologyBox
   : scala.collection.immutable.Map[java.util.UUID, resolver.api.Aspect]
   = {
   			  import scala.Predef.ArrowAssoc
-  			  statements
+  			  boxStatements
   			  .selectByKindOf { case a: Aspect => a }
   			  .map(a => a.uuid -> a)
   			  .toMap
@@ -64,7 +64,7 @@ extends resolver.api.TerminologyBox
   : scala.collection.immutable.Map[java.util.UUID, resolver.api.Concept]
   = {
   			  import scala.Predef.ArrowAssoc
-  			  statements
+  			  boxStatements
   			  .selectByKindOf { case c: Concept => c }
   			  .map(c => c.uuid -> c)
   			  .toMap
@@ -79,8 +79,23 @@ extends resolver.api.TerminologyBox
   : scala.collection.immutable.Map[java.util.UUID, resolver.api.ReifiedRelationship]
   = {
   			  import scala.Predef.ArrowAssoc
-  			  statements
+  			  boxStatements
   			  .selectByKindOf { case r: ReifiedRelationship => r }
+  			  .map(r => r.uuid -> r)
+  			  .toMap
+  			}
+  
+  
+/*
+   * A map for the subset of statements that are
+   * unreified relationship terms indexed by their uuid.
+   */
+  val unreifiedRelationships
+  : scala.collection.immutable.Map[java.util.UUID, resolver.api.UnreifiedRelationship]
+  = {
+  			  import scala.Predef.ArrowAssoc
+  			  boxStatements
+  			  .selectByKindOf { case r: UnreifiedRelationship => r }
   			  .map(r => r.uuid -> r)
   			  .toMap
   			}
@@ -94,7 +109,7 @@ extends resolver.api.TerminologyBox
   : scala.collection.immutable.Map[java.util.UUID, resolver.api.DataRelationship]
   = {
   			  import scala.Predef.ArrowAssoc
-  			  statements
+  			  boxStatements
   			  .selectByKindOf { case dr: DataRelationship => dr }
   			  .map(dr => dr.uuid -> dr)
   			  .toMap
@@ -109,7 +124,7 @@ extends resolver.api.TerminologyBox
   : scala.collection.immutable.Map[java.util.UUID, resolver.api.Datatype]
   = {
   			  import scala.Predef.ArrowAssoc
-  			  statements
+  			  boxStatements
   			  .selectByKindOf { case dt: Datatype => dt }
   			  .map(dt => dt.uuid -> dt)
   			  .toMap
@@ -124,7 +139,7 @@ extends resolver.api.TerminologyBox
   : scala.collection.immutable.Map[java.util.UUID, resolver.api.Scalar]
   = {
   			  import scala.Predef.ArrowAssoc
-  			  statements
+  			  boxStatements
   			  .selectByKindOf { case s: Scalar => s }
   			  .map(s => s.uuid -> s)
   			  .toMap
@@ -139,7 +154,7 @@ extends resolver.api.TerminologyBox
   : scala.collection.immutable.Map[java.util.UUID, resolver.api.Structure]
   = {
   			  import scala.Predef.ArrowAssoc
-  			  statements
+  			  boxStatements
   			  .selectByKindOf { case s: Structure => s }
   			  .map(s => s.uuid -> s)
   			  .toMap
@@ -152,7 +167,7 @@ extends resolver.api.TerminologyBox
   val termAxioms
   : scala.collection.immutable.Set[_ <: resolver.api.TermAxiom]
   = {
-  			  statements.selectByKindOf { case tx: TermAxiom => tx }
+  			  boxStatements.selectByKindOf { case tx: TermAxiom => tx }
   			}
   
 

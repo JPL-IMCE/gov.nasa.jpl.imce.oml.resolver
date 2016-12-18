@@ -20,15 +20,15 @@ package gov.nasa.jpl.imce.omf.schema.resolver.impl
 
 import gov.nasa.jpl.imce.omf.schema._
 
-case class ConceptDesignationTerminologyGraphAxiom private[impl] 
+case class ConceptDesignationTerminologyAxiom private[impl] 
 (
  override val uuid: java.util.UUID,
- override val designatedConceptTerminology: resolver.api.TerminologyBox,
  override val designatedConcept: resolver.api.Concept,
+ override val designatedTerminology: resolver.api.TerminologyBox,
  override val designationTerminologyGraph: resolver.api.TerminologyGraph
 )
-extends resolver.api.ConceptDesignationTerminologyGraphAxiom
-  with TerminologyAxiom
+extends resolver.api.ConceptDesignationTerminologyAxiom
+  with TerminologyBoxAxiom
 {
 
   /*
@@ -47,7 +47,7 @@ extends resolver.api.ConceptDesignationTerminologyGraphAxiom
   override val target
   : resolver.api.TerminologyBox
   = {
-    designatedConceptTerminology
+    designatedTerminology
   }
   
 

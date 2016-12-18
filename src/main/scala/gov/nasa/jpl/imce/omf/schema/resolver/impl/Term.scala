@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.omf.schema._
 
 trait Term
 extends resolver.api.Term
-  with TerminologyStatement
+  with TerminologyBoxStatement
   with Resource
 {
 }

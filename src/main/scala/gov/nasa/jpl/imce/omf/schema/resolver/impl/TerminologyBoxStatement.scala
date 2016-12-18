@@ -20,8 +20,8 @@ package gov.nasa.jpl.imce.omf.schema.resolver.impl
 
 import gov.nasa.jpl.imce.omf.schema._
 
-trait Axiom
-extends resolver.api.Axiom
-  with TerminologyBoxStatement
+trait TerminologyBoxStatement
+extends resolver.api.TerminologyBoxStatement
+  with TerminologyStatement
 {
 }

@@ -22,6 +22,6 @@ import gov.nasa.jpl.imce.omf.schema._
 
 trait EntityRelationship
 extends resolver.api.EntityRelationship
-  with Entity
+  with Term
 {
 }

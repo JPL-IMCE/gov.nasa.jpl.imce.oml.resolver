@@ -27,7 +27,7 @@ case class TerminologyExtensionAxiom private[impl]
  override val extendingTerminology: resolver.api.TerminologyBox
 )
 extends resolver.api.TerminologyExtensionAxiom
-  with TerminologyAxiom
+  with TerminologyBoxAxiom
 {
 
   /*

@@ -20,8 +20,13 @@ package gov.nasa.jpl.imce.omf.schema.resolver.impl
 
 import gov.nasa.jpl.imce.omf.schema._
 
-trait Axiom
-extends resolver.api.Axiom
-  with TerminologyBoxStatement
+case class RootConceptTaxonomyAxiom private[impl] 
+(
+ override val uuid: java.util.UUID,
+ override val root: resolver.api.Concept
+)
+extends resolver.api.RootConceptTaxonomyAxiom
+  with TerminologyBundleStatement
+  with ConceptTreeDisjunction
 {
 }

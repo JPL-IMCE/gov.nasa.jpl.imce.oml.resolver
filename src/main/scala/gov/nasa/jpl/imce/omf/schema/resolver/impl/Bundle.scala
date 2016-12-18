@@ -23,20 +23,33 @@ import gov.nasa.jpl.imce.omf.schema._
 case class Bundle private[impl] 
 (
  override val uuid: java.util.UUID,
+ override val kind: gov.nasa.jpl.imce.omf.schema.tables.TerminologyGraphKind,
  override val name: gov.nasa.jpl.imce.omf.schema.tables.LocalName,
  override val iri: gov.nasa.jpl.imce.omf.schema.tables.IRI,
- override val statements: scala.collection.immutable.Set[_ <: resolver.api.TerminologyStatement]
+ override val boxStatements: scala.collection.immutable.Set[_ <: resolver.api.TerminologyBoxStatement],
+ override val bundleStatements: scala.collection.immutable.Set[_ <: resolver.api.TerminologyBundleStatement],
+ override val disjointUnionOfConceptsAxioms: scala.collection.immutable.Set[_ <: resolver.api.DisjointUnionOfConceptsAxiom],
+ override val terminologyBundleAxioms: scala.collection.immutable.Set[_ <: resolver.api.TerminologyBundleAxiom]
 )
 extends resolver.api.Bundle
   with TerminologyBox
 {
 
-  override def withStatements
-  (s: scala.collection.immutable.Set[_ <: resolver.api.TerminologyStatement]
+  def withBundleStatements
+  (s: scala.collection.immutable.Set[_ <: resolver.api.TerminologyBundleStatement]
   )
-  : resolver.api.TerminologyBox
+  : resolver.api.Bundle
   = {
-  			  copy(statements = this.statements ++ s)
+  			  copy(bundleStatements = this.bundleStatements ++ s)
+  			}
+  
+  
+def withBoxStatements
+  (s: scala.collection.immutable.Set[_ <: resolver.api.TerminologyBoxStatement]
+  )
+  : resolver.api.Bundle
+  = {
+  			  copy(boxStatements = this.boxStatements ++ s)
   			}
   
 
