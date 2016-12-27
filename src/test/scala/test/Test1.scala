@@ -38,7 +38,7 @@ object Test1 {
         _ = System.out.println(s"... resolved tables")
       } yield {
         System.out.println(s"...done!")
-        System.out.println(s"valid? ${resolver.invalid.isEmpty}")
+        System.out.println(s"valid? ${resolver.queue.isEmpty}")
         System.out.println(s"context graph:\n${resolver.context.g}")
         ()
       }

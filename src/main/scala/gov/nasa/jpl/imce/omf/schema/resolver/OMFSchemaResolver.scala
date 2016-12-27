@@ -30,7 +30,7 @@ import scala.collection.parallel.immutable.ParSeq
 
 case class OMFSchemaResolver private[resolver]
 (context: impl.TerminologyContext,
- invalid: tables.OMFSchemaTables) {
+ queue: tables.OMFSchemaTables) {
 
 }
 
@@ -48,7 +48,7 @@ object OMFSchemaResolver {
     step5 <- mapScalars(step4)
     step6 <- mapStructures(step5)
     // TerminologyAxiom relationships
-    step7 <- mapTerminologyExtends(step6)   
+    step7 <- mapTerminologyExtends(step6)
     step8 <- mapTerminologyNestings(step7)
     // Relational terms
     // - all 4 DataRelationships
@@ -73,13 +73,13 @@ object OMFSchemaResolver {
   (resolver: OMFSchemaResolver)
   : Try[OMFSchemaResolver]
   = {
-    val gN = resolver.invalid.terminologyGraphs.foldLeft(resolver.context.g) {(gi, t) =>
+    val gN = resolver.queue.terminologyGraphs.foldLeft(resolver.context.g) { (gi, t) =>
       gi + impl.TerminologyGraph(java.util.UUID.fromString(t.uuid), t.kind, t.name, t.iri, boxStatements=Set.empty)
     }
 
     val r = resolver.copy(
       context = resolver.context.copy(g = gN),
-      invalid = resolver.invalid.copy(terminologyGraphs = Seq()))
+      queue = resolver.queue.copy(terminologyGraphs = Seq()))
     Success(r)
   }
 
@@ -87,7 +87,7 @@ object OMFSchemaResolver {
   (resolver: OMFSchemaResolver)
   : Try[OMFSchemaResolver]
   = {
-    val gN = resolver.invalid.bundles.foldLeft(resolver.context.g) {(gi, b) =>
+    val gN = resolver.queue.bundles.foldLeft(resolver.context.g) { (gi, b) =>
       gi + impl.Bundle(java.util.UUID.fromString(b.uuid), b.kind, b.name, b.iri,
         boxStatements=Set.empty,
         bundleStatements=Set.empty,
@@ -96,7 +96,7 @@ object OMFSchemaResolver {
 
     val r = resolver.copy(
       context = resolver.context.copy(g = gN),
-      invalid = resolver.invalid.copy(bundles = Seq()))
+      queue = resolver.queue.copy(bundles = Seq()))
     Success(r)
   }
 
@@ -137,7 +137,7 @@ object OMFSchemaResolver {
   = {
     val ns = resolver.context.nodes
     val byUUID =
-      resolver.invalid.aspects.par
+      resolver.queue.aspects.par
         .groupBy(_.graphUUID)
         .map { case (uuid, aspects) => UUID.fromString(uuid) -> aspects }
 
@@ -147,17 +147,17 @@ object OMFSchemaResolver {
 
     val g = resolvable.aggregate(resolver.context.g)(seqop=seqopAspects(ns), combop=combopGraphs)
 
-    val a = unresolvable.aggregate(resolver.invalid.aspects)(seqop=seqopAppend, combop= _ ++ _)
+    val a = unresolvable.aggregate(resolver.queue.aspects)(seqop=seqopAppend, combop= _ ++ _)
 
     val r =
       resolver
         .copy(
           context = impl.TerminologyContext(g),
-          invalid = resolver.invalid.copy(aspects=a))
+          queue = resolver.queue.copy(aspects=a))
 
     Success(r)
   }
-  
+
   def seqopConcepts
   (nodes: Map[UUID, api.TerminologyBox])
   (g: Graph[api.TerminologyBox, impl.TerminologyEdge], entry: (UUID, ParSeq[tables.Concept]))
@@ -179,7 +179,7 @@ object OMFSchemaResolver {
   = {
     val ns = resolver.context.nodes
     val byUUID =
-      resolver.invalid.concepts.par
+      resolver.queue.concepts.par
         .groupBy(_.graphUUID)
         .map { case (uuid, concepts) => UUID.fromString(uuid) -> concepts }
 
@@ -189,13 +189,13 @@ object OMFSchemaResolver {
 
     val g = resolvable.aggregate(resolver.context.g)(seqop=seqopConcepts(ns), combop=combopGraphs)
 
-    val c = unresolvable.aggregate(resolver.invalid.concepts)(seqop=seqopAppend, combop= _ ++ _)
+    val c = unresolvable.aggregate(resolver.queue.concepts)(seqop=seqopAppend, combop= _ ++ _)
 
     val r =
       resolver
         .copy(
           context = impl.TerminologyContext(g),
-          invalid = resolver.invalid.copy(concepts=c))
+          queue = resolver.queue.copy(concepts=c))
 
     Success(r)
   }
@@ -221,7 +221,7 @@ object OMFSchemaResolver {
   = {
     val ns = resolver.context.nodes
     val byUUID =
-      resolver.invalid.scalars.par
+      resolver.queue.scalars.par
         .groupBy(_.graphUUID)
         .map { case (uuid, scalars) => UUID.fromString(uuid) -> scalars }
 
@@ -231,17 +231,17 @@ object OMFSchemaResolver {
 
     val g = resolvable.aggregate(resolver.context.g)(seqop=seqopScalars(ns), combop=combopGraphs)
 
-    val s = unresolvable.aggregate(resolver.invalid.scalars)(seqop=seqopAppend, combop= _ ++ _)
+    val s = unresolvable.aggregate(resolver.queue.scalars)(seqop=seqopAppend, combop= _ ++ _)
 
     val r =
       resolver
         .copy(
           context = impl.TerminologyContext(g),
-          invalid = resolver.invalid.copy(scalars=s))
+          queue = resolver.queue.copy(scalars=s))
 
     Success(r)
   }
-  
+
   def seqopStructures
   (nodes: Map[UUID, api.TerminologyBox])
   (g: Graph[api.TerminologyBox, impl.TerminologyEdge], entry: (UUID, ParSeq[tables.Structure]))
@@ -263,7 +263,7 @@ object OMFSchemaResolver {
   = {
     val ns = resolver.context.nodes
     val byUUID =
-      resolver.invalid.structures.par
+      resolver.queue.structures.par
         .groupBy(_.graphUUID)
         .map { case (uuid, structures) => UUID.fromString(uuid) -> structures }
 
@@ -273,17 +273,17 @@ object OMFSchemaResolver {
 
     val g = resolvable.aggregate(resolver.context.g)(seqop=seqopStructures(ns), combop=combopGraphs)
 
-    val s = unresolvable.aggregate(resolver.invalid.structures)(seqop=seqopAppend, combop= _ ++ _)
+    val s = unresolvable.aggregate(resolver.queue.structures)(seqop=seqopAppend, combop= _ ++ _)
 
     val r =
       resolver
         .copy(
           context = impl.TerminologyContext(g),
-          invalid = resolver.invalid.copy(structures=s))
+          queue = resolver.queue.copy(structures=s))
 
     Success(r)
   }
-  
+
   def seqopTerminologyExtends
   (nodes: Map[UUID, api.TerminologyBox])
   (g: Graph[api.TerminologyBox, impl.TerminologyEdge],
@@ -309,7 +309,7 @@ object OMFSchemaResolver {
   = {
     val ns = resolver.context.nodes
     val byUUID =
-      resolver.invalid.terminologyExtensionAxioms.par
+      resolver.queue.terminologyExtensionAxioms.par
         .map { tAxiom =>
           (UUID.fromString(tAxiom.extendingTerminologyUUID), UUID.fromString(tAxiom.extendedTerminologyUUID)) -> tAxiom
         }
@@ -322,17 +322,17 @@ object OMFSchemaResolver {
 
     val g = resolvable.aggregate(resolver.context.g)(seqop=seqopTerminologyExtends(ns), combop=combopGraphs)
 
-    val s = unresolvable.aggregate(resolver.invalid.terminologyExtensionAxioms)(seqop=seqopAppend1, combop= _ ++ _)
+    val s = unresolvable.aggregate(resolver.queue.terminologyExtensionAxioms)(seqop=seqopAppend1, combop= _ ++ _)
 
     val r =
       resolver
         .copy(
           context = impl.TerminologyContext(g),
-          invalid = resolver.invalid.copy(terminologyExtensionAxioms=s))
+          queue = resolver.queue.copy(terminologyExtensionAxioms=s))
 
     Success(r)
   }
-  
+
   def seqopTerminologyNesting
   (tc: api.TerminologyContext)
   (g: Graph[api.TerminologyBox, impl.TerminologyEdge],
@@ -358,7 +358,7 @@ object OMFSchemaResolver {
   = {
     val ns = resolver.context.nodes
     val byUUID =
-      resolver.invalid.terminologyNestingAxioms.par
+      resolver.queue.terminologyNestingAxioms.par
         .map { tAxiom =>
           (UUID.fromString(tAxiom.nestingTerminologyUUID), UUID.fromString(tAxiom.nestedTerminologyUUID)) -> tAxiom
         }
@@ -375,13 +375,13 @@ object OMFSchemaResolver {
 
     val s =
       unresolvable
-        .aggregate(resolver.invalid.terminologyNestingAxioms)(seqop=seqopAppend1, combop= _ ++ _)
+        .aggregate(resolver.queue.terminologyNestingAxioms)(seqop=seqopAppend1, combop= _ ++ _)
 
     val r =
       resolver
         .copy(
           context = impl.TerminologyContext(g),
-          invalid = resolver.invalid.copy(terminologyNestingAxioms=s))
+          queue = resolver.queue.copy(terminologyNestingAxioms=s))
 
     Success(r)
   }
