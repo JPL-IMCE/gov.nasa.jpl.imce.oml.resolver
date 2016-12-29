@@ -40,9 +40,10 @@ object OMFSchemaResolver {
   : Try[OMFSchemaResolver]
   = for {
     init <- Try.apply(OMFSchemaResolver(impl.TerminologyContext(), t))
+    // Terminologies
     step1 <- mapTerminologyGraphs(init)
-    // Atomic terms
     step2 <- mapBundles(step1)
+    // Atomic terms
     step3 <- mapAspects(step2)
     step4 <- mapConcepts(step3)
     step5 <- mapScalars(step4)
@@ -51,6 +52,7 @@ object OMFSchemaResolver {
     step7 <- mapTerminologyExtends(step6)
     step8 <- mapTerminologyNestings(step7)
     // Relational terms
+    step9 <- mapRestrictedDataRanges(step8)
     // - all 4 DataRelationships
     // (EntityScalarDataProperty, EntityStructuredDataProperty, ScalarDataProperty, StructuredDataProperty)
     // - all 2 EntityRelationships
@@ -67,7 +69,7 @@ object OMFSchemaResolver {
     // ---- {Binary,IRI,Numeric,Plain,ScalarOneOf,String,Time}ScalarRestrictionAxiom
     // -- SpecializationAxiom
     // --- {Aspect,Concept,EntityScalarDataPropertyExistential,EntityScalarDataPropertyUniversal,ReifiedRelationship}SpecializationAxiom
-  } yield step8
+  } yield step9
 
   def mapTerminologyGraphs
   (resolver: OMFSchemaResolver)
@@ -147,7 +149,7 @@ object OMFSchemaResolver {
 
     val g = resolvable.aggregate(resolver.context.g)(seqop=seqopAspects(ns), combop=combopGraphs)
 
-    val a = unresolvable.aggregate(resolver.queue.aspects)(seqop=seqopAppend, combop= _ ++ _)
+    val a = unresolvable.flatMap(_._2).toSeq.seq
 
     val r =
       resolver
@@ -189,7 +191,7 @@ object OMFSchemaResolver {
 
     val g = resolvable.aggregate(resolver.context.g)(seqop=seqopConcepts(ns), combop=combopGraphs)
 
-    val c = unresolvable.aggregate(resolver.queue.concepts)(seqop=seqopAppend, combop= _ ++ _)
+    val c = unresolvable.flatMap(_._2).toSeq.seq
 
     val r =
       resolver
@@ -231,7 +233,7 @@ object OMFSchemaResolver {
 
     val g = resolvable.aggregate(resolver.context.g)(seqop=seqopScalars(ns), combop=combopGraphs)
 
-    val s = unresolvable.aggregate(resolver.queue.scalars)(seqop=seqopAppend, combop= _ ++ _)
+    val s = unresolvable.flatMap(_._2).toSeq.seq
 
     val r =
       resolver
@@ -273,7 +275,7 @@ object OMFSchemaResolver {
 
     val g = resolvable.aggregate(resolver.context.g)(seqop=seqopStructures(ns), combop=combopGraphs)
 
-    val s = unresolvable.aggregate(resolver.queue.structures)(seqop=seqopAppend, combop= _ ++ _)
+    val s = unresolvable.flatMap(_._2).toSeq.seq
 
     val r =
       resolver
@@ -322,7 +324,7 @@ object OMFSchemaResolver {
 
     val g = resolvable.aggregate(resolver.context.g)(seqop=seqopTerminologyExtends(ns), combop=combopGraphs)
 
-    val s = unresolvable.aggregate(resolver.queue.terminologyExtensionAxioms)(seqop=seqopAppend1, combop= _ ++ _)
+    val s = unresolvable.map(_._2).seq
 
     val r =
       resolver
@@ -374,8 +376,7 @@ object OMFSchemaResolver {
       .aggregate(resolver.context.g)(seqop=seqopTerminologyNesting(resolver.context), combop=combopGraphs)
 
     val s =
-      unresolvable
-        .aggregate(resolver.queue.terminologyNestingAxioms)(seqop=seqopAppend1, combop= _ ++ _)
+      unresolvable.map(_._2).seq
 
     val r =
       resolver
@@ -384,5 +385,44 @@ object OMFSchemaResolver {
           queue = resolver.queue.copy(terminologyNestingAxioms=s))
 
     Success(r)
+  }
+
+  def mapRestrictedDataRanges
+  (resolver: OMFSchemaResolver)
+  : Try[OMFSchemaResolver]
+  = {
+    val ns = resolver.context.nodes
+    val (r1, u1) =
+      resolver.queue.binaryScalarRestrictions
+        .groupBy(_.graphUUID)
+        .map { case (uuid, ranges) => UUID.fromString(uuid) -> ranges }
+        .partition { case (graphUUID, _) => ns.contains(graphUUID) }
+    val (r2, u2) =
+        resolver.queue.iriScalarRestrictions
+          .groupBy(_.graphUUID)
+          .map { case (uuid, ranges) => UUID.fromString(uuid) -> ranges }
+          .partition { case (graphUUID, _) => ns.contains(graphUUID) }
+    val (r3, u3) =
+        resolver.queue.numericScalarRestrictions
+          .groupBy(_.graphUUID)
+          .map { case (uuid, ranges) => UUID.fromString(uuid) -> ranges }
+          .partition { case (graphUUID, _) => ns.contains(graphUUID) }
+    val (r4, u4) =
+        resolver.queue.plainLiteralScalarRestrictions
+          .groupBy(_.graphUUID)
+          .map { case (uuid, ranges) => UUID.fromString(uuid) -> ranges }
+          .partition { case (graphUUID, _) => ns.contains(graphUUID) }
+    val (r5, u5) =
+        resolver.queue.scalarOneOfRestrictions
+          .groupBy(_.graphUUID)
+          .map { case (uuid, ranges) => UUID.fromString(uuid) -> ranges }
+          .partition { case (graphUUID, _) => ns.contains(graphUUID) }
+    val (r6, u6) =
+        resolver.queue.timeScalarRestrictions
+          .groupBy(_.graphUUID)
+          .map { case (uuid, ranges) => UUID.fromString(uuid) -> ranges }
+          .partition { case (graphUUID, _) => ns.contains(graphUUID) }
+
+    Success(resolver)
   }
 }

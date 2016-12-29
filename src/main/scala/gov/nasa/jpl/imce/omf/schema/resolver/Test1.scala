@@ -1,15 +1,13 @@
-package test
+package gov.nasa.jpl.imce.omf.schema.resolver
 
 import java.io.File
 import java.lang.System
 
-import gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver
 import gov.nasa.jpl.imce.omf.schema.tables.OMFSchemaTables
 
-import scala.Predef.refArrayOps
-import scala.util.{Failure, Success}
 import scala.{Array,StringContext,Unit}
-import scala.Predef.String
+import scala.Predef.{refArrayOps,String}
+import scala.util.{Failure, Success}
 
 object Test1 {
 
