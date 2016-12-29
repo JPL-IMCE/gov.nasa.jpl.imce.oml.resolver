@@ -118,15 +118,15 @@ extends resolver.api.TerminologyBox
   
 /*
    * A map for the subset of statements that are
-   * datatype terms indexed by their uuid.
+   * data range terms indexed by their uuid.
    */
-  val datatypes
-  : scala.collection.immutable.Map[java.util.UUID, resolver.api.Datatype]
+  val dataranges
+  : scala.collection.immutable.Map[java.util.UUID, resolver.api.DataRange]
   = {
   			  import scala.Predef.ArrowAssoc
   			  boxStatements
-  			  .selectByKindOf { case dt: Datatype => dt }
-  			  .map(dt => dt.uuid -> dt)
+  			  .selectByKindOf { case dr: DataRange => dr }
+  			  .map(dt => dr.uuid -> dr)
   			  .toMap
   			}
   
