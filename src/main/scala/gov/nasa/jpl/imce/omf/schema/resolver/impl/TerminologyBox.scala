@@ -126,7 +126,7 @@ extends resolver.api.TerminologyBox
   			  import scala.Predef.ArrowAssoc
   			  boxStatements
   			  .selectByKindOf { case dr: DataRange => dr }
-  			  .map(dt => dr.uuid -> dr)
+  			  .map(dr => dr.uuid -> dr)
   			  .toMap
   			}
   
