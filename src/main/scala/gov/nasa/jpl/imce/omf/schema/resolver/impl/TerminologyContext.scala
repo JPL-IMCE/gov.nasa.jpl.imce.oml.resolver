@@ -26,9 +26,10 @@ import scalax.collection.GraphPredef._
 import scalax.collection.immutable.Graph
 import scala.collection.immutable.{Map,Set}
 
-import scala.{None,Option,PartialFunction,Some,StringContext}
+import scala.{None,Option,PartialFunction,Some,StringContext,Tuple2}
 import scala.util.{Failure,Success,Try}
-import scala.Predef.ArrowAssoc
+import scala.util.control.Exception._
+import scala.Predef.{require,ArrowAssoc}
 
 case class TerminologyContext private[resolver]
 (g: Graph[resolver.api.TerminologyBox, TerminologyEdge] = Graph[resolver.api.TerminologyBox, TerminologyEdge]())
@@ -89,6 +90,36 @@ extends resolver.api.TerminologyContext
 }
 
 object TerminologyContext {
+
+  def replaceNode
+  (g: Graph[resolver.api.TerminologyBox, TerminologyEdge],
+   prev: resolver.api.TerminologyBox,
+   next: resolver.api.TerminologyBox)
+  : Try[Graph[resolver.api.TerminologyBox, TerminologyEdge]]
+  = g
+    .find(outerNode = prev)
+    .fold[Try[Graph[resolver.api.TerminologyBox, TerminologyEdge]]](
+    Failure(new java.lang.IllegalArgumentException(s"prev node is not in the graph:\nprev:\n$prev\ngraph:\n$g"))
+  ) { prevT =>
+    nonFatalCatch[Try[Graph[resolver.api.TerminologyBox, TerminologyEdge]]]
+      .withApply { (t: java.lang.Throwable) => Failure(t) }
+      .apply {
+        val in: Set[TerminologyEdge[TerminologyBox]] = prevT.incoming.map { eT =>
+          val e = eT.toOuter
+          require(e.target == prev)
+          e.copy[TerminologyBox](Tuple2(e.source, next))
+        }
+        val out: Set[TerminologyEdge[TerminologyBox]] = prevT.outgoing.map { eT =>
+          val e = eT.toOuter
+          require(e.source == prev)
+          e.copy[TerminologyBox](Tuple2(next, e.target))
+        }
+
+        val g1: Graph[resolver.api.TerminologyBox, TerminologyEdge] = g - prev + next
+        val g2: Graph[resolver.api.TerminologyBox, TerminologyEdge] = g1 ++ in ++ out
+        Success(g2)
+      }
+  }
 
   def initialize()
   : TerminologyContext
