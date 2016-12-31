@@ -118,6 +118,21 @@ extends resolver.api.TerminologyBox
   
 /*
    * A map for the subset of statements that are
+   * entity scalar data property terms indexed by their uuid.
+   */
+  val entityScalarDataProperties
+  : scala.collection.immutable.Map[java.util.UUID, resolver.api.EntityScalarDataProperty]
+  = {
+  			  import scala.Predef.ArrowAssoc
+  			  boxStatements
+  			  .selectByKindOf { case dp: EntityScalarDataProperty => dp }
+  			  .map(dp => dp.uuid -> dp)
+  			  .toMap
+  			}
+  
+  
+/*
+   * A map for the subset of statements that are
    * data range terms indexed by their uuid.
    */
   val dataranges
