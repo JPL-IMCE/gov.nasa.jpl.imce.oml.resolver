@@ -66,7 +66,24 @@
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+              <ol><li name="gov.nasa.jpl.imce.omf.schema.resolver.DataRangesToResolve" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DataRangesToResolveextendsProductwithSerializable"></a>
+      <a id="DataRangesToResolve:DataRangesToResolve"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="DataRangesToResolve.html"><span class="name">DataRangesToResolve</span></a><span class="params">(<span name="binaryScalarRestrictions">binaryScalarRestrictions: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="scala.collection.immutable.Seq">Seq</span>[(<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.tables.BinaryScalarRestriction">BinaryScalarRestriction</span>)]]</span>, <span name="iriScalarRestrictions">iriScalarRestrictions: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="scala.collection.immutable.Seq">Seq</span>[(<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.tables.IRIScalarRestriction">IRIScalarRestriction</span>)]]</span>, <span name="numericScalarRestrictions">numericScalarRestrictions: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="scala.collection.immutable.Seq">Seq</span>[(<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.tables.NumericScalarRestriction">NumericScalarRestriction</span>)]]</span>, <span name="plainLiteralScalarRestrictions">plainLiteralScalarRestrictions: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="scala.collection.immutable.Seq">Seq</span>[(<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.tables.PlainLiteralScalarRestriction">PlainLiteralScalarRestriction</span>)]]</span>, <span name="scalarOneOfRestrictions">scalarOneOfRestrictions: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="scala.collection.immutable.Seq">Seq</span>[(<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.tables.ScalarOneOfRestriction">ScalarOneOfRestriction</span>)]]</span>, <span name="stringScalarRestrictions">stringScalarRestrictions: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="scala.collection.immutable.Seq">Seq</span>[(<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.tables.StringScalarRestriction">StringScalarRestriction</span>)]]</span>, <span name="timeScalarRestrictions">timeScalarRestrictions: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="scala.collection.immutable.Seq">Seq</span>[(<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.tables.TimeScalarRestriction">TimeScalarRestriction</span>)]]</span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.package@DataRangesToResolveextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Each field is a map from: Graph UUID to a map of (restricted range UUID, dataRange)</p>
+    </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="OMFSchemaResolverextendsProductwithSerializable"></a>
       <a id="OMFSchemaResolver:OMFSchemaResolver"></a>
       <h4 class="signature">
@@ -107,6 +124,23 @@
       </a>
     </span>
       <p class="shortcomment cmt">This object was generated by sbt-buildinfo.</p>
+    </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.DataRangesToResolve" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DataRangesToResolve"></a>
+      <a id="DataRangesToResolve:DataRangesToResolve"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="DataRangesToResolve$.html"><span class="name">DataRangesToResolve</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.package@DataRangesToResolve" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.Filterable" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Filterable"></a>
       <a id="Filterable:Filterable"></a>
@@ -137,6 +171,23 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.package@OMFSchemaResolver" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.Test1" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Test1"></a>
+      <a id="Test1:Test1"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Test1$.html"><span class="name">Test1</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.package@Test1" title="Permalink" target="_top">
         <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
