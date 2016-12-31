@@ -10,6 +10,8 @@ updateOptions := updateOptions.value.withCachedResolution(true)
 import scala.io.Source
 import scala.util.control.Exception._
 
+import ProjectRefHelper._
+
 lazy val core = Project("omf-schema-resolver", file("."))
   .enablePlugins(IMCEGitPlugin)
   .enablePlugins(IMCEReleasePlugin)
@@ -40,14 +42,20 @@ lazy val core = Project("omf-schema-resolver", file("."))
     resolvers += Resolver.bintrayRepo("jpl-imce", "gov.nasa.jpl.imce"),
     resolvers += Resolver.bintrayRepo("tiwg", "org.omg.tiwg"),
 
-    libraryDependencies ++=
-      Seq(
-        "gov.nasa.jpl.imce" %% "jpl-omf-schema-tables" % Settings.versions.jpl_omf_schema_tables,
-
+    libraryDependencies +=
         "gov.nasa.jpl.imce" %% "imce.third_party.scala_graph_libraries"
         % Versions_scala_graph_libraries.version artifacts
-        Artifact("imce.third_party.scala_graph_libraries", "zip", "zip", Some("resource"), Seq(), None, Map())
-      )
+        Artifact("imce.third_party.scala_graph_libraries", "zip", "zip", "resource")
+  )
+  .dependsOnSourceProjectRefOrLibraryArtifacts(
+    "tablesJVM",
+    "jpl-omf-schema-tables",
+    Some("compile;test->compile"),
+    Seq(
+      "gov.nasa.jpl.imce" %% "jpl-omf-schema-tables"
+        % Settings.versions.jpl_omf_schema_tables
+        % "compile" withSources()
+    )
   )
 
 def dynamicScriptsResourceSettings(projectName: String): Seq[Setting[_]] = {
