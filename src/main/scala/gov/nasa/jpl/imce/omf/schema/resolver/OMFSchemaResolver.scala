@@ -40,16 +40,17 @@ object OMFSchemaResolver {
   = for {
     init <- Try.apply(OMFSchemaResolver(impl.TerminologyContext(), t))
     // Terminologies
-    step1 <- mapTerminologyGraphs(init)
-    step2 <- mapBundles(step1)
+    step0 <- mapTerminologyGraphs(init)
+    step1 <- mapBundles(step0)
     // Atomic terms
-    step3 <- mapAspects(step2)
-    step4 <- mapConcepts(step3)
-    step5 <- mapScalars(step4)
-    step6 <- mapStructures(step5)
+    step2 <- mapAspects(step1)
+    step3 <- mapConcepts(step2)
+    step4 <- mapScalars(step3)
+    step5 <- mapStructures(step4)
     // TerminologyAxiom relationships
-    step7 <- mapTerminologyExtends(step6)
-    step8 <- mapTerminologyNestings(step7)
+    step6 <- mapTerminologyExtends(step5)
+    step7 <- mapTerminologyNestings(step6)
+    step8 <- mapConceptDesignationTerminologyAxioms(step7)
     // Relational terms
     step9 <- mapRestrictedDataRanges(step8)
     stepA <- mapReifiedRelationships(step9)
@@ -357,21 +358,22 @@ object OMFSchemaResolver {
   }
 
   def seqopTerminologyNesting
-  (tc: api.TerminologyContext)
+  (ns: Map[UUID, api.TerminologyGraph],
+   cs: Map[UUID, (api.Concept, api.TerminologyBox)])
   (g: Graph[api.TerminologyBox, impl.TerminologyEdge],
    entry: ((UUID, UUID), tables.TerminologyNestingAxiom))
   : Graph[api.TerminologyBox, impl.TerminologyEdge]
   = {
-    val nesting = tc.nodes(entry._1._1)
-    val nested = tc.graphs(entry._1._2)
+    val nestedT = ns(entry._1._1)
+    val (nestingC, nestingT) = cs(entry._1._2)
 
     val result = g + impl.TerminologyEdge(
-      nesting, nested,
+      nestedT, nestingT,
       impl.TerminologyNestingAxiom(
         uuid = UUID.fromString(entry._2.uuid),
-        nestingTerminology = nesting,
-        nestingContext = null, // TODO
-        nestedTerminology = nested))
+        nestedTerminology = nestedT,
+        nestingContext = nestingC,
+        nestingTerminology = nestingT))
     result
   }
 
@@ -379,22 +381,36 @@ object OMFSchemaResolver {
   (resolver: OMFSchemaResolver)
   : Try[OMFSchemaResolver]
   = {
-    val ns = resolver.context.nodes
+    val ns = resolver.context.nodes.flatMap {
+      case (uuid, g: api.TerminologyGraph) =>
+        Some(uuid -> g)
+      case _ =>
+        None
+    }
+    val cs = resolver.context.g.nodes.toOuter.flatMap { t =>
+      t.concepts.map { case (cUUID, c) =>
+        cUUID -> (c -> t)
+      }
+    }.toMap
+
     val byUUID =
       resolver.queue.terminologyNestingAxioms.par
         .map { tAxiom =>
-          (UUID.fromString(tAxiom.nestingTerminologyUUID), UUID.fromString(tAxiom.nestedTerminologyUUID)) -> tAxiom
+          (UUID.fromString(tAxiom.nestedTerminologyUUID), UUID.fromString(tAxiom.nestingContextUUID)) -> tAxiom
         }
 
     val (resolvable, unresolvable) =
       byUUID
-        .partition { case (graphUUIDPair, _) =>
-          ns.contains(graphUUIDPair._1) && ns.contains(graphUUIDPair._2)
+        .partition { case (graphUUIDPair, tx) =>
+          ns.contains(graphUUIDPair._1) &&
+            cs.get(graphUUIDPair._2).fold[Boolean](false){ case (c,tbox) =>
+                tbox.uuid == UUID.fromString(tx.nestingTerminologyUUID)
+            }
         }
 
     val g =
       resolvable
-        .aggregate(resolver.context.g)(seqop = seqopTerminologyNesting(resolver.context), combop = combopGraphs)
+        .aggregate(resolver.context.g)(seqop = seqopTerminologyNesting(ns, cs), combop = combopGraphs)
 
     val s =
       unresolvable.map(_._2).seq
@@ -404,6 +420,72 @@ object OMFSchemaResolver {
         .copy(
           context = impl.TerminologyContext(g),
           queue = resolver.queue.copy(terminologyNestingAxioms = s))
+
+    Success(r)
+  }
+
+  def seqopConceptDesignationTerminology
+  (ns: Map[UUID, api.TerminologyGraph],
+   cs: Map[UUID, (api.Concept, api.TerminologyBox)])
+  (g: Graph[api.TerminologyBox, impl.TerminologyEdge],
+   entry: ((UUID, UUID), tables.ConceptDesignationTerminologyAxiom))
+  : Graph[api.TerminologyBox, impl.TerminologyEdge]
+  = {
+    val designationG = ns(entry._1._1)
+    val (designatedC, designatedTBox) = cs(entry._1._2)
+
+    val result = g + impl.TerminologyEdge(
+      designationG, designatedTBox,
+      impl.ConceptDesignationTerminologyAxiom(
+        uuid = UUID.fromString(entry._2.uuid),
+        designatedConcept = designatedC,
+        designatedTerminology = designatedTBox,
+        designationTerminologyGraph = designationG))
+
+    result
+  }
+
+  def mapConceptDesignationTerminologyAxioms
+  (resolver: OMFSchemaResolver)
+  : Try[OMFSchemaResolver]
+  = {
+    val ns = resolver.context.nodes.flatMap {
+      case (uuid, g: api.TerminologyGraph) =>
+        Some(uuid -> g)
+      case _ =>
+        None
+    }
+    val cs = resolver.context.g.nodes.toOuter.flatMap { t =>
+      t.concepts.map { case (cUUID, c) =>
+          cUUID -> (c -> t)
+      }
+    }.toMap
+
+    val byUUID =
+      resolver.queue.conceptDesignationTerminologyAxioms.par
+        .map { tAxiom =>
+          (UUID.fromString(tAxiom.designationTerminologyGraphUUID), UUID.fromString(tAxiom.designatedConceptUUID)) -> tAxiom
+        }
+
+    val (resolvable, unresolvable) =
+      byUUID
+        .partition { case (graphUUIDPair, _) =>
+          ns.contains(graphUUIDPair._1) &&
+            cs.contains(graphUUIDPair._2)
+        }
+
+    val g =
+      resolvable
+        .aggregate(resolver.context.g)(seqop = seqopConceptDesignationTerminology(ns, cs), combop = combopGraphs)
+
+    val s =
+      unresolvable.map(_._2).seq
+
+    val r =
+      resolver
+        .copy(
+          context = impl.TerminologyContext(g),
+          queue = resolver.queue.copy(conceptDesignationTerminologyAxioms = s))
 
     Success(r)
   }
