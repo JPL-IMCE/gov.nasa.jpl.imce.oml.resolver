@@ -40,41 +40,47 @@ object OMFSchemaResolver {
   = for {
     init <- Try.apply(OMFSchemaResolver(impl.TerminologyContext(), t))
     // Terminologies
-    step0 <- mapTerminologyGraphs(init)
-    step1 <- mapBundles(step0)
+    step0a <- mapTerminologyGraphs(init)
+    step0b<- mapBundles(step0a)
     // Atomic terms
-    step2 <- mapAspects(step1)
-    step3 <- mapConcepts(step2)
-    step4 <- mapScalars(step3)
-    step5 <- mapStructures(step4)
-    // TerminologyAxiom relationships
-    step6 <- mapTerminologyExtends(step5)
-    step7 <- mapTerminologyNestings(step6)
-    step8 <- mapConceptDesignationTerminologyAxioms(step7)
+    step1a <- mapAspects(step0b)
+    step1b <- mapConcepts(step1a)
+    step1c <- mapScalars(step1b)
+    step1d <- mapStructures(step1c)
+    // TerminologyBoxAxiom relationships
+    step2a <- mapTerminologyExtends(step1d)
+    step2b <- mapTerminologyNestings(step2a)
+    step2c <- mapConceptDesignationTerminologyAxioms(step2b)
+    // TerminologyBundleAxiom relationships
+    step3a <- mapBundledTerminologyAxioms(step2c)
     // Relational terms
-    step9 <- mapRestrictedDataRanges(step8)
-    stepA <- mapReifiedRelationships(step9)
-    stepB <- mapUnreifiedRelationships(stepA)
+    step4a <- mapRestrictedDataRanges(step3a)
+    step4b <- mapReifiedRelationships(step4a)
+    step4c <- mapUnreifiedRelationships(step4b)
     // DataRelationships
-    stepC <- mapEntityScalarDataProperties(stepB)
-    stepD <- mapEntityStructuredDataProperties(stepC)
-    stepE <- mapScalarDataProperties(stepD)
-    stepF <- mapStructuredDataProperties(stepE)
+    step5a <- mapEntityScalarDataProperties(step4c)
+    step5b <- mapEntityStructuredDataProperties(step5a)
+    step5c <- mapScalarDataProperties(step5b)
+    step5d <- mapStructuredDataProperties(step5c)
     // Axioms
-    stepG <- mapScalarOneOfLiteralAxioms(stepF)
+    step6a <- mapScalarOneOfLiteralAxioms(step5d)
     // - TermAxioms
     // -- EntityRestrictionAxioms
-    stepH <- mapEntityExistentialRestrictionAxioms(stepG)
-    stepI <- mapEntityUniversalRestrictionAxioms(stepH)
+    step7a <- mapEntityExistentialRestrictionAxioms(step6a)
+    step7b <- mapEntityUniversalRestrictionAxioms(step7a)
     // -- EntityScalarDataPropertyRestrictionAxioms
-    stepJ <- mapEntityScalarDataPropertyExistentialRestrictionAxioms(stepI)
-    stepK <- mapEntityScalarDataPropertyParticularRestrictionAxioms(stepJ)
-    stepL <- mapEntityScalarDataPropertyUniversalRestrictionAxioms(stepK)
+    step8a <- mapEntityScalarDataPropertyExistentialRestrictionAxioms(step7b)
+    step8b <- mapEntityScalarDataPropertyParticularRestrictionAxioms(step8a)
+    step8c <- mapEntityScalarDataPropertyUniversalRestrictionAxioms(step8b)
     // -- SpecializationAxiom
-    stepM <- mapAspectSpecializationAxioms(stepL)
-    stepN <- mapConceptSpecializationAxioms(stepM)
-    stepO <- mapReifiedRelationshipSpecializationAxioms(stepN)
-  } yield stepO
+    step9a <- mapAspectSpecializationAxioms(step8c)
+    step9b <- mapConceptSpecializationAxioms(step9a)
+    step9c <- mapReifiedRelationshipSpecializationAxioms(step9b)
+    // TerminologyBundleStatements
+    step10a <- mapRootConceptTaxonomyAxioms(step9c)
+    step10b <- mapAnonymousConceptTaxonomyAxioms(step10a)
+    step10c <- mapSpecificDisjointConceptAxioms(step10b)
+  } yield step10c
 
   def mapTerminologyGraphs
   (resolver: OMFSchemaResolver)
@@ -490,6 +496,57 @@ object OMFSchemaResolver {
         .copy(
           context = impl.TerminologyContext(g),
           queue = resolver.queue.copy(conceptDesignationTerminologyAxioms = s))
+
+    Success(r)
+  }
+
+  def seqopBundledTerminologyAxioms
+  (bundles: Map[UUID, api.Bundle],
+   nodes: Map[UUID, api.TerminologyBox])
+  (g: Graph[api.TerminologyBox, impl.TerminologyEdge],
+   entry: ((UUID, UUID), tables.BundledTerminologyAxiom))
+  : Graph[api.TerminologyBox, impl.TerminologyEdge]
+  = {
+    val bundling = bundles(entry._1._1)
+    val bundled = nodes(entry._1._2)
+
+    val result = g + impl.TerminologyEdge(
+      bundling, bundled,
+      impl.BundledTerminologyAxiom(
+        uuid = UUID.fromString(entry._2.uuid),
+        terminologyBundle = bundling,
+        bundledTerminology = bundled))
+
+    result
+  }
+
+  def mapBundledTerminologyAxioms
+  (resolver: OMFSchemaResolver)
+  : Try[OMFSchemaResolver]
+  = {
+    val bs = resolver.context.bundles
+    val ns = resolver.context.nodes
+    val byUUID =
+      resolver.queue.bundledTerminologyAxioms.par
+        .map { tAxiom =>
+          (UUID.fromString(tAxiom.terminologyBundleUUID), UUID.fromString(tAxiom.bundledTerminologyUUID)) -> tAxiom
+        }
+
+    val (resolvable, unresolvable) =
+      byUUID
+        .partition { case (graphUUIDPair, _) =>
+          bs.contains(graphUUIDPair._1) && ns.contains(graphUUIDPair._2)
+        }
+
+    val g = resolvable.aggregate(resolver.context.g)(seqop = seqopBundledTerminologyAxioms(bs, ns), combop = combopGraphs)
+
+    val s = unresolvable.map(_._2).seq
+
+    val r =
+      resolver
+        .copy(
+          context = impl.TerminologyContext(g),
+          queue = resolver.queue.copy(bundledTerminologyAxioms = s))
 
     Success(r)
   }
@@ -1579,6 +1636,208 @@ object OMFSchemaResolver {
       case Success(Tuple3(r, m, f)) =>
         if (f)
           resolveReifiedRelationshipSpecializationAxioms(r, m)
+        else
+          Success(Tuple2(r, m.flatMap(_._2).to[Seq]))
+      case Failure(t) =>
+        Failure(t)
+    }
+  }
+
+  def mapRootConceptTaxonomyAxioms
+  (resolver: OMFSchemaResolver)
+  : Try[OMFSchemaResolver]
+  = {
+    val ns = resolver.context.bundles
+    val g = resolver.context.g
+    val (resolvable, unresolved) =
+      resolver.queue.rootConceptTaxonomyAxioms
+        .groupBy(_.bundleUUID)
+        .map { case (uuid, axioms) => UUID.fromString(uuid) -> axioms }
+        .partition { case (bundleUUID, _) => ns.contains(bundleUUID) }
+
+    val r1 = resolver.copy(queue = resolver.queue.copy(rootConceptTaxonomyAxioms = unresolved.flatMap(_._2).to[Seq]))
+    resolveRootConceptTaxonomyAxioms(r1, resolvable).map {
+      case (r2, remaining) =>
+        r2.copy(queue = r2.queue.copy(rootConceptTaxonomyAxioms = r2.queue.rootConceptTaxonomyAxioms ++ remaining))
+    }
+  }
+
+  final def resolveRootConceptTaxonomyAxioms
+  ( resolver: OMFSchemaResolver, queue: Map[UUID, Seq[tables.RootConceptTaxonomyAxiom]] )
+  : Try[(OMFSchemaResolver, Seq[tables.RootConceptTaxonomyAxiom])]
+  = {
+    queue.foldLeft[Try[(OMFSchemaResolver, Map[UUID, Seq[tables.RootConceptTaxonomyAxiom]], Boolean)]](
+      Success(Tuple3(resolver, Map.empty, false))
+    ) {
+      case (Success(Tuple3(ri, mi, fi)), (buuid, x)) =>
+        val gi = ri.context.g
+        val bundle = ri.context.bundles(buuid)
+        val concepts = gi.outerNodeTraverser(gi.get(bundle)).flatMap(_.concepts).toMap
+        val (available, remaining) = x.partition { ax =>
+          concepts.contains(UUID.fromString(ax.rootUUID))
+        }
+        val si = available
+          .map { ax =>
+            impl.RootConceptTaxonomyAxiom(
+              UUID.fromString(ax.uuid),
+              concepts(UUID.fromString(ax.rootUUID)))
+          }
+          .to[Set]
+        impl.TerminologyContext
+          .replaceNode(gi, bundle, bundle.withBundleStatements(si))
+          .map { gj =>
+            Tuple3(
+              ri.copy(context = impl.TerminologyContext(gj)),
+              mi + (buuid -> remaining),
+              fi || si.nonEmpty)
+          }
+      case (Failure(t), _) =>
+        Failure(t)
+    } match {
+      case Success(Tuple3(r, m, f)) =>
+        if (f)
+          resolveRootConceptTaxonomyAxioms(r, m)
+        else
+          Success(Tuple2(r, m.flatMap(_._2).to[Seq]))
+      case Failure(t) =>
+        Failure(t)
+    }
+  }
+
+  def mapAnonymousConceptTaxonomyAxioms
+  (resolver: OMFSchemaResolver)
+  : Try[OMFSchemaResolver]
+  = {
+    val ns = resolver.context.bundles
+    val g = resolver.context.g
+    val (resolvable, unresolved) =
+      resolver.queue.anonymousConceptTaxonomyAxioms
+        .groupBy(_.bundleUUID)
+        .map { case (uuid, axioms) => UUID.fromString(uuid) -> axioms }
+        .partition { case (bundleUUID, _) => ns.contains(bundleUUID) }
+
+    val r1 = resolver.copy(queue = resolver.queue.copy(anonymousConceptTaxonomyAxioms = unresolved.flatMap(_._2).to[Seq]))
+    resolveAnonymousConceptTaxonomyAxioms(r1, resolvable).map {
+      case (r2, remaining) =>
+        r2.copy(queue = r2.queue.copy(anonymousConceptTaxonomyAxioms = r2.queue.anonymousConceptTaxonomyAxioms ++ remaining))
+    }
+  }
+
+  final def resolveAnonymousConceptTaxonomyAxioms
+  (resolver: OMFSchemaResolver, queue: Map[UUID, Seq[tables.AnonymousConceptTaxonomyAxiom]])
+  : Try[(OMFSchemaResolver, Seq[tables.AnonymousConceptTaxonomyAxiom])]
+  = {
+    queue
+      .foldLeft[Try[(OMFSchemaResolver, Map[UUID, Seq[tables.AnonymousConceptTaxonomyAxiom]], Boolean)]](
+      Success(Tuple3(resolver, Map.empty, false))
+    ) {
+      case (Success(Tuple3(ri, mi, fi)), (buuid, x)) =>
+        val gi = ri.context.g
+        val bundle = ri.context.bundles(buuid)
+        val accessible = bundle.bundleStatements
+          .flatMap {
+            case ctd: api.ConceptTreeDisjunction =>
+              Some(ctd.uuid -> ctd)
+            case _ =>
+              None
+          }
+          .toMap
+        val (available, remaining) = x.partition { rr =>
+          accessible.contains(UUID.fromString(rr.disjointTaxonomyParentUUID))
+        }
+        val si = available
+          .map { rr =>
+            impl.AnonymousConceptTaxonomyAxiom(
+              UUID.fromString(rr.uuid),
+              accessible(UUID.fromString(rr.disjointTaxonomyParentUUID)))
+          }
+          .to[Set]
+        impl.TerminologyContext
+          .replaceNode(gi, bundle, bundle.withBundleStatements(si))
+          .map { gj =>
+            Tuple3(
+              ri.copy(context = impl.TerminologyContext(gj)),
+              mi + (buuid -> remaining),
+              fi || si.nonEmpty)
+          }
+      case (Failure(t), _) =>
+        Failure(t)
+    } match {
+      case Success(Tuple3(r, m, f)) =>
+        if (f)
+          resolveAnonymousConceptTaxonomyAxioms(r, m)
+        else
+          Success(Tuple2(r, m.flatMap(_._2).to[Seq]))
+      case Failure(t) =>
+        Failure(t)
+    }
+  }
+
+  def mapSpecificDisjointConceptAxioms
+  (resolver: OMFSchemaResolver)
+  : Try[OMFSchemaResolver]
+  = {
+    val ns = resolver.context.bundles
+    val g = resolver.context.g
+    val (resolvable, unresolved) =
+      resolver.queue.specificDisjointConceptAxioms
+        .groupBy(_.bundleUUID)
+        .map { case (uuid, axioms) => UUID.fromString(uuid) -> axioms }
+        .partition { case (bundleUUID, _) => ns.contains(bundleUUID) }
+
+    val r1 = resolver.copy(queue = resolver.queue.copy(specificDisjointConceptAxioms = unresolved.flatMap(_._2).to[Seq]))
+    resolveSpecificDisjointConceptAxioms(r1, resolvable).map {
+      case (r2, remaining) =>
+        r2.copy(queue = r2.queue.copy(specificDisjointConceptAxioms = r2.queue.specificDisjointConceptAxioms ++ remaining))
+    }
+  }
+
+  final def resolveSpecificDisjointConceptAxioms
+  (resolver: OMFSchemaResolver, queue: Map[UUID, Seq[tables.SpecificDisjointConceptAxiom]])
+  : Try[(OMFSchemaResolver, Seq[tables.SpecificDisjointConceptAxiom])]
+  = {
+    queue
+      .foldLeft[Try[(OMFSchemaResolver, Map[UUID, Seq[tables.SpecificDisjointConceptAxiom]], Boolean)]](
+      Success(Tuple3(resolver, Map.empty, false))
+    ) {
+      case (Success(Tuple3(ri, mi, fi)), (buuid, x)) =>
+        val gi = ri.context.g
+        val bundle = ri.context.bundles(buuid)
+        val concepts = gi.outerNodeTraverser(gi.get(bundle)).flatMap(_.concepts).toMap
+        val accessible = bundle.bundleStatements
+          .flatMap {
+            case sdc: api.ConceptTreeDisjunction =>
+              Some(sdc.uuid -> sdc)
+            case _ =>
+              None
+          }
+          .toMap
+        val (available, remaining) = x.partition { rr =>
+          accessible.contains(UUID.fromString(rr.disjointTaxonomyParentUUID)) &&
+            concepts.contains(UUID.fromString(rr.disjointLeafUUID))
+        }
+        val si = available
+          .map { rr =>
+            impl.SpecificDisjointConceptAxiom(
+              UUID.fromString(rr.uuid),
+              concepts(UUID.fromString(rr.disjointLeafUUID)),
+              accessible(UUID.fromString(rr.disjointTaxonomyParentUUID)))
+          }
+          .to[Set]
+        impl.TerminologyContext
+          .replaceNode(gi, bundle, bundle.withBundleStatements(si))
+          .map { gj =>
+            Tuple3(
+              ri.copy(context = impl.TerminologyContext(gj)),
+              mi + (buuid -> remaining),
+              fi || si.nonEmpty)
+          }
+      case (Failure(t), _) =>
+        Failure(t)
+    } match {
+      case Success(Tuple3(r, m, f)) =>
+        if (f)
+          resolveSpecificDisjointConceptAxioms(r, m)
         else
           Success(Tuple2(r, m.flatMap(_._2).to[Seq]))
       case Failure(t) =>
