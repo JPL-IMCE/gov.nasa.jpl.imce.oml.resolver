@@ -33,4 +33,19 @@ extends resolver.api.EntityStructuredDataProperty
   with DataRelationshipFromEntity
   with DataRelationshipToStructure
 {
+
+  override val source
+  : resolver.api.Term
+  = {
+    domain
+  }
+  
+  
+override val target
+  : resolver.api.Datatype
+  = {
+    range
+  }
+  
+
 }

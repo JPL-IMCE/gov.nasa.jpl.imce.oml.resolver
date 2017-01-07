@@ -33,4 +33,19 @@ extends resolver.api.ScalarDataProperty
   with DataRelationshipFromStructure
   with DataRelationshipToScalar
 {
+
+  override val source
+  : resolver.api.Term
+  = {
+    domain
+  }
+  
+  
+override val target
+  : resolver.api.Datatype
+  = {
+    range
+  }
+  
+
 }
