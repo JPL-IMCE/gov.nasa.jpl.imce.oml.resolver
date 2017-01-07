@@ -20,26 +20,12 @@ package gov.nasa.jpl.imce.omf.schema.resolver.impl
 
 import gov.nasa.jpl.imce.omf.schema._
 
-case class TerminologyGraph private[impl] 
+case class AnnotationProperty private[impl] 
 (
  override val uuid: java.util.UUID,
- override val kind: gov.nasa.jpl.imce.omf.schema.tables.TerminologyGraphKind,
- override val name: gov.nasa.jpl.imce.omf.schema.tables.LocalName,
- override val iri: gov.nasa.jpl.imce.omf.schema.tables.IRI,
- override val annotations: scala.collection.immutable.Map[java.util.UUID, resolver.api.AnnotationPair],
- override val boxStatements: scala.collection.immutable.Set[_ <: resolver.api.TerminologyBoxStatement]
+ override val iri: gov.nasa.jpl.imce.omf.schema.tables.IRI
 )
-extends resolver.api.TerminologyGraph
-  with TerminologyBox
+extends resolver.api.AnnotationProperty
+  with TerminologyThing
 {
-
-  def withBoxStatements
-  (s: scala.collection.immutable.Set[_ <: resolver.api.TerminologyBoxStatement]
-  )
-  : resolver.api.TerminologyGraph
-  = {
-  			  copy(boxStatements = this.boxStatements ++ s)
-  			}
-  
-
 }

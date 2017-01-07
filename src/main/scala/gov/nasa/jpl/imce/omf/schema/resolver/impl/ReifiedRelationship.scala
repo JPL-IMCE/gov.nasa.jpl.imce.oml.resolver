@@ -25,6 +25,8 @@ case class ReifiedRelationship private[impl]
  override val uuid: java.util.UUID,
  override val isAbstract: scala.Boolean,
  override val name: gov.nasa.jpl.imce.omf.schema.tables.LocalName,
+ override val unreifiedPropertyName: gov.nasa.jpl.imce.omf.schema.tables.LocalName,
+ override val unreifiedInversePropertyName: scala.Option[gov.nasa.jpl.imce.omf.schema.tables.LocalName],
  override val iri: gov.nasa.jpl.imce.omf.schema.tables.IRI,
  override val isAsymmetric: scala.Boolean,
  override val isEssential: scala.Boolean,

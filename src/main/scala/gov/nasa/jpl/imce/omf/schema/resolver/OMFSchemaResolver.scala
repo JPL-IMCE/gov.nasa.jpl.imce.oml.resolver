@@ -81,7 +81,10 @@ object OMFSchemaResolver {
   : Try[OMFSchemaResolver]
   = {
     val gN = resolver.queue.terminologyGraphs.foldLeft(resolver.context.g) { (gi, t) =>
-      gi + impl.TerminologyGraph(java.util.UUID.fromString(t.uuid), t.kind, t.name, t.iri, boxStatements = Set.empty)
+      gi + impl.TerminologyGraph(
+        java.util.UUID.fromString(t.uuid), t.kind, t.name, t.iri,
+        annotations=Map.empty,
+        boxStatements=Set.empty)
     }
 
     val r = resolver.copy(
@@ -96,9 +99,10 @@ object OMFSchemaResolver {
   = {
     val gN = resolver.queue.bundles.foldLeft(resolver.context.g) { (gi, b) =>
       gi + impl.Bundle(java.util.UUID.fromString(b.uuid), b.kind, b.name, b.iri,
-        boxStatements = Set.empty,
-        bundleStatements = Set.empty,
-        terminologyBundleAxioms = Set.empty)
+        annotations=Map.empty,
+        boxStatements=Set.empty,
+        bundleStatements=Set.empty,
+        terminologyBundleAxioms=Set.empty)
     }
 
     val r = resolver.copy(
@@ -615,6 +619,8 @@ object OMFSchemaResolver {
               UUID.fromString(rr.uuid),
               rr.isAbstract,
               rr.name,
+              rr.unreifiedPropertyName,
+              rr.unreifiedInversePropertyName,
               rr.iri,
               rr.isAsymmetric,
               rr.isEssential,
@@ -1124,7 +1130,7 @@ object OMFSchemaResolver {
         Failure(t)
     }
   }
-  
+
   def mapEntityUniversalRestrictionAxioms
   (resolver: OMFSchemaResolver)
   : Try[OMFSchemaResolver]
@@ -1389,7 +1395,7 @@ object OMFSchemaResolver {
         Failure(t)
     }
   }
-  
+
   def mapAspectSpecializationAxioms
   (resolver: OMFSchemaResolver)
   : Try[OMFSchemaResolver]
