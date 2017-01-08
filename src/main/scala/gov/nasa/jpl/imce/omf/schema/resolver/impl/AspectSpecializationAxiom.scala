@@ -33,7 +33,8 @@ extends resolver.api.AspectSpecializationAxiom
   /*
    * Get the sub (child) entity
    */
-  override val child
+  override def child
+  ()
   : resolver.api.Term
   = {
     subEntity
@@ -43,7 +44,8 @@ extends resolver.api.AspectSpecializationAxiom
 /*
    * Get the super (parent) entity
    */
-  override val parent
+  override def parent
+  ()
   : resolver.api.Term
   = {
     superAspect

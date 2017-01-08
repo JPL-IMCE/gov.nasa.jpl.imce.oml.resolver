@@ -88,7 +88,7 @@ object DataRangesToResolve {
             .replaceNode(gi, tbox, tbox.withBoxStatements(si))
             .map { gj =>
               Tuple3(
-                ri.copy(context = impl.TerminologyContext(gj)),
+                ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
                 qi.copy(binaryScalarRestrictions = qi.binaryScalarRestrictions + (guuid -> remaining)),
                 fi || si.nonEmpty)
             }
@@ -120,7 +120,7 @@ object DataRangesToResolve {
             .replaceNode(gi, tbox, tbox.withBoxStatements(si))
             .map { gj =>
               Tuple3(
-                ri.copy(context = impl.TerminologyContext(gj)),
+                ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
                 qi.copy(iriScalarRestrictions = qi.iriScalarRestrictions + (guuid -> remaining)),
                 fi || si.nonEmpty)
             }
@@ -152,7 +152,7 @@ object DataRangesToResolve {
             .replaceNode(gi, tbox, tbox.withBoxStatements(si))
             .map { gj =>
               Tuple3(
-                ri.copy(context = impl.TerminologyContext(gj)),
+                ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
                 qi.copy(numericScalarRestrictions = qi.numericScalarRestrictions + (guuid -> remaining)),
                 fi || si.nonEmpty)
             }
@@ -185,7 +185,7 @@ object DataRangesToResolve {
             .replaceNode(gi, tbox, tbox.withBoxStatements(si))
             .map { gj =>
               Tuple3(
-                ri.copy(context = impl.TerminologyContext(gj)),
+                ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
                 qi.copy(plainLiteralScalarRestrictions = qi.plainLiteralScalarRestrictions + (guuid -> remaining)),
                 fi || si.nonEmpty)
             }
@@ -213,7 +213,7 @@ object DataRangesToResolve {
             .replaceNode(gi, tbox, tbox.withBoxStatements(si))
             .map { gj =>
               Tuple3(
-                ri.copy(context = impl.TerminologyContext(gj)),
+                ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
                 qi.copy(scalarOneOfRestrictions = qi.scalarOneOfRestrictions + (guuid -> remaining)),
                 fi || si.nonEmpty)
             }
@@ -245,7 +245,7 @@ object DataRangesToResolve {
             .replaceNode(gi, tbox, tbox.withBoxStatements(si))
             .map { gj =>
               Tuple3(
-                ri.copy(context = impl.TerminologyContext(gj)),
+                ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
                 qi.copy(stringScalarRestrictions = qi.stringScalarRestrictions + (guuid -> remaining)),
                 fi || si.nonEmpty)
             }
@@ -277,7 +277,7 @@ object DataRangesToResolve {
             .replaceNode(gi, tbox, tbox.withBoxStatements(si))
             .map { gj =>
               Tuple3(
-                ri.copy(context = impl.TerminologyContext(gj)),
+                ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
                 qi.copy(timeScalarRestrictions = qi.timeScalarRestrictions + (guuid -> remaining)),
                 fi || si.nonEmpty)
             }

@@ -38,7 +38,10 @@ object OMFSchemaResolver {
   def resolve(t: tables.OMFSchemaTables)
   : Try[OMFSchemaResolver]
   = for {
-    init <- Try.apply(OMFSchemaResolver(impl.TerminologyContext(), t))
+    init <- Try.apply(OMFSchemaResolver(
+      impl.TerminologyContext(t.annotationProperties.map { ap =>
+        UUID.fromString(ap.uuid) -> impl.AnnotationProperty(UUID.fromString(ap.uuid), ap.iri) }.toMap),
+      t))
     // Terminologies
     step0a <- mapTerminologyGraphs(init)
     step0b<- mapBundles(step0a)
@@ -80,7 +83,9 @@ object OMFSchemaResolver {
     step10a <- mapRootConceptTaxonomyAxioms(step9c)
     step10b <- mapAnonymousConceptTaxonomyAxioms(step10a)
     step10c <- mapSpecificDisjointConceptAxioms(step10b)
-  } yield step10c
+    // AnnotationPairs
+    step11 <- mapAnnotationPairs(step10c)
+  } yield step11
 
   def mapTerminologyGraphs
   (resolver: OMFSchemaResolver)
@@ -89,7 +94,7 @@ object OMFSchemaResolver {
     val gN = resolver.queue.terminologyGraphs.foldLeft(resolver.context.g) { (gi, t) =>
       gi + impl.TerminologyGraph(
         java.util.UUID.fromString(t.uuid), t.kind, t.name, t.iri,
-        annotations=Map.empty,
+        annotations=Set.empty,
         boxStatements=Set.empty)
     }
 
@@ -105,7 +110,7 @@ object OMFSchemaResolver {
   = {
     val gN = resolver.queue.bundles.foldLeft(resolver.context.g) { (gi, b) =>
       gi + impl.Bundle(java.util.UUID.fromString(b.uuid), b.kind, b.name, b.iri,
-        annotations=Map.empty,
+        annotations=Set.empty,
         boxStatements=Set.empty,
         bundleStatements=Set.empty,
         terminologyBundleAxioms=Set.empty)
@@ -176,7 +181,7 @@ object OMFSchemaResolver {
       .map { g =>
         resolver
           .copy(
-            context = impl.TerminologyContext(g),
+            context = impl.TerminologyContext(resolver.context.annotationProperties, g),
             queue = resolver.queue.copy(aspects = unresolvable.flatMap(_._2).to[Seq]))
       }
   }
@@ -222,7 +227,7 @@ object OMFSchemaResolver {
       .map { g =>
         resolver
           .copy(
-            context = impl.TerminologyContext(g),
+            context = impl.TerminologyContext(resolver.context.annotationProperties, g),
             queue = resolver.queue.copy(concepts = unresolvable.flatMap(_._2).to[Seq]))
       }
   }
@@ -268,7 +273,7 @@ object OMFSchemaResolver {
       .map { g =>
         resolver
           .copy(
-            context = impl.TerminologyContext(g),
+            context = impl.TerminologyContext(resolver.context.annotationProperties, g),
             queue = resolver.queue.copy(scalars = unresolvable.flatMap(_._2).to[Seq]))
       }
   }
@@ -313,7 +318,7 @@ object OMFSchemaResolver {
       .map { g =>
         resolver
           .copy(
-            context = impl.TerminologyContext(g),
+            context = impl.TerminologyContext(resolver.context.annotationProperties, g),
             queue = resolver.queue.copy(structures = unresolvable.flatMap(_._2).to[Seq]))
       }
   }
@@ -361,7 +366,7 @@ object OMFSchemaResolver {
     val r =
       resolver
         .copy(
-          context = impl.TerminologyContext(g),
+          context = impl.TerminologyContext(resolver.context.annotationProperties, g),
           queue = resolver.queue.copy(terminologyExtensionAxioms = s))
 
     Success(r)
@@ -428,7 +433,7 @@ object OMFSchemaResolver {
     val r =
       resolver
         .copy(
-          context = impl.TerminologyContext(g),
+          context = impl.TerminologyContext(resolver.context.annotationProperties, g),
           queue = resolver.queue.copy(terminologyNestingAxioms = s))
 
     Success(r)
@@ -494,7 +499,7 @@ object OMFSchemaResolver {
     val r =
       resolver
         .copy(
-          context = impl.TerminologyContext(g),
+          context = impl.TerminologyContext(resolver.context.annotationProperties, g),
           queue = resolver.queue.copy(conceptDesignationTerminologyAxioms = s))
 
     Success(r)
@@ -545,7 +550,7 @@ object OMFSchemaResolver {
     val r =
       resolver
         .copy(
-          context = impl.TerminologyContext(g),
+          context = impl.TerminologyContext(resolver.context.annotationProperties, g),
           queue = resolver.queue.copy(bundledTerminologyAxioms = s))
 
     Success(r)
@@ -696,7 +701,7 @@ object OMFSchemaResolver {
           .replaceNode(gi, tbox, tbox.withBoxStatements(si))
           .map { gj =>
             Tuple3(
-              ri.copy(context = impl.TerminologyContext(gj)),
+              ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
               mi + (guuid -> remaining),
               fi || si.nonEmpty)
           }
@@ -771,7 +776,7 @@ object OMFSchemaResolver {
           .replaceNode(gi, tbox, tbox.withBoxStatements(si))
           .map { gj =>
             Tuple3(
-              ri.copy(context = impl.TerminologyContext(gj)),
+              ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
               mi + (guuid -> remaining),
               fi || si.nonEmpty)
           }
@@ -838,7 +843,7 @@ object OMFSchemaResolver {
           .replaceNode(gi, tbox, tbox.withBoxStatements(si))
           .map { gj =>
             Tuple3(
-              ri.copy(context = impl.TerminologyContext(gj)),
+              ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
               mi + (guuid -> remaining),
               fi || si.nonEmpty)
           }
@@ -905,7 +910,7 @@ object OMFSchemaResolver {
           .replaceNode(gi, tbox, tbox.withBoxStatements(si))
           .map { gj =>
             Tuple3(
-              ri.copy(context = impl.TerminologyContext(gj)),
+              ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
               mi + (guuid -> remaining),
               fi || si.nonEmpty)
           }
@@ -972,7 +977,7 @@ object OMFSchemaResolver {
           .replaceNode(gi, tbox, tbox.withBoxStatements(si))
           .map { gj =>
             Tuple3(
-              ri.copy(context = impl.TerminologyContext(gj)),
+              ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
               mi + (guuid -> remaining),
               fi || si.nonEmpty)
           }
@@ -1038,7 +1043,7 @@ object OMFSchemaResolver {
           .replaceNode(gi, tbox, tbox.withBoxStatements(si))
           .map { gj =>
             Tuple3(
-              ri.copy(context = impl.TerminologyContext(gj)),
+              ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
               mi + (guuid -> remaining),
               fi || si.nonEmpty)
           }
@@ -1105,7 +1110,7 @@ object OMFSchemaResolver {
           .replaceNode(gi, tbox, tbox.withBoxStatements(si))
           .map { gj =>
             Tuple3(
-              ri.copy(context = impl.TerminologyContext(gj)),
+              ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
               mi + (guuid -> remaining),
               fi || si.nonEmpty)
           }
@@ -1171,7 +1176,7 @@ object OMFSchemaResolver {
           .replaceNode(gi, tbox, tbox.withBoxStatements(si))
           .map { gj =>
             Tuple3(
-              ri.copy(context = impl.TerminologyContext(gj)),
+              ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
               mi + (guuid -> remaining),
               fi || si.nonEmpty)
           }
@@ -1237,7 +1242,7 @@ object OMFSchemaResolver {
           .replaceNode(gi, tbox, tbox.withBoxStatements(si))
           .map { gj =>
             Tuple3(
-              ri.copy(context = impl.TerminologyContext(gj)),
+              ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
               mi + (guuid -> remaining),
               fi || si.nonEmpty)
           }
@@ -1304,7 +1309,7 @@ object OMFSchemaResolver {
           .replaceNode(gi, tbox, tbox.withBoxStatements(si))
           .map { gj =>
             Tuple3(
-              ri.copy(context = impl.TerminologyContext(gj)),
+              ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
               mi + (guuid -> remaining),
               fi || si.nonEmpty)
           }
@@ -1369,7 +1374,7 @@ object OMFSchemaResolver {
           .replaceNode(gi, tbox, tbox.withBoxStatements(si))
           .map { gj =>
             Tuple3(
-              ri.copy(context = impl.TerminologyContext(gj)),
+              ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
               mi + (guuid -> remaining),
               fi || si.nonEmpty)
           }
@@ -1436,7 +1441,7 @@ object OMFSchemaResolver {
           .replaceNode(gi, tbox, tbox.withBoxStatements(si))
           .map { gj =>
             Tuple3(
-              ri.copy(context = impl.TerminologyContext(gj)),
+              ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
               mi + (guuid -> remaining),
               fi || si.nonEmpty)
           }
@@ -1500,7 +1505,7 @@ object OMFSchemaResolver {
           .replaceNode(gi, tbox, tbox.withBoxStatements(si))
           .map { gj =>
             Tuple3(
-              ri.copy(context = impl.TerminologyContext(gj)),
+              ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
               mi + (guuid -> remaining),
               fi || si.nonEmpty)
           }
@@ -1563,7 +1568,7 @@ object OMFSchemaResolver {
           .replaceNode(gi, tbox, tbox.withBoxStatements(si))
           .map { gj =>
             Tuple3(
-              ri.copy(context = impl.TerminologyContext(gj)),
+              ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
               mi + (guuid -> remaining),
               fi || si.nonEmpty)
           }
@@ -1626,7 +1631,7 @@ object OMFSchemaResolver {
           .replaceNode(gi, tbox, tbox.withBoxStatements(si))
           .map { gj =>
             Tuple3(
-              ri.copy(context = impl.TerminologyContext(gj)),
+              ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
               mi + (guuid -> remaining),
               fi || si.nonEmpty)
           }
@@ -1687,7 +1692,7 @@ object OMFSchemaResolver {
           .replaceNode(gi, bundle, bundle.withBundleStatements(si))
           .map { gj =>
             Tuple3(
-              ri.copy(context = impl.TerminologyContext(gj)),
+              ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
               mi + (buuid -> remaining),
               fi || si.nonEmpty)
           }
@@ -1742,21 +1747,21 @@ object OMFSchemaResolver {
               None
           }
           .toMap
-        val (available, remaining) = x.partition { rr =>
-          accessible.contains(UUID.fromString(rr.disjointTaxonomyParentUUID))
+        val (available, remaining) = x.partition { ax =>
+          accessible.contains(UUID.fromString(ax.disjointTaxonomyParentUUID))
         }
         val si = available
-          .map { rr =>
+          .map { ax =>
             impl.AnonymousConceptTaxonomyAxiom(
-              UUID.fromString(rr.uuid),
-              accessible(UUID.fromString(rr.disjointTaxonomyParentUUID)))
+              UUID.fromString(ax.uuid),
+              accessible(UUID.fromString(ax.disjointTaxonomyParentUUID)))
           }
           .to[Set]
         impl.TerminologyContext
           .replaceNode(gi, bundle, bundle.withBundleStatements(si))
           .map { gj =>
             Tuple3(
-              ri.copy(context = impl.TerminologyContext(gj)),
+              ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
               mi + (buuid -> remaining),
               fi || si.nonEmpty)
           }
@@ -1812,23 +1817,23 @@ object OMFSchemaResolver {
               None
           }
           .toMap
-        val (available, remaining) = x.partition { rr =>
-          accessible.contains(UUID.fromString(rr.disjointTaxonomyParentUUID)) &&
-            concepts.contains(UUID.fromString(rr.disjointLeafUUID))
+        val (available, remaining) = x.partition { ax =>
+          accessible.contains(UUID.fromString(ax.disjointTaxonomyParentUUID)) &&
+            concepts.contains(UUID.fromString(ax.disjointLeafUUID))
         }
         val si = available
-          .map { rr =>
+          .map { ax =>
             impl.SpecificDisjointConceptAxiom(
-              UUID.fromString(rr.uuid),
-              concepts(UUID.fromString(rr.disjointLeafUUID)),
-              accessible(UUID.fromString(rr.disjointTaxonomyParentUUID)))
+              UUID.fromString(ax.uuid),
+              concepts(UUID.fromString(ax.disjointLeafUUID)),
+              accessible(UUID.fromString(ax.disjointTaxonomyParentUUID)))
           }
           .to[Set]
         impl.TerminologyContext
           .replaceNode(gi, bundle, bundle.withBundleStatements(si))
           .map { gj =>
             Tuple3(
-              ri.copy(context = impl.TerminologyContext(gj)),
+              ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
               mi + (buuid -> remaining),
               fi || si.nonEmpty)
           }
@@ -1838,6 +1843,74 @@ object OMFSchemaResolver {
       case Success(Tuple3(r, m, f)) =>
         if (f)
           resolveSpecificDisjointConceptAxioms(r, m)
+        else
+          Success(Tuple2(r, m.flatMap(_._2).to[Seq]))
+      case Failure(t) =>
+        Failure(t)
+    }
+  }
+
+  def mapAnnotationPairs
+  (resolver: OMFSchemaResolver)
+  : Try[OMFSchemaResolver]
+  = {
+    val ns = resolver.context.nodes
+    val g = resolver.context.g
+    val (resolvable, unresolved) =
+      resolver.queue.annotations
+        .groupBy(_.terminologyUUID)
+        .map { case (uuid, annotations) => UUID.fromString(uuid) -> annotations }
+        .partition { case (uuid, _) => ns.contains(uuid) }
+
+    val r1 = resolver.copy(queue = resolver.queue.copy(annotations = unresolved.flatMap(_._2).to[Seq]))
+    resolveAnnotationPairs(r1, resolvable).map {
+      case (r2, remaining) =>
+        r2.copy(queue = r2.queue.copy(annotations = r2.queue.annotations ++ remaining))
+    }
+  }
+
+  final def resolveAnnotationPairs
+  (resolver: OMFSchemaResolver, queue: Map[UUID, Seq[tables.Annotation]])
+  : Try[(OMFSchemaResolver, Seq[tables.Annotation])]
+  = {
+    queue
+      .foldLeft[Try[(OMFSchemaResolver, Map[UUID, Seq[tables.Annotation]], Boolean)]](
+      Success(Tuple3(resolver, Map.empty, false))
+    ) {
+      case (Success(Tuple3(ri, mi, fi)), (uuid, x)) =>
+        val gi = ri.context.g
+        val tbox = ri.context.nodes(uuid)
+        val statements = gi.outerNodeTraverser(gi.get(tbox))
+          .foldLeft[Map[UUID, _ <: api.TerminologyBoxStatement]](Map.empty) { case (acc, box) =>
+          acc ++ box.boxStatements.map(s => s.uuid -> s).toMap
+        }
+
+        val (available, remaining) = x.partition { a =>
+          statements.contains(UUID.fromString(a.subjectUUID)) &&
+          resolver.context.annotationProperties.contains(UUID.fromString(a.propertyUUID))
+        }
+        val si = available
+          .map { a =>
+            impl.Annotation(
+              statements(UUID.fromString(a.subjectUUID)),
+              resolver.context.annotationProperties(UUID.fromString(a.propertyUUID)),
+              a.value)
+          }
+          .to[Set]
+        impl.TerminologyContext
+          .replaceNode(gi, tbox, tbox.withAnnotations(si))
+          .map { gj =>
+            Tuple3(
+              ri.copy(context = impl.TerminologyContext(ri.context.annotationProperties, gj)),
+              mi + (uuid -> remaining),
+              fi || si.nonEmpty)
+          }
+      case (Failure(t), _) =>
+        Failure(t)
+    } match {
+      case Success(Tuple3(r, m, f)) =>
+        if (f)
+          resolveAnnotationPairs(r, m)
         else
           Success(Tuple2(r, m.flatMap(_._2).to[Seq]))
       case Failure(t) =>

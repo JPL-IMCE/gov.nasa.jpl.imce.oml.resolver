@@ -34,14 +34,16 @@ extends resolver.api.EntityStructuredDataProperty
   with DataRelationshipToStructure
 {
 
-  override val source
+  override def source
+  ()
   : resolver.api.Term
   = {
     domain
   }
   
   
-override val target
+override def target
+  ()
   : resolver.api.Datatype
   = {
     range

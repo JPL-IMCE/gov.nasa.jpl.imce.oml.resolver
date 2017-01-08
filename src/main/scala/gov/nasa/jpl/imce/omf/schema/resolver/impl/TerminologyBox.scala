@@ -30,7 +30,8 @@ extends resolver.api.TerminologyBox
    * A map for the subset of statements that are
    * entities terms indexed by their uuid.
    */
-  val entities
+  def entities
+  ()
   : scala.collection.immutable.Map[java.util.UUID, resolver.api.Entity]
   = {
   			  import scala.Predef.ArrowAssoc
@@ -45,7 +46,8 @@ extends resolver.api.TerminologyBox
    * A map for the subset of statements that are
    * aspects terms indexed by their uuid.
    */
-  val aspects
+  def aspects
+  ()
   : scala.collection.immutable.Map[java.util.UUID, resolver.api.Aspect]
   = {
   			  import scala.Predef.ArrowAssoc
@@ -60,7 +62,8 @@ extends resolver.api.TerminologyBox
    * A map for the subset of statements that are
    * concepts terms indexed by their uuid.
    */
-  val concepts
+  def concepts
+  ()
   : scala.collection.immutable.Map[java.util.UUID, resolver.api.Concept]
   = {
   			  import scala.Predef.ArrowAssoc
@@ -75,7 +78,8 @@ extends resolver.api.TerminologyBox
    * A map for the subset of statements that are
    * reified relationship terms indexed by their uuid.
    */
-  val reifiedRelationships
+  def reifiedRelationships
+  ()
   : scala.collection.immutable.Map[java.util.UUID, resolver.api.ReifiedRelationship]
   = {
   			  import scala.Predef.ArrowAssoc
@@ -90,7 +94,8 @@ extends resolver.api.TerminologyBox
    * A map for the subset of statements that are
    * unreified relationship terms indexed by their uuid.
    */
-  val unreifiedRelationships
+  def unreifiedRelationships
+  ()
   : scala.collection.immutable.Map[java.util.UUID, resolver.api.UnreifiedRelationship]
   = {
   			  import scala.Predef.ArrowAssoc
@@ -105,7 +110,8 @@ extends resolver.api.TerminologyBox
    * A map for the subset of statements that are
    * datatype terms indexed by their uuid.
    */
-  val dataRelationships
+  def dataRelationships
+  ()
   : scala.collection.immutable.Map[java.util.UUID, resolver.api.DataRelationship]
   = {
   			  import scala.Predef.ArrowAssoc
@@ -120,7 +126,8 @@ extends resolver.api.TerminologyBox
    * A map for the subset of statements that are
    * entity scalar data property terms indexed by their uuid.
    */
-  val entityScalarDataProperties
+  def entityScalarDataProperties
+  ()
   : scala.collection.immutable.Map[java.util.UUID, resolver.api.EntityScalarDataProperty]
   = {
   			  import scala.Predef.ArrowAssoc
@@ -135,7 +142,8 @@ extends resolver.api.TerminologyBox
    * A map for the subset of statements that are
    * data range terms indexed by their uuid.
    */
-  val dataranges
+  def dataranges
+  ()
   : scala.collection.immutable.Map[java.util.UUID, resolver.api.DataRange]
   = {
   			  import scala.Predef.ArrowAssoc
@@ -150,7 +158,8 @@ extends resolver.api.TerminologyBox
    * A map for the subset of statements that are
    * scalar datatype terms indexed by their uuid.
    */
-  val scalars
+  def scalars
+  ()
   : scala.collection.immutable.Map[java.util.UUID, resolver.api.Scalar]
   = {
   			  import scala.Predef.ArrowAssoc
@@ -165,7 +174,8 @@ extends resolver.api.TerminologyBox
    * A map for the subset of statements that are
    * structured datatype terms indexed by their uuid.
    */
-  val structures
+  def structures
+  ()
   : scala.collection.immutable.Map[java.util.UUID, resolver.api.Structure]
   = {
   			  import scala.Predef.ArrowAssoc
@@ -179,10 +189,19 @@ extends resolver.api.TerminologyBox
 /*
    * The subset of axioms about terms.
    */
-  val termAxioms
+  def termAxioms
+  ()
   : scala.collection.immutable.Set[_ <: resolver.api.TermAxiom]
   = {
   			  boxStatements.selectByKindOf { case tx: TermAxiom => tx }
+  			}
+  
+  
+def everything
+  ()
+  : scala.collection.immutable.Set[_ <: resolver.api.TerminologyThing]
+  = {
+  			  scala.collection.immutable.Set.empty[resolver.api.TerminologyThing] ++ boxStatements + this
   			}
   
 

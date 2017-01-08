@@ -26,14 +26,23 @@ case class TerminologyGraph private[impl]
  override val kind: gov.nasa.jpl.imce.omf.schema.tables.TerminologyGraphKind,
  override val name: gov.nasa.jpl.imce.omf.schema.tables.LocalName,
  override val iri: gov.nasa.jpl.imce.omf.schema.tables.IRI,
- override val annotations: scala.collection.immutable.Map[java.util.UUID, resolver.api.AnnotationPair],
+ override val annotations: scala.collection.immutable.Set[_ <: resolver.api.Annotation],
  override val boxStatements: scala.collection.immutable.Set[_ <: resolver.api.TerminologyBoxStatement]
 )
 extends resolver.api.TerminologyGraph
   with TerminologyBox
 {
 
-  def withBoxStatements
+  def withAnnotations
+  (a: scala.collection.immutable.Set[_ <: resolver.api.Annotation]
+  )
+  : resolver.api.TerminologyGraph
+  = {
+  			  copy(annotations = this.annotations ++ a)
+  			}
+  
+  
+def withBoxStatements
   (s: scala.collection.immutable.Set[_ <: resolver.api.TerminologyBoxStatement]
   )
   : resolver.api.TerminologyGraph

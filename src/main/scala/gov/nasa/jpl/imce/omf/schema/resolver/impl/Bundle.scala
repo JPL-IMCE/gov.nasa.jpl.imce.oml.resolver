@@ -26,7 +26,7 @@ case class Bundle private[impl]
  override val kind: gov.nasa.jpl.imce.omf.schema.tables.TerminologyGraphKind,
  override val name: gov.nasa.jpl.imce.omf.schema.tables.LocalName,
  override val iri: gov.nasa.jpl.imce.omf.schema.tables.IRI,
- override val annotations: scala.collection.immutable.Map[java.util.UUID, resolver.api.AnnotationPair],
+ override val annotations: scala.collection.immutable.Set[_ <: resolver.api.Annotation],
  override val boxStatements: scala.collection.immutable.Set[_ <: resolver.api.TerminologyBoxStatement],
  override val bundleStatements: scala.collection.immutable.Set[_ <: resolver.api.TerminologyBundleStatement],
  override val terminologyBundleAxioms: scala.collection.immutable.Set[_ <: resolver.api.TerminologyBundleAxiom]
@@ -44,12 +44,29 @@ extends resolver.api.Bundle
   			}
   
   
+def withAnnotations
+  (a: scala.collection.immutable.Set[_ <: resolver.api.Annotation]
+  )
+  : resolver.api.Bundle
+  = {
+  			  copy(annotations = this.annotations ++ a)
+  			}
+  
+  
 def withBoxStatements
   (s: scala.collection.immutable.Set[_ <: resolver.api.TerminologyBoxStatement]
   )
   : resolver.api.Bundle
   = {
   			  copy(boxStatements = this.boxStatements ++ s)
+  			}
+  
+  
+override def everything
+  ()
+  : scala.collection.immutable.Set[_ <: resolver.api.TerminologyThing]
+  = {
+  			  super.everything() ++ bundleStatements + this
   			}
   
 

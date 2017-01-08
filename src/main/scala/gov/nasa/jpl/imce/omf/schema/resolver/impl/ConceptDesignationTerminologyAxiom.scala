@@ -34,7 +34,8 @@ extends resolver.api.ConceptDesignationTerminologyAxiom
   /*
    * The designationTerminologyGraph is the source
    */
-  override val source
+  override def source
+  ()
   : resolver.api.TerminologyBox
   = {
     designationTerminologyGraph
@@ -44,7 +45,8 @@ extends resolver.api.ConceptDesignationTerminologyAxiom
 /*
    * The TerminologyBox that asserts the designatedConcept is the target
    */
-  override val target
+  override def target
+  ()
   : resolver.api.TerminologyBox
   = {
     designatedTerminology

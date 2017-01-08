@@ -20,11 +20,12 @@ package gov.nasa.jpl.imce.omf.schema.resolver.impl
 
 import gov.nasa.jpl.imce.omf.schema._
 
-case class AnnotationPair private[impl] 
+case class Annotation private[impl] 
 (
- override val value: scala.Predef.String,
- override val property: resolver.api.AnnotationProperty
+ override val subject: resolver.api.TerminologyThing,
+ override val property: resolver.api.AnnotationProperty,
+ override val value: scala.Predef.String
 )
-extends resolver.api.AnnotationPair
+extends resolver.api.Annotation
 {
 }

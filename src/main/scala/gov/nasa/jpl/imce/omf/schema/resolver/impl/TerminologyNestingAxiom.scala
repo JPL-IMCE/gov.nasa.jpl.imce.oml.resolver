@@ -34,7 +34,8 @@ extends resolver.api.TerminologyNestingAxiom
   /*
    * The nestedTerminology is the source
    */
-  override val source
+  override def source
+  ()
   : resolver.api.TerminologyBox
   = {
     nestedTerminology
@@ -44,7 +45,8 @@ extends resolver.api.TerminologyNestingAxiom
 /*
    * The nestingTerminology is the target
    */
-  override val target
+  override def target
+  ()
   : resolver.api.TerminologyBox
   = {
     nestingTerminology

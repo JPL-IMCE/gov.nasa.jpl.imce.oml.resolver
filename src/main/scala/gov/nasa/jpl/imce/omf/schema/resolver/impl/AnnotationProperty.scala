@@ -26,6 +26,5 @@ case class AnnotationProperty private[impl]
  override val iri: gov.nasa.jpl.imce.omf.schema.tables.IRI
 )
 extends resolver.api.AnnotationProperty
-  with TerminologyThing
 {
 }

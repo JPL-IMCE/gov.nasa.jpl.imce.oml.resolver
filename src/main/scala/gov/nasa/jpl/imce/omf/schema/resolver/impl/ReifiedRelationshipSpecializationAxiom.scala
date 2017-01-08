@@ -33,7 +33,8 @@ extends resolver.api.ReifiedRelationshipSpecializationAxiom
   /*
    * Get the sub (child) entity
    */
-  val child
+  def child
+  ()
   : resolver.api.Term
   = {
     subRelationship
@@ -43,7 +44,8 @@ extends resolver.api.ReifiedRelationshipSpecializationAxiom
 /*
    * Get the super (parent) entity
    */
-  val parent
+  def parent
+  ()
   : resolver.api.Term
   = {
     superRelationship

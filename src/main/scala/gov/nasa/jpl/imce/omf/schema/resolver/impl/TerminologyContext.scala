@@ -32,7 +32,8 @@ import scala.util.control.Exception._
 import scala.Predef.{require,ArrowAssoc}
 
 case class TerminologyContext private[resolver]
-(g: Graph[resolver.api.TerminologyBox, TerminologyEdge] = Graph[resolver.api.TerminologyBox, TerminologyEdge]())
+(override val annotationProperties: Map[UUID, resolver.api.AnnotationProperty] = Map.empty,
+ g: Graph[resolver.api.TerminologyBox, TerminologyEdge] = Graph[resolver.api.TerminologyBox, TerminologyEdge]())
 extends resolver.api.TerminologyContext
 {
 

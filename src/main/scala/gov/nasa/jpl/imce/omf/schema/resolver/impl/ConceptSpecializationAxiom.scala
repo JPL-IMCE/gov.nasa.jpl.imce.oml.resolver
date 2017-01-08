@@ -33,7 +33,8 @@ extends resolver.api.ConceptSpecializationAxiom
   /*
    * Get the sub (child) entity
    */
-  override val child
+  override def child
+  ()
   : resolver.api.Term
   = {
     subConcept
@@ -43,7 +44,8 @@ extends resolver.api.ConceptSpecializationAxiom
 /*
    * Get the super (parent) entity
    */
-  override val parent
+  override def parent
+  ()
   : resolver.api.Term
   = {
     superConcept

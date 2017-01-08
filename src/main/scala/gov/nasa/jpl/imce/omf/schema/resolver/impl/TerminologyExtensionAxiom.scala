@@ -33,7 +33,8 @@ extends resolver.api.TerminologyExtensionAxiom
   /*
    * The extendingTerminology is the source
    */
-  override val source
+  override def source
+  ()
   : resolver.api.TerminologyBox
   = {
     extendingTerminology
@@ -43,7 +44,8 @@ extends resolver.api.TerminologyExtensionAxiom
 /*
    * The extendedTerminology is the target
    */
-  override val target
+  override def target
+  ()
   : resolver.api.TerminologyBox
   = {
     extendedTerminology

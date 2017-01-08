@@ -33,7 +33,8 @@ extends resolver.api.BundledTerminologyAxiom
   /*
    * The bundle is the source
    */
-  override val source
+  override def source
+  ()
   : resolver.api.TerminologyBox
   = {
     terminologyBundle
@@ -43,7 +44,8 @@ extends resolver.api.BundledTerminologyAxiom
 /*
    * The bundledTerminology is the target
    */
-  override val target
+  override def target
+  ()
   : resolver.api.TerminologyBox
   = {
     bundledTerminology
