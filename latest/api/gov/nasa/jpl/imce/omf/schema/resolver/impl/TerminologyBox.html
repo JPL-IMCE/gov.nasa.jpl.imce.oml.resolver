@@ -96,18 +96,18 @@
         <div id="values" class="values members">
               <h3>Abstract Value Members</h3>
               <ol><li name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyBox#annotations" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="annotations:scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.AnnotationPair]"></a>
-      <a id="annotations:Map[UUID,api.AnnotationPair]"></a>
+      <a id="annotations:scala.collection.immutable.Set[_&lt;:gov.nasa.jpl.imce.omf.schema.resolver.api.Annotation]"></a>
+      <a id="annotations:Set[_&lt;:api.Annotation]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">abstract </span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">annotations</span><span class="result">: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.AnnotationPair">api.AnnotationPair</span>]</span>
+        <span class="name">annotations</span><span class="result">: <span class="extype" name="scala.collection.immutable.Set">Set</span>[_ &lt;: <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.Annotation">api.Annotation</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@annotations:scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.AnnotationPair]" title="Permalink" target="_top">
+      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@annotations:scala.collection.immutable.Set[_&lt;:gov.nasa.jpl.imce.omf.schema.resolver.api.Annotation]" title="Permalink" target="_top">
         <img src="../../../../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -197,6 +197,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>TerminologyThing</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyBox#withAnnotations" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="withAnnotations(a:scala.collection.immutable.Set[_&lt;:gov.nasa.jpl.imce.omf.schema.resolver.api.Annotation]):gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyBox"></a>
+      <a id="withAnnotations(Set[_&lt;:api.Annotation]):api.TerminologyBox"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">withAnnotations</span><span class="params">(<span name="a">a: <span class="extype" name="scala.collection.immutable.Set">Set</span>[_ &lt;: <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.Annotation">api.Annotation</span>]</span>)</span><span class="result">: <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyBox">api.TerminologyBox</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@withAnnotations(a:scala.collection.immutable.Set[_&lt;:gov.nasa.jpl.imce.omf.schema.resolver.api.Annotation]):gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyBox" title="Permalink" target="_top">
+        <img src="../../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>TerminologyBox</dd></dl></div>
     </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyBox#withBoxStatements" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="withBoxStatements(s:scala.collection.immutable.Set[_&lt;:gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyBoxStatement]):gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyBox"></a>
       <a id="withBoxStatements(Set[_&lt;:api.TerminologyBoxStatement]):api.TerminologyBox"></a>
@@ -288,18 +305,18 @@
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
     </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox#aspects" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="aspects:scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.Aspect]"></a>
-      <a id="aspects:Map[UUID,api.Aspect]"></a>
+      <a id="aspects():scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.Aspect]"></a>
+      <a id="aspects():Map[UUID,api.Aspect]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">aspects</span><span class="result">: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.Aspect">api.Aspect</span>]</span>
+        <span class="name">aspects</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.Aspect">api.Aspect</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@aspects:scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.Aspect]" title="Permalink" target="_top">
+      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@aspects():scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.Aspect]" title="Permalink" target="_top">
         <img src="../../../../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -328,86 +345,86 @@
               
         </dd></dl></div>
     </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox#concepts" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="concepts:scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.Concept]"></a>
-      <a id="concepts:Map[UUID,api.Concept]"></a>
+      <a id="concepts():scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.Concept]"></a>
+      <a id="concepts():Map[UUID,api.Concept]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">concepts</span><span class="result">: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.Concept">api.Concept</span>]</span>
+        <span class="name">concepts</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.Concept">api.Concept</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@concepts:scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.Concept]" title="Permalink" target="_top">
+      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@concepts():scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.Concept]" title="Permalink" target="_top">
         <img src="../../../../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox">TerminologyBox</a> → TerminologyBox</dd></dl></div>
     </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox#dataRelationships" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="dataRelationships:scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.DataRelationship]"></a>
-      <a id="dataRelationships:Map[UUID,api.DataRelationship]"></a>
+      <a id="dataRelationships():scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.DataRelationship]"></a>
+      <a id="dataRelationships():Map[UUID,api.DataRelationship]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">dataRelationships</span><span class="result">: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.DataRelationship">api.DataRelationship</span>]</span>
+        <span class="name">dataRelationships</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.DataRelationship">api.DataRelationship</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@dataRelationships:scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.DataRelationship]" title="Permalink" target="_top">
+      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@dataRelationships():scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.DataRelationship]" title="Permalink" target="_top">
         <img src="../../../../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox">TerminologyBox</a> → TerminologyBox</dd></dl></div>
     </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox#dataranges" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="dataranges:scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.DataRange]"></a>
-      <a id="dataranges:Map[UUID,api.DataRange]"></a>
+      <a id="dataranges():scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.DataRange]"></a>
+      <a id="dataranges():Map[UUID,api.DataRange]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">dataranges</span><span class="result">: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.DataRange">api.DataRange</span>]</span>
+        <span class="name">dataranges</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.DataRange">api.DataRange</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@dataranges:scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.DataRange]" title="Permalink" target="_top">
+      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@dataranges():scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.DataRange]" title="Permalink" target="_top">
         <img src="../../../../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox">TerminologyBox</a> → TerminologyBox</dd></dl></div>
     </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox#entities" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="entities:scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.Entity]"></a>
-      <a id="entities:Map[UUID,api.Entity]"></a>
+      <a id="entities():scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.Entity]"></a>
+      <a id="entities():Map[UUID,api.Entity]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">entities</span><span class="result">: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.Entity">api.Entity</span>]</span>
+        <span class="name">entities</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.Entity">api.Entity</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@entities:scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.Entity]" title="Permalink" target="_top">
+      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@entities():scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.Entity]" title="Permalink" target="_top">
         <img src="../../../../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox">TerminologyBox</a> → TerminologyBox</dd></dl></div>
     </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox#entityScalarDataProperties" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="entityScalarDataProperties:scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.EntityScalarDataProperty]"></a>
-      <a id="entityScalarDataProperties:Map[UUID,api.EntityScalarDataProperty]"></a>
+      <a id="entityScalarDataProperties():scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.EntityScalarDataProperty]"></a>
+      <a id="entityScalarDataProperties():Map[UUID,api.EntityScalarDataProperty]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">entityScalarDataProperties</span><span class="result">: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.EntityScalarDataProperty">api.EntityScalarDataProperty</span>]</span>
+        <span class="name">entityScalarDataProperties</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.EntityScalarDataProperty">api.EntityScalarDataProperty</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@entityScalarDataProperties:scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.EntityScalarDataProperty]" title="Permalink" target="_top">
+      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@entityScalarDataProperties():scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.EntityScalarDataProperty]" title="Permalink" target="_top">
         <img src="../../../../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -446,6 +463,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox#everything" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="everything():scala.collection.immutable.Set[_&lt;:gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyThing]"></a>
+      <a id="everything():Set[_&lt;:api.TerminologyThing]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">everything</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.collection.immutable.Set">Set</span>[_ &lt;: <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyThing">api.TerminologyThing</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@everything():scala.collection.immutable.Set[_&lt;:gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyThing]" title="Permalink" target="_top">
+        <img src="../../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox">TerminologyBox</a> → TerminologyBox</dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <a id="finalize():Unit"></a>
@@ -572,52 +606,52 @@
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
     </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox#reifiedRelationships" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="reifiedRelationships:scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.ReifiedRelationship]"></a>
-      <a id="reifiedRelationships:Map[UUID,api.ReifiedRelationship]"></a>
+      <a id="reifiedRelationships():scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.ReifiedRelationship]"></a>
+      <a id="reifiedRelationships():Map[UUID,api.ReifiedRelationship]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">reifiedRelationships</span><span class="result">: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.ReifiedRelationship">api.ReifiedRelationship</span>]</span>
+        <span class="name">reifiedRelationships</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.ReifiedRelationship">api.ReifiedRelationship</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@reifiedRelationships:scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.ReifiedRelationship]" title="Permalink" target="_top">
+      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@reifiedRelationships():scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.ReifiedRelationship]" title="Permalink" target="_top">
         <img src="../../../../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox">TerminologyBox</a> → TerminologyBox</dd></dl></div>
     </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox#scalars" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="scalars:scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.Scalar]"></a>
-      <a id="scalars:Map[UUID,api.Scalar]"></a>
+      <a id="scalars():scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.Scalar]"></a>
+      <a id="scalars():Map[UUID,api.Scalar]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">scalars</span><span class="result">: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.Scalar">api.Scalar</span>]</span>
+        <span class="name">scalars</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.Scalar">api.Scalar</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@scalars:scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.Scalar]" title="Permalink" target="_top">
+      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@scalars():scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.Scalar]" title="Permalink" target="_top">
         <img src="../../../../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox">TerminologyBox</a> → TerminologyBox</dd></dl></div>
     </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox#structures" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="structures:scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.Structure]"></a>
-      <a id="structures:Map[UUID,api.Structure]"></a>
+      <a id="structures():scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.Structure]"></a>
+      <a id="structures():Map[UUID,api.Structure]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">structures</span><span class="result">: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.Structure">api.Structure</span>]</span>
+        <span class="name">structures</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.Structure">api.Structure</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@structures:scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.Structure]" title="Permalink" target="_top">
+      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@structures():scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.Structure]" title="Permalink" target="_top">
         <img src="../../../../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -640,18 +674,18 @@
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
     </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox#termAxioms" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="termAxioms:scala.collection.immutable.Set[_&lt;:gov.nasa.jpl.imce.omf.schema.resolver.api.TermAxiom]"></a>
-      <a id="termAxioms:Set[_&lt;:api.TermAxiom]"></a>
+      <a id="termAxioms():scala.collection.immutable.Set[_&lt;:gov.nasa.jpl.imce.omf.schema.resolver.api.TermAxiom]"></a>
+      <a id="termAxioms():Set[_&lt;:api.TermAxiom]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">termAxioms</span><span class="result">: <span class="extype" name="scala.collection.immutable.Set">Set</span>[_ &lt;: <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.TermAxiom">api.TermAxiom</span>]</span>
+        <span class="name">termAxioms</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.collection.immutable.Set">Set</span>[_ &lt;: <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.TermAxiom">api.TermAxiom</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@termAxioms:scala.collection.immutable.Set[_&lt;:gov.nasa.jpl.imce.omf.schema.resolver.api.TermAxiom]" title="Permalink" target="_top">
+      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@termAxioms():scala.collection.immutable.Set[_&lt;:gov.nasa.jpl.imce.omf.schema.resolver.api.TermAxiom]" title="Permalink" target="_top">
         <img src="../../../../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -674,18 +708,18 @@
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox#unreifiedRelationships" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="unreifiedRelationships:scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.UnreifiedRelationship]"></a>
-      <a id="unreifiedRelationships:Map[UUID,api.UnreifiedRelationship]"></a>
+      <a id="unreifiedRelationships():scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.UnreifiedRelationship]"></a>
+      <a id="unreifiedRelationships():Map[UUID,api.UnreifiedRelationship]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">unreifiedRelationships</span><span class="result">: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.UnreifiedRelationship">api.UnreifiedRelationship</span>]</span>
+        <span class="name">unreifiedRelationships</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.UnreifiedRelationship">api.UnreifiedRelationship</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@unreifiedRelationships:scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.UnreifiedRelationship]" title="Permalink" target="_top">
+      <a href="../../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyBox@unreifiedRelationships():scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.UnreifiedRelationship]" title="Permalink" target="_top">
         <img src="../../../../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
