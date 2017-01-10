@@ -27,7 +27,7 @@ import scala.collection.immutable.{Map, Seq, Set}
 import scala.collection.parallel.immutable.ParSeq
 import scala.{Boolean, None, Some, StringContext, Tuple2, Tuple3}
 import scala.util.{Failure, Success, Try}
-import scala.Predef.ArrowAssoc
+import scala.Predef.{require,ArrowAssoc}
 
 case class OMFSchemaResolver private[resolver]
 (context: impl.TerminologyContext,
@@ -1850,28 +1850,70 @@ object OMFSchemaResolver {
     }
   }
 
+  type AnnotationMap = Map[tables.AnnotationProperty, Seq[tables.Annotation]]
+
+  def annotationMapS
+  (t2everything: Map[tables.UUID, Set[tables.UUID]])
+  (q_u: (AnnotationMap, AnnotationMap),
+   ap_as: (tables.AnnotationProperty, Seq[tables.Annotation]))
+  : (AnnotationMap, AnnotationMap)
+  = {
+    val (q, u) = q_u
+    val (ap, as) = ap_as
+
+    val (t_resolvable, t_unresolved) =
+      as.partition(a => t2everything.contains(a.terminologyUUID))
+
+    val (s_resolvable, s_unresolved) =
+      t_resolvable.partition { a =>
+        t2everything
+          .get(a.terminologyUUID)
+          .map(_.contains(a.subjectUUID))
+          .getOrElse(false)
+      }
+
+    q_u
+  }
+
+  def annotationMapC
+  (q_u1: (AnnotationMap, AnnotationMap),
+   q_u2: (AnnotationMap, AnnotationMap))
+  : (AnnotationMap, AnnotationMap)
+  = {
+    val (q1, u1) = q_u1
+    val (q2, u2) = q_u2
+    require(q1.keySet.intersect(q2.keySet).isEmpty)
+    require(u1.keySet.intersect(u2.keySet).isEmpty)
+    Tuple2( q1 ++ q2, u1 ++ u2)
+  }
+
   def mapAnnotationPairs
   (resolver: OMFSchemaResolver)
   : Try[OMFSchemaResolver]
   = {
     val ns = resolver.context.nodes
-    val g = resolver.context.g
-    val (resolvable, unresolved) =
-      resolver.queue.annotations
-        .groupBy(_.terminologyUUID)
-        .map { case (uuid, annotations) => UUID.fromString(uuid) -> annotations }
-        .partition { case (uuid, _) => ns.contains(uuid) }
-
-    val r1 = resolver.copy(queue = resolver.queue.copy(annotations = unresolved.flatMap(_._2).to[Seq]))
-    resolveAnnotationPairs(r1, resolvable).map {
-      case (r2, remaining) =>
-        r2.copy(queue = r2.queue.copy(annotations = r2.queue.annotations ++ remaining))
+    val t2everything = ns.map { case (uuid, tbox) =>
+        uuid.toString -> tbox.everything().map(_.uuid.toString)
     }
+    val g = resolver.context.g
+
+    val (resolved, remaining)
+    = resolver.queue.annotations
+      .aggregate[(AnnotationMap, AnnotationMap)](Map.empty, Map.empty)(
+      seqop = annotationMapS(t2everything),
+      combop = annotationMapC)
+
+    val r = resolver.copy(queue = resolver.queue.copy(annotations = remaining))
+    Success(r)
   }
 
+  /*
+
   final def resolveAnnotationPairs
-  (resolver: OMFSchemaResolver, queue: Map[UUID, Seq[tables.Annotation]])
-  : Try[(OMFSchemaResolver, Seq[tables.Annotation])]
+  (resolver: OMFSchemaResolver,
+   queue: Map[tables.AnnotationProperty, Seq[tables.Annotation]],
+   remaining: Map[tables.AnnotationProperty, Seq[tables.Annotation]])
+  : Try[(OMFSchemaResolver, Map[tables.AnnotationProperty, Seq[tables.Annotation]])]
   = {
     queue
       .foldLeft[Try[(OMFSchemaResolver, Map[UUID, Seq[tables.Annotation]], Boolean)]](
@@ -1917,4 +1959,5 @@ object OMFSchemaResolver {
         Failure(t)
     }
   }
+  */
 }
