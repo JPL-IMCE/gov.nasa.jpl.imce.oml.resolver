@@ -26,7 +26,7 @@ case class Bundle private[impl]
  override val kind: gov.nasa.jpl.imce.omf.schema.tables.TerminologyGraphKind,
  override val name: gov.nasa.jpl.imce.omf.schema.tables.LocalName,
  override val iri: gov.nasa.jpl.imce.omf.schema.tables.IRI,
- override val annotations: scala.collection.immutable.Set[_ <: resolver.api.Annotation],
+ override val annotations: scala.collection.immutable.Map[resolver.api.AnnotationProperty, scala.collection.immutable.Seq[resolver.api.Annotation]],
  override val boxStatements: scala.collection.immutable.Set[_ <: resolver.api.TerminologyBoxStatement],
  override val bundleStatements: scala.collection.immutable.Set[_ <: resolver.api.TerminologyBundleStatement],
  override val terminologyBundleAxioms: scala.collection.immutable.Set[_ <: resolver.api.TerminologyBundleAxiom]
@@ -45,11 +45,11 @@ extends resolver.api.Bundle
   
   
 def withAnnotations
-  (a: scala.collection.immutable.Set[_ <: resolver.api.Annotation]
+  (a: scala.collection.immutable.Map[resolver.api.AnnotationProperty, scala.collection.immutable.Seq[resolver.api.Annotation]]
   )
   : resolver.api.Bundle
   = {
-  			  copy(annotations = this.annotations ++ a)
+  			  copy(annotations = this.annotations.map { case (ap,av) => scala.Tuple2(ap, av ++ a.getOrElse(ap, scala.collection.immutable.Seq.empty))})
   			}
   
   

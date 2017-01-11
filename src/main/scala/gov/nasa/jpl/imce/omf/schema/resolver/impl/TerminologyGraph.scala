@@ -26,7 +26,7 @@ case class TerminologyGraph private[impl]
  override val kind: gov.nasa.jpl.imce.omf.schema.tables.TerminologyGraphKind,
  override val name: gov.nasa.jpl.imce.omf.schema.tables.LocalName,
  override val iri: gov.nasa.jpl.imce.omf.schema.tables.IRI,
- override val annotations: scala.collection.immutable.Set[_ <: resolver.api.Annotation],
+ override val annotations: scala.collection.immutable.Map[resolver.api.AnnotationProperty, scala.collection.immutable.Seq[resolver.api.Annotation]],
  override val boxStatements: scala.collection.immutable.Set[_ <: resolver.api.TerminologyBoxStatement]
 )
 extends resolver.api.TerminologyGraph
@@ -34,11 +34,11 @@ extends resolver.api.TerminologyGraph
 {
 
   def withAnnotations
-  (a: scala.collection.immutable.Set[_ <: resolver.api.Annotation]
+  (a: scala.collection.immutable.Map[resolver.api.AnnotationProperty, scala.collection.immutable.Seq[resolver.api.Annotation]]
   )
   : resolver.api.TerminologyGraph
   = {
-  			  copy(annotations = this.annotations ++ a)
+  			  copy(annotations = this.annotations.map { case (ap,av) => scala.Tuple2(ap, av ++ a.getOrElse(ap, scala.collection.immutable.Seq.empty))})
   			}
   
   

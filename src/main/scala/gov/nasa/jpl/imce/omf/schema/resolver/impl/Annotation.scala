@@ -23,7 +23,6 @@ import gov.nasa.jpl.imce.omf.schema._
 case class Annotation private[impl] 
 (
  override val subject: resolver.api.TerminologyThing,
- override val property: resolver.api.AnnotationProperty,
  override val value: scala.Predef.String
 )
 extends resolver.api.Annotation

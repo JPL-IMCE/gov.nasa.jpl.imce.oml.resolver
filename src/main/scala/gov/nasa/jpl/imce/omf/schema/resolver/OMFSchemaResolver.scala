@@ -94,7 +94,7 @@ object OMFSchemaResolver {
     val gN = resolver.queue.terminologyGraphs.foldLeft(resolver.context.g) { (gi, t) =>
       gi + impl.TerminologyGraph(
         java.util.UUID.fromString(t.uuid), t.kind, t.name, t.iri,
-        annotations=Set.empty,
+        annotations=Map.empty,
         boxStatements=Set.empty)
     }
 
@@ -110,7 +110,7 @@ object OMFSchemaResolver {
   = {
     val gN = resolver.queue.bundles.foldLeft(resolver.context.g) { (gi, b) =>
       gi + impl.Bundle(java.util.UUID.fromString(b.uuid), b.kind, b.name, b.iri,
-        annotations=Set.empty,
+        annotations=Map.empty,
         boxStatements=Set.empty,
         bundleStatements=Set.empty,
         terminologyBundleAxioms=Set.empty)
@@ -1868,8 +1868,7 @@ object OMFSchemaResolver {
       t_resolvable.partition { a =>
         t2everything
           .get(a.terminologyUUID)
-          .map(_.contains(a.subjectUUID))
-          .getOrElse(false)
+          .exists(_.contains(a.subjectUUID))
       }
 
     q_u
