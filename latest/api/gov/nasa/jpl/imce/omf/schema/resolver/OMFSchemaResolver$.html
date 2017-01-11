@@ -92,7 +92,24 @@
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.HyperGraphV" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+              <ol><li name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.AnnotationMapTables" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AnnotationMapTables=scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.UUID,scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.AnnotationProperty,scala.collection.immutable.Seq[gov.nasa.jpl.imce.omf.schema.tables.Annotation]]]"></a>
+      <a id="AnnotationMapTables:AnnotationMapTables"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AnnotationMapTables</span><span class="result"> = <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.tables.UUID">UUID</span>, <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.tables.AnnotationProperty">AnnotationProperty</span>, <span class="extype" name="scala.collection.immutable.Seq">Seq</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.tables.Annotation">Annotation</span>]]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver$@AnnotationMapTables=scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.UUID,scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.AnnotationProperty,scala.collection.immutable.Seq[gov.nasa.jpl.imce.omf.schema.tables.Annotation]]]" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.HyperGraphV" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="HyperGraphV=scala.util.Try[scalax.collection.immutable.Graph[gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyBox,gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyEdge]]"></a>
       <a id="HyperGraphV:HyperGraphV"></a>
       <h4 class="signature">
@@ -105,6 +122,23 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver$@HyperGraphV=scala.util.Try[scalax.collection.immutable.Graph[gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyBox,gov.nasa.jpl.imce.omf.schema.resolver.impl.TerminologyEdge]]" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.ResolvedAnnotationMap" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ResolvedAnnotationMap=scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.UUID,scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.resolver.api.AnnotationProperty,scala.collection.immutable.Seq[gov.nasa.jpl.imce.omf.schema.resolver.api.Annotation]]]"></a>
+      <a id="ResolvedAnnotationMap:ResolvedAnnotationMap"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ResolvedAnnotationMap</span><span class="result"> = <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.tables.UUID">UUID</span>, <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.AnnotationProperty">AnnotationProperty</span>, <span class="extype" name="scala.collection.immutable.Seq">Seq</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.Annotation">Annotation</span>]]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver$@ResolvedAnnotationMap=scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.UUID,scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.resolver.api.AnnotationProperty,scala.collection.immutable.Seq[gov.nasa.jpl.imce.omf.schema.resolver.api.Annotation]]]" title="Permalink" target="_top">
         <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -167,6 +201,40 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver#annotationMapC" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="annotationMapC(q_u1:(gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.ResolvedAnnotationMap,gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.AnnotationMapTables),q_u2:(gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.ResolvedAnnotationMap,gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.AnnotationMapTables)):(gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.ResolvedAnnotationMap,gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.AnnotationMapTables)"></a>
+      <a id="annotationMapC((ResolvedAnnotationMap,AnnotationMapTables),(ResolvedAnnotationMap,AnnotationMapTables)):(ResolvedAnnotationMap,AnnotationMapTables)"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">annotationMapC</span><span class="params">(<span name="q_u1">q_u1: (<a href="#ResolvedAnnotationMap=scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.UUID,scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.resolver.api.AnnotationProperty,scala.collection.immutable.Seq[gov.nasa.jpl.imce.omf.schema.resolver.api.Annotation]]]" class="extmbr" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.ResolvedAnnotationMap">ResolvedAnnotationMap</a>, <a href="#AnnotationMapTables=scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.UUID,scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.AnnotationProperty,scala.collection.immutable.Seq[gov.nasa.jpl.imce.omf.schema.tables.Annotation]]]" class="extmbr" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.AnnotationMapTables">AnnotationMapTables</a>)</span>, <span name="q_u2">q_u2: (<a href="#ResolvedAnnotationMap=scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.UUID,scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.resolver.api.AnnotationProperty,scala.collection.immutable.Seq[gov.nasa.jpl.imce.omf.schema.resolver.api.Annotation]]]" class="extmbr" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.ResolvedAnnotationMap">ResolvedAnnotationMap</a>, <a href="#AnnotationMapTables=scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.UUID,scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.AnnotationProperty,scala.collection.immutable.Seq[gov.nasa.jpl.imce.omf.schema.tables.Annotation]]]" class="extmbr" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.AnnotationMapTables">AnnotationMapTables</a>)</span>)</span><span class="result">: (<a href="#ResolvedAnnotationMap=scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.UUID,scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.resolver.api.AnnotationProperty,scala.collection.immutable.Seq[gov.nasa.jpl.imce.omf.schema.resolver.api.Annotation]]]" class="extmbr" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.ResolvedAnnotationMap">ResolvedAnnotationMap</a>, <a href="#AnnotationMapTables=scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.UUID,scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.AnnotationProperty,scala.collection.immutable.Seq[gov.nasa.jpl.imce.omf.schema.tables.Annotation]]]" class="extmbr" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.AnnotationMapTables">AnnotationMapTables</a>)</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver$@annotationMapC(q_u1:(gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.ResolvedAnnotationMap,gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.AnnotationMapTables),q_u2:(gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.ResolvedAnnotationMap,gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.AnnotationMapTables)):(gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.ResolvedAnnotationMap,gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.AnnotationMapTables)" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver#annotationMapS" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="annotationMapS(subjects_by_terminology:scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.UUID,scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyThing]],aps:scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.AnnotationProperty])(q_u:(gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.ResolvedAnnotationMap,gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.AnnotationMapTables),ap_as:(gov.nasa.jpl.imce.omf.schema.tables.AnnotationProperty,scala.collection.immutable.Seq[gov.nasa.jpl.imce.omf.schema.tables.Annotation])):(gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.ResolvedAnnotationMap,gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.AnnotationMapTables)"></a>
+      <a id="annotationMapS(Map[UUID,Map[UUID,TerminologyThing]],Map[UUID,AnnotationProperty])((ResolvedAnnotationMap,AnnotationMapTables),(AnnotationProperty,Seq[Annotation])):(ResolvedAnnotationMap,AnnotationMapTables)"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">annotationMapS</span><span class="params">(<span name="subjects_by_terminology">subjects_by_terminology: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.tables.UUID">UUID</span>, <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.tables.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyThing">TerminologyThing</span>]]</span>, <span name="aps">aps: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.api.AnnotationProperty">AnnotationProperty</span>]</span>)</span><span class="params">(<span name="q_u">q_u: (<a href="#ResolvedAnnotationMap=scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.UUID,scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.resolver.api.AnnotationProperty,scala.collection.immutable.Seq[gov.nasa.jpl.imce.omf.schema.resolver.api.Annotation]]]" class="extmbr" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.ResolvedAnnotationMap">ResolvedAnnotationMap</a>, <a href="#AnnotationMapTables=scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.UUID,scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.AnnotationProperty,scala.collection.immutable.Seq[gov.nasa.jpl.imce.omf.schema.tables.Annotation]]]" class="extmbr" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.AnnotationMapTables">AnnotationMapTables</a>)</span>, <span name="ap_as">ap_as: (<span class="extype" name="gov.nasa.jpl.imce.omf.schema.tables.AnnotationProperty">AnnotationProperty</span>, <span class="extype" name="scala.collection.immutable.Seq">Seq</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.tables.Annotation">Annotation</span>])</span>)</span><span class="result">: (<a href="#ResolvedAnnotationMap=scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.UUID,scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.resolver.api.AnnotationProperty,scala.collection.immutable.Seq[gov.nasa.jpl.imce.omf.schema.resolver.api.Annotation]]]" class="extmbr" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.ResolvedAnnotationMap">ResolvedAnnotationMap</a>, <a href="#AnnotationMapTables=scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.UUID,scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.AnnotationProperty,scala.collection.immutable.Seq[gov.nasa.jpl.imce.omf.schema.tables.Annotation]]]" class="extmbr" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.AnnotationMapTables">AnnotationMapTables</a>)</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver$@annotationMapS(subjects_by_terminology:scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.UUID,scala.collection.immutable.Map[gov.nasa.jpl.imce.omf.schema.tables.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.TerminologyThing]],aps:scala.collection.immutable.Map[java.util.UUID,gov.nasa.jpl.imce.omf.schema.resolver.api.AnnotationProperty])(q_u:(gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.ResolvedAnnotationMap,gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.AnnotationMapTables),ap_as:(gov.nasa.jpl.imce.omf.schema.tables.AnnotationProperty,scala.collection.immutable.Seq[gov.nasa.jpl.imce.omf.schema.tables.Annotation])):(gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.ResolvedAnnotationMap,gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.AnnotationMapTables)" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -842,6 +910,40 @@
       </a>
     </span>
       
+    </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver#mergeMapOfMapOfSeq" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="mergeMapOfMapOfSeq[K1,K2,V](mms1:scala.collection.immutable.Map[K1,scala.collection.immutable.Map[K2,scala.collection.immutable.Seq[V]]],mms2:scala.collection.immutable.Map[K1,scala.collection.immutable.Map[K2,scala.collection.immutable.Seq[V]]]):scala.collection.immutable.Map[K1,scala.collection.immutable.Map[K2,scala.collection.immutable.Seq[V]]]"></a>
+      <a id="mergeMapOfMapOfSeq[K1,K2,V](Map[K1,Map[K2,Seq[V]]],Map[K1,Map[K2,Seq[V]]]):Map[K1,Map[K2,Seq[V]]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">mergeMapOfMapOfSeq</span><span class="tparams">[<span name="K1">K1</span>, <span name="K2">K2</span>, <span name="V">V</span>]</span><span class="params">(<span name="mms1">mms1: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.mergeMapOfMapOfSeq.K1">K1</span>, <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.mergeMapOfMapOfSeq.K2">K2</span>, <span class="extype" name="scala.collection.immutable.Seq">Seq</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.mergeMapOfMapOfSeq.V">V</span>]]]</span>, <span name="mms2">mms2: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.mergeMapOfMapOfSeq.K1">K1</span>, <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.mergeMapOfMapOfSeq.K2">K2</span>, <span class="extype" name="scala.collection.immutable.Seq">Seq</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.mergeMapOfMapOfSeq.V">V</span>]]]</span>)</span><span class="result">: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.mergeMapOfMapOfSeq.K1">K1</span>, <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.mergeMapOfMapOfSeq.K2">K2</span>, <span class="extype" name="scala.collection.immutable.Seq">Seq</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.mergeMapOfMapOfSeq.V">V</span>]]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver$@mergeMapOfMapOfSeq[K1,K2,V](mms1:scala.collection.immutable.Map[K1,scala.collection.immutable.Map[K2,scala.collection.immutable.Seq[V]]],mms2:scala.collection.immutable.Map[K1,scala.collection.immutable.Map[K2,scala.collection.immutable.Seq[V]]]):scala.collection.immutable.Map[K1,scala.collection.immutable.Map[K2,scala.collection.immutable.Seq[V]]]" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver#mergeMapOfSeq" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="mergeMapOfSeq[K,V](m1:scala.collection.immutable.Map[K,scala.collection.immutable.Seq[V]],m2:scala.collection.immutable.Map[K,scala.collection.immutable.Seq[V]]):scala.collection.immutable.Map[K,scala.collection.immutable.Seq[V]]"></a>
+      <a id="mergeMapOfSeq[K,V](Map[K,Seq[V]],Map[K,Seq[V]]):Map[K,Seq[V]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">mergeMapOfSeq</span><span class="tparams">[<span name="K">K</span>, <span name="V">V</span>]</span><span class="params">(<span name="m1">m1: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.mergeMapOfSeq.K">K</span>, <span class="extype" name="scala.collection.immutable.Seq">Seq</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.mergeMapOfSeq.V">V</span>]]</span>, <span name="m2">m2: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.mergeMapOfSeq.K">K</span>, <span class="extype" name="scala.collection.immutable.Seq">Seq</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.mergeMapOfSeq.V">V</span>]]</span>)</span><span class="result">: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.mergeMapOfSeq.K">K</span>, <span class="extype" name="scala.collection.immutable.Seq">Seq</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver.mergeMapOfSeq.V">V</span>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver$@mergeMapOfSeq[K,V](m1:scala.collection.immutable.Map[K,scala.collection.immutable.Seq[V]],m2:scala.collection.immutable.Map[K,scala.collection.immutable.Seq[V]]):scala.collection.immutable.Map[K,scala.collection.immutable.Seq[V]]" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -906,23 +1008,6 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver$@resolve(t:gov.nasa.jpl.imce.omf.schema.tables.OMFSchemaTables):scala.util.Try[gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver]" title="Permalink" target="_top">
-        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      
-    </li><li name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver#resolveAnnotationPairs" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="resolveAnnotationPairs(resolver:gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver,queue:scala.collection.immutable.Map[java.util.UUID,scala.collection.immutable.Seq[gov.nasa.jpl.imce.omf.schema.tables.Annotation]]):scala.util.Try[(gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver,scala.collection.immutable.Seq[gov.nasa.jpl.imce.omf.schema.tables.Annotation])]"></a>
-      <a id="resolveAnnotationPairs(OMFSchemaResolver,Map[UUID,Seq[Annotation]]):Try[(OMFSchemaResolver,Seq[Annotation])]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">final </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">resolveAnnotationPairs</span><span class="params">(<span name="resolver">resolver: <a href="OMFSchemaResolver.html" class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver">OMFSchemaResolver</a></span>, <span name="queue">queue: <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="java.util.UUID">UUID</span>, <span class="extype" name="scala.collection.immutable.Seq">Seq</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.tables.Annotation">Annotation</span>]]</span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[(<a href="OMFSchemaResolver.html" class="extype" name="gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver">OMFSchemaResolver</a>, <span class="extype" name="scala.collection.immutable.Seq">Seq</span>[<span class="extype" name="gov.nasa.jpl.imce.omf.schema.tables.Annotation">Annotation</span>])]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver$@resolveAnnotationPairs(resolver:gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver,queue:scala.collection.immutable.Map[java.util.UUID,scala.collection.immutable.Seq[gov.nasa.jpl.imce.omf.schema.tables.Annotation]]):scala.util.Try[(gov.nasa.jpl.imce.omf.schema.resolver.OMFSchemaResolver,scala.collection.immutable.Seq[gov.nasa.jpl.imce.omf.schema.tables.Annotation])]" title="Permalink" target="_top">
         <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
