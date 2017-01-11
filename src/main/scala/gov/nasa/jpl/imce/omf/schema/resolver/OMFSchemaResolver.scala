@@ -27,7 +27,7 @@ import scala.collection.immutable.{Map, Seq, Set}
 import scala.collection.parallel.immutable.ParSeq
 import scala.{Boolean, None, Some, StringContext, Tuple2, Tuple3}
 import scala.util.{Failure, Success, Try}
-import scala.Predef.{require,ArrowAssoc}
+import scala.Predef.ArrowAssoc
 
 case class OMFSchemaResolver private[resolver]
 (context: impl.TerminologyContext,
@@ -1850,40 +1850,111 @@ object OMFSchemaResolver {
     }
   }
 
-  type AnnotationMap = Map[tables.AnnotationProperty, Seq[tables.Annotation]]
+  type ResolvedAnnotationMap = Map[tables.UUID, Map[api.AnnotationProperty, Seq[api.Annotation]]]
+  type AnnotationMapTables = Map[tables.UUID, Map[tables.AnnotationProperty, Seq[tables.Annotation]]]
 
-  def annotationMapS
-  (t2everything: Map[tables.UUID, Set[tables.UUID]])
-  (q_u: (AnnotationMap, AnnotationMap),
-   ap_as: (tables.AnnotationProperty, Seq[tables.Annotation]))
-  : (AnnotationMap, AnnotationMap)
-  = {
-    val (q, u) = q_u
-    val (ap, as) = ap_as
+  def mergeMapOfSeq[K, V]
+  (m1: Map[K, Seq[V]],
+   m2: Map[K, Seq[V]])
+  : Map[K, Seq[V]]
+  = m1.map { case (k, v1) =>
+    val v2 = m2.getOrElse(k, Seq.empty)
+    k -> (v1 ++ v2)
+  }
 
-    val (t_resolvable, t_unresolved) =
-      as.partition(a => t2everything.contains(a.terminologyUUID))
-
-    val (s_resolvable, s_unresolved) =
-      t_resolvable.partition { a =>
-        t2everything
-          .get(a.terminologyUUID)
-          .exists(_.contains(a.subjectUUID))
-      }
-
-    q_u
+  def mergeMapOfMapOfSeq[K1, K2, V]
+  (mms1: Map[K1, Map[K2, Seq[V]]],
+   mms2: Map[K1, Map[K2, Seq[V]]])
+  : Map[K1, Map[K2, Seq[V]]]
+  = mms1.map { case (k1, k2v1) =>
+    val k2v2 = mms2.getOrElse(k1, Map.empty)
+    val k2v = mergeMapOfSeq(k2v1, k2v2)
+    k1 -> k2v
   }
 
   def annotationMapC
-  (q_u1: (AnnotationMap, AnnotationMap),
-   q_u2: (AnnotationMap, AnnotationMap))
-  : (AnnotationMap, AnnotationMap)
+  (q_u1: (ResolvedAnnotationMap, AnnotationMapTables),
+   q_u2: (ResolvedAnnotationMap, AnnotationMapTables))
+  : (ResolvedAnnotationMap, AnnotationMapTables)
   = {
     val (q1, u1) = q_u1
     val (q2, u2) = q_u2
-    require(q1.keySet.intersect(q2.keySet).isEmpty)
-    require(u1.keySet.intersect(u2.keySet).isEmpty)
-    Tuple2( q1 ++ q2, u1 ++ u2)
+
+    val q = mergeMapOfMapOfSeq(q1, q2)
+    val u = mergeMapOfMapOfSeq(u1, u2)
+
+    q -> u
+  }
+
+  def annotationMapS
+  (subjects_by_terminology: Map[tables.UUID, Map[tables.UUID, api.TerminologyThing]],
+   aps: Map[UUID, api.AnnotationProperty])
+  (q_u: (ResolvedAnnotationMap, AnnotationMapTables),
+   ap_as: (tables.AnnotationProperty, Seq[tables.Annotation]))
+  : (ResolvedAnnotationMap, AnnotationMapTables)
+  = {
+    val (q1: ResolvedAnnotationMap, u1: AnnotationMapTables) = q_u
+    val (ap: tables.AnnotationProperty, as: Seq[tables.Annotation]) = ap_as
+
+    // Q: is this a known annotation property?
+    aps
+      .get(UUID.fromString(ap.uuid))
+      .fold[(ResolvedAnnotationMap, AnnotationMapTables)] {
+
+      // A: No, add the annotations to the (unresolved) tables.
+
+      val u2 = as.foldLeft[AnnotationMapTables](u1) { case (ui, a) =>
+        val t_pre = ui.getOrElse(a.terminologyUUID, Map.empty)
+        val t_upd = t_pre.updated(ap, t_pre.getOrElse(ap, Seq.empty) :+ a)
+        ui.updated(a.terminologyUUID, t_upd)
+      }
+
+      q1 -> u2
+
+    } { rap: api.AnnotationProperty =>
+
+      // A: Yes, this is a known annotation property
+      // However, the annotations may be asserted in unknown terminologies about unknown subjects.
+
+      // First, partition annotations in terms of assertions attributable to a known terminology
+      val (t_resolvable: Seq[tables.Annotation], t_unresolved: Seq[tables.Annotation]) =
+        as.partition(a => subjects_by_terminology.contains(a.terminologyUUID))
+
+      // Second, partition attributable annotations in terms of assertions about known subjects
+      val (s_resolvable: Seq[tables.Annotation], s_unresolved: Seq[tables.Annotation]) =
+        t_resolvable.partition { a =>
+          subjects_by_terminology
+            .get(a.terminologyUUID)
+            .exists(_.contains(a.subjectUUID))
+        }
+
+      val q2: ResolvedAnnotationMap = s_resolvable.foldLeft[ResolvedAnnotationMap](q1) { case (qi, a) =>
+        val annotations_by_prop
+        : Map[api.AnnotationProperty, Seq[api.Annotation]]
+        = qi.getOrElse(a.terminologyUUID, Map.empty)
+
+        subjects_by_terminology
+          .get(a.terminologyUUID)
+          .fold[ResolvedAnnotationMap](qi) { subjects =>
+          subjects
+            .get(a.subjectUUID)
+            .fold[ResolvedAnnotationMap](qi) { subject =>
+            val with_a: Map[api.AnnotationProperty, Seq[api.Annotation]] =
+              annotations_by_prop.updated(
+                rap,
+                annotations_by_prop.getOrElse(rap, Seq.empty[api.Annotation]) :+ impl.Annotation(subject, a.value))
+            qi.updated(a.terminologyUUID, with_a)
+          }
+        }
+      }
+
+      val u2: AnnotationMapTables = u1.map { case (tUUID, annotations_by_prop) =>
+          val as = annotations_by_prop.getOrElse(ap, Seq.empty) ++ t_unresolved ++ s_unresolved
+          tUUID -> annotations_by_prop.updated(ap, as)
+      }
+
+      q2 -> u2
+    }
   }
 
   def mapAnnotationPairs
@@ -1892,18 +1963,36 @@ object OMFSchemaResolver {
   = {
     val ns = resolver.context.nodes
     val t2everything = ns.map { case (uuid, tbox) =>
-        uuid.toString -> tbox.everything().map(_.uuid.toString)
+        uuid.toString -> tbox.everything().map { e => e.uuid.toString -> e }.toMap
     }
-    val g = resolver.context.g
 
     val (resolved, remaining)
-    = resolver.queue.annotations
-      .aggregate[(AnnotationMap, AnnotationMap)](Map.empty, Map.empty)(
-      seqop = annotationMapS(t2everything),
+    = resolver
+      .queue
+      .annotations.par
+      .aggregate[(ResolvedAnnotationMap, AnnotationMapTables)](Map.empty, Map.empty)(
+      seqop = annotationMapS(t2everything, resolver.context.annotationProperties),
       combop = annotationMapC)
 
-    val r = resolver.copy(queue = resolver.queue.copy(annotations = remaining))
-    Success(r)
+    val unresolved
+    : Map[tables.AnnotationProperty, Seq[tables.Annotation]]
+    = remaining.foldLeft[Map[tables.AnnotationProperty, Seq[tables.Annotation]]](Map.empty) {
+      case (acc, (_, annotations_by_property)) =>
+        mergeMapOfSeq(acc, annotations_by_property)
+    }
+    val r1 = resolver.copy(queue = resolver.queue.copy(annotations = unresolved))
+    val r2 = resolved.foldLeft[Try[OMFSchemaResolver]](Success(r1)) { case (ri, (tUUID, annotations_by_property)) =>
+      ri.flatMap { rj =>
+        val tbox = rj.context.nodes(UUID.fromString(tUUID))
+        val rk = impl.TerminologyContext
+          .replaceNode(rj.context.g, tbox, tbox.withAnnotations(annotations_by_property))
+          .map { gi =>
+            rj.copy(context = impl.TerminologyContext(rj.context.annotationProperties, gi))
+          }
+        rk
+      }
+    }
+    r2
   }
 
   /*
