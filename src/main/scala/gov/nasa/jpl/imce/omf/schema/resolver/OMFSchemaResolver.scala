@@ -1857,20 +1857,27 @@ object OMFSchemaResolver {
   (m1: Map[K, Seq[V]],
    m2: Map[K, Seq[V]])
   : Map[K, Seq[V]]
-  = m1.map { case (k, v1) =>
-    val v2 = m2.getOrElse(k, Seq.empty)
-    k -> (v1 ++ v2)
-  }
+  = (m1.keySet ++ m2.keySet)
+    .map { k =>
+      val v1 = m1.getOrElse(k, Seq.empty)
+      val v2 = m2.getOrElse(k, Seq.empty)
+      k -> (v1 ++ v2)
+    }
+    .toMap
 
+  // ditto...
   def mergeMapOfMapOfSeq[K1, K2, V]
   (mms1: Map[K1, Map[K2, Seq[V]]],
    mms2: Map[K1, Map[K2, Seq[V]]])
   : Map[K1, Map[K2, Seq[V]]]
-  = mms1.map { case (k1, k2v1) =>
-    val k2v2 = mms2.getOrElse(k1, Map.empty)
-    val k2v = mergeMapOfSeq(k2v1, k2v2)
-    k1 -> k2v
-  }
+  = (mms1.keySet ++ mms2.keySet)
+    .map { case k =>
+      val kv1 = mms1.getOrElse(k, Map.empty)
+      val kv2 = mms2.getOrElse(k, Map.empty)
+      val k2v = mergeMapOfSeq(kv1, kv2)
+      k -> k2v
+    }
+    .toMap
 
   def annotationMapC
   (q_u1: (ResolvedAnnotationMap, AnnotationMapTables),

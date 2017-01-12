@@ -42,6 +42,9 @@ lazy val core = Project("omf-schema-resolver", file("."))
     resolvers += Resolver.bintrayRepo("jpl-imce", "gov.nasa.jpl.imce"),
     resolvers += Resolver.bintrayRepo("tiwg", "org.omg.tiwg"),
 
+    resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases",
+    scalacOptions in (Compile, doc) += "-Xplugin-disable:artima-supersafe",
+
     libraryDependencies +=
         "gov.nasa.jpl.imce" %% "imce.third_party.scala_graph_libraries"
         % Versions_scala_graph_libraries.version artifacts
