@@ -43,7 +43,10 @@ lazy val core = Project("omf-schema-resolver", file("."))
     resolvers += Resolver.bintrayRepo("tiwg", "org.omg.tiwg"),
 
     resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases",
+    scalacOptions in (Compile, compile) += s"-P:artima-supersafe:config-file:${baseDirectory.value}/project/supersafe.cfg",
+    scalacOptions in (Test, compile) += s"-P:artima-supersafe:config-file:${baseDirectory.value}/project/supersafe.cfg",
     scalacOptions in (Compile, doc) += "-Xplugin-disable:artima-supersafe",
+    scalacOptions in (Test, doc) += "-Xplugin-disable:artima-supersafe",
 
     libraryDependencies +=
         "gov.nasa.jpl.imce" %% "imce.third_party.scala_graph_libraries"
