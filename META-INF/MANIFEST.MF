@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Resolver
-Bundle-SymbolicName: jpl.omf.schema.resolver;singleton:=true
+Bundle-SymbolicName: gov.nasa.jpl.imce.oml.specification.resolver;singleton:=true
 Bundle-Version: 0.18.2.qualifier
-Export-Package: gov.nasa.jpl.imce.omf.schema.resolver,
- gov.nasa.jpl.imce.omf.schema.resolver.impl
+Export-Package: gov.nasa.jpl.imce.oml.specification.resolver,
+ gov.nasa.jpl.imce.oml.specification.resolver.impl
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

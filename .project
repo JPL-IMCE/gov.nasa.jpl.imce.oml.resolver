@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>jpl.omf.schema.resolver</name>
+	<name>gov.nasa.jpl.imce.oml.specification.resolver</name>
 	<comment></comment>
 	<projects>
 	</projects>

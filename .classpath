@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src/main/scala"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/jpl.omf.schema.tables.jvm"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/gov.nasa.jpl.imce.oml.specification.tables.jvm"/>
 	<classpathentry kind="var" path="IVY_CACHE/org.scoverage/scalac-scoverage-runtime_2.11/jars/scalac-scoverage-runtime_2.11-1.1.1.jar"/>
 	<classpathentry kind="var" path="IVY_CACHE/org.scoverage/scalac-scoverage-plugin_2.11/jars/scalac-scoverage-plugin_2.11-1.1.1.jar"/>
 	<classpathentry kind="var" path="IVY_CACHE/com.assembla.scala-incubator/graph-dot_2.11/jars/graph-dot_2.11-1.11.0.jar" sourcepath="IVY_CACHE/com.assembla.scala-incubator/graph-dot_2.11/srcs/graph-dot_2.11-1.11.0-sources.jar">
