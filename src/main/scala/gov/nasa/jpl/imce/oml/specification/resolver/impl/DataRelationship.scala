@@ -24,10 +24,9 @@ trait DataRelationship
 extends resolver.api.DataRelationship
   with Term
 {
-  
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: DataRelationship => true
   	case _ => false
   }
-
 }

@@ -33,12 +33,11 @@ case class BinaryScalarRestriction private[impl]
 extends resolver.api.BinaryScalarRestriction
   with RestrictedDataRange
 {
-  
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: BinaryScalarRestriction => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

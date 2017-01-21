@@ -12,7 +12,7 @@ import scala.util.control.Exception._
 
 import ProjectRefHelper._
 
-lazy val core = Project("omf-schema-resolver", file("."))
+lazy val core = Project("oml-specification-resolver", file("."))
   .enablePlugins(IMCEGitPlugin)
   .enablePlugins(IMCEReleasePlugin)
   .settings(dynamicScriptsResourceSettings(Settings.name))
@@ -46,12 +46,7 @@ lazy val core = Project("omf-schema-resolver", file("."))
     scalacOptions in (Compile, compile) += s"-P:artima-supersafe:config-file:${baseDirectory.value}/project/supersafe.cfg",
     scalacOptions in (Test, compile) += s"-P:artima-supersafe:config-file:${baseDirectory.value}/project/supersafe.cfg",
     scalacOptions in (Compile, doc) += "-Xplugin-disable:artima-supersafe",
-    scalacOptions in (Test, doc) += "-Xplugin-disable:artima-supersafe",
-
-    libraryDependencies +=
-        "gov.nasa.jpl.imce" %% "imce.third_party.scala_graph_libraries"
-        % Versions_scala_graph_libraries.version artifacts
-        Artifact("imce.third_party.scala_graph_libraries", "zip", "zip", "resource")
+    scalacOptions in (Test, doc) += "-Xplugin-disable:artima-supersafe"
   )
   .dependsOn(ProjectRef(file("../gov.nasa.jpl.imce.oml.specification.tables"), "tablesJVM"))
 //  .dependsOnSourceProjectRefOrLibraryArtifacts(

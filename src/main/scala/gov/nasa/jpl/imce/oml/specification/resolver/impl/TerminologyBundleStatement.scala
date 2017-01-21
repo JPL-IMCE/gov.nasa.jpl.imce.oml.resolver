@@ -24,10 +24,9 @@ trait TerminologyBundleStatement
 extends resolver.api.TerminologyBundleStatement
   with TerminologyStatement
 {
-  
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: TerminologyBundleStatement => true
   	case _ => false
   }
-
 }

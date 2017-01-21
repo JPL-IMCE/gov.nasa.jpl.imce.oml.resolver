@@ -24,10 +24,4 @@ trait DataRelationshipToStructure
 extends resolver.api.DataRelationshipToStructure
   with DataRelationshipRange
 {
-  
-  override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: DataRelationshipToStructure => true
-  	case _ => false
-  }
-
 }

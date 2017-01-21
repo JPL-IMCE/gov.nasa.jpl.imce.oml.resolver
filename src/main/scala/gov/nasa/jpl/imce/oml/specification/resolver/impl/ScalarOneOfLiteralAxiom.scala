@@ -30,12 +30,11 @@ case class ScalarOneOfLiteralAxiom private[impl]
 extends resolver.api.ScalarOneOfLiteralAxiom
   with Axiom
 {
-  
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: ScalarOneOfLiteralAxiom => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

@@ -30,12 +30,11 @@ extends resolver.api.RootConceptTaxonomyAxiom
   with TerminologyBundleStatement
   with ConceptTreeDisjunction
 {
-  
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: RootConceptTaxonomyAxiom => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

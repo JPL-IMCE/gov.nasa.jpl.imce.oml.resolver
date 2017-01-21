@@ -24,10 +24,9 @@ trait TerminologyBoxStatement
 extends resolver.api.TerminologyBoxStatement
   with TerminologyStatement
 {
-  
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: TerminologyBoxStatement => true
   	case _ => false
   }
-
 }

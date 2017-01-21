@@ -24,10 +24,9 @@ trait TermAxiom
 extends resolver.api.TermAxiom
   with Axiom
 {
-  
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: TermAxiom => true
   	case _ => false
   }
-
 }

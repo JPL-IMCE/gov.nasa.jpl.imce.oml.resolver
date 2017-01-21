@@ -1,6 +1,7 @@
 *.log
 *.tgz
 *~
+.cache-main
 .idea/
 target/
 local.*

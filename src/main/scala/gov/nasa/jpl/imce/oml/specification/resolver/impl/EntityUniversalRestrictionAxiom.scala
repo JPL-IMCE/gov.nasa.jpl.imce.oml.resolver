@@ -31,12 +31,11 @@ case class EntityUniversalRestrictionAxiom private[impl]
 extends resolver.api.EntityUniversalRestrictionAxiom
   with EntityRestrictionAxiom
 {
-  
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: EntityUniversalRestrictionAxiom => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

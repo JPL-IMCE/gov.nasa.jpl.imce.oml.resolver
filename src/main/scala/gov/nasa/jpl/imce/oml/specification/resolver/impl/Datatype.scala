@@ -24,10 +24,9 @@ trait Datatype
 extends resolver.api.Datatype
   with Term
 {
-  
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: Datatype => true
   	case _ => false
   }
-
 }

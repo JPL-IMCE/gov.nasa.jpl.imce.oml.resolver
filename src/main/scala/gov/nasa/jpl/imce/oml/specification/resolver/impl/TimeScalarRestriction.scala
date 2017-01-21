@@ -34,12 +34,11 @@ case class TimeScalarRestriction private[impl]
 extends resolver.api.TimeScalarRestriction
   with RestrictedDataRange
 {
-  
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: TimeScalarRestriction => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

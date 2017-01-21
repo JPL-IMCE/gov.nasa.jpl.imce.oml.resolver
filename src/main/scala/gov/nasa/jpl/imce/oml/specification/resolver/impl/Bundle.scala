@@ -34,49 +34,46 @@ case class Bundle private[impl]
 extends resolver.api.Bundle
   with TerminologyBox
 {
-
+  override def withAnnotations
+  (a: scala.collection.immutable.SortedSet[resolver.api.AnnotationPropertyTable])
+  : resolver.api.Bundle
+  = {
+    copy(annotations = this.annotations ++ resolver.convertToAnnotations(a))
+  }
+  
+  override def annotationsByProperty
+  ()
+  : scala.collection.immutable.SortedSet[resolver.api.AnnotationPropertyTable]
+  = {
+    resolver.groupAnnotationsByProperty(annotations)
+  }
+  
   def withBundleStatements
-  (s: scala.collection.immutable.SortedSet[resolver.api.TerminologyBundleStatement]
-  )
+  (s: scala.collection.immutable.SortedSet[resolver.api.TerminologyBundleStatement])
   : resolver.api.Bundle
   = {
-  			  copy(bundleStatements = this.bundleStatements ++ s)
-  			}
+    copy(bundleStatements = this.bundleStatements ++ s)
+  }
   
-  
-def withAnnotations
-  (a: scala.collection.immutable.SortedSet[resolver.api.AnnotationPropertyTable]
-  )
+  override def withBoxStatements
+  (s: scala.collection.immutable.SortedSet[resolver.api.TerminologyBoxStatement])
   : resolver.api.Bundle
   = {
-
-  			  copy(annotations = this.annotations ++ resolver.convertToAnnotations(a))
-  			}
+    copy(boxStatements = this.boxStatements ++ s)
+  }
   
-  
-def withBoxStatements
-  (s: scala.collection.immutable.SortedSet[resolver.api.TerminologyBoxStatement]
-  )
-  : resolver.api.Bundle
-  = {
-  			  copy(boxStatements = this.boxStatements ++ s)
-  			}
-  
-  
-override def everything
+  override def everything
   ()
   : scala.collection.immutable.SortedSet[resolver.api.TerminologyThing]
   = {
-  			  super.everything() ++ bundleStatements + this
-  			}
+    super.everything() ++ bundleStatements + this
+  }
   
 
-  
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: Bundle => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

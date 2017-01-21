@@ -23,10 +23,4 @@ import gov.nasa.jpl.imce.oml.specification._
 trait Resource
 extends resolver.api.Resource
 {
-  
-  override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: Resource => true
-  	case _ => false
-  }
-
 }

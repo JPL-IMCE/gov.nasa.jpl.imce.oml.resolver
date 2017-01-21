@@ -29,12 +29,11 @@ case class Scalar private[impl]
 extends resolver.api.Scalar
   with DataRange
 {
-  
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: Scalar => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

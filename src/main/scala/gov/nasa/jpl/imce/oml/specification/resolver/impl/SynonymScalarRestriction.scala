@@ -30,12 +30,11 @@ case class SynonymScalarRestriction private[impl]
 extends resolver.api.SynonymScalarRestriction
   with RestrictedDataRange
 {
-  
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: SynonymScalarRestriction => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

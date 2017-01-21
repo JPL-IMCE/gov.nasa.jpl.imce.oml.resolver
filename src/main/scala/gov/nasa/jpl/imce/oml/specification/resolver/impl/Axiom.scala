@@ -24,10 +24,9 @@ trait Axiom
 extends resolver.api.Axiom
   with TerminologyBoxStatement
 {
-  
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: Axiom => true
   	case _ => false
   }
-
 }

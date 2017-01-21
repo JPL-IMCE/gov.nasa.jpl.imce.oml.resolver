@@ -30,12 +30,11 @@ case class Concept private[impl]
 extends resolver.api.Concept
   with Entity
 {
-  
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: Concept => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

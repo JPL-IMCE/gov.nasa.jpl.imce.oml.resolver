@@ -23,10 +23,4 @@ import gov.nasa.jpl.imce.oml.specification._
 trait DataRelationshipDomain
 extends resolver.api.DataRelationshipDomain
 {
-  
-  override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: DataRelationshipDomain => true
-  	case _ => false
-  }
-
 }

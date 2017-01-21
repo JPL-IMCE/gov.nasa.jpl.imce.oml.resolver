@@ -25,10 +25,16 @@ extends resolver.api.Term
   with TerminologyBoxStatement
   with Resource
 {
+  override def iri
+  ()
+  : gov.nasa.jpl.imce.oml.specification.tables.IRI
+  = {
+    graph.iri + "#" + name
+  }
   
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: Term => true
   	case _ => false
   }
-
 }

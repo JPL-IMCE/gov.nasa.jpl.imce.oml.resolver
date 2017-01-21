@@ -30,7 +30,6 @@ case class ConceptDesignationTerminologyAxiom private[impl]
 extends resolver.api.ConceptDesignationTerminologyAxiom
   with TerminologyBoxAxiom
 {
-
   /*
    * The designationTerminologyGraph is the source
    */
@@ -41,8 +40,7 @@ extends resolver.api.ConceptDesignationTerminologyAxiom
     designationTerminologyGraph
   }
   
-  
-/*
+  /*
    * The TerminologyBox that asserts the designatedConcept is the target
    */
   override def target
@@ -53,12 +51,10 @@ extends resolver.api.ConceptDesignationTerminologyAxiom
   }
   
 
-  
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: ConceptDesignationTerminologyAxiom => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

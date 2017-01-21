@@ -33,7 +33,6 @@ extends resolver.api.EntityScalarDataProperty
   with DataRelationshipFromEntity
   with DataRelationshipToScalar
 {
-
   override def source
   ()
   : resolver.api.Term
@@ -41,8 +40,7 @@ extends resolver.api.EntityScalarDataProperty
     domain
   }
   
-  
-override def target
+  override def target
   ()
   : resolver.api.Datatype
   = {
@@ -50,12 +48,10 @@ override def target
   }
   
 
-  
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: EntityScalarDataProperty => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

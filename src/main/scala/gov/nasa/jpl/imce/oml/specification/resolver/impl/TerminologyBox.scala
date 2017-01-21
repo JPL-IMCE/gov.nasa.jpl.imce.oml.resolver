@@ -25,83 +25,67 @@ extends resolver.api.TerminologyBox
   with TerminologyThing
   with Resource
 {
-
-  def withBoxStatements
-  (s: scala.collection.immutable.SortedSet[resolver.api.TerminologyBoxStatement]
-  )
-  : resolver.api.TerminologyBox
-  = {
-  			  copy(boxStatements = this.boxStatements ++ s)
-  			}
-  
-  
-/*
+  /*
    * The subset of statements that are entities.
    */
   def entities
   ()
   : scala.collection.immutable.SortedSet[resolver.api.Entity]
   = {
-  			  boxStatements.selectByKindOf { case e: Entity => e }
-  			}
+    boxStatements.selectByKindOf { case e: Entity => e }
+  }
   
-  
-/*
+  /*
    * The subset of statements that are aspects.
    */
   def aspects
   ()
   : scala.collection.immutable.SortedSet[resolver.api.Aspect]
   = {
-  			  boxStatements.selectByKindOf { case a: Aspect => a }
-  			}
+    boxStatements.selectByKindOf { case a: Aspect => a }
+  }
   
-  
-/*
+  /*
    * The subset of statements that are concepts.
    */
   def concepts
   ()
   : scala.collection.immutable.SortedSet[resolver.api.Concept]
   = {
-  			  boxStatements.selectByKindOf { case c: Concept => c }
-  			}
+    boxStatements.selectByKindOf { case c: Concept => c }
+  }
   
-  
-/*
+  /*
    * The subset of statements that are reified relationships.
    */
   def reifiedRelationships
   ()
   : scala.collection.immutable.SortedSet[resolver.api.ReifiedRelationship]
   = {
-  			  boxStatements.selectByKindOf { case rr: ReifiedRelationship => rr }
-  			}
+    boxStatements.selectByKindOf { case rr: ReifiedRelationship => rr }
+  }
   
-  
-/*
+  /*
    * The subset of statements that are unreified relationships.
    */
   def unreifiedRelationships
   ()
   : scala.collection.immutable.SortedSet[resolver.api.UnreifiedRelationship]
   = {
-  			  boxStatements.selectByKindOf { case ur: UnreifiedRelationship => ur }
-  			}
+    boxStatements.selectByKindOf { case ur: UnreifiedRelationship => ur }
+  }
   
-  
-/*
+  /*
    * The subset of statements that are data relationships.
    */
   def dataRelationships
   ()
   : scala.collection.immutable.SortedSet[resolver.api.DataRelationship]
   = {
-  			  boxStatements.selectByKindOf { case dr: DataRelationship => dr }
-  			}
+    boxStatements.selectByKindOf { case dr: DataRelationship => dr }
+  }
   
-  
-/*
+  /*
    * A map for the subset of statements that are
    * entity scalar data property terms indexed by their uuid.
    */
@@ -109,11 +93,10 @@ extends resolver.api.TerminologyBox
   ()
   : scala.collection.immutable.SortedSet[resolver.api.EntityScalarDataProperty]
   = {
-  			  boxStatements.selectByKindOf { case dp: EntityScalarDataProperty => dp }
-  			}
+    boxStatements.selectByKindOf { case dp: EntityScalarDataProperty => dp }
+  }
   
-  
-/*
+  /*
    * A map for the subset of statements that are
    * data range terms indexed by their uuid.
    */
@@ -121,11 +104,10 @@ extends resolver.api.TerminologyBox
   ()
   : scala.collection.immutable.SortedSet[resolver.api.DataRange]
   = {
-  			  boxStatements.selectByKindOf { case dr: DataRange => dr }
-  			}
+    boxStatements.selectByKindOf { case dr: DataRange => dr }
+  }
   
-  
-/*
+  /*
    * A map for the subset of statements that are
    * scalar datatype terms indexed by their uuid.
    */
@@ -133,11 +115,10 @@ extends resolver.api.TerminologyBox
   ()
   : scala.collection.immutable.SortedSet[resolver.api.Scalar]
   = {
-  			  boxStatements.selectByKindOf { case s: Scalar => s }
-  			}
+    boxStatements.selectByKindOf { case s: Scalar => s }
+  }
   
-  
-/*
+  /*
    * A map for the subset of statements that are
    * structured datatype terms indexed by their uuid.
    */
@@ -145,33 +126,29 @@ extends resolver.api.TerminologyBox
   ()
   : scala.collection.immutable.SortedSet[resolver.api.Structure]
   = {
-  			  boxStatements.selectByKindOf { case s: Structure => s }
-  			}
+    boxStatements.selectByKindOf { case s: Structure => s }
+  }
   
-  
-/*
+  /*
    * The subset of axioms about terms.
    */
   def termAxioms
   ()
   : scala.collection.immutable.SortedSet[resolver.api.TermAxiom]
   = {
-  			  boxStatements.selectByKindOf { case tx: TermAxiom => tx }
-  			}
+    boxStatements.selectByKindOf { case tx: TermAxiom => tx }
+  }
   
-  
-def everything
+  def everything
   ()
   : scala.collection.immutable.SortedSet[resolver.api.TerminologyThing]
   = {
-  			  scala.collection.immutable.Set.empty[resolver.api.TerminologyThing] ++ boxStatements + this
-  			}
+    scala.collection.immutable.SortedSet.empty[resolver.api.TerminologyThing] ++ boxStatements + this
+  }
   
 
-  
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: TerminologyBox => true
   	case _ => false
   }
-
 }

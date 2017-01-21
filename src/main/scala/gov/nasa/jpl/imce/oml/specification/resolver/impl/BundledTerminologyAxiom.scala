@@ -29,7 +29,6 @@ case class BundledTerminologyAxiom private[impl]
 extends resolver.api.BundledTerminologyAxiom
   with TerminologyBundleAxiom
 {
-
   /*
    * The bundle is the source
    */
@@ -40,8 +39,7 @@ extends resolver.api.BundledTerminologyAxiom
     terminologyBundle
   }
   
-  
-/*
+  /*
    * The bundledTerminology is the target
    */
   override def target
@@ -52,12 +50,10 @@ extends resolver.api.BundledTerminologyAxiom
   }
   
 
-  
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: BundledTerminologyAxiom => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

@@ -24,10 +24,9 @@ trait EntityScalarDataPropertyRestrictionAxiom
 extends resolver.api.EntityScalarDataPropertyRestrictionAxiom
   with TermAxiom
 {
-  
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: EntityScalarDataPropertyRestrictionAxiom => true
   	case _ => false
   }
-
 }

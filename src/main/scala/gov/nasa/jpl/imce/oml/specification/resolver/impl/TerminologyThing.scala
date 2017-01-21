@@ -23,10 +23,4 @@ import gov.nasa.jpl.imce.oml.specification._
 trait TerminologyThing
 extends resolver.api.TerminologyThing
 {
-  
-  override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: TerminologyThing => true
-  	case _ => false
-  }
-
 }

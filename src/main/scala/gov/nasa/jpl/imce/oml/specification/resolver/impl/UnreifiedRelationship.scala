@@ -40,12 +40,11 @@ case class UnreifiedRelationship private[impl]
 extends resolver.api.UnreifiedRelationship
   with EntityRelationship
 {
-  
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: UnreifiedRelationship => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

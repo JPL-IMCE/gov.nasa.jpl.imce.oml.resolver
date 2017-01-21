@@ -30,12 +30,11 @@ extends resolver.api.AnonymousConceptTaxonomyAxiom
   with DisjointUnionOfConceptsAxiom
   with ConceptTreeDisjunction
 {
-  
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: AnonymousConceptTaxonomyAxiom => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

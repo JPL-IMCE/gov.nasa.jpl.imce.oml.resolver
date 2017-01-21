@@ -30,7 +30,6 @@ case class ReifiedRelationshipSpecializationAxiom private[impl]
 extends resolver.api.ReifiedRelationshipSpecializationAxiom
   with SpecializationAxiom
 {
-
   /*
    * Get the sub (child) entity
    */
@@ -41,8 +40,7 @@ extends resolver.api.ReifiedRelationshipSpecializationAxiom
     subRelationship
   }
   
-  
-/*
+  /*
    * Get the super (parent) entity
    */
   def parent
@@ -53,12 +51,10 @@ extends resolver.api.ReifiedRelationshipSpecializationAxiom
   }
   
 
-  
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: ReifiedRelationshipSpecializationAxiom => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

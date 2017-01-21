@@ -29,12 +29,11 @@ case class Aspect private[impl]
 extends resolver.api.Aspect
   with Entity
 {
-  
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: Aspect => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

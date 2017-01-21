@@ -23,10 +23,4 @@ import gov.nasa.jpl.imce.oml.specification._
 trait DataRelationshipRange
 extends resolver.api.DataRelationshipRange
 {
-  
-  override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: DataRelationshipRange => true
-  	case _ => false
-  }
-
 }

@@ -23,10 +23,4 @@ import gov.nasa.jpl.imce.oml.specification._
 trait ConceptTreeDisjunction
 extends resolver.api.ConceptTreeDisjunction
 {
-  
-  override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: ConceptTreeDisjunction => true
-  	case _ => false
-  }
-
 }

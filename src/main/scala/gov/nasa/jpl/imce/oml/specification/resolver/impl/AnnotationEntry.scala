@@ -28,12 +28,6 @@ case class AnnotationEntry private[impl]
 )
 extends resolver.api.AnnotationEntry
 {
-  
-  override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: AnnotationEntry => true
-  	case _ => false
-  }
-
 
   override val hashCode
   : scala.Int

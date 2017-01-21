@@ -23,8 +23,8 @@ import java.lang.System
 
 import gov.nasa.jpl.imce.oml.specification.tables.OMLSpecificationTables
 
-import scala.{Array,StringContext,Unit}
-import scala.Predef.{refArrayOps,String}
+import scala.{Array, StringContext, Unit}
+import scala.Predef.{String, refArrayOps}
 import scala.util.{Failure, Success}
 
 object Test1 {
@@ -37,7 +37,7 @@ object Test1 {
     }
 
     if (args.length != 2) {
-      System.err.println(s"Usage: ${args(0)} <OMF Schema table ZIP file>")
+      System.err.println(s"Usage: ${args(0)} <OML Specification Tables ZIP file>")
       System.exit(-1)
     }
 
@@ -46,11 +46,13 @@ object Test1 {
 
   def run(omfSchemaJsonZipFile: String): Unit = {
 
+    val factory = impl.OMLResolvedFactoryImpl()
+
     val result =
       for {
         tables <- OMLSpecificationTables.loadOMLSpecificationTables(new File(omfSchemaJsonZipFile))
         _ = System.out.println(s"... loaded tables")
-        resolver <- OMLTablesResolver.resolve(tables)
+        resolver <- OMLTablesResolver.resolve(tables, factory)
         _ = System.out.println(s"... resolved tables")
       } yield {
         System.out.println(s"...done!")

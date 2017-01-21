@@ -29,7 +29,6 @@ case class TerminologyExtensionAxiom private[impl]
 extends resolver.api.TerminologyExtensionAxiom
   with TerminologyBoxAxiom
 {
-
   /*
    * The extendingTerminology is the source
    */
@@ -40,8 +39,7 @@ extends resolver.api.TerminologyExtensionAxiom
     extendingTerminology
   }
   
-  
-/*
+  /*
    * The extendedTerminology is the target
    */
   override def target
@@ -52,12 +50,10 @@ extends resolver.api.TerminologyExtensionAxiom
   }
   
 
-  
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: TerminologyExtensionAxiom => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

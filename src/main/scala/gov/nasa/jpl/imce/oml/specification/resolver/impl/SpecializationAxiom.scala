@@ -24,10 +24,9 @@ trait SpecializationAxiom
 extends resolver.api.SpecializationAxiom
   with TermAxiom
 {
-  
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: SpecializationAxiom => true
   	case _ => false
   }
-
 }

@@ -27,12 +27,6 @@ case class AnnotationPropertyTable private[impl]
 )
 extends resolver.api.AnnotationPropertyTable
 {
-  
-  override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: AnnotationPropertyTable => true
-  	case _ => false
-  }
-
 
   override val hashCode
   : scala.Int

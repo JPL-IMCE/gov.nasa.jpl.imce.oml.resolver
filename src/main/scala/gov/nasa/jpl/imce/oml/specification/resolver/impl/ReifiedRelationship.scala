@@ -44,12 +44,11 @@ extends resolver.api.ReifiedRelationship
   with EntityRelationship
   with Entity
 {
-  
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: ReifiedRelationship => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

@@ -24,10 +24,4 @@ trait DataRelationshipFromStructure
 extends resolver.api.DataRelationshipFromStructure
   with DataRelationshipDomain
 {
-  
-  override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: DataRelationshipFromStructure => true
-  	case _ => false
-  }
-
 }

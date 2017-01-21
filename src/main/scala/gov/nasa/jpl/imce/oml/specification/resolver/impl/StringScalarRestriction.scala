@@ -34,12 +34,11 @@ case class StringScalarRestriction private[impl]
 extends resolver.api.StringScalarRestriction
   with RestrictedDataRange
 {
-  
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: StringScalarRestriction => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

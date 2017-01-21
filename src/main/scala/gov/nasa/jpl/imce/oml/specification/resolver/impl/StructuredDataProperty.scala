@@ -33,7 +33,6 @@ extends resolver.api.StructuredDataProperty
   with DataRelationshipFromStructure
   with DataRelationshipToStructure
 {
-
   override def source
   ()
   : resolver.api.Term
@@ -41,8 +40,7 @@ extends resolver.api.StructuredDataProperty
     domain
   }
   
-  
-override def target
+  override def target
   ()
   : resolver.api.Datatype
   = {
@@ -50,12 +48,10 @@ override def target
   }
   
 
-  
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: StructuredDataProperty => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

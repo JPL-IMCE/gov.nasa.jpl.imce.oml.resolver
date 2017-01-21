@@ -32,31 +32,32 @@ case class TerminologyGraph private[impl]
 extends resolver.api.TerminologyGraph
   with TerminologyBox
 {
-
-  def withAnnotations
-  (a: scala.collection.immutable.SortedSet[resolver.api.AnnotationPropertyTable]
-  )
+  override def withAnnotations
+  (a: scala.collection.immutable.SortedSet[resolver.api.AnnotationPropertyTable])
   : resolver.api.TerminologyGraph
   = {
-  			  copy(annotations = this.annotations ++ a)
-  			}
+    copy(annotations = this.annotations ++ resolver.convertToAnnotations(a))
+  }
   
+  override def annotationsByProperty
+  ()
+  : scala.collection.immutable.SortedSet[resolver.api.AnnotationPropertyTable]
+  = {
+    resolver.groupAnnotationsByProperty(annotations)
+  }
   
-def withBoxStatements
-  (s: scala.collection.immutable.SortedSet[resolver.api.TerminologyBoxStatement]
-  )
+  override def withBoxStatements
+  (s: scala.collection.immutable.SortedSet[resolver.api.TerminologyBoxStatement])
   : resolver.api.TerminologyGraph
   = {
-  			  copy(boxStatements = this.boxStatements ++ s)
-  			}
+    copy(boxStatements = this.boxStatements ++ s)
+  }
   
 
-  
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: TerminologyGraph => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

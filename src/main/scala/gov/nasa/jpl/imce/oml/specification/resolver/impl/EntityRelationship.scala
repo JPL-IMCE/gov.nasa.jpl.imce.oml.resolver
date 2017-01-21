@@ -24,10 +24,9 @@ trait EntityRelationship
 extends resolver.api.EntityRelationship
   with Term
 {
-  
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: EntityRelationship => true
   	case _ => false
   }
-
 }

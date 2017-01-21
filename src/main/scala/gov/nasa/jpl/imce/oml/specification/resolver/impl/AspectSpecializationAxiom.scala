@@ -30,7 +30,6 @@ case class AspectSpecializationAxiom private[impl]
 extends resolver.api.AspectSpecializationAxiom
   with SpecializationAxiom
 {
-
   /*
    * Get the sub (child) entity
    */
@@ -41,8 +40,7 @@ extends resolver.api.AspectSpecializationAxiom
     subEntity
   }
   
-  
-/*
+  /*
    * Get the super (parent) entity
    */
   override def parent
@@ -53,12 +51,10 @@ extends resolver.api.AspectSpecializationAxiom
   }
   
 
-  
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: AspectSpecializationAxiom => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

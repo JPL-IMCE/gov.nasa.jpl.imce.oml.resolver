@@ -30,12 +30,11 @@ case class SpecificDisjointConceptAxiom private[impl]
 extends resolver.api.SpecificDisjointConceptAxiom
   with DisjointUnionOfConceptsAxiom
 {
-  
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: SpecificDisjointConceptAxiom => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

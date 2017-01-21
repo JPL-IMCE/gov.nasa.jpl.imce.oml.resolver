@@ -29,12 +29,11 @@ case class Structure private[impl]
 extends resolver.api.Structure
   with Datatype
 {
-  
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: Structure => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

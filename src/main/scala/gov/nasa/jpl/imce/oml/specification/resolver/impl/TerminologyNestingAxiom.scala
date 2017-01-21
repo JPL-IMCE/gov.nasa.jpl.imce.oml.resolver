@@ -30,7 +30,6 @@ case class TerminologyNestingAxiom private[impl]
 extends resolver.api.TerminologyNestingAxiom
   with TerminologyBoxAxiom
 {
-
   /*
    * The nestedTerminology is the source
    */
@@ -41,8 +40,7 @@ extends resolver.api.TerminologyNestingAxiom
     nestedTerminology
   }
   
-  
-/*
+  /*
    * The nestingTerminology is the target
    */
   override def target
@@ -53,12 +51,10 @@ extends resolver.api.TerminologyNestingAxiom
   }
   
 
-  
   override def canEqual(that: scala.Any): scala.Boolean = that match {
   	case _: TerminologyNestingAxiom => true
   	case _ => false
   }
-
 
   override val hashCode
   : scala.Int

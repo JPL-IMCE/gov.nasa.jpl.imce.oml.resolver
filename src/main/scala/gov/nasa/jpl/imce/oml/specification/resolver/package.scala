@@ -13,4 +13,21 @@ package object resolver {
           as2 + impl.Annotation(terminology = ae.terminology, subject=ae.subject, property=apt.key, value=ae.value)
       }
   }
+
+  def groupAnnotationsByProperty
+  (as: SortedSet[resolver.api.Annotation])
+  : SortedSet[resolver.api.AnnotationPropertyTable]
+  = as
+    .groupBy(_.property)
+    .foldLeft[SortedSet[resolver.api.AnnotationPropertyTable]](TreeSet.empty[resolver.api.AnnotationPropertyTable]) {
+    case (acc, (ap, aes)) =>
+      acc +
+        resolver.impl.AnnotationPropertyTable(
+          ap,
+          aes
+            .foldLeft[SortedSet[resolver.api.AnnotationEntry]](TreeSet.empty[resolver.api.AnnotationEntry]) {
+            case (asi, a) =>
+              asi + resolver.impl.AnnotationEntry(a.terminology, a.subject, a.value)
+          })
+  }
 }
