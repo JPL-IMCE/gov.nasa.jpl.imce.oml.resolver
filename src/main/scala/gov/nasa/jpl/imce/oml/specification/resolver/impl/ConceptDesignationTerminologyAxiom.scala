@@ -23,13 +23,20 @@ import gov.nasa.jpl.imce.oml.specification._
 case class ConceptDesignationTerminologyAxiom private[impl] 
 (
  override val uuid: java.util.UUID,
+ override val terminology: resolver.api.TerminologyBox,
  override val designatedConcept: resolver.api.Concept,
- override val designatedTerminology: resolver.api.TerminologyBox,
- override val designationTerminologyGraph: resolver.api.TerminologyGraph
+ override val designatedTerminology: resolver.api.TerminologyBox
 )
 extends resolver.api.ConceptDesignationTerminologyAxiom
   with TerminologyBoxAxiom
 {
+  def designationTerminologyGraph
+  ()
+  : resolver.api.TerminologyGraph
+  = {
+    terminology match { case g: TerminologyGraph => g }
+  }
+  
   /*
    * The designationTerminologyGraph is the source
    */
@@ -37,7 +44,7 @@ extends resolver.api.ConceptDesignationTerminologyAxiom
   ()
   : resolver.api.TerminologyBox
   = {
-    designationTerminologyGraph
+    terminology
   }
   
   /*
@@ -58,15 +65,15 @@ extends resolver.api.ConceptDesignationTerminologyAxiom
 
   override val hashCode
   : scala.Int
-  = (uuid, designatedConcept, designatedTerminology, designationTerminologyGraph).##
+  = (uuid, terminology, designatedConcept, designatedTerminology).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: ConceptDesignationTerminologyAxiom =>
 	    (that canEqual this) &&
 	    (this.uuid == that.uuid) &&
+	    (this.terminology == that.terminology) &&
 	    (this.designatedConcept == that.designatedConcept) &&
-	    (this.designatedTerminology == that.designatedTerminology) &&
-	    (this.designationTerminologyGraph == that.designationTerminologyGraph)
+	    (this.designatedTerminology == that.designatedTerminology)
 
 	  case _ =>
 	    false

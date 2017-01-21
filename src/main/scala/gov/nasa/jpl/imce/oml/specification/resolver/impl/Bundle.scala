@@ -26,9 +26,11 @@ case class Bundle private[impl]
  override val kind: gov.nasa.jpl.imce.oml.specification.tables.TerminologyGraphKind,
  override val name: gov.nasa.jpl.imce.oml.specification.tables.LocalName,
  override val iri: gov.nasa.jpl.imce.oml.specification.tables.IRI,
+ override val nsPrefix: gov.nasa.jpl.imce.oml.specification.tables.NamespacePrefix,
  override val annotations: scala.collection.immutable.SortedSet[resolver.api.Annotation],
  override val boxStatements: scala.collection.immutable.SortedSet[resolver.api.TerminologyBoxStatement],
  override val bundleStatements: scala.collection.immutable.SortedSet[resolver.api.TerminologyBundleStatement],
+ override val terminologyBoxAxioms: scala.collection.immutable.SortedSet[resolver.api.TerminologyBoxAxiom],
  override val terminologyBundleAxioms: scala.collection.immutable.SortedSet[resolver.api.TerminologyBundleAxiom]
 )
 extends resolver.api.Bundle
@@ -77,7 +79,7 @@ extends resolver.api.Bundle
 
   override val hashCode
   : scala.Int
-  = (uuid, kind, name, iri, annotations, boxStatements, bundleStatements, terminologyBundleAxioms).##
+  = (uuid, kind, name, iri, nsPrefix, annotations, boxStatements, bundleStatements, terminologyBoxAxioms, terminologyBundleAxioms).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: Bundle =>
@@ -86,9 +88,11 @@ extends resolver.api.Bundle
 	    (this.kind == that.kind) &&
 	    (this.name == that.name) &&
 	    (this.iri == that.iri) &&
+	    (this.nsPrefix == that.nsPrefix) &&
 	    (this.annotations == that.annotations) &&
 	    (this.boxStatements == that.boxStatements) &&
 	    (this.bundleStatements == that.bundleStatements) &&
+	    (this.terminologyBoxAxioms == that.terminologyBoxAxioms) &&
 	    (this.terminologyBundleAxioms == that.terminologyBundleAxioms)
 
 	  case _ =>

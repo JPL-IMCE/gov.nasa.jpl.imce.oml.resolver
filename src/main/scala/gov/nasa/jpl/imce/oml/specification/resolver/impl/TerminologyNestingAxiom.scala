@@ -23,13 +23,20 @@ import gov.nasa.jpl.imce.oml.specification._
 case class TerminologyNestingAxiom private[impl] 
 (
  override val uuid: java.util.UUID,
- override val nestedTerminology: resolver.api.TerminologyGraph,
+ override val terminology: resolver.api.TerminologyBox,
  override val nestingContext: resolver.api.Concept,
  override val nestingTerminology: resolver.api.TerminologyBox
 )
 extends resolver.api.TerminologyNestingAxiom
   with TerminologyBoxAxiom
 {
+  def nestedTerminology
+  ()
+  : resolver.api.TerminologyGraph
+  = {
+    terminology match { case g: TerminologyGraph => g }
+  }
+  
   /*
    * The nestedTerminology is the source
    */
@@ -37,7 +44,7 @@ extends resolver.api.TerminologyNestingAxiom
   ()
   : resolver.api.TerminologyBox
   = {
-    nestedTerminology
+    terminology
   }
   
   /*
@@ -58,13 +65,13 @@ extends resolver.api.TerminologyNestingAxiom
 
   override val hashCode
   : scala.Int
-  = (uuid, nestedTerminology, nestingContext, nestingTerminology).##
+  = (uuid, terminology, nestingContext, nestingTerminology).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: TerminologyNestingAxiom =>
 	    (that canEqual this) &&
 	    (this.uuid == that.uuid) &&
-	    (this.nestedTerminology == that.nestedTerminology) &&
+	    (this.terminology == that.terminology) &&
 	    (this.nestingContext == that.nestingContext) &&
 	    (this.nestingTerminology == that.nestingTerminology)
 

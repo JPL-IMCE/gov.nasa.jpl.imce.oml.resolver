@@ -20,25 +20,25 @@ package gov.nasa.jpl.imce.oml.specification.resolver.impl
 
 import gov.nasa.jpl.imce.oml.specification._
 
-case class AnnotationProperty private[impl] 
+case class TerminologyExtent private[impl] 
 (
- override val uuid: java.util.UUID,
- override val iri: gov.nasa.jpl.imce.oml.specification.tables.IRI,
- override val abbrevIRI: gov.nasa.jpl.imce.oml.specification.tables.AbbrevIRI
+ override val annotationProperties: scala.collection.immutable.SortedSet[resolver.api.AnnotationProperty],
+ override val bundles: scala.collection.immutable.SortedSet[resolver.api.Bundle],
+ override val terminologyGraphs: scala.collection.immutable.SortedSet[resolver.api.TerminologyGraph]
 )
-extends resolver.api.AnnotationProperty
+extends resolver.api.TerminologyExtent
 {
 
   override val hashCode
   : scala.Int
-  = (uuid, iri, abbrevIRI).##
+  = (annotationProperties, bundles, terminologyGraphs).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: AnnotationProperty =>
+	  case that: TerminologyExtent =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.iri == that.iri) &&
-	    (this.abbrevIRI == that.abbrevIRI)
+	    (this.annotationProperties == that.annotationProperties) &&
+	    (this.bundles == that.bundles) &&
+	    (this.terminologyGraphs == that.terminologyGraphs)
 
 	  case _ =>
 	    false

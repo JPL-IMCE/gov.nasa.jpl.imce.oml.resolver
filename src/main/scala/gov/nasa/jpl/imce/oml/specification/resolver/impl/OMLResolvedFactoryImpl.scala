@@ -52,11 +52,13 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   
   def createAnnotationProperty
   ( uuid: java.util.UUID,
-    iri: gov.nasa.jpl.imce.oml.specification.tables.IRI)
+    iri: gov.nasa.jpl.imce.oml.specification.tables.IRI,
+    abbrevIRI: gov.nasa.jpl.imce.oml.specification.tables.AbbrevIRI)
   : resolver.api.AnnotationProperty
   = resolver.impl.AnnotationProperty(
     uuid,
-    iri )
+    iri,
+    abbrevIRI )
   
   // AnnotationPropertyTable
   
@@ -133,9 +135,11 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
     kind: gov.nasa.jpl.imce.oml.specification.tables.TerminologyGraphKind,
     name: gov.nasa.jpl.imce.oml.specification.tables.LocalName,
     iri: gov.nasa.jpl.imce.oml.specification.tables.IRI,
+    nsPrefix: gov.nasa.jpl.imce.oml.specification.tables.NamespacePrefix,
     annotations: scala.collection.immutable.SortedSet[resolver.api.Annotation],
     boxStatements: scala.collection.immutable.SortedSet[resolver.api.TerminologyBoxStatement],
     bundleStatements: scala.collection.immutable.SortedSet[resolver.api.TerminologyBundleStatement],
+    terminologyBoxAxioms: scala.collection.immutable.SortedSet[resolver.api.TerminologyBoxAxiom],
     terminologyBundleAxioms: scala.collection.immutable.SortedSet[resolver.api.TerminologyBundleAxiom])
   : resolver.api.Bundle
   = resolver.impl.Bundle(
@@ -143,9 +147,11 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
     kind,
     name,
     iri,
+    nsPrefix,
     annotations,
     boxStatements,
     bundleStatements,
+    terminologyBoxAxioms,
     terminologyBundleAxioms )
   
   // BundledTerminologyAxiom
@@ -196,15 +202,24 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   
   def createConceptDesignationTerminologyAxiom
   ( uuid: java.util.UUID,
+    terminology: resolver.api.TerminologyBox,
     designatedConcept: resolver.api.Concept,
-    designatedTerminology: resolver.api.TerminologyBox,
-    designationTerminologyGraph: resolver.api.TerminologyGraph)
+    designatedTerminology: resolver.api.TerminologyBox)
   : resolver.api.ConceptDesignationTerminologyAxiom
   = resolver.impl.ConceptDesignationTerminologyAxiom(
     uuid,
+    terminology,
     designatedConcept,
-    designatedTerminology,
-    designationTerminologyGraph )
+    designatedTerminology )
+  
+  def copyConceptDesignationTerminologyAxiom_terminology
+  ( that: resolver.api.ConceptDesignationTerminologyAxiom,
+    terminology: resolver.api.TerminologyBox )
+  : resolver.api.ConceptDesignationTerminologyAxiom
+  = that match {
+  	case x: resolver.impl.ConceptDesignationTerminologyAxiom =>
+  	  x.copy(terminology = terminology)
+  }
   
   def copyConceptDesignationTerminologyAxiom_designatedTerminology
   ( that: resolver.api.ConceptDesignationTerminologyAxiom,
@@ -213,15 +228,6 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   = that match {
   	case x: resolver.impl.ConceptDesignationTerminologyAxiom =>
   	  x.copy(designatedTerminology = designatedTerminology)
-  }
-  
-  def copyConceptDesignationTerminologyAxiom_designationTerminologyGraph
-  ( that: resolver.api.ConceptDesignationTerminologyAxiom,
-    designationTerminologyGraph: resolver.api.TerminologyGraph )
-  : resolver.api.ConceptDesignationTerminologyAxiom
-  = that match {
-  	case x: resolver.impl.ConceptDesignationTerminologyAxiom =>
-  	  x.copy(designationTerminologyGraph = designationTerminologyGraph)
   }
   
   // ConceptSpecializationAxiom
@@ -622,13 +628,22 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   
   def createTerminologyExtensionAxiom
   ( uuid: java.util.UUID,
-    extendedTerminology: resolver.api.TerminologyBox,
-    extendingTerminology: resolver.api.TerminologyBox)
+    terminology: resolver.api.TerminologyBox,
+    extendedTerminology: resolver.api.TerminologyBox)
   : resolver.api.TerminologyExtensionAxiom
   = resolver.impl.TerminologyExtensionAxiom(
     uuid,
-    extendedTerminology,
-    extendingTerminology )
+    terminology,
+    extendedTerminology )
+  
+  def copyTerminologyExtensionAxiom_terminology
+  ( that: resolver.api.TerminologyExtensionAxiom,
+    terminology: resolver.api.TerminologyBox )
+  : resolver.api.TerminologyExtensionAxiom
+  = that match {
+  	case x: resolver.impl.TerminologyExtensionAxiom =>
+  	  x.copy(terminology = terminology)
+  }
   
   def copyTerminologyExtensionAxiom_extendedTerminology
   ( that: resolver.api.TerminologyExtensionAxiom,
@@ -639,13 +654,43 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   	  x.copy(extendedTerminology = extendedTerminology)
   }
   
-  def copyTerminologyExtensionAxiom_extendingTerminology
-  ( that: resolver.api.TerminologyExtensionAxiom,
-    extendingTerminology: resolver.api.TerminologyBox )
-  : resolver.api.TerminologyExtensionAxiom
+  // TerminologyExtent
+  
+  def createTerminologyExtent
+  ( annotationProperties: scala.collection.immutable.SortedSet[resolver.api.AnnotationProperty],
+    bundles: scala.collection.immutable.SortedSet[resolver.api.Bundle],
+    terminologyGraphs: scala.collection.immutable.SortedSet[resolver.api.TerminologyGraph])
+  : resolver.api.TerminologyExtent
+  = resolver.impl.TerminologyExtent(
+    annotationProperties,
+    bundles,
+    terminologyGraphs )
+  
+  def copyTerminologyExtent_annotationProperties
+  ( that: resolver.api.TerminologyExtent,
+    annotationProperties: scala.collection.immutable.SortedSet[resolver.api.AnnotationProperty] )
+  : resolver.api.TerminologyExtent
   = that match {
-  	case x: resolver.impl.TerminologyExtensionAxiom =>
-  	  x.copy(extendingTerminology = extendingTerminology)
+  	case x: resolver.impl.TerminologyExtent =>
+  	  x.copy(annotationProperties = annotationProperties)
+  }
+  
+  def copyTerminologyExtent_bundles
+  ( that: resolver.api.TerminologyExtent,
+    bundles: scala.collection.immutable.SortedSet[resolver.api.Bundle] )
+  : resolver.api.TerminologyExtent
+  = that match {
+  	case x: resolver.impl.TerminologyExtent =>
+  	  x.copy(bundles = bundles)
+  }
+  
+  def copyTerminologyExtent_terminologyGraphs
+  ( that: resolver.api.TerminologyExtent,
+    terminologyGraphs: scala.collection.immutable.SortedSet[resolver.api.TerminologyGraph] )
+  : resolver.api.TerminologyExtent
+  = that match {
+  	case x: resolver.impl.TerminologyExtent =>
+  	  x.copy(terminologyGraphs = terminologyGraphs)
   }
   
   // TerminologyGraph
@@ -655,38 +700,42 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
     kind: gov.nasa.jpl.imce.oml.specification.tables.TerminologyGraphKind,
     name: gov.nasa.jpl.imce.oml.specification.tables.LocalName,
     iri: gov.nasa.jpl.imce.oml.specification.tables.IRI,
+    nsPrefix: gov.nasa.jpl.imce.oml.specification.tables.NamespacePrefix,
     annotations: scala.collection.immutable.SortedSet[resolver.api.Annotation],
-    boxStatements: scala.collection.immutable.SortedSet[resolver.api.TerminologyBoxStatement])
+    boxStatements: scala.collection.immutable.SortedSet[resolver.api.TerminologyBoxStatement],
+    terminologyBoxAxioms: scala.collection.immutable.SortedSet[resolver.api.TerminologyBoxAxiom])
   : resolver.api.TerminologyGraph
   = resolver.impl.TerminologyGraph(
     uuid,
     kind,
     name,
     iri,
+    nsPrefix,
     annotations,
-    boxStatements )
+    boxStatements,
+    terminologyBoxAxioms )
   
   // TerminologyNestingAxiom
   
   def createTerminologyNestingAxiom
   ( uuid: java.util.UUID,
-    nestedTerminology: resolver.api.TerminologyGraph,
+    terminology: resolver.api.TerminologyBox,
     nestingContext: resolver.api.Concept,
     nestingTerminology: resolver.api.TerminologyBox)
   : resolver.api.TerminologyNestingAxiom
   = resolver.impl.TerminologyNestingAxiom(
     uuid,
-    nestedTerminology,
+    terminology,
     nestingContext,
     nestingTerminology )
   
-  def copyTerminologyNestingAxiom_nestedTerminology
+  def copyTerminologyNestingAxiom_terminology
   ( that: resolver.api.TerminologyNestingAxiom,
-    nestedTerminology: resolver.api.TerminologyGraph )
+    terminology: resolver.api.TerminologyBox )
   : resolver.api.TerminologyNestingAxiom
   = that match {
   	case x: resolver.impl.TerminologyNestingAxiom =>
-  	  x.copy(nestedTerminology = nestedTerminology)
+  	  x.copy(terminology = terminology)
   }
   
   def copyTerminologyNestingAxiom_nestingTerminology

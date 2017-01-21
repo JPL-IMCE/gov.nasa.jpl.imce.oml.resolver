@@ -26,8 +26,10 @@ case class TerminologyGraph private[impl]
  override val kind: gov.nasa.jpl.imce.oml.specification.tables.TerminologyGraphKind,
  override val name: gov.nasa.jpl.imce.oml.specification.tables.LocalName,
  override val iri: gov.nasa.jpl.imce.oml.specification.tables.IRI,
+ override val nsPrefix: gov.nasa.jpl.imce.oml.specification.tables.NamespacePrefix,
  override val annotations: scala.collection.immutable.SortedSet[resolver.api.Annotation],
- override val boxStatements: scala.collection.immutable.SortedSet[resolver.api.TerminologyBoxStatement]
+ override val boxStatements: scala.collection.immutable.SortedSet[resolver.api.TerminologyBoxStatement],
+ override val terminologyBoxAxioms: scala.collection.immutable.SortedSet[resolver.api.TerminologyBoxAxiom]
 )
 extends resolver.api.TerminologyGraph
   with TerminologyBox
@@ -61,7 +63,7 @@ extends resolver.api.TerminologyGraph
 
   override val hashCode
   : scala.Int
-  = (uuid, kind, name, iri, annotations, boxStatements).##
+  = (uuid, kind, name, iri, nsPrefix, annotations, boxStatements, terminologyBoxAxioms).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: TerminologyGraph =>
@@ -70,8 +72,10 @@ extends resolver.api.TerminologyGraph
 	    (this.kind == that.kind) &&
 	    (this.name == that.name) &&
 	    (this.iri == that.iri) &&
+	    (this.nsPrefix == that.nsPrefix) &&
 	    (this.annotations == that.annotations) &&
-	    (this.boxStatements == that.boxStatements)
+	    (this.boxStatements == that.boxStatements) &&
+	    (this.terminologyBoxAxioms == that.terminologyBoxAxioms)
 
 	  case _ =>
 	    false
