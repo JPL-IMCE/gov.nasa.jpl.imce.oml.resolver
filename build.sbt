@@ -68,7 +68,7 @@ lazy val core = Project("oml-resolver", file("."))
 
       "gov.nasa.jpl.imce" %% "gov-nasa-jpl-imce-oml-tables"
         % Settings.versions.jpl_omf_schema_tables artifacts
-        Artifact("gov.nasa.jpl.imce.oml.tables", "zip", "zip", "resource")
+        Artifact("gov-nasa-jpl-imce-oml-tables", "zip", "zip", "resource")
     )
   )
 
