@@ -1,7 +1,7 @@
 
 sbtPlugin := false
 
-name := "jpl.omf.schema.resolver"
+name := "gov.nasa.jpl.imce.oml.resolver"
 
 description := "Symbol table resolver for the Json serialization of JPL's Ontological Modeling Framework Schema"
 
