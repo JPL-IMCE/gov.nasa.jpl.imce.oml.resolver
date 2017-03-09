@@ -4,13 +4,13 @@ import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 
 object Settings {
 
-  val name = "jpl.omf.schema.resolver"
+  val name = "gov.nasa.jpl.imce.omf.resolver"
 
-  val namespace = "gov.nasa.jpl.imce.omf.schema.resolver"
+  val namespace = "gov.nasa.jpl.imce.omf.resolver"
 
   val organization = "gov.nasa.jpl.imce"
 
-  val version = "0.18.2"
+  val version = "0.19.0"
 
   val scalacOptions = Seq(
     "-deprecation",
@@ -32,9 +32,10 @@ object Settings {
   )
 
   object versions {
-    val jpl_omf_schema_tables = "0.48.+"
+    val jpl_omf_schema_tables = "0.49.+"
     val scala = "2.11.8"
     val scalaJ8CompatVersion = "0.8.0-RC8"
+    val scalaGraphLibraries = "3.4.+"
   }
 
   /**
@@ -47,13 +48,13 @@ object Settings {
 
   /** Dependencies only used by the JVM project */
   val jvmDependencies = Def.setting(Seq(
-    "gov.nasa.jpl.imce" %% "jpl-omf-schema-tables" % versions.jpl_omf_schema_tables
+    "gov.nasa.jpl.imce" %% "gov.nasa.jpl.imce.oml.tables" % versions.jpl_omf_schema_tables
   ))
 
 
   /** Dependencies only used by the JS project (note the use of %%% instead of %%) */
   val scalajsDependencies = Def.setting(Seq(
-    "gov.nasa.jpl.imce" %%% "jpl-omf-schema-tables" % versions.jpl_omf_schema_tables
+    "gov.nasa.jpl.imce" %%% "gov.nasa.jpl.imce.oml.tables" % versions.jpl_omf_schema_tables
   ))
 
 }
