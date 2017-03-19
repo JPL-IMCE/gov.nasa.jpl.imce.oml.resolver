@@ -31,7 +31,7 @@ extends resolver.api.AnnotationProperty
   ()
   : java.util.UUID
   = {
-    java.util.UUID.fromString(iri)
+    com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(iri)
   }
   
 
