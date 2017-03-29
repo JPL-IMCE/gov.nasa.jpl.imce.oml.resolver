@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 case class EntityScalarDataPropertyExistentialRestrictionAxiom private[impl] 
 (
- override val tbox: resolver.api.TerminologyBox,
+ override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val restrictedEntity: resolver.api.Entity,
  override val scalarProperty: resolver.api.EntityScalarDataProperty,
  override val scalarRestriction: resolver.api.DataRange
@@ -30,22 +30,25 @@ case class EntityScalarDataPropertyExistentialRestrictionAxiom private[impl]
 extends resolver.api.EntityScalarDataPropertyExistentialRestrictionAxiom
   with EntityScalarDataPropertyRestrictionAxiom
 {
-  override def calculateUUID
-  ()
-  : java.util.UUID
+  override def uuid
+  (extent: resolver.api.Extent)
+  : scala.Option[java.util.UUID]
   = {
     
-    	val namespace = "EntityScalarDataPropertyExistentialRestrictionAxiom(restrictedEntity="+restrictedEntity.uuid+",scalarProperty="+scalarProperty.calculateUUID()+",scalarRestriction="+scalarRestriction.uuid+")"
-    	com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(namespace)
+    	for {
+    	  u1 <- tbox
+    	  u2 <- restrictedEntity.uuid(extent)
+        	  u3 <- scalarProperty.uuid(extent)
+        	  u4 <- scalarRestriction.uuid(extent)
+    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
+    		"EntityScalarDataPropertyExistentialRestrictionAxiom",
+    	    "tbox"->u1,
+    		"restrictedEntity"->u2,
+    		"scalarProperty"->u3,
+    		"scalarRestriction"->u4)
   }
   
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
@@ -55,12 +58,11 @@ extends resolver.api.EntityScalarDataPropertyExistentialRestrictionAxiom
 
   override val hashCode
   : scala.Int
-  = (uuid, tbox, restrictedEntity, scalarProperty, scalarRestriction).##
+  = (tbox, restrictedEntity, scalarProperty, scalarRestriction).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: EntityScalarDataPropertyExistentialRestrictionAxiom =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
 	    (this.tbox == that.tbox) &&
 	    (this.restrictedEntity == that.restrictedEntity) &&
 	    (this.scalarProperty == that.scalarProperty) &&

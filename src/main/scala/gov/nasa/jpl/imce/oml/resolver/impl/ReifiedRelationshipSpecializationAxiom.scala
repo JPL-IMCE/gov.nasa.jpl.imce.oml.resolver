@@ -22,20 +22,27 @@ import gov.nasa.jpl.imce.oml._
 
 case class ReifiedRelationshipSpecializationAxiom private[impl] 
 (
- override val tbox: resolver.api.TerminologyBox,
+ override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val superRelationship: resolver.api.ReifiedRelationship,
  override val subRelationship: resolver.api.ReifiedRelationship
 )
 extends resolver.api.ReifiedRelationshipSpecializationAxiom
   with SpecializationAxiom
 {
-  override def calculateUUID
-  ()
-  : java.util.UUID
+  override def uuid
+  (extent: resolver.api.Extent)
+  : scala.Option[java.util.UUID]
   = {
     
-    	val namespace = "ReifiedRelationshipSpecializationAxiom(subRelationship=" + subRelationship.uuid + ",superRelationship="+superRelationship.uuid+")"
-    	com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(namespace)
+    	for {
+    	  u1 <- tbox
+    	  u2 <- subRelationship.uuid(extent)
+        	  u3 <- superRelationship.uuid(extent)
+    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
+    		"ReifiedRelationshipSpecializationAxiom",
+    	    "tbox"->u1,
+    		"subRelationship"->u2,
+    		"superRelationship"->u3)
   }
   
   /*
@@ -59,12 +66,6 @@ extends resolver.api.ReifiedRelationshipSpecializationAxiom
   }
   
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
@@ -74,12 +75,11 @@ extends resolver.api.ReifiedRelationshipSpecializationAxiom
 
   override val hashCode
   : scala.Int
-  = (uuid, tbox, superRelationship, subRelationship).##
+  = (tbox, superRelationship, subRelationship).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: ReifiedRelationshipSpecializationAxiom =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
 	    (this.tbox == that.tbox) &&
 	    (this.superRelationship == that.superRelationship) &&
 	    (this.subRelationship == that.subRelationship)

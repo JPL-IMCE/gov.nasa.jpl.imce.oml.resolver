@@ -25,30 +25,34 @@ extends resolver.api.TerminologyInstanceAssertion
   with ModuleElement
   with Resource
 {
-  override def iri
-  ()
-  : gov.nasa.jpl.imce.oml.tables.IRI
+  def descriptionBox
+  (extent: resolver.api.Extent)
+  : scala.Option[resolver.api.DescriptionBox]
   = {
-    descriptionBox.iri + "#" + name
+    lookupDescriptionBox(extent, descriptionBox())
+  }
+  
+  override def iri
+  (extent: resolver.api.Extent)
+  : scala.Option[gov.nasa.jpl.imce.oml.tables.IRI]
+  = {
+    descriptionBox(extent).map(m => m.iri + "#" + name)
   }
   
   /*
-   * The UUID of a Term is a Version5 namespace UUID based on the term's IRI.
+   * The UUID of a Term is a Version5 namespace UUID based on the terminology instance assertion's IRI.
    */
-  override def calculateUUID
-  ()
-  : java.util.UUID
+  override def uuid
+  (extent: resolver.api.Extent)
+  : scala.Option[java.util.UUID]
   = {
-    com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(iri())
+    
+    	for {
+    	  iri <- iri(extent)
+    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.uuidFromURL(iri)
   }
   
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {

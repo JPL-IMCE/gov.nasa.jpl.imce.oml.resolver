@@ -22,26 +22,31 @@ import gov.nasa.jpl.imce.oml._
 
 case class DescriptionBoxRefinement private[impl] 
 (
- override val refiningDescriptionBox: resolver.api.DescriptionBox,
+ override val refiningDescriptionBox: scala.Option[java.util.UUID] /* reference to a resolver.api.DescriptionBox */,
  override val refinedDescriptionBox: resolver.api.DescriptionBox
 )
 extends resolver.api.DescriptionBoxRefinement
   with DescriptionBoxRelationship
 {
-  override def calculateUUID
-  ()
-  : java.util.UUID
+  override def uuid
+  (extent: resolver.api.Extent)
+  : scala.Option[java.util.UUID]
   = {
     
-    	val namespace = "DescriptionBoxRefinement(refiningDescriptionBox=" + refiningDescriptionBox.uuid + ",refinedDescriptionBox="+refinedDescriptionBox.uuid+")"
-    	com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(namespace)
+    	for {
+    	  u1 <- refiningDescriptionBox
+    	  u2 <- refinedDescriptionBox.uuid(extent)
+    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
+    		"DescriptionBoxRefinement",
+    	    "refiningDescriptionBox"->u1,
+    		"refinedDescriptionBox"->u2)
   }
   
   def descriptionDomain
-  ()
-  : resolver.api.DescriptionBox
+  (extent: resolver.api.Extent)
+  : scala.Option[resolver.api.DescriptionBox]
   = {
-    refiningDescriptionBox
+    lookupDescriptionBox(extent, refiningDescriptionBox)
   }
   
   def targetModule
@@ -52,12 +57,6 @@ extends resolver.api.DescriptionBoxRefinement
   }
   
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
@@ -67,12 +66,11 @@ extends resolver.api.DescriptionBoxRefinement
 
   override val hashCode
   : scala.Int
-  = (uuid, refiningDescriptionBox, refinedDescriptionBox).##
+  = (refiningDescriptionBox, refinedDescriptionBox).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: DescriptionBoxRefinement =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
 	    (this.refiningDescriptionBox == that.refiningDescriptionBox) &&
 	    (this.refinedDescriptionBox == that.refinedDescriptionBox)
 

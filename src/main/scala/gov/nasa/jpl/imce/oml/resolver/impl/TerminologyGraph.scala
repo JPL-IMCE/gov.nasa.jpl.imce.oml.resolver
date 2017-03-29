@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 case class TerminologyGraph private[impl] 
 (
- override val extent: resolver.api.Extent,
+ override val extent: scala.Option[java.util.UUID] /* reference to a resolver.api.Extent */,
  override val kind: gov.nasa.jpl.imce.oml.tables.TerminologyKind,
  override val iri: gov.nasa.jpl.imce.oml.tables.IRI,
  override val annotations: scala.collection.immutable.SortedSet[resolver.api.Annotation],
@@ -61,12 +61,6 @@ extends resolver.api.TerminologyGraph
   }
   
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
@@ -76,12 +70,11 @@ extends resolver.api.TerminologyGraph
 
   override val hashCode
   : scala.Int
-  = (uuid, extent, kind, iri, annotations, boxStatements, boxAxioms).##
+  = (extent, kind, iri, annotations, boxStatements, boxAxioms).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: TerminologyGraph =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
 	    (this.extent == that.extent) &&
 	    (this.kind == that.kind) &&
 	    (this.iri == that.iri) &&

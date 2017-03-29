@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 case class Aspect private[impl] 
 (
- override val tbox: resolver.api.TerminologyBox,
+ override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 )
 extends resolver.api.Aspect
@@ -30,12 +30,6 @@ extends resolver.api.Aspect
   with UnaryTermKind
 {
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
@@ -45,12 +39,11 @@ extends resolver.api.Aspect
 
   override val hashCode
   : scala.Int
-  = (uuid, tbox, name).##
+  = (tbox, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: Aspect =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
 	    (this.tbox == that.tbox) &&
 	    (this.name == that.name)
 

@@ -22,56 +22,57 @@ import gov.nasa.jpl.imce.oml._
 
 case class ConceptDesignationTerminologyAxiom private[impl] 
 (
- override val tbox: resolver.api.TerminologyBox,
+ override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val designatedConcept: resolver.api.Concept,
  override val designatedTerminology: resolver.api.TerminologyBox
 )
 extends resolver.api.ConceptDesignationTerminologyAxiom
   with TerminologyBoxAxiom
 {
-  override def calculateUUID
-  ()
-  : java.util.UUID
+  override def uuid
+  (extent: resolver.api.Extent)
+  : scala.Option[java.util.UUID]
   = {
     
-    	val namespace = "ConceptDesignationTerminologyAxiom(designationTerminologyGraph=" + tbox.uuid + ",designatedConcept="+designatedConcept.uuid+")"
-    	com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(namespace)
+    	for {
+    	  u1 <- tbox
+    	  u2 <- designatedTerminology.uuid(extent)
+    	  u3 <- designatedConcept.uuid(extent)
+    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
+    		"ConceptDesignationTerminologyAxiom",
+    	    "tbox"->u1,
+    		"designatedTerminology"->u2,
+    		"designatedConcept"->u3)
   }
   
   def designationTerminologyGraph
-  ()
-  : resolver.api.TerminologyGraph
+  (extent: resolver.api.Extent)
+  : scala.Option[resolver.api.TerminologyGraph]
   = {
-    tbox match { case g: TerminologyGraph => g }
+    lookupTerminologyGraph(extent, tbox)
   }
   
   /*
    * The designationTerminologyGraph is the source
    */
   override def source
-  ()
-  : resolver.api.TerminologyBox
+  (extent: resolver.api.Extent)
+  : scala.Option[resolver.api.TerminologyBox]
   = {
-    tbox
+    designationTerminologyGraph(extent)
   }
   
   /*
    * The TerminologyBox that asserts the designatedConcept is the target
    */
   override def target
-  ()
+  (extent: resolver.api.Extent)
   : resolver.api.TerminologyBox
   = {
     designatedTerminology
   }
   
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
@@ -81,12 +82,11 @@ extends resolver.api.ConceptDesignationTerminologyAxiom
 
   override val hashCode
   : scala.Int
-  = (uuid, tbox, designatedConcept, designatedTerminology).##
+  = (tbox, designatedConcept, designatedTerminology).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: ConceptDesignationTerminologyAxiom =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
 	    (this.tbox == that.tbox) &&
 	    (this.designatedConcept == that.designatedConcept) &&
 	    (this.designatedTerminology == that.designatedTerminology)

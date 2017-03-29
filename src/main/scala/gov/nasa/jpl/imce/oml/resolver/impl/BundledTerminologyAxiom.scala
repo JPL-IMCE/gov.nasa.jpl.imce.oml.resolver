@@ -23,47 +23,46 @@ import gov.nasa.jpl.imce.oml._
 case class BundledTerminologyAxiom private[impl] 
 (
  override val bundledTerminology: resolver.api.TerminologyBox,
- override val bundle: resolver.api.Bundle
+ override val bundle: scala.Option[java.util.UUID] /* reference to a resolver.api.Bundle */
 )
 extends resolver.api.BundledTerminologyAxiom
   with TerminologyBundleAxiom
 {
-  override def calculateUUID
-  ()
-  : java.util.UUID
+  override def uuid
+  (extent: resolver.api.Extent)
+  : scala.Option[java.util.UUID]
   = {
     
-    	val namespace = "BundledTerminologyAxiom(bundle=" + bundle.uuid + ",bundledTerminology="+bundledTerminology.uuid+")"
-    	com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(namespace)
+    	for {
+    	  u1 <- bundle
+    	  u2 <- bundledTerminology.uuid(extent)
+    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
+    		"BundledTerminologyAxiom",
+    	    "bundle"->u1,
+    		"bundledTerminology"->u2)
   }
   
   /*
    * The bundle is the source
    */
   override def source
-  ()
-  : resolver.api.TerminologyBox
+  (extent: resolver.api.Extent)
+  : scala.Option[resolver.api.TerminologyBox]
   = {
-    bundle
+    lookupBundle(extent, bundle)
   }
   
   /*
    * The bundledTerminology is the target
    */
   override def target
-  ()
+  (extent: resolver.api.Extent)
   : resolver.api.TerminologyBox
   = {
     bundledTerminology
   }
   
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
@@ -73,12 +72,11 @@ extends resolver.api.BundledTerminologyAxiom
 
   override val hashCode
   : scala.Int
-  = (uuid, bundledTerminology, bundle).##
+  = (bundledTerminology, bundle).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: BundledTerminologyAxiom =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
 	    (this.bundledTerminology == that.bundledTerminology) &&
 	    (this.bundle == that.bundle)
 

@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 case class EntityExistentialRestrictionAxiom private[impl] 
 (
- override val tbox: resolver.api.TerminologyBox,
+ override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val restrictedRelation: resolver.api.EntityRelationship,
  override val restrictedDomain: resolver.api.Entity,
  override val restrictedRange: resolver.api.Entity
@@ -30,22 +30,25 @@ case class EntityExistentialRestrictionAxiom private[impl]
 extends resolver.api.EntityExistentialRestrictionAxiom
   with EntityRestrictionAxiom
 {
-  override def calculateUUID
-  ()
-  : java.util.UUID
+  override def uuid
+  (extent: resolver.api.Extent)
+  : scala.Option[java.util.UUID]
   = {
     
-    	val namespace = "EntityExistentialRestrictionAxiom(restrictedDomain=" + restrictedDomain.uuid + ",restrictedRelation="+restrictedRelation.uuid + ",restrictedRange="+restrictedRange.uuid+")"
-    	com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(namespace)
+    	for {
+    	  u1 <- tbox
+    	  u2 <- restrictedDomain.uuid(extent)
+        	  u3 <- restrictedRelation.uuid(extent)
+    	  u4 <- restrictedRange.uuid(extent)
+    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
+    		"EntityExistentialRestrictionAxiom",
+    	    "tbox"->u1,
+    		"restrictedDomain"->u2,
+    		"restrictedRelation"->u3,
+    		"restrictedRange"->u4)
   }
   
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
@@ -55,12 +58,11 @@ extends resolver.api.EntityExistentialRestrictionAxiom
 
   override val hashCode
   : scala.Int
-  = (uuid, tbox, restrictedRelation, restrictedDomain, restrictedRange).##
+  = (tbox, restrictedRelation, restrictedDomain, restrictedRange).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: EntityExistentialRestrictionAxiom =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
 	    (this.tbox == that.tbox) &&
 	    (this.restrictedRelation == that.restrictedRelation) &&
 	    (this.restrictedDomain == that.restrictedDomain) &&

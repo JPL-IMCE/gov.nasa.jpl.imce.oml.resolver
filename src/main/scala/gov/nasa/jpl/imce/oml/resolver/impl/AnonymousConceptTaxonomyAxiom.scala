@@ -22,29 +22,28 @@ import gov.nasa.jpl.imce.oml._
 
 case class AnonymousConceptTaxonomyAxiom private[impl] 
 (
- override val bundle: resolver.api.Bundle,
+ override val bundle: scala.Option[java.util.UUID] /* reference to a resolver.api.Bundle */,
  override val disjointTaxonomyParent: resolver.api.ConceptTreeDisjunction
 )
 extends resolver.api.AnonymousConceptTaxonomyAxiom
   with DisjointUnionOfConceptsAxiom
   with ConceptTreeDisjunction
 {
-  override def calculateUUID
-  ()
-  : java.util.UUID
+  override def uuid
+  (extent: resolver.api.Extent)
+  : scala.Option[java.util.UUID]
   = {
     
-    	val namespace = "AnonymousConceptTaxonomyAxiom(bundle=" + bundle.uuid + ",disjointTaxonomyParent="+disjointTaxonomyParent.calculateUUID()+")"
-    	com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(namespace)
+    	for {
+    	  u1 <- bundle
+    	  u2 <- disjointTaxonomyParent.uuid(extent)
+    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
+    		"AnonymousConceptTaxonomyAxiom",
+    	    "bundle"->u1,
+    		"disjointTaxonomyParent"->u2)
   }
   
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
@@ -54,12 +53,11 @@ extends resolver.api.AnonymousConceptTaxonomyAxiom
 
   override val hashCode
   : scala.Int
-  = (uuid, bundle, disjointTaxonomyParent).##
+  = (bundle, disjointTaxonomyParent).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: AnonymousConceptTaxonomyAxiom =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
 	    (this.bundle == that.bundle) &&
 	    (this.disjointTaxonomyParent == that.disjointTaxonomyParent)
 

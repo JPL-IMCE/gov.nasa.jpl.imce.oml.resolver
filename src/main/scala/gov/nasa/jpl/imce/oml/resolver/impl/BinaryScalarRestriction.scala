@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 case class BinaryScalarRestriction private[impl] 
 (
- override val tbox: resolver.api.TerminologyBox,
+ override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val restrictedRange: resolver.api.DataRange,
  override val length: scala.Option[scala.Int],
  override val minLength: scala.Option[scala.Int],
@@ -32,22 +32,21 @@ case class BinaryScalarRestriction private[impl]
 extends resolver.api.BinaryScalarRestriction
   with RestrictedDataRange
 {
-  override def calculateUUID
-  ()
-  : java.util.UUID
+  override def uuid
+  (extent: resolver.api.Extent)
+  : scala.Option[java.util.UUID]
   = {
     
-    	val namespace = "BinaryScalarRestriction(restrictedRange="+restrictedRange.uuid+")"
-    	com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(namespace)
+    	for {
+    	  u1 <- tbox
+    	  u2 <- restrictedRange.uuid(extent)
+    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
+    		"BinaryScalarRestriction",
+    	    "tbox"->u1,
+    		"restrictedRange"->u2)
   }
   
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
@@ -57,12 +56,11 @@ extends resolver.api.BinaryScalarRestriction
 
   override val hashCode
   : scala.Int
-  = (uuid, tbox, restrictedRange, length, minLength, maxLength, name).##
+  = (tbox, restrictedRange, length, minLength, maxLength, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: BinaryScalarRestriction =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
 	    (this.tbox == that.tbox) &&
 	    (this.restrictedRange == that.restrictedRange) &&
 	    (this.length == that.length) &&

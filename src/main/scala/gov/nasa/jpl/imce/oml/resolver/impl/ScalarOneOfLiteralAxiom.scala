@@ -22,29 +22,29 @@ import gov.nasa.jpl.imce.oml._
 
 case class ScalarOneOfLiteralAxiom private[impl] 
 (
- override val tbox: resolver.api.TerminologyBox,
+ override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val axiom: resolver.api.ScalarOneOfRestriction,
  override val value: gov.nasa.jpl.imce.oml.tables.LexicalValue
 )
 extends resolver.api.ScalarOneOfLiteralAxiom
   with TermAxiom
 {
-  override def calculateUUID
-  ()
-  : java.util.UUID
+  override def uuid
+  (extent: resolver.api.Extent)
+  : scala.Option[java.util.UUID]
   = {
     
-    	val namespace = "ScalarOneOfLiteralAxiom(scalarOneOfRestriction="+axiom.uuid+")"
-    	com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(namespace)
+    	for {
+    	  u1 <- tbox
+    	  u2 <- axiom.uuid(extent)
+    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
+    		"ScalarOneOfLiteralAxiom",
+    	    "tbox"->u1,
+    		"axiom"->u2,
+    		"value"->value)
   }
   
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
@@ -54,12 +54,11 @@ extends resolver.api.ScalarOneOfLiteralAxiom
 
   override val hashCode
   : scala.Int
-  = (uuid, tbox, axiom, value).##
+  = (tbox, axiom, value).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: ScalarOneOfLiteralAxiom =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
 	    (this.tbox == that.tbox) &&
 	    (this.axiom == that.axiom) &&
 	    (this.value == that.value)

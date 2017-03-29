@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 case class EntityScalarDataPropertyParticularRestrictionAxiom private[impl] 
 (
- override val tbox: resolver.api.TerminologyBox,
+ override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val restrictedEntity: resolver.api.Entity,
  override val scalarProperty: resolver.api.EntityScalarDataProperty,
  override val literalValue: gov.nasa.jpl.imce.oml.tables.LexicalValue
@@ -30,22 +30,23 @@ case class EntityScalarDataPropertyParticularRestrictionAxiom private[impl]
 extends resolver.api.EntityScalarDataPropertyParticularRestrictionAxiom
   with EntityScalarDataPropertyRestrictionAxiom
 {
-  override def calculateUUID
-  ()
-  : java.util.UUID
+  override def uuid
+  (extent: resolver.api.Extent)
+  : scala.Option[java.util.UUID]
   = {
     
-    	val namespace = "EntityScalarDataPropertyParticularRestrictionAxiom(restrictedEntity="+restrictedEntity.uuid+",scalarProperty="+scalarProperty.calculateUUID()+")"
-    	com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(namespace)
+    	for {
+    	  u1 <- tbox
+    	  u2 <- restrictedEntity.uuid(extent)
+        	  u3 <- scalarProperty.uuid(extent)
+    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
+    		"EntityScalarDataPropertyParticularRestrictionAxiom",
+    	    "tbox"->u1,
+    		"restrictedEntity"->u2,
+    		"scalarProperty"->u3)
   }
   
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
@@ -55,12 +56,11 @@ extends resolver.api.EntityScalarDataPropertyParticularRestrictionAxiom
 
   override val hashCode
   : scala.Int
-  = (uuid, tbox, restrictedEntity, scalarProperty, literalValue).##
+  = (tbox, restrictedEntity, scalarProperty, literalValue).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: EntityScalarDataPropertyParticularRestrictionAxiom =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
 	    (this.tbox == that.tbox) &&
 	    (this.restrictedEntity == that.restrictedEntity) &&
 	    (this.scalarProperty == that.scalarProperty) &&

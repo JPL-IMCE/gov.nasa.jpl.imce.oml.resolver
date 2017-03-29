@@ -22,29 +22,30 @@ import gov.nasa.jpl.imce.oml._
 
 case class RootConceptTaxonomyAxiom private[impl] 
 (
- override val bundle: resolver.api.Bundle,
+ override val bundle: scala.Option[java.util.UUID] /* reference to a resolver.api.Bundle */,
  override val root: resolver.api.Concept
 )
 extends resolver.api.RootConceptTaxonomyAxiom
   with TerminologyBundleStatement
   with ConceptTreeDisjunction
 {
-  override def calculateUUID
-  ()
-  : java.util.UUID
+  override def uuid
+  (extent: resolver.api.Extent)
+  : scala.Option[java.util.UUID]
   = {
     
-    	val namespace = "RootConceptTaxonomyAxiom(bundle=" + bundle.uuid + ",root="+root.uuid+")"
-    	com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(namespace)
+    	for {
+    	  u1 <- bundle
+    	  u2 <- disjointTaxonomyParent.uuid(extent)
+    	  u3 <- root.uuid(extent)
+    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
+    		"RootConceptTaxonomyAxiom",
+    	    "bundle"->u1,
+    		"disjointTaxonomyParent"->u2,
+    		"root"->u3)
   }
   
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
@@ -54,12 +55,11 @@ extends resolver.api.RootConceptTaxonomyAxiom
 
   override val hashCode
   : scala.Int
-  = (uuid, bundle, root).##
+  = (bundle, root).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: RootConceptTaxonomyAxiom =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
 	    (this.bundle == that.bundle) &&
 	    (this.root == that.root)
 

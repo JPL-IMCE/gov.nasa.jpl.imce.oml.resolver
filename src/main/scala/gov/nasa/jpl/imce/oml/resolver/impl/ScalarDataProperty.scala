@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 case class ScalarDataProperty private[impl] 
 (
- override val tbox: resolver.api.TerminologyBox,
+ override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val domain: resolver.api.Structure,
  override val range: resolver.api.DataRange,
  override val name: gov.nasa.jpl.imce.oml.tables.LocalName
@@ -47,12 +47,6 @@ extends resolver.api.ScalarDataProperty
   }
   
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
@@ -62,12 +56,11 @@ extends resolver.api.ScalarDataProperty
 
   override val hashCode
   : scala.Int
-  = (uuid, tbox, domain, range, name).##
+  = (tbox, domain, range, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: ScalarDataProperty =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
 	    (this.tbox == that.tbox) &&
 	    (this.domain == that.domain) &&
 	    (this.range == that.range) &&

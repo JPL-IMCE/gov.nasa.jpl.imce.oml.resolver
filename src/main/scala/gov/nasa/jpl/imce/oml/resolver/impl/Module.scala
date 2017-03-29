@@ -25,11 +25,18 @@ extends resolver.api.Module
   with Element
   with Resource
 {
-  override def calculateUUID
-  ()
-  : java.util.UUID
+  override def uuid
+  (extent: resolver.api.Extent)
+  : scala.Option[java.util.UUID]
   = {
-    com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(iri)
+    Some(com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(iri))
+  }
+  
+  override def iri
+  (extent: resolver.api.Extent)
+  : scala.Option[gov.nasa.jpl.imce.oml.tables.IRI]
+  = {
+    Some(iri)
   }
   
   def nsPrefix
@@ -47,12 +54,6 @@ extends resolver.api.Module
   }
   
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {

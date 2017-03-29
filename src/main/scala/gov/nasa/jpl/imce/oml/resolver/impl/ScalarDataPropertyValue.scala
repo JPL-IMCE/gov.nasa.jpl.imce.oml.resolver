@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 case class ScalarDataPropertyValue private[impl] 
 (
- override val singletonInstance: resolver.api.SingletonInstance,
+ override val singletonInstance: scala.Option[java.util.UUID] /* reference to a resolver.api.SingletonInstance */,
  override val scalarDataProperty: resolver.api.DataRelationshipToScalar,
  override val name: gov.nasa.jpl.imce.oml.tables.LocalName,
  override val scalarPropertyValue: scala.Predef.String
@@ -30,29 +30,7 @@ case class ScalarDataPropertyValue private[impl]
 extends resolver.api.ScalarDataPropertyValue
   with TerminologyInstanceAssertion
 {
-  override def calculateUUID
-  ()
-  : java.util.UUID
-  = {
-    
-    	val namespace = "ScalarDataPropertyValue(singletonInstance=" + singletonInstance.uuid + ",scalarDataProperty="+scalarDataProperty.calculateUUID()+")"
-    	com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(namespace)
-  }
-  
-  def descriptionBox
-  ()
-  : resolver.api.DescriptionBox
-  = {
-    singletonInstance.descriptionBox()
-  }
-  
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
@@ -62,12 +40,11 @@ extends resolver.api.ScalarDataPropertyValue
 
   override val hashCode
   : scala.Int
-  = (uuid, singletonInstance, scalarDataProperty, name, scalarPropertyValue).##
+  = (singletonInstance, scalarDataProperty, name, scalarPropertyValue).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: ScalarDataPropertyValue =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
 	    (this.singletonInstance == that.singletonInstance) &&
 	    (this.scalarDataProperty == that.scalarDataProperty) &&
 	    (this.name == that.name) &&

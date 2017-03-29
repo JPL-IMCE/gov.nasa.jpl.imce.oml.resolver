@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 case class ReifiedRelationshipInstanceRange private[impl] 
 (
- override val descriptionBox: resolver.api.DescriptionBox,
+ override val descriptionBox: scala.Option[java.util.UUID] /* reference to a resolver.api.DescriptionBox */,
  override val reifiedRelationshipInstance: resolver.api.ReifiedRelationshipInstance,
  override val range: resolver.api.ConceptualEntitySingletonInstance,
  override val name: gov.nasa.jpl.imce.oml.tables.LocalName
@@ -30,22 +30,7 @@ case class ReifiedRelationshipInstanceRange private[impl]
 extends resolver.api.ReifiedRelationshipInstanceRange
   with TerminologyInstanceAssertion
 {
-  override def calculateUUID
-  ()
-  : java.util.UUID
-  = {
-    
-    	val namespace = "ReifiedRelationshipInstanceRange(descriptionBox=" + descriptionBox.uuid + ",reifiedRelationshipInstance="+reifiedRelationshipInstance.uuid+ ",range="+range.uuid+")"
-    	com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(namespace)
-  }
-  
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
@@ -55,12 +40,11 @@ extends resolver.api.ReifiedRelationshipInstanceRange
 
   override val hashCode
   : scala.Int
-  = (uuid, descriptionBox, reifiedRelationshipInstance, range, name).##
+  = (descriptionBox, reifiedRelationshipInstance, range, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: ReifiedRelationshipInstanceRange =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
 	    (this.descriptionBox == that.descriptionBox) &&
 	    (this.reifiedRelationshipInstance == that.reifiedRelationshipInstance) &&
 	    (this.range == that.range) &&

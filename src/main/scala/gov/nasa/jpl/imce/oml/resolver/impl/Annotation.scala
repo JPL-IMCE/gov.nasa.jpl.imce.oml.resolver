@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 case class Annotation private[impl] 
 (
- override val module: resolver.api.Module,
+ override val module: scala.Option[java.util.UUID] /* reference to a resolver.api.Module */,
  override val subject: resolver.api.Element,
  override val property: resolver.api.AnnotationProperty,
  override val value: scala.Predef.String

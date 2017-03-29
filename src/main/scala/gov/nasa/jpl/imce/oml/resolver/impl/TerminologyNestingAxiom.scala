@@ -22,56 +22,57 @@ import gov.nasa.jpl.imce.oml._
 
 case class TerminologyNestingAxiom private[impl] 
 (
- override val tbox: resolver.api.TerminologyBox,
+ override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val nestingTerminology: resolver.api.TerminologyBox,
  override val nestingContext: resolver.api.Concept
 )
 extends resolver.api.TerminologyNestingAxiom
   with TerminologyBoxAxiom
 {
-  override def calculateUUID
-  ()
-  : java.util.UUID
+  override def uuid
+  (extent: resolver.api.Extent)
+  : scala.Option[java.util.UUID]
   = {
     
-    	val namespace = "TerminologyNestingAxiom(source=" + source.uuid + ",target="+target.uuid + ",nestingContext="+nestingContext.uuid + ")"
-    	com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(namespace)
+    	for {
+    	  u1 <- tbox
+    	  u2 <- nestingTerminology.uuid(extent)
+    	  u3 <- nestingContext.uuid(extent)
+    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
+    		"TerminologyNestingAxiom",
+    	    "tbox"->u1,
+    		"nestingTerminology"->u2,
+    		"nestingContext"->u3)
   }
   
   def nestedTerminology
-  ()
-  : resolver.api.TerminologyGraph
+  (extent: resolver.api.Extent)
+  : scala.Option[resolver.api.TerminologyGraph]
   = {
-    tbox match { case g: TerminologyGraph => g }
+    lookupTerminologyGraph(extent, tbox)
   }
   
   /*
    * The nestedTerminology is the source
    */
   override def source
-  ()
-  : resolver.api.TerminologyBox
+  (extent: resolver.api.Extent)
+  : scala.Option[resolver.api.TerminologyBox]
   = {
-    tbox
+    nestedTerminology(extent)
   }
   
   /*
    * The nestingTerminology is the target
    */
   override def target
-  ()
+  (extent: resolver.api.Extent)
   : resolver.api.TerminologyBox
   = {
     nestingTerminology
   }
   
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
@@ -81,12 +82,11 @@ extends resolver.api.TerminologyNestingAxiom
 
   override val hashCode
   : scala.Int
-  = (uuid, tbox, nestingTerminology, nestingContext).##
+  = (tbox, nestingTerminology, nestingContext).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: TerminologyNestingAxiom =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
 	    (this.tbox == that.tbox) &&
 	    (this.nestingTerminology == that.nestingTerminology) &&
 	    (this.nestingContext == that.nestingContext)

@@ -24,11 +24,5 @@ trait Element
 extends resolver.api.Element
 {
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 }

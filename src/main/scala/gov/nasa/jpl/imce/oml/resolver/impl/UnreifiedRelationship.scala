@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 case class UnreifiedRelationship private[impl] 
 (
- override val tbox: resolver.api.TerminologyBox,
+ override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val source: resolver.api.Entity,
  override val target: resolver.api.Entity,
  override val isAsymmetric: scala.Boolean,
@@ -40,12 +40,6 @@ extends resolver.api.UnreifiedRelationship
   with EntityRelationship
 {
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
@@ -55,12 +49,11 @@ extends resolver.api.UnreifiedRelationship
 
   override val hashCode
   : scala.Int
-  = (uuid, tbox, source, target, isAsymmetric, isEssential, isFunctional, isInverseEssential, isInverseFunctional, isIrreflexive, isReflexive, isSymmetric, isTransitive, name).##
+  = (tbox, source, target, isAsymmetric, isEssential, isFunctional, isInverseEssential, isInverseFunctional, isIrreflexive, isReflexive, isSymmetric, isTransitive, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: UnreifiedRelationship =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
 	    (this.tbox == that.tbox) &&
 	    (this.source == that.source) &&
 	    (this.target == that.target) &&

@@ -22,55 +22,52 @@ import gov.nasa.jpl.imce.oml._
 
 case class TerminologyExtensionAxiom private[impl] 
 (
- override val tbox: resolver.api.TerminologyBox,
+ override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val extendedTerminology: resolver.api.TerminologyBox
 )
 extends resolver.api.TerminologyExtensionAxiom
   with TerminologyBoxAxiom
 {
-  override def calculateUUID
-  ()
-  : java.util.UUID
+  override def uuid
+  (extent: resolver.api.Extent)
+  : scala.Option[java.util.UUID]
   = {
     
-    	val namespace = "TerminologyExtensionAxiom(source=" + source.uuid + ",target="+target.uuid+")"
-    	com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(namespace)
+    	for {
+    	  s <- extent.lookupModule(tbox)
+    	  u1 <- s.uuid(extent)
+        	  u2 <- extendedTerminology.uuid(extent)
+    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID("TerminologyExtensionAxiom","source"->u1,"target"->u2)
   }
   
   def extendingTerminology
-  ()
-  : resolver.api.TerminologyBox
+  (extent: resolver.api.Extent)
+  : scala.Option[resolver.api.TerminologyBox]
   = {
-    tbox
+    lookupTerminologyBox(extent, tbox)
   }
   
   /*
    * The extendingTerminology is the source
    */
   override def source
-  ()
-  : resolver.api.TerminologyBox
+  (extent: resolver.api.Extent)
+  : scala.Option[resolver.api.TerminologyBox]
   = {
-    tbox
+    extendingTerminology(extent)
   }
   
   /*
    * The extendedTerminology is the target
    */
   override def target
-  ()
+  (extent: resolver.api.Extent)
   : resolver.api.TerminologyBox
   = {
     extendedTerminology
   }
   
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
@@ -80,12 +77,11 @@ extends resolver.api.TerminologyExtensionAxiom
 
   override val hashCode
   : scala.Int
-  = (uuid, tbox, extendedTerminology).##
+  = (tbox, extendedTerminology).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: TerminologyExtensionAxiom =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
 	    (this.tbox == that.tbox) &&
 	    (this.extendedTerminology == that.extendedTerminology)
 

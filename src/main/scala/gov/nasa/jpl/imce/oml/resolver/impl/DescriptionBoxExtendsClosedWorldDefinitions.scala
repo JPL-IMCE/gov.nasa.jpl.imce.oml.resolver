@@ -22,26 +22,31 @@ import gov.nasa.jpl.imce.oml._
 
 case class DescriptionBoxExtendsClosedWorldDefinitions private[impl] 
 (
- override val descriptionBox: resolver.api.DescriptionBox,
+ override val descriptionBox: scala.Option[java.util.UUID] /* reference to a resolver.api.DescriptionBox */,
  override val closedWorldDefinitions: resolver.api.TerminologyBox
 )
 extends resolver.api.DescriptionBoxExtendsClosedWorldDefinitions
   with DescriptionBoxRelationship
 {
-  override def calculateUUID
-  ()
-  : java.util.UUID
+  override def uuid
+  (extent: resolver.api.Extent)
+  : scala.Option[java.util.UUID]
   = {
     
-    	val namespace = "DescriptionBoxExtendsClosedWorldDefinitions(descriptionBox=" + descriptionBox.uuid + ",closedWorldDefinitions="+closedWorldDefinitions.uuid+")"
-    	com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(namespace)
+    	for {
+    	  u1 <- descriptionBox
+    	  u2 <- closedWorldDefinitions.uuid(extent)
+    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
+    		"DescriptionBoxExtendsClosedWorldDefinitions",
+    	    "descriptionBox"->u1,
+    		"closedWorldDefinitions"->u2)
   }
   
   def descriptionDomain
-  ()
-  : resolver.api.DescriptionBox
+  (extent: resolver.api.Extent)
+  : scala.Option[resolver.api.DescriptionBox]
   = {
-    descriptionBox
+    lookupDescriptionBox(extent, descriptionBox)
   }
   
   def targetModule
@@ -52,12 +57,6 @@ extends resolver.api.DescriptionBoxExtendsClosedWorldDefinitions
   }
   
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
@@ -67,12 +66,11 @@ extends resolver.api.DescriptionBoxExtendsClosedWorldDefinitions
 
   override val hashCode
   : scala.Int
-  = (uuid, descriptionBox, closedWorldDefinitions).##
+  = (descriptionBox, closedWorldDefinitions).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: DescriptionBoxExtendsClosedWorldDefinitions =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
 	    (this.descriptionBox == that.descriptionBox) &&
 	    (this.closedWorldDefinitions == that.closedWorldDefinitions)
 

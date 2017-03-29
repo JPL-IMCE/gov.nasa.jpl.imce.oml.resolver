@@ -22,20 +22,27 @@ import gov.nasa.jpl.imce.oml._
 
 case class AspectSpecializationAxiom private[impl] 
 (
- override val tbox: resolver.api.TerminologyBox,
+ override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val superAspect: resolver.api.Aspect,
  override val subEntity: resolver.api.Entity
 )
 extends resolver.api.AspectSpecializationAxiom
   with SpecializationAxiom
 {
-  override def calculateUUID
-  ()
-  : java.util.UUID
+  override def uuid
+  (extent: resolver.api.Extent)
+  : scala.Option[java.util.UUID]
   = {
     
-    	val namespace = "AspectSpecializationAxiom(subEntity=" + subEntity.uuid + ",superAspect="+superAspect.uuid+")"
-    	com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(namespace)
+    	for {
+    	  u1 <- tbox
+    	  u2 <- subEntity.uuid(extent)
+        	  u3 <- superAspect.uuid(extent)
+    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
+    		"AspectSpecializationAxiom",
+    	    "tbox"->u1,
+    		"subEntity"->u2,
+    		"superAspect"->u3)
   }
   
   /*
@@ -59,12 +66,6 @@ extends resolver.api.AspectSpecializationAxiom
   }
   
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
@@ -74,12 +75,11 @@ extends resolver.api.AspectSpecializationAxiom
 
   override val hashCode
   : scala.Int
-  = (uuid, tbox, superAspect, subEntity).##
+  = (tbox, superAspect, subEntity).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: AspectSpecializationAxiom =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
 	    (this.tbox == that.tbox) &&
 	    (this.superAspect == that.superAspect) &&
 	    (this.subEntity == that.subEntity)

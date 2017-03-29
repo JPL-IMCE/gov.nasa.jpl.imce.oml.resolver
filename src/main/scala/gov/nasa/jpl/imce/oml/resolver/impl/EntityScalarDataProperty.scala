@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 case class EntityScalarDataProperty private[impl] 
 (
- override val tbox: resolver.api.TerminologyBox,
+ override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val domain: resolver.api.Entity,
  override val range: resolver.api.DataRange,
  override val isIdentityCriteria: scala.Boolean,
@@ -48,12 +48,6 @@ extends resolver.api.EntityScalarDataProperty
   }
   
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
@@ -63,12 +57,11 @@ extends resolver.api.EntityScalarDataProperty
 
   override val hashCode
   : scala.Int
-  = (uuid, tbox, domain, range, isIdentityCriteria, name).##
+  = (tbox, domain, range, isIdentityCriteria, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: EntityScalarDataProperty =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
 	    (this.tbox == that.tbox) &&
 	    (this.domain == that.domain) &&
 	    (this.range == that.range) &&

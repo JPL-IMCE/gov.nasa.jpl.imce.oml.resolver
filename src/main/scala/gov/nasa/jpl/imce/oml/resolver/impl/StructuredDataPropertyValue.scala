@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 case class StructuredDataPropertyValue private[impl] 
 (
- override val singletonInstance: resolver.api.SingletonInstance,
+ override val singletonInstance: scala.Option[java.util.UUID] /* reference to a resolver.api.SingletonInstance */,
  override val structuredDataProperty: resolver.api.DataRelationshipToStructure,
  override val structuredPropertyTuple: resolver.api.DataStructureTuple,
  override val name: gov.nasa.jpl.imce.oml.tables.LocalName
@@ -30,29 +30,7 @@ case class StructuredDataPropertyValue private[impl]
 extends resolver.api.StructuredDataPropertyValue
   with TerminologyInstanceAssertion
 {
-  override def calculateUUID
-  ()
-  : java.util.UUID
-  = {
-    
-    	val namespace = "StructuredDataPropertyValue(singletonInstance=" + singletonInstance.uuid + ",structuredDataProperty="+structuredDataProperty.calculateUUID()+ ",structuredPropertyTuple="+structuredPropertyTuple.uuid+")"
-    	com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(namespace)
-  }
-  
-  def descriptionBox
-  ()
-  : resolver.api.DescriptionBox
-  = {
-    singletonInstance.descriptionBox()
-  }
-  
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
@@ -62,12 +40,11 @@ extends resolver.api.StructuredDataPropertyValue
 
   override val hashCode
   : scala.Int
-  = (uuid, singletonInstance, structuredDataProperty, structuredPropertyTuple, name).##
+  = (singletonInstance, structuredDataProperty, structuredPropertyTuple, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: StructuredDataPropertyValue =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
 	    (this.singletonInstance == that.singletonInstance) &&
 	    (this.structuredDataProperty == that.structuredDataProperty) &&
 	    (this.structuredPropertyTuple == that.structuredPropertyTuple) &&

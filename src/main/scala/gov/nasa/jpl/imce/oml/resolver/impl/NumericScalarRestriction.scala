@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 case class NumericScalarRestriction private[impl] 
 (
- override val tbox: resolver.api.TerminologyBox,
+ override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val restrictedRange: resolver.api.DataRange,
  override val minExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalNumber],
  override val minInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalNumber],
@@ -33,22 +33,21 @@ case class NumericScalarRestriction private[impl]
 extends resolver.api.NumericScalarRestriction
   with RestrictedDataRange
 {
-  override def calculateUUID
-  ()
-  : java.util.UUID
+  override def uuid
+  (extent: resolver.api.Extent)
+  : scala.Option[java.util.UUID]
   = {
     
-    	val namespace = "NumericScalarRestriction(restrictedRange="+restrictedRange.uuid+")"
-    	com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(namespace)
+    	for {
+    	  u1 <- tbox
+    	  u2 <- restrictedRange.uuid(extent)
+    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
+    		"NumericScalarRestriction",
+    	    "tbox"->u1,
+    		"restrictedRange"->u2)
   }
   
 
-  override val uuid
-  : java.util.UUID
-  = {
-    calculateUUID()
-  }
-  
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
@@ -58,12 +57,11 @@ extends resolver.api.NumericScalarRestriction
 
   override val hashCode
   : scala.Int
-  = (uuid, tbox, restrictedRange, minExclusive, minInclusive, maxExclusive, maxInclusive, name).##
+  = (tbox, restrictedRange, minExclusive, minInclusive, maxExclusive, maxInclusive, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: NumericScalarRestriction =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
 	    (this.tbox == that.tbox) &&
 	    (this.restrictedRange == that.restrictedRange) &&
 	    (this.minExclusive == that.minExclusive) &&
