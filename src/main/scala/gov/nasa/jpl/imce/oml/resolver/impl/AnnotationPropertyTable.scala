@@ -20,10 +20,11 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class AnnotationPropertyTable private[impl] 
 (
- override val key: resolver.api.AnnotationProperty,
- override val value: scala.collection.immutable.SortedSet[resolver.api.AnnotationEntry]
+ override val key: resolver.api.AnnotationProperty
 )
 extends resolver.api.AnnotationPropertyTable
 {
@@ -32,13 +33,12 @@ extends resolver.api.AnnotationPropertyTable
 
   override val hashCode
   : scala.Int
-  = (key, value).##
+  = (key).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: AnnotationPropertyTable =>
 	    (that canEqual this) &&
-	    (this.key == that.key) &&
-	    (this.value == that.value)
+	    (this.key == that.key)
 
 	  case _ =>
 	    false

@@ -20,13 +20,12 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class ReifiedRelationshipInstance private[impl] 
 (
- override val descriptionBox: scala.Option[java.util.UUID] /* reference to a resolver.api.DescriptionBox */,
  override val singletonReifiedRelationshipClassifier: resolver.api.ReifiedRelationship,
- override val name: gov.nasa.jpl.imce.oml.tables.LocalName,
- override val scalarDataPropertyValues: scala.collection.immutable.SortedSet[resolver.api.ScalarDataPropertyValue],
- override val structuredDataPropertyValues: scala.collection.immutable.SortedSet[resolver.api.StructuredDataPropertyValue]
+ override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 )
 extends resolver.api.ReifiedRelationshipInstance
   with ConceptualEntitySingletonInstance
@@ -48,16 +47,13 @@ extends resolver.api.ReifiedRelationshipInstance
 
   override val hashCode
   : scala.Int
-  = (descriptionBox, singletonReifiedRelationshipClassifier, name, scalarDataPropertyValues, structuredDataPropertyValues).##
+  = (singletonReifiedRelationshipClassifier, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: ReifiedRelationshipInstance =>
 	    (that canEqual this) &&
-	    (this.descriptionBox == that.descriptionBox) &&
 	    (this.singletonReifiedRelationshipClassifier == that.singletonReifiedRelationshipClassifier) &&
-	    (this.name == that.name) &&
-	    (this.scalarDataPropertyValues == that.scalarDataPropertyValues) &&
-	    (this.structuredDataPropertyValues == that.structuredDataPropertyValues)
+	    (this.name == that.name)
 
 	  case _ =>
 	    false

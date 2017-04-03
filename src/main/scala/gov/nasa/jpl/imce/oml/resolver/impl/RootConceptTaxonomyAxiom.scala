@@ -20,9 +20,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class RootConceptTaxonomyAxiom private[impl] 
 (
- override val bundle: scala.Option[java.util.UUID] /* reference to a resolver.api.Bundle */,
  override val root: resolver.api.Concept
 )
 extends resolver.api.RootConceptTaxonomyAxiom
@@ -30,19 +31,17 @@ extends resolver.api.RootConceptTaxonomyAxiom
   with ConceptTreeDisjunction
 {
   override def uuid
-  (extent: resolver.api.Extent)
+  ()(implicit extent: Extent)
   : scala.Option[java.util.UUID]
   = {
     
     	for {
     	  u1 <- bundle
-    	  u2 <- disjointTaxonomyParent.uuid(extent)
-    	  u3 <- root.uuid(extent)
+    	  u2 <- root.uuid(extent)
     	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
     		"RootConceptTaxonomyAxiom",
     	    "bundle"->u1,
-    		"disjointTaxonomyParent"->u2,
-    		"root"->u3)
+    		"root"->u2)
   }
   
 
@@ -55,12 +54,11 @@ extends resolver.api.RootConceptTaxonomyAxiom
 
   override val hashCode
   : scala.Int
-  = (bundle, root).##
+  = (root).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: RootConceptTaxonomyAxiom =>
 	    (that canEqual this) &&
-	    (this.bundle == that.bundle) &&
 	    (this.root == that.root)
 
 	  case _ =>

@@ -25,13 +25,11 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   // Annotation
   
   def createAnnotation
-  ( module: scala.Option[java.util.UUID] /* reference to a resolver.api.Module */,
-    subject: resolver.api.Element,
+  ( subject: resolver.api.Element,
     property: resolver.api.AnnotationProperty,
     value: scala.Predef.String)
   : resolver.api.Annotation
   = resolver.impl.Annotation(
-    module,
     subject,
     property,
     value )
@@ -58,60 +56,42 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
     iri,
     abbrevIRI )
   
-  // AnnotationPropertyTable
-  
-  def createAnnotationPropertyTable
-  ( key: resolver.api.AnnotationProperty,
-    value: scala.collection.immutable.SortedSet[resolver.api.AnnotationEntry])
-  : resolver.api.AnnotationPropertyTable
-  = resolver.impl.AnnotationPropertyTable(
-    key,
-    value )
-  
   // AnonymousConceptTaxonomyAxiom
   
   def createAnonymousConceptTaxonomyAxiom
-  ( bundle: scala.Option[java.util.UUID] /* reference to a resolver.api.Bundle */,
-    disjointTaxonomyParent: resolver.api.ConceptTreeDisjunction)
+  ( disjointTaxonomyParent: resolver.api.ConceptTreeDisjunction)
   : resolver.api.AnonymousConceptTaxonomyAxiom
   = resolver.impl.AnonymousConceptTaxonomyAxiom(
-    bundle,
     disjointTaxonomyParent )
   
   // Aspect
   
   def createAspect
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    name: gov.nasa.jpl.imce.oml.tables.LocalName)
+  ( name: gov.nasa.jpl.imce.oml.tables.LocalName)
   : resolver.api.Aspect
   = resolver.impl.Aspect(
-    tbox,
     name )
   
   // AspectSpecializationAxiom
   
   def createAspectSpecializationAxiom
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    superAspect: resolver.api.Aspect,
+  ( superAspect: resolver.api.Aspect,
     subEntity: resolver.api.Entity)
   : resolver.api.AspectSpecializationAxiom
   = resolver.impl.AspectSpecializationAxiom(
-    tbox,
     superAspect,
     subEntity )
   
   // BinaryScalarRestriction
   
   def createBinaryScalarRestriction
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    restrictedRange: resolver.api.DataRange,
+  ( restrictedRange: resolver.api.DataRange,
     length: scala.Option[scala.Int],
     minLength: scala.Option[scala.Int],
     maxLength: scala.Option[scala.Int],
     name: gov.nasa.jpl.imce.oml.tables.LocalName)
   : resolver.api.BinaryScalarRestriction
   = resolver.impl.BinaryScalarRestriction(
-    tbox,
     restrictedRange,
     length,
     minLength,
@@ -121,34 +101,20 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   // Bundle
   
   def createBundle
-  ( extent: scala.Option[java.util.UUID] /* reference to a resolver.api.Extent */,
-    kind: gov.nasa.jpl.imce.oml.tables.TerminologyKind,
-    iri: gov.nasa.jpl.imce.oml.tables.IRI,
-    annotations: scala.collection.immutable.SortedSet[resolver.api.Annotation],
-    boxStatements: scala.collection.immutable.SortedSet[resolver.api.TerminologyBoxStatement],
-    boxAxioms: scala.collection.immutable.SortedSet[resolver.api.TerminologyBoxAxiom],
-    bundleStatements: scala.collection.immutable.SortedSet[resolver.api.TerminologyBundleStatement],
-    bundleAxioms: scala.collection.immutable.SortedSet[resolver.api.TerminologyBundleAxiom])
+  ( kind: gov.nasa.jpl.imce.oml.tables.TerminologyKind,
+    iri: gov.nasa.jpl.imce.oml.tables.IRI)
   : resolver.api.Bundle
   = resolver.impl.Bundle(
-    extent,
     kind,
-    iri,
-    annotations,
-    boxStatements,
-    boxAxioms,
-    bundleStatements,
-    bundleAxioms )
+    iri )
   
   // BundledTerminologyAxiom
   
   def createBundledTerminologyAxiom
-  ( bundledTerminology: resolver.api.TerminologyBox,
-    bundle: scala.Option[java.util.UUID] /* reference to a resolver.api.Bundle */)
+  ( bundledTerminology: resolver.api.TerminologyBox)
   : resolver.api.BundledTerminologyAxiom
   = resolver.impl.BundledTerminologyAxiom(
-    bundledTerminology,
-    bundle )
+    bundledTerminology )
   
   def copyBundledTerminologyAxiom_bundledTerminology
   ( that: resolver.api.BundledTerminologyAxiom,
@@ -159,98 +125,41 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   	  x.copy(bundledTerminology = bundledTerminology)
   }
   
-  def copyBundledTerminologyAxiom_bundle
-  ( that: resolver.api.BundledTerminologyAxiom,
-    bundle: scala.Option[java.util.UUID] /* reference to a resolver.api.Bundle */ )
-  : resolver.api.BundledTerminologyAxiom
-  = that match {
-  	case x: resolver.impl.BundledTerminologyAxiom =>
-  	  x.copy(bundle = bundle)
-  }
-  
   // Concept
   
   def createConcept
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    name: gov.nasa.jpl.imce.oml.tables.LocalName)
+  ( name: gov.nasa.jpl.imce.oml.tables.LocalName)
   : resolver.api.Concept
   = resolver.impl.Concept(
-    tbox,
     name )
   
   // ConceptDesignationTerminologyAxiom
   
   def createConceptDesignationTerminologyAxiom
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    designatedConcept: resolver.api.Concept,
+  ( designatedConcept: resolver.api.Concept,
     designatedTerminology: resolver.api.TerminologyBox)
   : resolver.api.ConceptDesignationTerminologyAxiom
   = resolver.impl.ConceptDesignationTerminologyAxiom(
-    tbox,
     designatedConcept,
     designatedTerminology )
-  
-  def copyConceptDesignationTerminologyAxiom_tbox
-  ( that: resolver.api.ConceptDesignationTerminologyAxiom,
-    tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */ )
-  : resolver.api.ConceptDesignationTerminologyAxiom
-  = that match {
-  	case x: resolver.impl.ConceptDesignationTerminologyAxiom =>
-  	  x.copy(tbox = tbox)
-  }
-  
-  def copyConceptDesignationTerminologyAxiom_designatedTerminology
-  ( that: resolver.api.ConceptDesignationTerminologyAxiom,
-    designatedTerminology: resolver.api.TerminologyBox )
-  : resolver.api.ConceptDesignationTerminologyAxiom
-  = that match {
-  	case x: resolver.impl.ConceptDesignationTerminologyAxiom =>
-  	  x.copy(designatedTerminology = designatedTerminology)
-  }
   
   // ConceptInstance
   
   def createConceptInstance
-  ( descriptionBox: scala.Option[java.util.UUID] /* reference to a resolver.api.DescriptionBox */,
-    singletonConceptClassifier: resolver.api.Concept,
-    name: gov.nasa.jpl.imce.oml.tables.LocalName,
-    scalarDataPropertyValues: scala.collection.immutable.SortedSet[resolver.api.ScalarDataPropertyValue],
-    structuredDataPropertyValues: scala.collection.immutable.SortedSet[resolver.api.StructuredDataPropertyValue])
+  ( singletonConceptClassifier: resolver.api.Concept,
+    name: gov.nasa.jpl.imce.oml.tables.LocalName)
   : resolver.api.ConceptInstance
   = resolver.impl.ConceptInstance(
-    descriptionBox,
     singletonConceptClassifier,
-    name,
-    scalarDataPropertyValues,
-    structuredDataPropertyValues )
-  
-  def copyConceptInstance_scalarDataPropertyValues
-  ( that: resolver.api.ConceptInstance,
-    scalarDataPropertyValues: scala.collection.immutable.SortedSet[resolver.api.ScalarDataPropertyValue] )
-  : resolver.api.ConceptInstance
-  = that match {
-  	case x: resolver.impl.ConceptInstance =>
-  	  x.copy(scalarDataPropertyValues = scalarDataPropertyValues)
-  }
-  
-  def copyConceptInstance_structuredDataPropertyValues
-  ( that: resolver.api.ConceptInstance,
-    structuredDataPropertyValues: scala.collection.immutable.SortedSet[resolver.api.StructuredDataPropertyValue] )
-  : resolver.api.ConceptInstance
-  = that match {
-  	case x: resolver.impl.ConceptInstance =>
-  	  x.copy(structuredDataPropertyValues = structuredDataPropertyValues)
-  }
+    name )
   
   // ConceptSpecializationAxiom
   
   def createConceptSpecializationAxiom
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    superConcept: resolver.api.Concept,
+  ( superConcept: resolver.api.Concept,
     subConcept: resolver.api.Concept)
   : resolver.api.ConceptSpecializationAxiom
   = resolver.impl.ConceptSpecializationAxiom(
-    tbox,
     superConcept,
     subConcept )
   
@@ -258,157 +167,46 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   
   def createDataStructureTuple
   ( dataStructureType: resolver.api.Structure,
-    structuredDataPropertyValue: scala.Option[java.util.UUID] /* reference to a resolver.api.StructuredDataPropertyValue */,
-    name: gov.nasa.jpl.imce.oml.tables.LocalName,
-    scalarDataPropertyValues: scala.collection.immutable.SortedSet[resolver.api.ScalarDataPropertyValue],
-    structuredDataPropertyValues: scala.collection.immutable.SortedSet[resolver.api.StructuredDataPropertyValue])
+    name: gov.nasa.jpl.imce.oml.tables.LocalName)
   : resolver.api.DataStructureTuple
   = resolver.impl.DataStructureTuple(
     dataStructureType,
-    structuredDataPropertyValue,
-    name,
-    scalarDataPropertyValues,
-    structuredDataPropertyValues )
-  
-  def copyDataStructureTuple_scalarDataPropertyValues
-  ( that: resolver.api.DataStructureTuple,
-    scalarDataPropertyValues: scala.collection.immutable.SortedSet[resolver.api.ScalarDataPropertyValue] )
-  : resolver.api.DataStructureTuple
-  = that match {
-  	case x: resolver.impl.DataStructureTuple =>
-  	  x.copy(scalarDataPropertyValues = scalarDataPropertyValues)
-  }
-  
-  def copyDataStructureTuple_structuredDataPropertyValues
-  ( that: resolver.api.DataStructureTuple,
-    structuredDataPropertyValues: scala.collection.immutable.SortedSet[resolver.api.StructuredDataPropertyValue] )
-  : resolver.api.DataStructureTuple
-  = that match {
-  	case x: resolver.impl.DataStructureTuple =>
-  	  x.copy(structuredDataPropertyValues = structuredDataPropertyValues)
-  }
+    name )
   
   // DescriptionBox
   
   def createDescriptionBox
-  ( extent: scala.Option[java.util.UUID] /* reference to a resolver.api.Extent */,
-    closedWorldDefinitions: scala.collection.immutable.SortedSet[resolver.api.DescriptionBoxExtendsClosedWorldDefinitions],
-    kind: gov.nasa.jpl.imce.oml.tables.DescriptionKind,
-    iri: gov.nasa.jpl.imce.oml.tables.IRI,
-    annotations: scala.collection.immutable.SortedSet[resolver.api.Annotation],
-    conceptInstances: scala.collection.immutable.SortedSet[resolver.api.ConceptInstance],
-    descriptionBoxRefinements: scala.collection.immutable.SortedSet[resolver.api.DescriptionBoxRefinement],
-    reifiedRelationshipInstanceDomains: scala.collection.immutable.SortedSet[resolver.api.ReifiedRelationshipInstanceDomain],
-    reifiedRelationshipInstanceRanges: scala.collection.immutable.SortedSet[resolver.api.ReifiedRelationshipInstanceRange],
-    reifiedRelationshipInstances: scala.collection.immutable.SortedSet[resolver.api.ReifiedRelationshipInstance],
-    unreifiedRelationshipInstanceTuples: scala.collection.immutable.SortedSet[resolver.api.UnreifiedRelationshipInstanceTuple])
+  ( kind: gov.nasa.jpl.imce.oml.tables.DescriptionKind,
+    iri: gov.nasa.jpl.imce.oml.tables.IRI)
   : resolver.api.DescriptionBox
   = resolver.impl.DescriptionBox(
-    extent,
-    closedWorldDefinitions,
     kind,
-    iri,
-    annotations,
-    conceptInstances,
-    descriptionBoxRefinements,
-    reifiedRelationshipInstanceDomains,
-    reifiedRelationshipInstanceRanges,
-    reifiedRelationshipInstances,
-    unreifiedRelationshipInstanceTuples )
-  
-  def copyDescriptionBox_closedWorldDefinitions
-  ( that: resolver.api.DescriptionBox,
-    closedWorldDefinitions: scala.collection.immutable.SortedSet[resolver.api.DescriptionBoxExtendsClosedWorldDefinitions] )
-  : resolver.api.DescriptionBox
-  = that match {
-  	case x: resolver.impl.DescriptionBox =>
-  	  x.copy(closedWorldDefinitions = closedWorldDefinitions)
-  }
-  
-  def copyDescriptionBox_conceptInstances
-  ( that: resolver.api.DescriptionBox,
-    conceptInstances: scala.collection.immutable.SortedSet[resolver.api.ConceptInstance] )
-  : resolver.api.DescriptionBox
-  = that match {
-  	case x: resolver.impl.DescriptionBox =>
-  	  x.copy(conceptInstances = conceptInstances)
-  }
-  
-  def copyDescriptionBox_descriptionBoxRefinements
-  ( that: resolver.api.DescriptionBox,
-    descriptionBoxRefinements: scala.collection.immutable.SortedSet[resolver.api.DescriptionBoxRefinement] )
-  : resolver.api.DescriptionBox
-  = that match {
-  	case x: resolver.impl.DescriptionBox =>
-  	  x.copy(descriptionBoxRefinements = descriptionBoxRefinements)
-  }
-  
-  def copyDescriptionBox_reifiedRelationshipInstanceDomains
-  ( that: resolver.api.DescriptionBox,
-    reifiedRelationshipInstanceDomains: scala.collection.immutable.SortedSet[resolver.api.ReifiedRelationshipInstanceDomain] )
-  : resolver.api.DescriptionBox
-  = that match {
-  	case x: resolver.impl.DescriptionBox =>
-  	  x.copy(reifiedRelationshipInstanceDomains = reifiedRelationshipInstanceDomains)
-  }
-  
-  def copyDescriptionBox_reifiedRelationshipInstanceRanges
-  ( that: resolver.api.DescriptionBox,
-    reifiedRelationshipInstanceRanges: scala.collection.immutable.SortedSet[resolver.api.ReifiedRelationshipInstanceRange] )
-  : resolver.api.DescriptionBox
-  = that match {
-  	case x: resolver.impl.DescriptionBox =>
-  	  x.copy(reifiedRelationshipInstanceRanges = reifiedRelationshipInstanceRanges)
-  }
-  
-  def copyDescriptionBox_reifiedRelationshipInstances
-  ( that: resolver.api.DescriptionBox,
-    reifiedRelationshipInstances: scala.collection.immutable.SortedSet[resolver.api.ReifiedRelationshipInstance] )
-  : resolver.api.DescriptionBox
-  = that match {
-  	case x: resolver.impl.DescriptionBox =>
-  	  x.copy(reifiedRelationshipInstances = reifiedRelationshipInstances)
-  }
-  
-  def copyDescriptionBox_unreifiedRelationshipInstanceTuples
-  ( that: resolver.api.DescriptionBox,
-    unreifiedRelationshipInstanceTuples: scala.collection.immutable.SortedSet[resolver.api.UnreifiedRelationshipInstanceTuple] )
-  : resolver.api.DescriptionBox
-  = that match {
-  	case x: resolver.impl.DescriptionBox =>
-  	  x.copy(unreifiedRelationshipInstanceTuples = unreifiedRelationshipInstanceTuples)
-  }
+    iri )
   
   // DescriptionBoxExtendsClosedWorldDefinitions
   
   def createDescriptionBoxExtendsClosedWorldDefinitions
-  ( descriptionBox: scala.Option[java.util.UUID] /* reference to a resolver.api.DescriptionBox */,
-    closedWorldDefinitions: resolver.api.TerminologyBox)
+  ( closedWorldDefinitions: resolver.api.TerminologyBox)
   : resolver.api.DescriptionBoxExtendsClosedWorldDefinitions
   = resolver.impl.DescriptionBoxExtendsClosedWorldDefinitions(
-    descriptionBox,
     closedWorldDefinitions )
   
   // DescriptionBoxRefinement
   
   def createDescriptionBoxRefinement
-  ( refiningDescriptionBox: scala.Option[java.util.UUID] /* reference to a resolver.api.DescriptionBox */,
-    refinedDescriptionBox: resolver.api.DescriptionBox)
+  ( refinedDescriptionBox: resolver.api.DescriptionBox)
   : resolver.api.DescriptionBoxRefinement
   = resolver.impl.DescriptionBoxRefinement(
-    refiningDescriptionBox,
     refinedDescriptionBox )
   
   // EntityExistentialRestrictionAxiom
   
   def createEntityExistentialRestrictionAxiom
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    restrictedRelation: resolver.api.EntityRelationship,
+  ( restrictedRelation: resolver.api.EntityRelationship,
     restrictedDomain: resolver.api.Entity,
     restrictedRange: resolver.api.Entity)
   : resolver.api.EntityExistentialRestrictionAxiom
   = resolver.impl.EntityExistentialRestrictionAxiom(
-    tbox,
     restrictedRelation,
     restrictedDomain,
     restrictedRange )
@@ -416,14 +214,12 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   // EntityScalarDataProperty
   
   def createEntityScalarDataProperty
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    domain: resolver.api.Entity,
+  ( domain: resolver.api.Entity,
     range: resolver.api.DataRange,
     isIdentityCriteria: scala.Boolean,
     name: gov.nasa.jpl.imce.oml.tables.LocalName)
   : resolver.api.EntityScalarDataProperty
   = resolver.impl.EntityScalarDataProperty(
-    tbox,
     domain,
     range,
     isIdentityCriteria,
@@ -432,13 +228,11 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   // EntityScalarDataPropertyExistentialRestrictionAxiom
   
   def createEntityScalarDataPropertyExistentialRestrictionAxiom
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    restrictedEntity: resolver.api.Entity,
+  ( restrictedEntity: resolver.api.Entity,
     scalarProperty: resolver.api.EntityScalarDataProperty,
     scalarRestriction: resolver.api.DataRange)
   : resolver.api.EntityScalarDataPropertyExistentialRestrictionAxiom
   = resolver.impl.EntityScalarDataPropertyExistentialRestrictionAxiom(
-    tbox,
     restrictedEntity,
     scalarProperty,
     scalarRestriction )
@@ -446,13 +240,11 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   // EntityScalarDataPropertyParticularRestrictionAxiom
   
   def createEntityScalarDataPropertyParticularRestrictionAxiom
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    restrictedEntity: resolver.api.Entity,
+  ( restrictedEntity: resolver.api.Entity,
     scalarProperty: resolver.api.EntityScalarDataProperty,
     literalValue: gov.nasa.jpl.imce.oml.tables.LexicalValue)
   : resolver.api.EntityScalarDataPropertyParticularRestrictionAxiom
   = resolver.impl.EntityScalarDataPropertyParticularRestrictionAxiom(
-    tbox,
     restrictedEntity,
     scalarProperty,
     literalValue )
@@ -460,13 +252,11 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   // EntityScalarDataPropertyUniversalRestrictionAxiom
   
   def createEntityScalarDataPropertyUniversalRestrictionAxiom
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    restrictedEntity: resolver.api.Entity,
+  ( restrictedEntity: resolver.api.Entity,
     scalarProperty: resolver.api.EntityScalarDataProperty,
     scalarRestriction: resolver.api.DataRange)
   : resolver.api.EntityScalarDataPropertyUniversalRestrictionAxiom
   = resolver.impl.EntityScalarDataPropertyUniversalRestrictionAxiom(
-    tbox,
     restrictedEntity,
     scalarProperty,
     scalarRestriction )
@@ -474,14 +264,12 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   // EntityStructuredDataProperty
   
   def createEntityStructuredDataProperty
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    domain: resolver.api.Entity,
+  ( domain: resolver.api.Entity,
     range: resolver.api.Structure,
     isIdentityCriteria: scala.Boolean,
     name: gov.nasa.jpl.imce.oml.tables.LocalName)
   : resolver.api.EntityStructuredDataProperty
   = resolver.impl.EntityStructuredDataProperty(
-    tbox,
     domain,
     range,
     isIdentityCriteria,
@@ -490,13 +278,11 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   // EntityUniversalRestrictionAxiom
   
   def createEntityUniversalRestrictionAxiom
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    restrictedRelation: resolver.api.EntityRelationship,
+  ( restrictedRelation: resolver.api.EntityRelationship,
     restrictedDomain: resolver.api.Entity,
     restrictedRange: resolver.api.Entity)
   : resolver.api.EntityUniversalRestrictionAxiom
   = resolver.impl.EntityUniversalRestrictionAxiom(
-    tbox,
     restrictedRelation,
     restrictedDomain,
     restrictedRange )
@@ -504,38 +290,13 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   // Extent
   
   def createExtent
-  ( uuid: java.util.UUID,
-    annotationProperties: scala.collection.immutable.SortedSet[resolver.api.AnnotationProperty],
-    modules: scala.collection.immutable.Map[java.util.UUID, resolver.api.Module])
   : resolver.api.Extent
-  = resolver.impl.Extent(
-    uuid,
-    annotationProperties,
-    modules )
-  
-  def copyExtent_annotationProperties
-  ( that: resolver.api.Extent,
-    annotationProperties: scala.collection.immutable.SortedSet[resolver.api.AnnotationProperty] )
-  : resolver.api.Extent
-  = that match {
-  	case x: resolver.impl.Extent =>
-  	  x.copy(annotationProperties = annotationProperties)
-  }
-  
-  def copyExtent_modules
-  ( that: resolver.api.Extent,
-    modules: scala.collection.immutable.Map[java.util.UUID, resolver.api.Module] )
-  : resolver.api.Extent
-  = that match {
-  	case x: resolver.impl.Extent =>
-  	  x.copy(modules = modules)
-  }
+  = resolver.impl.Extent
   
   // IRIScalarRestriction
   
   def createIRIScalarRestriction
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    restrictedRange: resolver.api.DataRange,
+  ( restrictedRange: resolver.api.DataRange,
     length: scala.Option[scala.Int],
     minLength: scala.Option[scala.Int],
     maxLength: scala.Option[scala.Int],
@@ -543,7 +304,6 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
     pattern: scala.Option[gov.nasa.jpl.imce.oml.tables.Pattern])
   : resolver.api.IRIScalarRestriction
   = resolver.impl.IRIScalarRestriction(
-    tbox,
     restrictedRange,
     length,
     minLength,
@@ -554,8 +314,7 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   // NumericScalarRestriction
   
   def createNumericScalarRestriction
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    restrictedRange: resolver.api.DataRange,
+  ( restrictedRange: resolver.api.DataRange,
     minExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalNumber],
     minInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalNumber],
     maxExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalNumber],
@@ -563,7 +322,6 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
     name: gov.nasa.jpl.imce.oml.tables.LocalName)
   : resolver.api.NumericScalarRestriction
   = resolver.impl.NumericScalarRestriction(
-    tbox,
     restrictedRange,
     minExclusive,
     minInclusive,
@@ -574,8 +332,7 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   // PlainLiteralScalarRestriction
   
   def createPlainLiteralScalarRestriction
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    restrictedRange: resolver.api.DataRange,
+  ( restrictedRange: resolver.api.DataRange,
     length: scala.Option[scala.Int],
     minLength: scala.Option[scala.Int],
     maxLength: scala.Option[scala.Int],
@@ -584,7 +341,6 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
     pattern: scala.Option[gov.nasa.jpl.imce.oml.tables.Pattern])
   : resolver.api.PlainLiteralScalarRestriction
   = resolver.impl.PlainLiteralScalarRestriction(
-    tbox,
     restrictedRange,
     length,
     minLength,
@@ -596,8 +352,7 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   // ReifiedRelationship
   
   def createReifiedRelationship
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    source: resolver.api.Entity,
+  ( source: resolver.api.Entity,
     target: resolver.api.Entity,
     isAsymmetric: scala.Boolean,
     isEssential: scala.Boolean,
@@ -613,7 +368,6 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
     unreifiedInversePropertyName: scala.Option[gov.nasa.jpl.imce.oml.tables.LocalName])
   : resolver.api.ReifiedRelationship
   = resolver.impl.ReifiedRelationship(
-    tbox,
     source,
     target,
     isAsymmetric,
@@ -632,47 +386,21 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   // ReifiedRelationshipInstance
   
   def createReifiedRelationshipInstance
-  ( descriptionBox: scala.Option[java.util.UUID] /* reference to a resolver.api.DescriptionBox */,
-    singletonReifiedRelationshipClassifier: resolver.api.ReifiedRelationship,
-    name: gov.nasa.jpl.imce.oml.tables.LocalName,
-    scalarDataPropertyValues: scala.collection.immutable.SortedSet[resolver.api.ScalarDataPropertyValue],
-    structuredDataPropertyValues: scala.collection.immutable.SortedSet[resolver.api.StructuredDataPropertyValue])
+  ( singletonReifiedRelationshipClassifier: resolver.api.ReifiedRelationship,
+    name: gov.nasa.jpl.imce.oml.tables.LocalName)
   : resolver.api.ReifiedRelationshipInstance
   = resolver.impl.ReifiedRelationshipInstance(
-    descriptionBox,
     singletonReifiedRelationshipClassifier,
-    name,
-    scalarDataPropertyValues,
-    structuredDataPropertyValues )
-  
-  def copyReifiedRelationshipInstance_scalarDataPropertyValues
-  ( that: resolver.api.ReifiedRelationshipInstance,
-    scalarDataPropertyValues: scala.collection.immutable.SortedSet[resolver.api.ScalarDataPropertyValue] )
-  : resolver.api.ReifiedRelationshipInstance
-  = that match {
-  	case x: resolver.impl.ReifiedRelationshipInstance =>
-  	  x.copy(scalarDataPropertyValues = scalarDataPropertyValues)
-  }
-  
-  def copyReifiedRelationshipInstance_structuredDataPropertyValues
-  ( that: resolver.api.ReifiedRelationshipInstance,
-    structuredDataPropertyValues: scala.collection.immutable.SortedSet[resolver.api.StructuredDataPropertyValue] )
-  : resolver.api.ReifiedRelationshipInstance
-  = that match {
-  	case x: resolver.impl.ReifiedRelationshipInstance =>
-  	  x.copy(structuredDataPropertyValues = structuredDataPropertyValues)
-  }
+    name )
   
   // ReifiedRelationshipInstanceDomain
   
   def createReifiedRelationshipInstanceDomain
-  ( descriptionBox: scala.Option[java.util.UUID] /* reference to a resolver.api.DescriptionBox */,
-    reifiedRelationshipInstance: resolver.api.ReifiedRelationshipInstance,
+  ( reifiedRelationshipInstance: resolver.api.ReifiedRelationshipInstance,
     domain: resolver.api.ConceptualEntitySingletonInstance,
     name: gov.nasa.jpl.imce.oml.tables.LocalName)
   : resolver.api.ReifiedRelationshipInstanceDomain
   = resolver.impl.ReifiedRelationshipInstanceDomain(
-    descriptionBox,
     reifiedRelationshipInstance,
     domain,
     name )
@@ -680,13 +408,11 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   // ReifiedRelationshipInstanceRange
   
   def createReifiedRelationshipInstanceRange
-  ( descriptionBox: scala.Option[java.util.UUID] /* reference to a resolver.api.DescriptionBox */,
-    reifiedRelationshipInstance: resolver.api.ReifiedRelationshipInstance,
+  ( reifiedRelationshipInstance: resolver.api.ReifiedRelationshipInstance,
     range: resolver.api.ConceptualEntitySingletonInstance,
     name: gov.nasa.jpl.imce.oml.tables.LocalName)
   : resolver.api.ReifiedRelationshipInstanceRange
   = resolver.impl.ReifiedRelationshipInstanceRange(
-    descriptionBox,
     reifiedRelationshipInstance,
     range,
     name )
@@ -694,45 +420,37 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   // ReifiedRelationshipSpecializationAxiom
   
   def createReifiedRelationshipSpecializationAxiom
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    superRelationship: resolver.api.ReifiedRelationship,
+  ( superRelationship: resolver.api.ReifiedRelationship,
     subRelationship: resolver.api.ReifiedRelationship)
   : resolver.api.ReifiedRelationshipSpecializationAxiom
   = resolver.impl.ReifiedRelationshipSpecializationAxiom(
-    tbox,
     superRelationship,
     subRelationship )
   
   // RootConceptTaxonomyAxiom
   
   def createRootConceptTaxonomyAxiom
-  ( bundle: scala.Option[java.util.UUID] /* reference to a resolver.api.Bundle */,
-    root: resolver.api.Concept)
+  ( root: resolver.api.Concept)
   : resolver.api.RootConceptTaxonomyAxiom
   = resolver.impl.RootConceptTaxonomyAxiom(
-    bundle,
     root )
   
   // Scalar
   
   def createScalar
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    name: gov.nasa.jpl.imce.oml.tables.LocalName)
+  ( name: gov.nasa.jpl.imce.oml.tables.LocalName)
   : resolver.api.Scalar
   = resolver.impl.Scalar(
-    tbox,
     name )
   
   // ScalarDataProperty
   
   def createScalarDataProperty
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    domain: resolver.api.Structure,
+  ( domain: resolver.api.Structure,
     range: resolver.api.DataRange,
     name: gov.nasa.jpl.imce.oml.tables.LocalName)
   : resolver.api.ScalarDataProperty
   = resolver.impl.ScalarDataProperty(
-    tbox,
     domain,
     range,
     name )
@@ -740,13 +458,11 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   // ScalarDataPropertyValue
   
   def createScalarDataPropertyValue
-  ( singletonInstance: scala.Option[java.util.UUID] /* reference to a resolver.api.SingletonInstance */,
-    scalarDataProperty: resolver.api.DataRelationshipToScalar,
+  ( scalarDataProperty: resolver.api.DataRelationshipToScalar,
     name: gov.nasa.jpl.imce.oml.tables.LocalName,
     scalarPropertyValue: scala.Predef.String)
   : resolver.api.ScalarDataPropertyValue
   = resolver.impl.ScalarDataPropertyValue(
-    singletonInstance,
     scalarDataProperty,
     name,
     scalarPropertyValue )
@@ -754,44 +470,37 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   // ScalarOneOfLiteralAxiom
   
   def createScalarOneOfLiteralAxiom
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    axiom: resolver.api.ScalarOneOfRestriction,
+  ( axiom: resolver.api.ScalarOneOfRestriction,
     value: gov.nasa.jpl.imce.oml.tables.LexicalValue)
   : resolver.api.ScalarOneOfLiteralAxiom
   = resolver.impl.ScalarOneOfLiteralAxiom(
-    tbox,
     axiom,
     value )
   
   // ScalarOneOfRestriction
   
   def createScalarOneOfRestriction
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    restrictedRange: resolver.api.DataRange,
+  ( restrictedRange: resolver.api.DataRange,
     name: gov.nasa.jpl.imce.oml.tables.LocalName)
   : resolver.api.ScalarOneOfRestriction
   = resolver.impl.ScalarOneOfRestriction(
-    tbox,
     restrictedRange,
     name )
   
   // SpecificDisjointConceptAxiom
   
   def createSpecificDisjointConceptAxiom
-  ( bundle: scala.Option[java.util.UUID] /* reference to a resolver.api.Bundle */,
-    disjointTaxonomyParent: resolver.api.ConceptTreeDisjunction,
+  ( disjointTaxonomyParent: resolver.api.ConceptTreeDisjunction,
     disjointLeaf: resolver.api.Concept)
   : resolver.api.SpecificDisjointConceptAxiom
   = resolver.impl.SpecificDisjointConceptAxiom(
-    bundle,
     disjointTaxonomyParent,
     disjointLeaf )
   
   // StringScalarRestriction
   
   def createStringScalarRestriction
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    restrictedRange: resolver.api.DataRange,
+  ( restrictedRange: resolver.api.DataRange,
     length: scala.Option[scala.Int],
     minLength: scala.Option[scala.Int],
     maxLength: scala.Option[scala.Int],
@@ -799,7 +508,6 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
     pattern: scala.Option[gov.nasa.jpl.imce.oml.tables.Pattern])
   : resolver.api.StringScalarRestriction
   = resolver.impl.StringScalarRestriction(
-    tbox,
     restrictedRange,
     length,
     minLength,
@@ -810,23 +518,19 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   // Structure
   
   def createStructure
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    name: gov.nasa.jpl.imce.oml.tables.LocalName)
+  ( name: gov.nasa.jpl.imce.oml.tables.LocalName)
   : resolver.api.Structure
   = resolver.impl.Structure(
-    tbox,
     name )
   
   // StructuredDataProperty
   
   def createStructuredDataProperty
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    domain: resolver.api.Structure,
+  ( domain: resolver.api.Structure,
     range: resolver.api.Structure,
     name: gov.nasa.jpl.imce.oml.tables.LocalName)
   : resolver.api.StructuredDataProperty
   = resolver.impl.StructuredDataProperty(
-    tbox,
     domain,
     range,
     name )
@@ -834,47 +538,30 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   // StructuredDataPropertyValue
   
   def createStructuredDataPropertyValue
-  ( singletonInstance: scala.Option[java.util.UUID] /* reference to a resolver.api.SingletonInstance */,
-    structuredDataProperty: resolver.api.DataRelationshipToStructure,
-    structuredPropertyTuple: resolver.api.DataStructureTuple,
+  ( structuredDataProperty: resolver.api.DataRelationshipToStructure,
     name: gov.nasa.jpl.imce.oml.tables.LocalName)
   : resolver.api.StructuredDataPropertyValue
   = resolver.impl.StructuredDataPropertyValue(
-    singletonInstance,
     structuredDataProperty,
-    structuredPropertyTuple,
     name )
   
   // SynonymScalarRestriction
   
   def createSynonymScalarRestriction
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    restrictedRange: resolver.api.DataRange,
+  ( restrictedRange: resolver.api.DataRange,
     name: gov.nasa.jpl.imce.oml.tables.LocalName)
   : resolver.api.SynonymScalarRestriction
   = resolver.impl.SynonymScalarRestriction(
-    tbox,
     restrictedRange,
     name )
   
   // TerminologyExtensionAxiom
   
   def createTerminologyExtensionAxiom
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    extendedTerminology: resolver.api.TerminologyBox)
+  ( extendedTerminology: resolver.api.TerminologyBox)
   : resolver.api.TerminologyExtensionAxiom
   = resolver.impl.TerminologyExtensionAxiom(
-    tbox,
     extendedTerminology )
-  
-  def copyTerminologyExtensionAxiom_tbox
-  ( that: resolver.api.TerminologyExtensionAxiom,
-    tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */ )
-  : resolver.api.TerminologyExtensionAxiom
-  = that match {
-  	case x: resolver.impl.TerminologyExtensionAxiom =>
-  	  x.copy(tbox = tbox)
-  }
   
   def copyTerminologyExtensionAxiom_extendedTerminology
   ( that: resolver.api.TerminologyExtensionAxiom,
@@ -888,41 +575,22 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   // TerminologyGraph
   
   def createTerminologyGraph
-  ( extent: scala.Option[java.util.UUID] /* reference to a resolver.api.Extent */,
-    kind: gov.nasa.jpl.imce.oml.tables.TerminologyKind,
-    iri: gov.nasa.jpl.imce.oml.tables.IRI,
-    annotations: scala.collection.immutable.SortedSet[resolver.api.Annotation],
-    boxStatements: scala.collection.immutable.SortedSet[resolver.api.TerminologyBoxStatement],
-    boxAxioms: scala.collection.immutable.SortedSet[resolver.api.TerminologyBoxAxiom])
+  ( kind: gov.nasa.jpl.imce.oml.tables.TerminologyKind,
+    iri: gov.nasa.jpl.imce.oml.tables.IRI)
   : resolver.api.TerminologyGraph
   = resolver.impl.TerminologyGraph(
-    extent,
     kind,
-    iri,
-    annotations,
-    boxStatements,
-    boxAxioms )
+    iri )
   
   // TerminologyNestingAxiom
   
   def createTerminologyNestingAxiom
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    nestingTerminology: resolver.api.TerminologyBox,
+  ( nestingTerminology: resolver.api.TerminologyBox,
     nestingContext: resolver.api.Concept)
   : resolver.api.TerminologyNestingAxiom
   = resolver.impl.TerminologyNestingAxiom(
-    tbox,
     nestingTerminology,
     nestingContext )
-  
-  def copyTerminologyNestingAxiom_tbox
-  ( that: resolver.api.TerminologyNestingAxiom,
-    tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */ )
-  : resolver.api.TerminologyNestingAxiom
-  = that match {
-  	case x: resolver.impl.TerminologyNestingAxiom =>
-  	  x.copy(tbox = tbox)
-  }
   
   def copyTerminologyNestingAxiom_nestingTerminology
   ( that: resolver.api.TerminologyNestingAxiom,
@@ -936,8 +604,7 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   // TimeScalarRestriction
   
   def createTimeScalarRestriction
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    restrictedRange: resolver.api.DataRange,
+  ( restrictedRange: resolver.api.DataRange,
     minExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalTime],
     minInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalTime],
     maxExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalTime],
@@ -945,7 +612,6 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
     name: gov.nasa.jpl.imce.oml.tables.LocalName)
   : resolver.api.TimeScalarRestriction
   = resolver.impl.TimeScalarRestriction(
-    tbox,
     restrictedRange,
     minExclusive,
     minInclusive,
@@ -956,8 +622,7 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   // UnreifiedRelationship
   
   def createUnreifiedRelationship
-  ( tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
-    source: resolver.api.Entity,
+  ( source: resolver.api.Entity,
     target: resolver.api.Entity,
     isAsymmetric: scala.Boolean,
     isEssential: scala.Boolean,
@@ -971,7 +636,6 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
     name: gov.nasa.jpl.imce.oml.tables.LocalName)
   : resolver.api.UnreifiedRelationship
   = resolver.impl.UnreifiedRelationship(
-    tbox,
     source,
     target,
     isAsymmetric,
@@ -988,14 +652,12 @@ case class OMLResolvedFactoryImpl() extends resolver.api.OMLResolvedFactory {
   // UnreifiedRelationshipInstanceTuple
   
   def createUnreifiedRelationshipInstanceTuple
-  ( descriptionBox: scala.Option[java.util.UUID] /* reference to a resolver.api.DescriptionBox */,
-    unreifiedRelationship: resolver.api.UnreifiedRelationship,
+  ( unreifiedRelationship: resolver.api.UnreifiedRelationship,
     domain: resolver.api.ConceptualEntitySingletonInstance,
     range: resolver.api.ConceptualEntitySingletonInstance,
     name: gov.nasa.jpl.imce.oml.tables.LocalName)
   : resolver.api.UnreifiedRelationshipInstanceTuple
   = resolver.impl.UnreifiedRelationshipInstanceTuple(
-    descriptionBox,
     unreifiedRelationship,
     domain,
     range,

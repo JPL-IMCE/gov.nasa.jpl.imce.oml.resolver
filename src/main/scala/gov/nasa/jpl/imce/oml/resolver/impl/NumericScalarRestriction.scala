@@ -20,9 +20,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class NumericScalarRestriction private[impl] 
 (
- override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val restrictedRange: resolver.api.DataRange,
  override val minExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalNumber],
  override val minInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalNumber],
@@ -34,7 +35,7 @@ extends resolver.api.NumericScalarRestriction
   with RestrictedDataRange
 {
   override def uuid
-  (extent: resolver.api.Extent)
+  ()(implicit extent: Extent)
   : scala.Option[java.util.UUID]
   = {
     
@@ -57,12 +58,11 @@ extends resolver.api.NumericScalarRestriction
 
   override val hashCode
   : scala.Int
-  = (tbox, restrictedRange, minExclusive, minInclusive, maxExclusive, maxInclusive, name).##
+  = (restrictedRange, minExclusive, minInclusive, maxExclusive, maxInclusive, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: NumericScalarRestriction =>
 	    (that canEqual this) &&
-	    (this.tbox == that.tbox) &&
 	    (this.restrictedRange == that.restrictedRange) &&
 	    (this.minExclusive == that.minExclusive) &&
 	    (this.minInclusive == that.minInclusive) &&

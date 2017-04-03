@@ -20,9 +20,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class Annotation private[impl] 
 (
- override val module: scala.Option[java.util.UUID] /* reference to a resolver.api.Module */,
  override val subject: resolver.api.Element,
  override val property: resolver.api.AnnotationProperty,
  override val value: scala.Predef.String
@@ -34,12 +35,11 @@ extends resolver.api.Annotation
 
   override val hashCode
   : scala.Int
-  = (module, subject, property, value).##
+  = (subject, property, value).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: Annotation =>
 	    (that canEqual this) &&
-	    (this.module == that.module) &&
 	    (this.subject == that.subject) &&
 	    (this.property == that.property) &&
 	    (this.value == that.value)

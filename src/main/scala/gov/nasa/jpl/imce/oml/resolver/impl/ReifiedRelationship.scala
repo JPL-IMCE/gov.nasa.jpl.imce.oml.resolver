@@ -20,9 +20,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class ReifiedRelationship private[impl] 
 (
- override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val source: resolver.api.Entity,
  override val target: resolver.api.Entity,
  override val isAsymmetric: scala.Boolean,
@@ -53,12 +54,11 @@ extends resolver.api.ReifiedRelationship
 
   override val hashCode
   : scala.Int
-  = (tbox, source, target, isAsymmetric, isEssential, isFunctional, isInverseEssential, isInverseFunctional, isIrreflexive, isReflexive, isSymmetric, isTransitive, name, unreifiedPropertyName, unreifiedInversePropertyName).##
+  = (source, target, isAsymmetric, isEssential, isFunctional, isInverseEssential, isInverseFunctional, isIrreflexive, isReflexive, isSymmetric, isTransitive, name, unreifiedPropertyName, unreifiedInversePropertyName).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: ReifiedRelationship =>
 	    (that canEqual this) &&
-	    (this.tbox == that.tbox) &&
 	    (this.source == that.source) &&
 	    (this.target == that.target) &&
 	    (this.isAsymmetric == that.isAsymmetric) &&

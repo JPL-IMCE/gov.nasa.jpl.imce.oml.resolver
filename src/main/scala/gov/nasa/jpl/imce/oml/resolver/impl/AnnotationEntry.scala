@@ -20,6 +20,8 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class AnnotationEntry private[impl] 
 (
  override val module: resolver.api.Module,

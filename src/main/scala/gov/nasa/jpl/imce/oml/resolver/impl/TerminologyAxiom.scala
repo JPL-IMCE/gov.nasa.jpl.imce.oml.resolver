@@ -22,8 +22,22 @@ import gov.nasa.jpl.imce.oml._
 
 trait TerminologyAxiom
 extends resolver.api.TerminologyAxiom
-  with ModuleElement
+  with ModuleEdge
 {
+  def sourceModule
+  ()
+  : resolver.api.Module
+  = {
+    source()
+  }
+  
+  def targetModule
+  ()
+  : resolver.api.Module
+  = {
+    target()
+  }
+  
 
 
 

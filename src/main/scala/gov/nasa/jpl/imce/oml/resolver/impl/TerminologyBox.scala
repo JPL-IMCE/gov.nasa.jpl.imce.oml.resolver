@@ -26,9 +26,9 @@ extends resolver.api.TerminologyBox
 {
   override def everything
   ()
-  : scala.collection.immutable.SortedSet[resolver.api.Element]
+  : scala.collection.immutable.Set[_ <: resolver.api.Element]
   = {
-    scala.collection.immutable.SortedSet.empty[resolver.api.Element] ++ boxStatements + this
+    scala.collection.immutable.HashSet.empty[resolver.api.Element] ++ boxStatements + this
   }
   
 

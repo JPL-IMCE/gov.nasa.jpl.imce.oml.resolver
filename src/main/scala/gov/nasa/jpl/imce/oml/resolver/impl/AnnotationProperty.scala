@@ -20,6 +20,8 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class AnnotationProperty private[impl] 
 (
  override val iri: gov.nasa.jpl.imce.oml.tables.IRI,

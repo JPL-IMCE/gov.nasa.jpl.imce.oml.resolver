@@ -20,9 +20,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class StringScalarRestriction private[impl] 
 (
- override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val restrictedRange: resolver.api.DataRange,
  override val length: scala.Option[scala.Int],
  override val minLength: scala.Option[scala.Int],
@@ -34,7 +35,7 @@ extends resolver.api.StringScalarRestriction
   with RestrictedDataRange
 {
   override def uuid
-  (extent: resolver.api.Extent)
+  ()(implicit extent: Extent)
   : scala.Option[java.util.UUID]
   = {
     
@@ -57,12 +58,11 @@ extends resolver.api.StringScalarRestriction
 
   override val hashCode
   : scala.Int
-  = (tbox, restrictedRange, length, minLength, maxLength, name, pattern).##
+  = (restrictedRange, length, minLength, maxLength, name, pattern).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: StringScalarRestriction =>
 	    (that canEqual this) &&
-	    (this.tbox == that.tbox) &&
 	    (this.restrictedRange == that.restrictedRange) &&
 	    (this.length == that.length) &&
 	    (this.minLength == that.minLength) &&

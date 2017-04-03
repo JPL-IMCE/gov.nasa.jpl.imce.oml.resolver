@@ -20,9 +20,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class UnreifiedRelationshipInstanceTuple private[impl] 
 (
- override val descriptionBox: scala.Option[java.util.UUID] /* reference to a resolver.api.DescriptionBox */,
  override val unreifiedRelationship: resolver.api.UnreifiedRelationship,
  override val domain: resolver.api.ConceptualEntitySingletonInstance,
  override val range: resolver.api.ConceptualEntitySingletonInstance,
@@ -41,12 +42,11 @@ extends resolver.api.UnreifiedRelationshipInstanceTuple
 
   override val hashCode
   : scala.Int
-  = (descriptionBox, unreifiedRelationship, domain, range, name).##
+  = (unreifiedRelationship, domain, range, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: UnreifiedRelationshipInstanceTuple =>
 	    (that canEqual this) &&
-	    (this.descriptionBox == that.descriptionBox) &&
 	    (this.unreifiedRelationship == that.unreifiedRelationship) &&
 	    (this.domain == that.domain) &&
 	    (this.range == that.range) &&

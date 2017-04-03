@@ -51,7 +51,8 @@ object Test1 {
       for {
         tables <- OMLSpecificationTables.loadOMLSpecificationTables(new File(omfSchemaJsonZipFile))
         _ = System.out.println(s"... loaded tables")
-        resolver <- OMLTablesResolver.resolve(tables, factory)
+        euuid = java.util.UUID.randomUUID()
+        resolver <- OMLTablesResolver.resolve(tables, factory, euuid)
         _ = System.out.println(s"... resolved tables")
       } yield {
         System.out.println(s"...done!")

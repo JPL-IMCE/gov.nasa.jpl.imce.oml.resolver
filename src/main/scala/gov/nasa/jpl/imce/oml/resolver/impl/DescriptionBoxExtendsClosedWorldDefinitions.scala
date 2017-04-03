@@ -20,16 +20,17 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class DescriptionBoxExtendsClosedWorldDefinitions private[impl] 
 (
- override val descriptionBox: scala.Option[java.util.UUID] /* reference to a resolver.api.DescriptionBox */,
  override val closedWorldDefinitions: resolver.api.TerminologyBox
 )
 extends resolver.api.DescriptionBoxExtendsClosedWorldDefinitions
   with DescriptionBoxRelationship
 {
   override def uuid
-  (extent: resolver.api.Extent)
+  ()(implicit extent: Extent)
   : scala.Option[java.util.UUID]
   = {
     
@@ -43,10 +44,10 @@ extends resolver.api.DescriptionBoxExtendsClosedWorldDefinitions
   }
   
   def descriptionDomain
-  (extent: resolver.api.Extent)
+  ()(implicit extent: Extent)
   : scala.Option[resolver.api.DescriptionBox]
   = {
-    lookupDescriptionBox(extent, descriptionBox)
+    resolver.OMLOps.lookupDescriptionBox(extent, descriptionBox)
   }
   
   def targetModule
@@ -66,12 +67,11 @@ extends resolver.api.DescriptionBoxExtendsClosedWorldDefinitions
 
   override val hashCode
   : scala.Int
-  = (descriptionBox, closedWorldDefinitions).##
+  = (closedWorldDefinitions).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: DescriptionBoxExtendsClosedWorldDefinitions =>
 	    (that canEqual this) &&
-	    (this.descriptionBox == that.descriptionBox) &&
 	    (this.closedWorldDefinitions == that.closedWorldDefinitions)
 
 	  case _ =>

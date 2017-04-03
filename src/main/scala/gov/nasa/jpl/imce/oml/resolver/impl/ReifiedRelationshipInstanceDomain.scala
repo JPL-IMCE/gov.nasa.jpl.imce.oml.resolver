@@ -20,9 +20,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class ReifiedRelationshipInstanceDomain private[impl] 
 (
- override val descriptionBox: scala.Option[java.util.UUID] /* reference to a resolver.api.DescriptionBox */,
  override val reifiedRelationshipInstance: resolver.api.ReifiedRelationshipInstance,
  override val domain: resolver.api.ConceptualEntitySingletonInstance,
  override val name: gov.nasa.jpl.imce.oml.tables.LocalName
@@ -40,12 +41,11 @@ extends resolver.api.ReifiedRelationshipInstanceDomain
 
   override val hashCode
   : scala.Int
-  = (descriptionBox, reifiedRelationshipInstance, domain, name).##
+  = (reifiedRelationshipInstance, domain, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: ReifiedRelationshipInstanceDomain =>
 	    (that canEqual this) &&
-	    (this.descriptionBox == that.descriptionBox) &&
 	    (this.reifiedRelationshipInstance == that.reifiedRelationshipInstance) &&
 	    (this.domain == that.domain) &&
 	    (this.name == that.name)

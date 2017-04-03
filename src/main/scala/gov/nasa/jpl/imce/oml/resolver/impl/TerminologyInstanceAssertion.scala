@@ -26,14 +26,14 @@ extends resolver.api.TerminologyInstanceAssertion
   with Resource
 {
   def descriptionBox
-  (extent: resolver.api.Extent)
+  ()(implicit extent: Extent)
   : scala.Option[resolver.api.DescriptionBox]
   = {
-    lookupDescriptionBox(extent, descriptionBox())
+    resolver.OMLOps.lookupDescriptionBox(extent, descriptionBox())
   }
   
   override def iri
-  (extent: resolver.api.Extent)
+  ()(implicit extent: Extent)
   : scala.Option[gov.nasa.jpl.imce.oml.tables.IRI]
   = {
     descriptionBox(extent).map(m => m.iri + "#" + name)
@@ -43,7 +43,7 @@ extends resolver.api.TerminologyInstanceAssertion
    * The UUID of a Term is a Version5 namespace UUID based on the terminology instance assertion's IRI.
    */
   override def uuid
-  (extent: resolver.api.Extent)
+  ()(implicit extent: Extent)
   : scala.Option[java.util.UUID]
   = {
     

@@ -20,46 +20,16 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class TerminologyGraph private[impl] 
 (
- override val extent: scala.Option[java.util.UUID] /* reference to a resolver.api.Extent */,
  override val kind: gov.nasa.jpl.imce.oml.tables.TerminologyKind,
- override val iri: gov.nasa.jpl.imce.oml.tables.IRI,
- override val annotations: scala.collection.immutable.SortedSet[resolver.api.Annotation],
- override val boxStatements: scala.collection.immutable.SortedSet[resolver.api.TerminologyBoxStatement],
- override val boxAxioms: scala.collection.immutable.SortedSet[resolver.api.TerminologyBoxAxiom]
+ override val iri: gov.nasa.jpl.imce.oml.tables.IRI
 )
 extends resolver.api.TerminologyGraph
   with TerminologyBox
 {
-  override def withAnnotations
-  (a: scala.collection.immutable.SortedSet[resolver.api.AnnotationPropertyTable])
-  : resolver.api.TerminologyGraph
-  = {
-    copy(annotations = this.annotations ++ resolver.convertToAnnotations(a))
-  }
-  
-  override def annotationsByProperty
-  ()
-  : scala.collection.immutable.SortedSet[resolver.api.AnnotationPropertyTable]
-  = {
-    resolver.groupAnnotationsByProperty(annotations)
-  }
-  
-  override def withBoxAxioms
-  (s: scala.collection.immutable.SortedSet[resolver.api.TerminologyBoxAxiom])
-  : resolver.api.TerminologyGraph
-  = {
-    copy(boxAxioms = this.boxAxioms ++ s)
-  }
-  
-  override def withBoxStatements
-  (s: scala.collection.immutable.SortedSet[resolver.api.TerminologyBoxStatement])
-  : resolver.api.TerminologyGraph
-  = {
-    copy(boxStatements = this.boxStatements ++ s)
-  }
-  
 
 
 
@@ -70,17 +40,13 @@ extends resolver.api.TerminologyGraph
 
   override val hashCode
   : scala.Int
-  = (extent, kind, iri, annotations, boxStatements, boxAxioms).##
+  = (kind, iri).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: TerminologyGraph =>
 	    (that canEqual this) &&
-	    (this.extent == that.extent) &&
 	    (this.kind == that.kind) &&
-	    (this.iri == that.iri) &&
-	    (this.annotations == that.annotations) &&
-	    (this.boxStatements == that.boxStatements) &&
-	    (this.boxAxioms == that.boxAxioms)
+	    (this.iri == that.iri)
 
 	  case _ =>
 	    false

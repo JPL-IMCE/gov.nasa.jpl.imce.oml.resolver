@@ -20,9 +20,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class AnonymousConceptTaxonomyAxiom private[impl] 
 (
- override val bundle: scala.Option[java.util.UUID] /* reference to a resolver.api.Bundle */,
  override val disjointTaxonomyParent: resolver.api.ConceptTreeDisjunction
 )
 extends resolver.api.AnonymousConceptTaxonomyAxiom
@@ -30,7 +31,7 @@ extends resolver.api.AnonymousConceptTaxonomyAxiom
   with ConceptTreeDisjunction
 {
   override def uuid
-  (extent: resolver.api.Extent)
+  ()(implicit extent: Extent)
   : scala.Option[java.util.UUID]
   = {
     
@@ -53,12 +54,11 @@ extends resolver.api.AnonymousConceptTaxonomyAxiom
 
   override val hashCode
   : scala.Int
-  = (bundle, disjointTaxonomyParent).##
+  = (disjointTaxonomyParent).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: AnonymousConceptTaxonomyAxiom =>
 	    (that canEqual this) &&
-	    (this.bundle == that.bundle) &&
 	    (this.disjointTaxonomyParent == that.disjointTaxonomyParent)
 
 	  case _ =>

@@ -20,9 +20,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class ScalarOneOfLiteralAxiom private[impl] 
 (
- override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val axiom: resolver.api.ScalarOneOfRestriction,
  override val value: gov.nasa.jpl.imce.oml.tables.LexicalValue
 )
@@ -30,7 +31,7 @@ extends resolver.api.ScalarOneOfLiteralAxiom
   with TermAxiom
 {
   override def uuid
-  (extent: resolver.api.Extent)
+  ()(implicit extent: Extent)
   : scala.Option[java.util.UUID]
   = {
     
@@ -54,12 +55,11 @@ extends resolver.api.ScalarOneOfLiteralAxiom
 
   override val hashCode
   : scala.Int
-  = (tbox, axiom, value).##
+  = (axiom, value).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: ScalarOneOfLiteralAxiom =>
 	    (that canEqual this) &&
-	    (this.tbox == that.tbox) &&
 	    (this.axiom == that.axiom) &&
 	    (this.value == that.value)
 

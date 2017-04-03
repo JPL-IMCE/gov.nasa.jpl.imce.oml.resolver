@@ -20,9 +20,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class ConceptDesignationTerminologyAxiom private[impl] 
 (
- override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val designatedConcept: resolver.api.Concept,
  override val designatedTerminology: resolver.api.TerminologyBox
 )
@@ -30,7 +31,7 @@ extends resolver.api.ConceptDesignationTerminologyAxiom
   with TerminologyBoxAxiom
 {
   override def uuid
-  (extent: resolver.api.Extent)
+  ()(implicit extent: Extent)
   : scala.Option[java.util.UUID]
   = {
     
@@ -46,17 +47,17 @@ extends resolver.api.ConceptDesignationTerminologyAxiom
   }
   
   def designationTerminologyGraph
-  (extent: resolver.api.Extent)
+  ()(implicit extent: Extent)
   : scala.Option[resolver.api.TerminologyGraph]
   = {
-    lookupTerminologyGraph(extent, tbox)
+    resolver.OMLOps.lookupTerminologyGraph(extent, tbox)
   }
   
   /*
    * The designationTerminologyGraph is the source
    */
   override def source
-  (extent: resolver.api.Extent)
+  ()(implicit extent: Extent)
   : scala.Option[resolver.api.TerminologyBox]
   = {
     designationTerminologyGraph(extent)
@@ -66,7 +67,7 @@ extends resolver.api.ConceptDesignationTerminologyAxiom
    * The TerminologyBox that asserts the designatedConcept is the target
    */
   override def target
-  (extent: resolver.api.Extent)
+  ()(implicit extent: Extent)
   : resolver.api.TerminologyBox
   = {
     designatedTerminology
@@ -82,12 +83,11 @@ extends resolver.api.ConceptDesignationTerminologyAxiom
 
   override val hashCode
   : scala.Int
-  = (tbox, designatedConcept, designatedTerminology).##
+  = (designatedConcept, designatedTerminology).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: ConceptDesignationTerminologyAxiom =>
 	    (that canEqual this) &&
-	    (this.tbox == that.tbox) &&
 	    (this.designatedConcept == that.designatedConcept) &&
 	    (this.designatedTerminology == that.designatedTerminology)
 

@@ -26,7 +26,7 @@ extends resolver.api.ConceptualEntitySingletonInstance
 {
   def identifyingScalarValues
   ()
-  : scala.collection.immutable.SortedSet[resolver.api.ScalarDataPropertyValue]
+  : scala.collection.immutable.Set[_ <: resolver.api.ScalarDataPropertyValue]
   = {
     scalarDataPropertyValues.filter{ v =>
     	  v.scalarDataProperty match {
@@ -39,7 +39,7 @@ extends resolver.api.ConceptualEntitySingletonInstance
   
   def identifyingStructuredTuples
   ()
-  : scala.collection.immutable.SortedSet[resolver.api.StructuredDataPropertyValue]
+  : scala.collection.immutable.Set[_ <: resolver.api.StructuredDataPropertyValue]
   = {
     structuredDataPropertyValues.filter{ v =>
     	  v.structuredDataProperty match {

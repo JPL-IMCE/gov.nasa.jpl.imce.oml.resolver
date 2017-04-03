@@ -20,9 +20,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class SynonymScalarRestriction private[impl] 
 (
- override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val restrictedRange: resolver.api.DataRange,
  override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 )
@@ -30,7 +31,7 @@ extends resolver.api.SynonymScalarRestriction
   with RestrictedDataRange
 {
   override def uuid
-  (extent: resolver.api.Extent)
+  ()(implicit extent: Extent)
   : scala.Option[java.util.UUID]
   = {
     
@@ -53,12 +54,11 @@ extends resolver.api.SynonymScalarRestriction
 
   override val hashCode
   : scala.Int
-  = (tbox, restrictedRange, name).##
+  = (restrictedRange, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: SynonymScalarRestriction =>
 	    (that canEqual this) &&
-	    (this.tbox == that.tbox) &&
 	    (this.restrictedRange == that.restrictedRange) &&
 	    (this.name == that.name)
 

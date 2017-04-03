@@ -20,42 +20,21 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class DescriptionBox private[impl] 
 (
- override val extent: scala.Option[java.util.UUID] /* reference to a resolver.api.Extent */,
- override val closedWorldDefinitions: scala.collection.immutable.SortedSet[resolver.api.DescriptionBoxExtendsClosedWorldDefinitions],
  override val kind: gov.nasa.jpl.imce.oml.tables.DescriptionKind,
- override val iri: gov.nasa.jpl.imce.oml.tables.IRI,
- override val annotations: scala.collection.immutable.SortedSet[resolver.api.Annotation],
- override val conceptInstances: scala.collection.immutable.SortedSet[resolver.api.ConceptInstance],
- override val descriptionBoxRefinements: scala.collection.immutable.SortedSet[resolver.api.DescriptionBoxRefinement],
- override val reifiedRelationshipInstanceDomains: scala.collection.immutable.SortedSet[resolver.api.ReifiedRelationshipInstanceDomain],
- override val reifiedRelationshipInstanceRanges: scala.collection.immutable.SortedSet[resolver.api.ReifiedRelationshipInstanceRange],
- override val reifiedRelationshipInstances: scala.collection.immutable.SortedSet[resolver.api.ReifiedRelationshipInstance],
- override val unreifiedRelationshipInstanceTuples: scala.collection.immutable.SortedSet[resolver.api.UnreifiedRelationshipInstanceTuple]
+ override val iri: gov.nasa.jpl.imce.oml.tables.IRI
 )
 extends resolver.api.DescriptionBox
   with Module
 {
-  override def withAnnotations
-  (a: scala.collection.immutable.SortedSet[resolver.api.AnnotationPropertyTable])
-  : resolver.api.DescriptionBox
-  = {
-    copy(annotations = this.annotations ++ resolver.convertToAnnotations(a))
-  }
-  
-  override def annotationsByProperty
-  ()
-  : scala.collection.immutable.SortedSet[resolver.api.AnnotationPropertyTable]
-  = {
-    resolver.groupAnnotationsByProperty(annotations)
-  }
-  
   override def everything
   ()
-  : scala.collection.immutable.SortedSet[resolver.api.Element]
+  : scala.collection.immutable.Set[_ <: resolver.api.Element]
   = {
-    scala.collection.immutable.SortedSet.empty[resolver.api.Element] ++ 
+    scala.collection.immutable.HashSet.empty[resolver.api.Element] ++ 
     	conceptInstances ++
     	reifiedRelationshipInstances ++ 
     	reifiedRelationshipInstanceDomains ++ 
@@ -74,22 +53,13 @@ extends resolver.api.DescriptionBox
 
   override val hashCode
   : scala.Int
-  = (extent, closedWorldDefinitions, kind, iri, annotations, conceptInstances, descriptionBoxRefinements, reifiedRelationshipInstanceDomains, reifiedRelationshipInstanceRanges, reifiedRelationshipInstances, unreifiedRelationshipInstanceTuples).##
+  = (kind, iri).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: DescriptionBox =>
 	    (that canEqual this) &&
-	    (this.extent == that.extent) &&
-	    (this.closedWorldDefinitions == that.closedWorldDefinitions) &&
 	    (this.kind == that.kind) &&
-	    (this.iri == that.iri) &&
-	    (this.annotations == that.annotations) &&
-	    (this.conceptInstances == that.conceptInstances) &&
-	    (this.descriptionBoxRefinements == that.descriptionBoxRefinements) &&
-	    (this.reifiedRelationshipInstanceDomains == that.reifiedRelationshipInstanceDomains) &&
-	    (this.reifiedRelationshipInstanceRanges == that.reifiedRelationshipInstanceRanges) &&
-	    (this.reifiedRelationshipInstances == that.reifiedRelationshipInstances) &&
-	    (this.unreifiedRelationshipInstanceTuples == that.unreifiedRelationshipInstanceTuples)
+	    (this.iri == that.iri)
 
 	  case _ =>
 	    false

@@ -20,9 +20,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class EntityStructuredDataProperty private[impl] 
 (
- override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val domain: resolver.api.Entity,
  override val range: resolver.api.Structure,
  override val isIdentityCriteria: scala.Boolean,
@@ -57,12 +58,11 @@ extends resolver.api.EntityStructuredDataProperty
 
   override val hashCode
   : scala.Int
-  = (tbox, domain, range, isIdentityCriteria, name).##
+  = (domain, range, isIdentityCriteria, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: EntityStructuredDataProperty =>
 	    (that canEqual this) &&
-	    (this.tbox == that.tbox) &&
 	    (this.domain == that.domain) &&
 	    (this.range == that.range) &&
 	    (this.isIdentityCriteria == that.isIdentityCriteria) &&

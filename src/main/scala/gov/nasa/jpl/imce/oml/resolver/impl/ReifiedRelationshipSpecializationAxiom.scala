@@ -20,9 +20,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class ReifiedRelationshipSpecializationAxiom private[impl] 
 (
- override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val superRelationship: resolver.api.ReifiedRelationship,
  override val subRelationship: resolver.api.ReifiedRelationship
 )
@@ -30,7 +31,7 @@ extends resolver.api.ReifiedRelationshipSpecializationAxiom
   with SpecializationAxiom
 {
   override def uuid
-  (extent: resolver.api.Extent)
+  ()(implicit extent: Extent)
   : scala.Option[java.util.UUID]
   = {
     
@@ -75,12 +76,11 @@ extends resolver.api.ReifiedRelationshipSpecializationAxiom
 
   override val hashCode
   : scala.Int
-  = (tbox, superRelationship, subRelationship).##
+  = (superRelationship, subRelationship).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: ReifiedRelationshipSpecializationAxiom =>
 	    (that canEqual this) &&
-	    (this.tbox == that.tbox) &&
 	    (this.superRelationship == that.superRelationship) &&
 	    (this.subRelationship == that.subRelationship)
 

@@ -20,9 +20,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class EntityUniversalRestrictionAxiom private[impl] 
 (
- override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val restrictedRelation: resolver.api.EntityRelationship,
  override val restrictedDomain: resolver.api.Entity,
  override val restrictedRange: resolver.api.Entity
@@ -31,7 +32,7 @@ extends resolver.api.EntityUniversalRestrictionAxiom
   with EntityRestrictionAxiom
 {
   override def uuid
-  (extent: resolver.api.Extent)
+  ()(implicit extent: Extent)
   : scala.Option[java.util.UUID]
   = {
     
@@ -58,12 +59,11 @@ extends resolver.api.EntityUniversalRestrictionAxiom
 
   override val hashCode
   : scala.Int
-  = (tbox, restrictedRelation, restrictedDomain, restrictedRange).##
+  = (restrictedRelation, restrictedDomain, restrictedRange).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: EntityUniversalRestrictionAxiom =>
 	    (that canEqual this) &&
-	    (this.tbox == that.tbox) &&
 	    (this.restrictedRelation == that.restrictedRelation) &&
 	    (this.restrictedDomain == that.restrictedDomain) &&
 	    (this.restrictedRange == that.restrictedRange)

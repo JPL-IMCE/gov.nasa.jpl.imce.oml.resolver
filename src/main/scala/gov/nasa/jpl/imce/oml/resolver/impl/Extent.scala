@@ -20,34 +20,23 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class Extent private[impl] 
 (
- override val uuid: java.util.UUID,
- override val annotationProperties: scala.collection.immutable.SortedSet[resolver.api.AnnotationProperty],
- override val modules: scala.collection.immutable.Map[java.util.UUID, resolver.api.Module]
 )
 extends resolver.api.Extent
 {
-  def lookupModule
-  (uuid: scala.Option[java.util.UUID])
-  : scala.Option[resolver.api.Module]
-  = {
-    uuid.map(id => modules.get(id)
-  }
-  
 
 
 
   override val hashCode
   : scala.Int
-  = (uuid, annotationProperties, modules).##
+  = 
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: Extent =>
 	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.annotationProperties == that.annotationProperties) &&
-	    (this.modules == that.modules)
 
 	  case _ =>
 	    false

@@ -20,9 +20,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class ScalarDataPropertyValue private[impl] 
 (
- override val singletonInstance: scala.Option[java.util.UUID] /* reference to a resolver.api.SingletonInstance */,
  override val scalarDataProperty: resolver.api.DataRelationshipToScalar,
  override val name: gov.nasa.jpl.imce.oml.tables.LocalName,
  override val scalarPropertyValue: scala.Predef.String
@@ -40,12 +41,11 @@ extends resolver.api.ScalarDataPropertyValue
 
   override val hashCode
   : scala.Int
-  = (singletonInstance, scalarDataProperty, name, scalarPropertyValue).##
+  = (scalarDataProperty, name, scalarPropertyValue).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: ScalarDataPropertyValue =>
 	    (that canEqual this) &&
-	    (this.singletonInstance == that.singletonInstance) &&
 	    (this.scalarDataProperty == that.scalarDataProperty) &&
 	    (this.name == that.name) &&
 	    (this.scalarPropertyValue == that.scalarPropertyValue)

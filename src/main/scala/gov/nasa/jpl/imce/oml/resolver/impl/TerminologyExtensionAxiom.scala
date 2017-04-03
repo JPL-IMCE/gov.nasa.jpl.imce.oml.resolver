@@ -20,16 +20,17 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class TerminologyExtensionAxiom private[impl] 
 (
- override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val extendedTerminology: resolver.api.TerminologyBox
 )
 extends resolver.api.TerminologyExtensionAxiom
   with TerminologyBoxAxiom
 {
   override def uuid
-  (extent: resolver.api.Extent)
+  ()(implicit extent: Extent)
   : scala.Option[java.util.UUID]
   = {
     
@@ -41,27 +42,27 @@ extends resolver.api.TerminologyExtensionAxiom
   }
   
   def extendingTerminology
-  (extent: resolver.api.Extent)
+  ()(implicit extent: Extent)
   : scala.Option[resolver.api.TerminologyBox]
   = {
-    lookupTerminologyBox(extent, tbox)
+    resolver.OMLOps.lookupTerminologyBox(extent, tbox)
   }
   
   /*
    * The extendingTerminology is the source
    */
   override def source
-  (extent: resolver.api.Extent)
+  ()(implicit extent: Extent)
   : scala.Option[resolver.api.TerminologyBox]
   = {
-    extendingTerminology(extent)
+    extendingTerminology
   }
   
   /*
    * The extendedTerminology is the target
    */
   override def target
-  (extent: resolver.api.Extent)
+  ()(implicit extent: Extent)
   : resolver.api.TerminologyBox
   = {
     extendedTerminology
@@ -77,12 +78,11 @@ extends resolver.api.TerminologyExtensionAxiom
 
   override val hashCode
   : scala.Int
-  = (tbox, extendedTerminology).##
+  = (extendedTerminology).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: TerminologyExtensionAxiom =>
 	    (that canEqual this) &&
-	    (this.tbox == that.tbox) &&
 	    (this.extendedTerminology == that.extendedTerminology)
 
 	  case _ =>

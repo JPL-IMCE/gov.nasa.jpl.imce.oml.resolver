@@ -20,9 +20,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class AspectSpecializationAxiom private[impl] 
 (
- override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val superAspect: resolver.api.Aspect,
  override val subEntity: resolver.api.Entity
 )
@@ -30,7 +31,7 @@ extends resolver.api.AspectSpecializationAxiom
   with SpecializationAxiom
 {
   override def uuid
-  (extent: resolver.api.Extent)
+  ()(implicit extent: Extent)
   : scala.Option[java.util.UUID]
   = {
     
@@ -75,12 +76,11 @@ extends resolver.api.AspectSpecializationAxiom
 
   override val hashCode
   : scala.Int
-  = (tbox, superAspect, subEntity).##
+  = (superAspect, subEntity).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: AspectSpecializationAxiom =>
 	    (that canEqual this) &&
-	    (this.tbox == that.tbox) &&
 	    (this.superAspect == that.superAspect) &&
 	    (this.subEntity == that.subEntity)
 

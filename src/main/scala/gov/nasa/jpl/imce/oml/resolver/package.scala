@@ -23,16 +23,18 @@ package object resolver {
 
   implicit def convertToAnnotations
   (apts: SortedSet[resolver.api.AnnotationPropertyTable])
+  (implicit ex: resolver.api.Extent)
   : SortedSet[resolver.api.Annotation]
   = apts
     .foldLeft[SortedSet[resolver.api.Annotation]](TreeSet.empty[resolver.api.Annotation]) { case (as1, apt) =>
       apt.value.foldLeft[SortedSet[resolver.api.Annotation]](as1) { case (as2, ae) =>
-          as2 + impl.Annotation(module = ae.module, subject=ae.subject, property=apt.key, value=ae.value)
+        as2 + impl.Annotation(module = ae.module.uuid(ex), subject = ae.subject, property = apt.key, value = ae.value)
       }
   }
 
   def groupAnnotationsByProperty
   (as: SortedSet[resolver.api.Annotation])
+  (implicit ex: resolver.api.Extent)
   : SortedSet[resolver.api.AnnotationPropertyTable]
   = as
     .groupBy(_.property)
@@ -44,7 +46,9 @@ package object resolver {
           aes
             .foldLeft[SortedSet[resolver.api.AnnotationEntry]](TreeSet.empty[resolver.api.AnnotationEntry]) {
             case (asi, a) =>
-              asi + resolver.impl.AnnotationEntry(a.module, a.subject, a.value)
+              ex.lookupModule(a.module).fold(asi) { am =>
+                asi + resolver.impl.AnnotationEntry(am, a.subject, a.value)
+              }
           })
   }
 }

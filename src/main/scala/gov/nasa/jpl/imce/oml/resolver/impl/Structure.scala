@@ -20,9 +20,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
+import scala.Predef.ArrowAssoc
+
 case class Structure private[impl] 
 (
- override val tbox: scala.Option[java.util.UUID] /* reference to a resolver.api.TerminologyBox */,
  override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 )
 extends resolver.api.Structure
@@ -39,12 +40,11 @@ extends resolver.api.Structure
 
   override val hashCode
   : scala.Int
-  = (tbox, name).##
+  = (name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: Structure =>
 	    (that canEqual this) &&
-	    (this.tbox == that.tbox) &&
 	    (this.name == that.name)
 
 	  case _ =>

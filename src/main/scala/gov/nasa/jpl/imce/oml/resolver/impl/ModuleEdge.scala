@@ -20,36 +20,15 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-trait Term
-extends resolver.api.Term
-  with TerminologyBoxStatement
-  with Resource
+trait ModuleEdge
+extends resolver.api.ModuleEdge
+  with Element
 {
-  override def iri
-  ()(implicit extent: Extent)
-  : scala.Option[gov.nasa.jpl.imce.oml.tables.IRI]
-  = {
-    extent.lookupModule(tbox).map(m => m.iri + "#" + name)
-  }
-  
-  /*
-   * The UUID of a Term is a Version5 namespace UUID based on the term's IRI.
-   */
-  override def uuid
-  ()(implicit extent: Extent)
-  : scala.Option[java.util.UUID]
-  = {
-    
-    	for {
-    	  iri <- iri(extent)
-    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.uuidFromURL(iri)
-  }
-  
 
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: Term => true
+  	case _: ModuleEdge => true
   	case _ => false
   }
 }

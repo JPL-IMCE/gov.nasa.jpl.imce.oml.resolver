@@ -22,8 +22,15 @@ import gov.nasa.jpl.imce.oml._
 
 trait DescriptionBoxRelationship
 extends resolver.api.DescriptionBoxRelationship
-  with ModuleElement
+  with ModuleEdge
 {
+  def sourceModule
+  ()
+  : resolver.api.Module
+  = {
+    descriptionDomain()
+  }
+  
 
 
 
