@@ -24,6 +24,7 @@ import scala.Predef.ArrowAssoc
 
 case class IRIScalarRestriction private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val restrictedRange: resolver.api.DataRange,
  override val length: scala.Option[scala.Int],
  override val minLength: scala.Option[scala.Int],
@@ -34,20 +35,6 @@ case class IRIScalarRestriction private[impl]
 extends resolver.api.IRIScalarRestriction
   with RestrictedDataRange
 {
-  override def uuid
-  ()(implicit extent: Extent)
-  : scala.Option[java.util.UUID]
-  = {
-    
-    	for {
-    	  u1 <- tbox
-    	  u2 <- restrictedRange.uuid(extent)
-    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
-    		"IRIScalarRestriction",
-    	    "tbox"->u1,
-    		"restrictedRange"->u2)
-  }
-  
 
 
 
@@ -58,11 +45,12 @@ extends resolver.api.IRIScalarRestriction
 
   override val hashCode
   : scala.Int
-  = (restrictedRange, length, minLength, maxLength, name, pattern).##
+  = (uuid, restrictedRange, length, minLength, maxLength, name, pattern).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: IRIScalarRestriction =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.restrictedRange == that.restrictedRange) &&
 	    (this.length == that.length) &&
 	    (this.minLength == that.minLength) &&

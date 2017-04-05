@@ -24,25 +24,12 @@ import scala.Predef.ArrowAssoc
 
 case class BundledTerminologyAxiom private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val bundledTerminology: resolver.api.TerminologyBox
 )
 extends resolver.api.BundledTerminologyAxiom
   with TerminologyBundleAxiom
 {
-  override def uuid
-  ()(implicit extent: Extent)
-  : scala.Option[java.util.UUID]
-  = {
-    
-    	for {
-    	  u1 <- bundle
-    	  u2 <- bundledTerminology.uuid(extent)
-    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
-    		"BundledTerminologyAxiom",
-    	    "bundle"->u1,
-    		"bundledTerminology"->u2)
-  }
-  
   /*
    * The bundle is the source
    */
@@ -73,11 +60,12 @@ extends resolver.api.BundledTerminologyAxiom
 
   override val hashCode
   : scala.Int
-  = (bundledTerminology).##
+  = (uuid, bundledTerminology).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: BundledTerminologyAxiom =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.bundledTerminology == that.bundledTerminology)
 
 	  case _ =>

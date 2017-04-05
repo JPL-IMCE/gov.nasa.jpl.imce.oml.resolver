@@ -10,7 +10,7 @@ object Settings {
 
   val organization = "gov.nasa.jpl.imce"
 
-  val version = "0.22.0"
+  val version = "0.23.0"
 
   val scalacOptions = Seq(
     "-deprecation",
@@ -32,7 +32,7 @@ object Settings {
   )
 
   object versions {
-    val jpl_omf_schema_tables = "0.52.+"
+    val jpl_omf_schema_tables = "0.54.+"
     val scala = "2.11.8"
     val scalaJ8CompatVersion = "0.8.0-RC8"
     val scalaGraphLibraries = "3.4.+"

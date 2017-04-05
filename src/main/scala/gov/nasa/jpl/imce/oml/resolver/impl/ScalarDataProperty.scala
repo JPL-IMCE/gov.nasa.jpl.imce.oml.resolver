@@ -24,6 +24,7 @@ import scala.Predef.ArrowAssoc
 
 case class ScalarDataProperty private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val domain: resolver.api.Structure,
  override val range: resolver.api.DataRange,
  override val name: gov.nasa.jpl.imce.oml.tables.LocalName
@@ -57,11 +58,12 @@ extends resolver.api.ScalarDataProperty
 
   override val hashCode
   : scala.Int
-  = (domain, range, name).##
+  = (uuid, domain, range, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: ScalarDataProperty =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.domain == that.domain) &&
 	    (this.range == that.range) &&
 	    (this.name == that.name)

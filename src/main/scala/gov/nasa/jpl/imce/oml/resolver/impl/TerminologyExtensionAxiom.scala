@@ -24,23 +24,12 @@ import scala.Predef.ArrowAssoc
 
 case class TerminologyExtensionAxiom private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val extendedTerminology: resolver.api.TerminologyBox
 )
 extends resolver.api.TerminologyExtensionAxiom
   with TerminologyBoxAxiom
 {
-  override def uuid
-  ()(implicit extent: Extent)
-  : scala.Option[java.util.UUID]
-  = {
-    
-    	for {
-    	  s <- extent.lookupModule(tbox)
-    	  u1 <- s.uuid(extent)
-        	  u2 <- extendedTerminology.uuid(extent)
-    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID("TerminologyExtensionAxiom","source"->u1,"target"->u2)
-  }
-  
   def extendingTerminology
   ()(implicit extent: Extent)
   : scala.Option[resolver.api.TerminologyBox]
@@ -78,11 +67,12 @@ extends resolver.api.TerminologyExtensionAxiom
 
   override val hashCode
   : scala.Int
-  = (extendedTerminology).##
+  = (uuid, extendedTerminology).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: TerminologyExtensionAxiom =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.extendedTerminology == that.extendedTerminology)
 
 	  case _ =>

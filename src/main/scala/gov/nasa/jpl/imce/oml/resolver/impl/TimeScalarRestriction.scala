@@ -24,6 +24,7 @@ import scala.Predef.ArrowAssoc
 
 case class TimeScalarRestriction private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val restrictedRange: resolver.api.DataRange,
  override val minExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalTime],
  override val minInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalTime],
@@ -34,20 +35,6 @@ case class TimeScalarRestriction private[impl]
 extends resolver.api.TimeScalarRestriction
   with RestrictedDataRange
 {
-  override def uuid
-  ()(implicit extent: Extent)
-  : scala.Option[java.util.UUID]
-  = {
-    
-    	for {
-    	  u1 <- tbox
-    	  u2 <- restrictedRange.uuid(extent)
-    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
-    		"TimeScalarRestriction",
-    	    "tbox"->u1,
-    		"restrictedRange"->u2)
-  }
-  
 
 
 
@@ -58,11 +45,12 @@ extends resolver.api.TimeScalarRestriction
 
   override val hashCode
   : scala.Int
-  = (restrictedRange, minExclusive, minInclusive, maxExclusive, maxInclusive, name).##
+  = (uuid, restrictedRange, minExclusive, minInclusive, maxExclusive, maxInclusive, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: TimeScalarRestriction =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.restrictedRange == that.restrictedRange) &&
 	    (this.minExclusive == that.minExclusive) &&
 	    (this.minInclusive == that.minInclusive) &&

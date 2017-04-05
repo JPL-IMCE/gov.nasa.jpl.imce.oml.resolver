@@ -24,6 +24,7 @@ import scala.Predef.ArrowAssoc
 
 case class DataStructureTuple private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val dataStructureType: resolver.api.Structure,
  override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 )
@@ -40,11 +41,12 @@ extends resolver.api.DataStructureTuple
 
   override val hashCode
   : scala.Int
-  = (dataStructureType, name).##
+  = (uuid, dataStructureType, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: DataStructureTuple =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.dataStructureType == that.dataStructureType) &&
 	    (this.name == that.name)
 

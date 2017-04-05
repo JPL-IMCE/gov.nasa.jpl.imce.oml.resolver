@@ -39,19 +39,6 @@ extends resolver.api.TerminologyInstanceAssertion
     descriptionBox(extent).map(m => m.iri + "#" + name)
   }
   
-  /*
-   * The UUID of a Term is a Version5 namespace UUID based on the terminology instance assertion's IRI.
-   */
-  override def uuid
-  ()(implicit extent: Extent)
-  : scala.Option[java.util.UUID]
-  = {
-    
-    	for {
-    	  iri <- iri(extent)
-    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.uuidFromURL(iri)
-  }
-  
 
 
 

@@ -24,6 +24,7 @@ import scala.Predef.ArrowAssoc
 
 case class EntityStructuredDataProperty private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val domain: resolver.api.Entity,
  override val range: resolver.api.Structure,
  override val isIdentityCriteria: scala.Boolean,
@@ -58,11 +59,12 @@ extends resolver.api.EntityStructuredDataProperty
 
   override val hashCode
   : scala.Int
-  = (domain, range, isIdentityCriteria, name).##
+  = (uuid, domain, range, isIdentityCriteria, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: EntityStructuredDataProperty =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.domain == that.domain) &&
 	    (this.range == that.range) &&
 	    (this.isIdentityCriteria == that.isIdentityCriteria) &&

@@ -24,6 +24,7 @@ import scala.Predef.ArrowAssoc
 
 case class StructuredDataPropertyValue private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val structuredDataProperty: resolver.api.DataRelationshipToStructure,
  override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 )
@@ -40,11 +41,12 @@ extends resolver.api.StructuredDataPropertyValue
 
   override val hashCode
   : scala.Int
-  = (structuredDataProperty, name).##
+  = (uuid, structuredDataProperty, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: StructuredDataPropertyValue =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.structuredDataProperty == that.structuredDataProperty) &&
 	    (this.name == that.name)
 

@@ -24,28 +24,13 @@ import scala.Predef.ArrowAssoc
 
 case class ConceptSpecializationAxiom private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val superConcept: resolver.api.Concept,
  override val subConcept: resolver.api.Concept
 )
 extends resolver.api.ConceptSpecializationAxiom
   with SpecializationAxiom
 {
-  override def uuid
-  ()(implicit extent: Extent)
-  : scala.Option[java.util.UUID]
-  = {
-    
-    	for {
-    	  u1 <- tbox
-    	  u2 <- subConcept.uuid(extent)
-        	  u3 <- superConcept.uuid(extent)
-    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
-    		"ConceptSpecializationAxiom",
-    	    "tbox"->u1,
-    		"subConcept"->u2,
-    		"superConcept"->u3)
-  }
-  
   /*
    * Get the sub (child) entity
    */
@@ -76,11 +61,12 @@ extends resolver.api.ConceptSpecializationAxiom
 
   override val hashCode
   : scala.Int
-  = (superConcept, subConcept).##
+  = (uuid, superConcept, subConcept).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: ConceptSpecializationAxiom =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.superConcept == that.superConcept) &&
 	    (this.subConcept == that.subConcept)
 

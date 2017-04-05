@@ -24,28 +24,13 @@ import scala.Predef.ArrowAssoc
 
 case class ReifiedRelationshipSpecializationAxiom private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val superRelationship: resolver.api.ReifiedRelationship,
  override val subRelationship: resolver.api.ReifiedRelationship
 )
 extends resolver.api.ReifiedRelationshipSpecializationAxiom
   with SpecializationAxiom
 {
-  override def uuid
-  ()(implicit extent: Extent)
-  : scala.Option[java.util.UUID]
-  = {
-    
-    	for {
-    	  u1 <- tbox
-    	  u2 <- subRelationship.uuid(extent)
-        	  u3 <- superRelationship.uuid(extent)
-    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
-    		"ReifiedRelationshipSpecializationAxiom",
-    	    "tbox"->u1,
-    		"subRelationship"->u2,
-    		"superRelationship"->u3)
-  }
-  
   /*
    * Get the sub (child) entity
    */
@@ -76,11 +61,12 @@ extends resolver.api.ReifiedRelationshipSpecializationAxiom
 
   override val hashCode
   : scala.Int
-  = (superRelationship, subRelationship).##
+  = (uuid, superRelationship, subRelationship).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: ReifiedRelationshipSpecializationAxiom =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.superRelationship == that.superRelationship) &&
 	    (this.subRelationship == that.subRelationship)
 

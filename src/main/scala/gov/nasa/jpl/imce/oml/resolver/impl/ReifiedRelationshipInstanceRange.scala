@@ -24,6 +24,7 @@ import scala.Predef.ArrowAssoc
 
 case class ReifiedRelationshipInstanceRange private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val reifiedRelationshipInstance: resolver.api.ReifiedRelationshipInstance,
  override val range: resolver.api.ConceptualEntitySingletonInstance,
  override val name: gov.nasa.jpl.imce.oml.tables.LocalName
@@ -41,11 +42,12 @@ extends resolver.api.ReifiedRelationshipInstanceRange
 
   override val hashCode
   : scala.Int
-  = (reifiedRelationshipInstance, range, name).##
+  = (uuid, reifiedRelationshipInstance, range, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: ReifiedRelationshipInstanceRange =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.reifiedRelationshipInstance == that.reifiedRelationshipInstance) &&
 	    (this.range == that.range) &&
 	    (this.name == that.name)

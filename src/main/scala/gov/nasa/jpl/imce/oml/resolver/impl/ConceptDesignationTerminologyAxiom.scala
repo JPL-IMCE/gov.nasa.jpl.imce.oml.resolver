@@ -24,28 +24,13 @@ import scala.Predef.ArrowAssoc
 
 case class ConceptDesignationTerminologyAxiom private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val designatedConcept: resolver.api.Concept,
  override val designatedTerminology: resolver.api.TerminologyBox
 )
 extends resolver.api.ConceptDesignationTerminologyAxiom
   with TerminologyBoxAxiom
 {
-  override def uuid
-  ()(implicit extent: Extent)
-  : scala.Option[java.util.UUID]
-  = {
-    
-    	for {
-    	  u1 <- tbox
-    	  u2 <- designatedTerminology.uuid(extent)
-    	  u3 <- designatedConcept.uuid(extent)
-    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
-    		"ConceptDesignationTerminologyAxiom",
-    	    "tbox"->u1,
-    		"designatedTerminology"->u2,
-    		"designatedConcept"->u3)
-  }
-  
   def designationTerminologyGraph
   ()(implicit extent: Extent)
   : scala.Option[resolver.api.TerminologyGraph]
@@ -83,11 +68,12 @@ extends resolver.api.ConceptDesignationTerminologyAxiom
 
   override val hashCode
   : scala.Int
-  = (designatedConcept, designatedTerminology).##
+  = (uuid, designatedConcept, designatedTerminology).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: ConceptDesignationTerminologyAxiom =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.designatedConcept == that.designatedConcept) &&
 	    (this.designatedTerminology == that.designatedTerminology)
 

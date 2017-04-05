@@ -24,25 +24,12 @@ import scala.Predef.ArrowAssoc
 
 case class DescriptionBoxExtendsClosedWorldDefinitions private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val closedWorldDefinitions: resolver.api.TerminologyBox
 )
 extends resolver.api.DescriptionBoxExtendsClosedWorldDefinitions
   with DescriptionBoxRelationship
 {
-  override def uuid
-  ()(implicit extent: Extent)
-  : scala.Option[java.util.UUID]
-  = {
-    
-    	for {
-    	  u1 <- descriptionBox
-    	  u2 <- closedWorldDefinitions.uuid(extent)
-    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
-    		"DescriptionBoxExtendsClosedWorldDefinitions",
-    	    "descriptionBox"->u1,
-    		"closedWorldDefinitions"->u2)
-  }
-  
   def descriptionDomain
   ()(implicit extent: Extent)
   : scala.Option[resolver.api.DescriptionBox]
@@ -67,11 +54,12 @@ extends resolver.api.DescriptionBoxExtendsClosedWorldDefinitions
 
   override val hashCode
   : scala.Int
-  = (closedWorldDefinitions).##
+  = (uuid, closedWorldDefinitions).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: DescriptionBoxExtendsClosedWorldDefinitions =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.closedWorldDefinitions == that.closedWorldDefinitions)
 
 	  case _ =>

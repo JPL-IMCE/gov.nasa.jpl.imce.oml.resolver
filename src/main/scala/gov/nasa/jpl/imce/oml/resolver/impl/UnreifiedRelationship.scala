@@ -24,6 +24,7 @@ import scala.Predef.ArrowAssoc
 
 case class UnreifiedRelationship private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val source: resolver.api.Entity,
  override val target: resolver.api.Entity,
  override val isAsymmetric: scala.Boolean,
@@ -50,11 +51,12 @@ extends resolver.api.UnreifiedRelationship
 
   override val hashCode
   : scala.Int
-  = (source, target, isAsymmetric, isEssential, isFunctional, isInverseEssential, isInverseFunctional, isIrreflexive, isReflexive, isSymmetric, isTransitive, name).##
+  = (uuid, source, target, isAsymmetric, isEssential, isFunctional, isInverseEssential, isInverseFunctional, isIrreflexive, isReflexive, isSymmetric, isTransitive, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: UnreifiedRelationship =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.source == that.source) &&
 	    (this.target == that.target) &&
 	    (this.isAsymmetric == that.isAsymmetric) &&

@@ -24,6 +24,7 @@ import scala.Predef.ArrowAssoc
 
 case class UnreifiedRelationshipInstanceTuple private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val unreifiedRelationship: resolver.api.UnreifiedRelationship,
  override val domain: resolver.api.ConceptualEntitySingletonInstance,
  override val range: resolver.api.ConceptualEntitySingletonInstance,
@@ -42,11 +43,12 @@ extends resolver.api.UnreifiedRelationshipInstanceTuple
 
   override val hashCode
   : scala.Int
-  = (unreifiedRelationship, domain, range, name).##
+  = (uuid, unreifiedRelationship, domain, range, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: UnreifiedRelationshipInstanceTuple =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.unreifiedRelationship == that.unreifiedRelationship) &&
 	    (this.domain == that.domain) &&
 	    (this.range == that.range) &&

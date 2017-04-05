@@ -24,28 +24,13 @@ import scala.Predef.ArrowAssoc
 
 case class AspectSpecializationAxiom private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val superAspect: resolver.api.Aspect,
  override val subEntity: resolver.api.Entity
 )
 extends resolver.api.AspectSpecializationAxiom
   with SpecializationAxiom
 {
-  override def uuid
-  ()(implicit extent: Extent)
-  : scala.Option[java.util.UUID]
-  = {
-    
-    	for {
-    	  u1 <- tbox
-    	  u2 <- subEntity.uuid(extent)
-        	  u3 <- superAspect.uuid(extent)
-    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
-    		"AspectSpecializationAxiom",
-    	    "tbox"->u1,
-    		"subEntity"->u2,
-    		"superAspect"->u3)
-  }
-  
   /*
    * Get the sub (child) entity
    */
@@ -76,11 +61,12 @@ extends resolver.api.AspectSpecializationAxiom
 
   override val hashCode
   : scala.Int
-  = (superAspect, subEntity).##
+  = (uuid, superAspect, subEntity).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: AspectSpecializationAxiom =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.superAspect == that.superAspect) &&
 	    (this.subEntity == that.subEntity)
 

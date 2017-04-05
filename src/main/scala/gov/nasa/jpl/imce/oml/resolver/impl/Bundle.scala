@@ -24,6 +24,7 @@ import scala.Predef.ArrowAssoc
 
 case class Bundle private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val kind: gov.nasa.jpl.imce.oml.tables.TerminologyKind,
  override val iri: gov.nasa.jpl.imce.oml.tables.IRI
 )
@@ -47,11 +48,12 @@ extends resolver.api.Bundle
 
   override val hashCode
   : scala.Int
-  = (kind, iri).##
+  = (uuid, kind, iri).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: Bundle =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.kind == that.kind) &&
 	    (this.iri == that.iri)
 

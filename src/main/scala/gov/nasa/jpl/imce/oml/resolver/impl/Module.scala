@@ -25,13 +25,6 @@ extends resolver.api.Module
   with Element
   with Resource
 {
-  override def uuid
-  ()(implicit extent: Extent)
-  : scala.Option[java.util.UUID]
-  = {
-    Some(com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(iri))
-  }
-  
   override def iri
   ()(implicit extent: Extent)
   : scala.Option[gov.nasa.jpl.imce.oml.tables.IRI]

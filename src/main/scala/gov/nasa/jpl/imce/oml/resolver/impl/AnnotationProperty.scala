@@ -24,28 +24,23 @@ import scala.Predef.ArrowAssoc
 
 case class AnnotationProperty private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val iri: gov.nasa.jpl.imce.oml.tables.IRI,
  override val abbrevIRI: gov.nasa.jpl.imce.oml.tables.AbbrevIRI
 )
 extends resolver.api.AnnotationProperty
 {
-  def uuid
-  ()
-  : java.util.UUID
-  = {
-    com.fasterxml.uuid.Generators.nameBasedGenerator(com.fasterxml.uuid.impl.NameBasedGenerator.NAMESPACE_URL).generate(iri)
-  }
-  
 
 
 
   override val hashCode
   : scala.Int
-  = (iri, abbrevIRI).##
+  = (uuid, iri, abbrevIRI).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: AnnotationProperty =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.iri == that.iri) &&
 	    (this.abbrevIRI == that.abbrevIRI)
 

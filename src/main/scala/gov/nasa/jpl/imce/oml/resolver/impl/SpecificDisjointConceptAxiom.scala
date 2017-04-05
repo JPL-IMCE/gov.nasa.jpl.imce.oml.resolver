@@ -24,28 +24,13 @@ import scala.Predef.ArrowAssoc
 
 case class SpecificDisjointConceptAxiom private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val disjointTaxonomyParent: resolver.api.ConceptTreeDisjunction,
  override val disjointLeaf: resolver.api.Concept
 )
 extends resolver.api.SpecificDisjointConceptAxiom
   with DisjointUnionOfConceptsAxiom
 {
-  override def uuid
-  ()(implicit extent: Extent)
-  : scala.Option[java.util.UUID]
-  = {
-    
-    	for {
-    	  u1 <- bundle
-    	  u2 <- disjointTaxonomyParent.uuid(extent)
-    	  u3 <- disjointLeaf.uuid(extent)
-    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
-    		"SpecificDisjointConceptAxiom",
-    	    "bundle"->u1,
-    		"disjointTaxonomyParent"->u2,
-    		"disjointLeaf"->u3)
-  }
-  
 
 
 
@@ -56,11 +41,12 @@ extends resolver.api.SpecificDisjointConceptAxiom
 
   override val hashCode
   : scala.Int
-  = (disjointTaxonomyParent, disjointLeaf).##
+  = (uuid, disjointTaxonomyParent, disjointLeaf).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: SpecificDisjointConceptAxiom =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.disjointTaxonomyParent == that.disjointTaxonomyParent) &&
 	    (this.disjointLeaf == that.disjointLeaf)
 

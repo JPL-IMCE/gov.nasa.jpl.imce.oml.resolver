@@ -24,6 +24,7 @@ import scala.Predef.ArrowAssoc
 
 case class EntityExistentialRestrictionAxiom private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val restrictedRelation: resolver.api.EntityRelationship,
  override val restrictedDomain: resolver.api.Entity,
  override val restrictedRange: resolver.api.Entity
@@ -31,24 +32,6 @@ case class EntityExistentialRestrictionAxiom private[impl]
 extends resolver.api.EntityExistentialRestrictionAxiom
   with EntityRestrictionAxiom
 {
-  override def uuid
-  ()(implicit extent: Extent)
-  : scala.Option[java.util.UUID]
-  = {
-    
-    	for {
-    	  u1 <- tbox
-    	  u2 <- restrictedDomain.uuid(extent)
-        	  u3 <- restrictedRelation.uuid(extent)
-    	  u4 <- restrictedRange.uuid(extent)
-    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
-    		"EntityExistentialRestrictionAxiom",
-    	    "tbox"->u1,
-    		"restrictedDomain"->u2,
-    		"restrictedRelation"->u3,
-    		"restrictedRange"->u4)
-  }
-  
 
 
 
@@ -59,11 +42,12 @@ extends resolver.api.EntityExistentialRestrictionAxiom
 
   override val hashCode
   : scala.Int
-  = (restrictedRelation, restrictedDomain, restrictedRange).##
+  = (uuid, restrictedRelation, restrictedDomain, restrictedRange).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: EntityExistentialRestrictionAxiom =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.restrictedRelation == that.restrictedRelation) &&
 	    (this.restrictedDomain == that.restrictedDomain) &&
 	    (this.restrictedRange == that.restrictedRange)

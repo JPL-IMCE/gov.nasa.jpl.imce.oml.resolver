@@ -24,6 +24,7 @@ import scala.Predef.ArrowAssoc
 
 case class Scalar private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 )
 extends resolver.api.Scalar
@@ -40,11 +41,12 @@ extends resolver.api.Scalar
 
   override val hashCode
   : scala.Int
-  = (name).##
+  = (uuid, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: Scalar =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.name == that.name)
 
 	  case _ =>

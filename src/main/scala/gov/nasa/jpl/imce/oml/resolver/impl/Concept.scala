@@ -24,6 +24,7 @@ import scala.Predef.ArrowAssoc
 
 case class Concept private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 )
 extends resolver.api.Concept
@@ -41,11 +42,12 @@ extends resolver.api.Concept
 
   override val hashCode
   : scala.Int
-  = (name).##
+  = (uuid, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: Concept =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.name == that.name)
 
 	  case _ =>

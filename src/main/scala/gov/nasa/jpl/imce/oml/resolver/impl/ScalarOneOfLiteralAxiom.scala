@@ -24,27 +24,13 @@ import scala.Predef.ArrowAssoc
 
 case class ScalarOneOfLiteralAxiom private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val axiom: resolver.api.ScalarOneOfRestriction,
  override val value: gov.nasa.jpl.imce.oml.tables.LexicalValue
 )
 extends resolver.api.ScalarOneOfLiteralAxiom
   with TermAxiom
 {
-  override def uuid
-  ()(implicit extent: Extent)
-  : scala.Option[java.util.UUID]
-  = {
-    
-    	for {
-    	  u1 <- tbox
-    	  u2 <- axiom.uuid(extent)
-    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
-    		"ScalarOneOfLiteralAxiom",
-    	    "tbox"->u1,
-    		"axiom"->u2,
-    		"value"->value)
-  }
-  
 
 
 
@@ -55,11 +41,12 @@ extends resolver.api.ScalarOneOfLiteralAxiom
 
   override val hashCode
   : scala.Int
-  = (axiom, value).##
+  = (uuid, axiom, value).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: ScalarOneOfLiteralAxiom =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.axiom == that.axiom) &&
 	    (this.value == that.value)
 

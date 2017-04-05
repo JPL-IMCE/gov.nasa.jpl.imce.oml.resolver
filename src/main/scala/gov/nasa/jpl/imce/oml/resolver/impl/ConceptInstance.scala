@@ -24,6 +24,7 @@ import scala.Predef.ArrowAssoc
 
 case class ConceptInstance private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val singletonConceptClassifier: resolver.api.Concept,
  override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 )
@@ -47,11 +48,12 @@ extends resolver.api.ConceptInstance
 
   override val hashCode
   : scala.Int
-  = (singletonConceptClassifier, name).##
+  = (uuid, singletonConceptClassifier, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: ConceptInstance =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.singletonConceptClassifier == that.singletonConceptClassifier) &&
 	    (this.name == that.name)
 

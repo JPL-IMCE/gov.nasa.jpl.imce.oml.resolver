@@ -24,26 +24,13 @@ import scala.Predef.ArrowAssoc
 
 case class RootConceptTaxonomyAxiom private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val root: resolver.api.Concept
 )
 extends resolver.api.RootConceptTaxonomyAxiom
   with TerminologyBundleStatement
   with ConceptTreeDisjunction
 {
-  override def uuid
-  ()(implicit extent: Extent)
-  : scala.Option[java.util.UUID]
-  = {
-    
-    	for {
-    	  u1 <- bundle
-    	  u2 <- root.uuid(extent)
-    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
-    		"RootConceptTaxonomyAxiom",
-    	    "bundle"->u1,
-    		"root"->u2)
-  }
-  
 
 
 
@@ -54,11 +41,12 @@ extends resolver.api.RootConceptTaxonomyAxiom
 
   override val hashCode
   : scala.Int
-  = (root).##
+  = (uuid, root).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: RootConceptTaxonomyAxiom =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.root == that.root)
 
 	  case _ =>

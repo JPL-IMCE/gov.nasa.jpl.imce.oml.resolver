@@ -24,28 +24,13 @@ import scala.Predef.ArrowAssoc
 
 case class TerminologyNestingAxiom private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val nestingTerminology: resolver.api.TerminologyBox,
  override val nestingContext: resolver.api.Concept
 )
 extends resolver.api.TerminologyNestingAxiom
   with TerminologyBoxAxiom
 {
-  override def uuid
-  ()(implicit extent: Extent)
-  : scala.Option[java.util.UUID]
-  = {
-    
-    	for {
-    	  u1 <- tbox
-    	  u2 <- nestingTerminology.uuid(extent)
-    	  u3 <- nestingContext.uuid(extent)
-    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
-    		"TerminologyNestingAxiom",
-    	    "tbox"->u1,
-    		"nestingTerminology"->u2,
-    		"nestingContext"->u3)
-  }
-  
   def nestedTerminology
   ()(implicit extent: Extent)
   : scala.Option[resolver.api.TerminologyGraph]
@@ -83,11 +68,12 @@ extends resolver.api.TerminologyNestingAxiom
 
   override val hashCode
   : scala.Int
-  = (nestingTerminology, nestingContext).##
+  = (uuid, nestingTerminology, nestingContext).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: TerminologyNestingAxiom =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.nestingTerminology == that.nestingTerminology) &&
 	    (this.nestingContext == that.nestingContext)
 

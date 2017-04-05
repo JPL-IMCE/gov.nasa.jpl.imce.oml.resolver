@@ -24,25 +24,12 @@ import scala.Predef.ArrowAssoc
 
 case class DescriptionBoxRefinement private[impl] 
 (
+ override val uuid: java.util.UUID,
  override val refinedDescriptionBox: resolver.api.DescriptionBox
 )
 extends resolver.api.DescriptionBoxRefinement
   with DescriptionBoxRelationship
 {
-  override def uuid
-  ()(implicit extent: Extent)
-  : scala.Option[java.util.UUID]
-  = {
-    
-    	for {
-    	  u1 <- refiningDescriptionBox
-    	  u2 <- refinedDescriptionBox.uuid(extent)
-    	} yield gov.nasa.jpl.imce.oml.uuid.OMLUUIDGenerator.derivedUUID(
-    		"DescriptionBoxRefinement",
-    	    "refiningDescriptionBox"->u1,
-    		"refinedDescriptionBox"->u2)
-  }
-  
   def descriptionDomain
   ()(implicit extent: Extent)
   : scala.Option[resolver.api.DescriptionBox]
@@ -67,11 +54,12 @@ extends resolver.api.DescriptionBoxRefinement
 
   override val hashCode
   : scala.Int
-  = (refinedDescriptionBox).##
+  = (uuid, refinedDescriptionBox).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: DescriptionBoxRefinement =>
 	    (that canEqual this) &&
+	    (this.uuid == that.uuid) &&
 	    (this.refinedDescriptionBox == that.refinedDescriptionBox)
 
 	  case _ =>
