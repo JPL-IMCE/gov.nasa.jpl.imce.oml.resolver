@@ -20,8 +20,6 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-import scala.Predef.ArrowAssoc
-
 case class DataStructureTuple private[impl] 
 (
  override val uuid: java.util.UUID,
@@ -31,6 +29,14 @@ case class DataStructureTuple private[impl]
 extends resolver.api.DataStructureTuple
   with SingletonInstance
 {
+		
+  def descriptionBox
+  ()(implicit extent: resolver.api.Extent)
+  : scala.Option[resolver.api.DescriptionBox]
+  = {
+    extent.structuredDataPropertyValueOfDataStructureTuple.get(this).flatMap(_.descriptionBox())
+  }
+  
 
 
 

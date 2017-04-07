@@ -24,6 +24,7 @@ trait Entity
 extends resolver.api.Entity
   with Term
 {
+		
 
 
 

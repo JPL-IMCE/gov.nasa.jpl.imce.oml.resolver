@@ -20,8 +20,6 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-import scala.Predef.ArrowAssoc
-
 case class UnreifiedRelationship private[impl] 
 (
  override val uuid: java.util.UUID,
@@ -41,6 +39,7 @@ case class UnreifiedRelationship private[impl]
 extends resolver.api.UnreifiedRelationship
   with EntityRelationship
 {
+		
 
 
 

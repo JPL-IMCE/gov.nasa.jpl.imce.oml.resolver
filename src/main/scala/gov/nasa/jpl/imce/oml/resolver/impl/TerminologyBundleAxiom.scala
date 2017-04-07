@@ -24,6 +24,7 @@ trait TerminologyBundleAxiom
 extends resolver.api.TerminologyBundleAxiom
   with TerminologyAxiom
 {
+		
 
 
 

@@ -25,11 +25,13 @@ extends resolver.api.Term
   with TerminologyBoxStatement
   with Resource
 {
+override val name: gov.nasa.jpl.imce.oml.tables.LocalName
+		
   override def iri
-  ()(implicit extent: Extent)
+  ()(implicit extent: resolver.api.Extent)
   : scala.Option[gov.nasa.jpl.imce.oml.tables.IRI]
   = {
-    extent.lookupModule(tbox).map(m => m.iri + "#" + name)
+    extent.terminologyBoxOfTerminologyBoxStatement.get(this).flatMap(_.iri())
   }
   
 

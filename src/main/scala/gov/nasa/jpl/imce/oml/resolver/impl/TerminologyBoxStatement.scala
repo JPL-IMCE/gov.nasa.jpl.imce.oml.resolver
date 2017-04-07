@@ -24,6 +24,7 @@ trait TerminologyBoxStatement
 extends resolver.api.TerminologyBoxStatement
   with ModuleElement
 {
+		
 
 
 

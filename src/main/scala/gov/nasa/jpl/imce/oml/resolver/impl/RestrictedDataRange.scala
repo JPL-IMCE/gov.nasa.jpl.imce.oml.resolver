@@ -24,6 +24,11 @@ trait RestrictedDataRange
 extends resolver.api.RestrictedDataRange
   with DataRange
 {
+/*
+   * The restricted (general) data range of this data range (specific)
+   */
+  override val restrictedRange: resolver.api.DataRange
+		
 
 
 

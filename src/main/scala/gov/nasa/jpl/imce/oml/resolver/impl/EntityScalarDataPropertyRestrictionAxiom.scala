@@ -24,6 +24,9 @@ trait EntityScalarDataPropertyRestrictionAxiom
 extends resolver.api.EntityScalarDataPropertyRestrictionAxiom
   with TermAxiom
 {
+override val restrictedEntity: resolver.api.Entity
+  override val scalarProperty: resolver.api.EntityScalarDataProperty
+		
 
 
 

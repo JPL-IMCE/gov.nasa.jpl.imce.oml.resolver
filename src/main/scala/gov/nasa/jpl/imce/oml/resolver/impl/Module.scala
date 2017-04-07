@@ -25,11 +25,13 @@ extends resolver.api.Module
   with Element
   with Resource
 {
+override val iri: gov.nasa.jpl.imce.oml.tables.IRI
+		
   override def iri
-  ()(implicit extent: Extent)
+  ()(implicit extent: resolver.api.Extent)
   : scala.Option[gov.nasa.jpl.imce.oml.tables.IRI]
   = {
-    Some(iri)
+    scala.Some(iri)
   }
   
   def nsPrefix

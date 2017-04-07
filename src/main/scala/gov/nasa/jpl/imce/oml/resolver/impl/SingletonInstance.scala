@@ -24,6 +24,7 @@ trait SingletonInstance
 extends resolver.api.SingletonInstance
   with TerminologyInstanceAssertion
 {
+		
 
 
 

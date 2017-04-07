@@ -20,8 +20,6 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-import scala.Predef.ArrowAssoc
-
 case class EntityExistentialRestrictionAxiom private[impl] 
 (
  override val uuid: java.util.UUID,
@@ -32,6 +30,7 @@ case class EntityExistentialRestrictionAxiom private[impl]
 extends resolver.api.EntityExistentialRestrictionAxiom
   with EntityRestrictionAxiom
 {
+		
 
 
 

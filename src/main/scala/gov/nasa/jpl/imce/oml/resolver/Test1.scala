@@ -20,6 +20,7 @@ package gov.nasa.jpl.imce.oml.resolver
 import java.io.File
 import java.lang.System
 
+import gov.nasa.jpl.imce.oml.uuid.JVMUUIDGenerator
 import gov.nasa.jpl.imce.oml.tables.OMLSpecificationTables
 
 import scala.{Array, StringContext, Unit}
@@ -45,7 +46,8 @@ object Test1 {
 
   def run(omfSchemaJsonZipFile: String): Unit = {
 
-    val factory = impl.OMLResolvedFactoryImpl()
+    val oug = JVMUUIDGenerator()
+    val factory = impl.OMLResolvedFactoryImpl(oug)
 
     val result =
       for {

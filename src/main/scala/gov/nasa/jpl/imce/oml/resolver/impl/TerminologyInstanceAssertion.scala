@@ -25,18 +25,13 @@ extends resolver.api.TerminologyInstanceAssertion
   with ModuleElement
   with Resource
 {
-  def descriptionBox
-  ()(implicit extent: Extent)
-  : scala.Option[resolver.api.DescriptionBox]
-  = {
-    resolver.OMLOps.lookupDescriptionBox(extent, descriptionBox())
-  }
-  
+override val name: gov.nasa.jpl.imce.oml.tables.LocalName
+		
   override def iri
-  ()(implicit extent: Extent)
+  ()(implicit extent: resolver.api.Extent)
   : scala.Option[gov.nasa.jpl.imce.oml.tables.IRI]
   = {
-    descriptionBox(extent).map(m => m.iri + "#" + name)
+    descriptionBox().flatMap(_.iri())
   }
   
 

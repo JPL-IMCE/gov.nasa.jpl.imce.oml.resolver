@@ -20,8 +20,6 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-import scala.Predef.ArrowAssoc
-
 case class UnreifiedRelationshipInstanceTuple private[impl] 
 (
  override val uuid: java.util.UUID,
@@ -33,6 +31,14 @@ case class UnreifiedRelationshipInstanceTuple private[impl]
 extends resolver.api.UnreifiedRelationshipInstanceTuple
   with TerminologyInstanceAssertion
 {
+		
+  def descriptionBox
+  ()(implicit extent: resolver.api.Extent)
+  : scala.Option[resolver.api.DescriptionBox]
+  = {
+    extent.descriptionBoxOfUnreifiedRelationshipInstanceTuple.get(this)
+  }
+  
 
 
 

@@ -24,6 +24,8 @@ trait DataRelationshipToScalar
 extends resolver.api.DataRelationshipToScalar
   with DataRelationshipRange
 {
+override val range: resolver.api.DataRange
+		
 
 
 }

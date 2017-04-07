@@ -20,8 +20,6 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-import scala.Predef.ArrowAssoc
-
 case class TerminologyNestingAxiom private[impl] 
 (
  override val uuid: java.util.UUID,
@@ -31,28 +29,32 @@ case class TerminologyNestingAxiom private[impl]
 extends resolver.api.TerminologyNestingAxiom
   with TerminologyBoxAxiom
 {
+		
   def nestedTerminology
-  ()(implicit extent: Extent)
+  ()(implicit extent: resolver.api.Extent)
   : scala.Option[resolver.api.TerminologyGraph]
   = {
-    resolver.OMLOps.lookupTerminologyGraph(extent, tbox)
+    extent.terminologyBoxOfTerminologyBoxAxiom.get(this) match {
+          case scala.Some(g: resolver.api.TerminologyGraph) => scala.Some(g)
+          case _ => scala.None
+        }
   }
   
   /*
    * The nestedTerminology is the source
    */
   override def source
-  ()(implicit extent: Extent)
+  ()(implicit extent: resolver.api.Extent)
   : scala.Option[resolver.api.TerminologyBox]
   = {
-    nestedTerminology(extent)
+    nestedTerminology()
   }
   
   /*
    * The nestingTerminology is the target
    */
   override def target
-  ()(implicit extent: Extent)
+  ()(implicit extent: resolver.api.Extent)
   : resolver.api.TerminologyBox
   = {
     nestingTerminology

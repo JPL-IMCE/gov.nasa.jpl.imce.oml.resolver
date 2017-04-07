@@ -24,6 +24,10 @@ trait EntityRestrictionAxiom
 extends resolver.api.EntityRestrictionAxiom
   with TermAxiom
 {
+override val restrictedRelation: resolver.api.EntityRelationship
+  override val restrictedRange: resolver.api.Entity
+  override val restrictedDomain: resolver.api.Entity
+		
 
 
 

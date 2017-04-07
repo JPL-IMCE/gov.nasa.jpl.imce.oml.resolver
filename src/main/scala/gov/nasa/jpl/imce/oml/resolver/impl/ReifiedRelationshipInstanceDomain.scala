@@ -20,8 +20,6 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-import scala.Predef.ArrowAssoc
-
 case class ReifiedRelationshipInstanceDomain private[impl] 
 (
  override val uuid: java.util.UUID,
@@ -32,6 +30,14 @@ case class ReifiedRelationshipInstanceDomain private[impl]
 extends resolver.api.ReifiedRelationshipInstanceDomain
   with TerminologyInstanceAssertion
 {
+		
+  def descriptionBox
+  ()(implicit extent: resolver.api.Extent)
+  : scala.Option[resolver.api.DescriptionBox]
+  = {
+    extent.descriptionBoxOfReifiedRelationshipInstanceDomain.get(this)
+  }
+  
 
 
 

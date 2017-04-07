@@ -24,13 +24,8 @@ trait TerminologyBox
 extends resolver.api.TerminologyBox
   with Module
 {
-  override def everything
-  ()
-  : scala.collection.immutable.Set[_ <: resolver.api.Element]
-  = {
-    scala.collection.immutable.HashSet.empty[resolver.api.Element] ++ boxStatements + this
-  }
-  
+override val kind: gov.nasa.jpl.imce.oml.tables.TerminologyKind
+		
 
 
 

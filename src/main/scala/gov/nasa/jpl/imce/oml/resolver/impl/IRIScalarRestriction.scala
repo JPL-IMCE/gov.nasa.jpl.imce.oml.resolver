@@ -20,8 +20,6 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-import scala.Predef.ArrowAssoc
-
 case class IRIScalarRestriction private[impl] 
 (
  override val uuid: java.util.UUID,
@@ -35,6 +33,7 @@ case class IRIScalarRestriction private[impl]
 extends resolver.api.IRIScalarRestriction
   with RestrictedDataRange
 {
+		
 
 
 

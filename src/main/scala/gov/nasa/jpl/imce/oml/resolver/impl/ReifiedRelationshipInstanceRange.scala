@@ -20,8 +20,6 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-import scala.Predef.ArrowAssoc
-
 case class ReifiedRelationshipInstanceRange private[impl] 
 (
  override val uuid: java.util.UUID,
@@ -32,6 +30,14 @@ case class ReifiedRelationshipInstanceRange private[impl]
 extends resolver.api.ReifiedRelationshipInstanceRange
   with TerminologyInstanceAssertion
 {
+		
+  def descriptionBox
+  ()(implicit extent: resolver.api.Extent)
+  : scala.Option[resolver.api.DescriptionBox]
+  = {
+    extent.descriptionBoxOfReifiedRelationshipInstanceRange.get(this)
+  }
+  
 
 
 

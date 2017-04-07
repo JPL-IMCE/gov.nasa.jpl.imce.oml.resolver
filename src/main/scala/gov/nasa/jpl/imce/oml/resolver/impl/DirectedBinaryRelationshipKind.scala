@@ -23,6 +23,7 @@ import gov.nasa.jpl.imce.oml._
 trait DirectedBinaryRelationshipKind
 extends resolver.api.DirectedBinaryRelationshipKind
 {
+		
 
 
 }

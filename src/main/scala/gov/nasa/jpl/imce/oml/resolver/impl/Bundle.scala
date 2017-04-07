@@ -20,8 +20,6 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-import scala.Predef.ArrowAssoc
-
 case class Bundle private[impl] 
 (
  override val uuid: java.util.UUID,
@@ -31,13 +29,7 @@ case class Bundle private[impl]
 extends resolver.api.Bundle
   with TerminologyBox
 {
-  override def everything
-  ()
-  : scala.collection.immutable.Set[_ <: resolver.api.Element]
-  = {
-    super.everything() ++ bundleStatements + this
-  }
-  
+		
 
 
 

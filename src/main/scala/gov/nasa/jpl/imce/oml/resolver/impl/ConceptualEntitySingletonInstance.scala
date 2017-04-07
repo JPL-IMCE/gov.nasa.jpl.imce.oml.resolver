@@ -24,30 +24,29 @@ trait ConceptualEntitySingletonInstance
 extends resolver.api.ConceptualEntitySingletonInstance
   with SingletonInstance
 {
+		
   def identifyingScalarValues
-  ()
+  ()(implicit extent: resolver.api.Extent)
   : scala.collection.immutable.Set[_ <: resolver.api.ScalarDataPropertyValue]
   = {
-    scalarDataPropertyValues.filter{ v =>
-    	  v.scalarDataProperty match {
-    	    case ep: EntityScalarDataProperty =>
-    		  ep.isIdentityCriteria
-    	    case _ =>
-    	      false
-    	  }}
+    extent.scalarDataPropertyValues.getOrElse(this, scala.collection.immutable.Set.empty[resolver.api.ScalarDataPropertyValue]).filter {
+          case ep: EntityScalarDataProperty =>
+            ep.isIdentityCriteria
+          case _ =>
+            false
+        }
   }
   
   def identifyingStructuredTuples
-  ()
+  ()(implicit extent: resolver.api.Extent)
   : scala.collection.immutable.Set[_ <: resolver.api.StructuredDataPropertyValue]
   = {
-    structuredDataPropertyValues.filter{ v =>
-    	  v.structuredDataProperty match {
-    	    case ep: EntityStructuredDataProperty =>
-    		  ep.isIdentityCriteria
-    	    case _ =>
-    	      false
-    	  }}
+    extent.structuredDataPropertyValues.getOrElse(this, scala.collection.immutable.Set.empty[resolver.api.StructuredDataPropertyValue]).filter {
+          case ep: EntityStructuredDataProperty =>
+            ep.isIdentityCriteria
+          case _ =>
+            false
+        }
   }
   
 

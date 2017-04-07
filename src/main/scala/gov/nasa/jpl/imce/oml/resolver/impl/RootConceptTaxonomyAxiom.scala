@@ -20,8 +20,6 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-import scala.Predef.ArrowAssoc
-
 case class RootConceptTaxonomyAxiom private[impl] 
 (
  override val uuid: java.util.UUID,
@@ -31,6 +29,7 @@ extends resolver.api.RootConceptTaxonomyAxiom
   with TerminologyBundleStatement
   with ConceptTreeDisjunction
 {
+		
 
 
 

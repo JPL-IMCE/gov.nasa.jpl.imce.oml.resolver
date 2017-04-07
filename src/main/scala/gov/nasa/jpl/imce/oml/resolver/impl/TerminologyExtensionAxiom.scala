@@ -20,8 +20,6 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-import scala.Predef.ArrowAssoc
-
 case class TerminologyExtensionAxiom private[impl] 
 (
  override val uuid: java.util.UUID,
@@ -30,28 +28,29 @@ case class TerminologyExtensionAxiom private[impl]
 extends resolver.api.TerminologyExtensionAxiom
   with TerminologyBoxAxiom
 {
+		
   def extendingTerminology
-  ()(implicit extent: Extent)
+  ()(implicit extent: resolver.api.Extent)
   : scala.Option[resolver.api.TerminologyBox]
   = {
-    resolver.OMLOps.lookupTerminologyBox(extent, tbox)
+    extent.terminologyBoxOfTerminologyBoxAxiom.get(this)
   }
   
   /*
    * The extendingTerminology is the source
    */
   override def source
-  ()(implicit extent: Extent)
+  ()(implicit extent: resolver.api.Extent)
   : scala.Option[resolver.api.TerminologyBox]
   = {
-    extendingTerminology
+    extendingTerminology()
   }
   
   /*
    * The extendedTerminology is the target
    */
   override def target
-  ()(implicit extent: Extent)
+  ()(implicit extent: resolver.api.Extent)
   : resolver.api.TerminologyBox
   = {
     extendedTerminology

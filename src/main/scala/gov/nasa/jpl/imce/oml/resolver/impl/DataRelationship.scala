@@ -25,6 +25,7 @@ extends resolver.api.DataRelationship
   with Term
   with DirectedBinaryRelationshipKind
 {
+		
   override def relationDomain
   ()
   : resolver.api.Term

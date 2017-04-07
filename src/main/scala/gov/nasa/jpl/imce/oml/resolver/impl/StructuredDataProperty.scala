@@ -20,8 +20,6 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-import scala.Predef.ArrowAssoc
-
 case class StructuredDataProperty private[impl] 
 (
  override val uuid: java.util.UUID,
@@ -34,6 +32,7 @@ extends resolver.api.StructuredDataProperty
   with DataRelationshipFromStructure
   with DataRelationshipToStructure
 {
+		
   override def source
   ()
   : resolver.api.Term

@@ -24,6 +24,7 @@ trait TermAxiom
 extends resolver.api.TermAxiom
   with TerminologyBoxStatement
 {
+		
 
 
 

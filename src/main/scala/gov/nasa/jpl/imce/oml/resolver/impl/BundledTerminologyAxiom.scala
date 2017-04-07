@@ -20,8 +20,6 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-import scala.Predef.ArrowAssoc
-
 case class BundledTerminologyAxiom private[impl] 
 (
  override val uuid: java.util.UUID,
@@ -30,21 +28,22 @@ case class BundledTerminologyAxiom private[impl]
 extends resolver.api.BundledTerminologyAxiom
   with TerminologyBundleAxiom
 {
+		
   /*
    * The bundle is the source
    */
   override def source
-  ()(implicit extent: Extent)
+  ()(implicit extent: resolver.api.Extent)
   : scala.Option[resolver.api.TerminologyBox]
   = {
-    resolver.OMLOps.lookupBundle(extent, bundle)
+    extent.bundleOfTerminologyBundleAxiom.get(this)
   }
   
   /*
    * The bundledTerminology is the target
    */
   override def target
-  ()(implicit extent: Extent)
+  ()(implicit extent: resolver.api.Extent)
   : resolver.api.TerminologyBox
   = {
     bundledTerminology

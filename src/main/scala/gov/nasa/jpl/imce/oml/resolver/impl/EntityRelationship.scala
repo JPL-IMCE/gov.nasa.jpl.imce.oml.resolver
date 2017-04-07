@@ -25,6 +25,45 @@ extends resolver.api.EntityRelationship
   with Term
   with DirectedBinaryRelationshipKind
 {
+override val source: resolver.api.Entity
+  override val target: resolver.api.Entity
+  /*
+   * 0 <= target.size <= 1
+   */
+  override val isFunctional: scala.Boolean
+  /*
+   * 0 <= source.size <= 1
+   */
+  override val isInverseFunctional: scala.Boolean
+  /*
+   * 1 <= target.size
+   */
+  override val isEssential: scala.Boolean
+  /*
+   * 1 <= source.size
+   */
+  override val isInverseEssential: scala.Boolean
+  /*
+   * Whether this relationship is symmetric
+   */
+  override val isSymmetric: scala.Boolean
+  /*
+   * Whether this relationship is asymmetric
+   */
+  override val isAsymmetric: scala.Boolean
+  /*
+   * Whether this relationship is reflexive
+   */
+  override val isReflexive: scala.Boolean
+  /*
+   * Whether this relationship is irreflexive
+   */
+  override val isIrreflexive: scala.Boolean
+  /*
+   * Whether this relationship is transitive
+   */
+  override val isTransitive: scala.Boolean
+		
   override def relationDomain
   ()
   : resolver.api.Term

@@ -20,8 +20,6 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-import scala.Predef.ArrowAssoc
-
 case class ConceptInstance private[impl] 
 (
  override val uuid: java.util.UUID,
@@ -31,11 +29,19 @@ case class ConceptInstance private[impl]
 extends resolver.api.ConceptInstance
   with ConceptualEntitySingletonInstance
 {
+		
   override def conceptualEntitySingletonClassifier
   ()
   : resolver.api.ConceptualEntity
   = {
     singletonConceptClassifier
+  }
+  
+  def descriptionBox
+  ()(implicit extent: resolver.api.Extent)
+  : scala.Option[resolver.api.DescriptionBox]
+  = {
+    extent.descriptionBoxOfConceptInstance.get(this)
   }
   
 

@@ -24,6 +24,7 @@ trait TerminologyBundleStatement
 extends resolver.api.TerminologyBundleStatement
   with ModuleElement
 {
+		
 
 
 

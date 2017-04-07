@@ -24,15 +24,16 @@ trait TerminologyAxiom
 extends resolver.api.TerminologyAxiom
   with ModuleEdge
 {
+		
   def sourceModule
-  ()
-  : resolver.api.Module
+  ()(implicit extent: resolver.api.Extent)
+  : scala.Option[resolver.api.Module]
   = {
     source()
   }
   
   def targetModule
-  ()
+  ()(implicit extent: resolver.api.Extent)
   : resolver.api.Module
   = {
     target()

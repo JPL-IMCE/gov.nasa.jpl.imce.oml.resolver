@@ -23,6 +23,8 @@ import gov.nasa.jpl.imce.oml._
 trait Element
 extends resolver.api.Element
 {
+override val uuid: java.util.UUID
+		
 
 
 }

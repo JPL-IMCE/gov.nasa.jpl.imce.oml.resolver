@@ -20,8 +20,6 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-import scala.Predef.ArrowAssoc
-
 case class ConceptDesignationTerminologyAxiom private[impl] 
 (
  override val uuid: java.util.UUID,
@@ -31,28 +29,32 @@ case class ConceptDesignationTerminologyAxiom private[impl]
 extends resolver.api.ConceptDesignationTerminologyAxiom
   with TerminologyBoxAxiom
 {
+		
   def designationTerminologyGraph
-  ()(implicit extent: Extent)
+  ()(implicit extent: resolver.api.Extent)
   : scala.Option[resolver.api.TerminologyGraph]
   = {
-    resolver.OMLOps.lookupTerminologyGraph(extent, tbox)
+    extent.terminologyBoxOfTerminologyBoxAxiom.get(this) match {
+          case scala.Some(g: resolver.api.TerminologyGraph) => scala.Some(g)
+          case _ => scala.None
+        }
   }
   
   /*
    * The designationTerminologyGraph is the source
    */
   override def source
-  ()(implicit extent: Extent)
+  ()(implicit extent: resolver.api.Extent)
   : scala.Option[resolver.api.TerminologyBox]
   = {
-    designationTerminologyGraph(extent)
+    designationTerminologyGraph()
   }
   
   /*
    * The TerminologyBox that asserts the designatedConcept is the target
    */
   override def target
-  ()(implicit extent: Extent)
+  ()(implicit extent: resolver.api.Extent)
   : resolver.api.TerminologyBox
   = {
     designatedTerminology

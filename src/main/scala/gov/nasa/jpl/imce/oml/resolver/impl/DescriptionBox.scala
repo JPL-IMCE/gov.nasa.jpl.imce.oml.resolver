@@ -20,8 +20,6 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-import scala.Predef.ArrowAssoc
-
 case class DescriptionBox private[impl] 
 (
  override val uuid: java.util.UUID,
@@ -31,19 +29,7 @@ case class DescriptionBox private[impl]
 extends resolver.api.DescriptionBox
   with Module
 {
-  override def everything
-  ()
-  : scala.collection.immutable.Set[_ <: resolver.api.Element]
-  = {
-    scala.collection.immutable.HashSet.empty[resolver.api.Element] ++ 
-    	conceptInstances ++
-    	reifiedRelationshipInstances ++ 
-    	reifiedRelationshipInstanceDomains ++ 
-    	reifiedRelationshipInstanceRanges ++ 
-    	unreifiedRelationshipInstanceTuples + 
-    	this
-  }
-  
+		
 
 
 

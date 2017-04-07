@@ -24,9 +24,10 @@ trait DescriptionBoxRelationship
 extends resolver.api.DescriptionBoxRelationship
   with ModuleEdge
 {
+		
   def sourceModule
-  ()
-  : resolver.api.Module
+  ()(implicit extent: resolver.api.Extent)
+  : scala.Option[resolver.api.Module]
   = {
     descriptionDomain()
   }

@@ -24,6 +24,7 @@ trait DataRange
 extends resolver.api.DataRange
   with Datatype
 {
+		
 
 
 

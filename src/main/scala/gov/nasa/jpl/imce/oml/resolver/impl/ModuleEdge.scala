@@ -24,6 +24,7 @@ trait ModuleEdge
 extends resolver.api.ModuleEdge
   with Element
 {
+		
 
 
 

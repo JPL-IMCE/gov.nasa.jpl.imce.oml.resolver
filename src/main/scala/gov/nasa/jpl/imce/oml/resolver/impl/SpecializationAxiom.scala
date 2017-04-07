@@ -24,6 +24,7 @@ trait SpecializationAxiom
 extends resolver.api.SpecializationAxiom
   with TermAxiom
 {
+		
 
 
 

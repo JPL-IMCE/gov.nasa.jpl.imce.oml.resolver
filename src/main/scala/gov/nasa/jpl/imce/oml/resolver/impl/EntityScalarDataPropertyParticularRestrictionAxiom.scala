@@ -20,8 +20,6 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-import scala.Predef.ArrowAssoc
-
 case class EntityScalarDataPropertyParticularRestrictionAxiom private[impl] 
 (
  override val uuid: java.util.UUID,
@@ -32,6 +30,7 @@ case class EntityScalarDataPropertyParticularRestrictionAxiom private[impl]
 extends resolver.api.EntityScalarDataPropertyParticularRestrictionAxiom
   with EntityScalarDataPropertyRestrictionAxiom
 {
+		
 
 
 

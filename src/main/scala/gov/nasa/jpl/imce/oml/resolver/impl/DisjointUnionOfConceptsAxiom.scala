@@ -24,6 +24,11 @@ trait DisjointUnionOfConceptsAxiom
 extends resolver.api.DisjointUnionOfConceptsAxiom
   with TerminologyBundleStatement
 {
+/*
+   * The parent of this node in a disjoint concept taxonomy tree.
+   */
+  override val disjointTaxonomyParent: resolver.api.ConceptTreeDisjunction
+		
 
 
 
