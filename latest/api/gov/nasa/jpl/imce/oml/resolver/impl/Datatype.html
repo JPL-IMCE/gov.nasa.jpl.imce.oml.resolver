@@ -95,7 +95,7 @@
 
         <div id="values" class="values members">
               <h3>Abstract Value Members</h3>
-              <ol><li name="gov.nasa.jpl.imce.oml.resolver.api.Term#name" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+              <ol><li name="gov.nasa.jpl.imce.oml.resolver.impl.Term#name" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="name:gov.nasa.jpl.imce.oml.tables.LocalName"></a>
       <a id="name:LocalName"></a>
       <h4 class="signature">
@@ -111,24 +111,24 @@
         <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Term → Resource</dd></dl></div>
-    </li><li name="gov.nasa.jpl.imce.oml.resolver.api.TerminologyBoxStatement#tbox" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="tbox:gov.nasa.jpl.imce.oml.resolver.api.TerminologyBox"></a>
-      <a id="tbox:api.TerminologyBox"></a>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Term.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.Term">Term</a> → Term → Resource</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.impl.Element#uuid" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="uuid:java.util.UUID"></a>
+      <a id="uuid:UUID"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">abstract </span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">tbox</span><span class="result">: <span class="extype" name="gov.nasa.jpl.imce.oml.resolver.api.TerminologyBox">api.TerminologyBox</span></span>
+        <span class="name">uuid</span><span class="result">: <span class="extype" name="java.util.UUID">UUID</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.Datatype@tbox:gov.nasa.jpl.imce.oml.resolver.api.TerminologyBox" title="Permalink" target="_top">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.Datatype@uuid:java.util.UUID" title="Permalink" target="_top">
         <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>TerminologyBoxStatement</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Element.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.Element">Element</a> → Element</dd></dl></div>
     </li></ol>
             </div>
 
@@ -202,23 +202,6 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="gov.nasa.jpl.imce.oml.resolver.impl.Term#calculateUUID" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="calculateUUID():java.util.UUID"></a>
-      <a id="calculateUUID():UUID"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">calculateUUID</span><span class="params">()</span><span class="result">: <span class="extype" name="java.util.UUID">UUID</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.Datatype@calculateUUID():java.util.UUID" title="Permalink" target="_top">
-        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Term.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.Term">Term</a> → Term → Element</dd></dl></div>
     </li><li name="gov.nasa.jpl.imce.oml.resolver.impl.Datatype#canEqual" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="canEqual(that:Any):Boolean"></a>
       <a id="canEqual(Any):Boolean"></a>
@@ -351,18 +334,18 @@
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="gov.nasa.jpl.imce.oml.resolver.impl.Term#iri" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="iri():gov.nasa.jpl.imce.oml.tables.IRI"></a>
-      <a id="iri():IRI"></a>
+      <a id="iri()(implicitextent:gov.nasa.jpl.imce.oml.resolver.api.Extent):Option[gov.nasa.jpl.imce.oml.tables.IRI]"></a>
+      <a id="iri()(Extent):Option[IRI]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">iri</span><span class="params">()</span><span class="result">: <span class="extype" name="gov.nasa.jpl.imce.oml.tables.IRI">IRI</span></span>
+        <span class="name">iri</span><span class="params">()</span><span class="params">(<span class="implicit">implicit </span><span name="extent">extent: <span class="extype" name="gov.nasa.jpl.imce.oml.resolver.api.Extent">Extent</span></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="gov.nasa.jpl.imce.oml.tables.IRI">IRI</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.Datatype@iri():gov.nasa.jpl.imce.oml.tables.IRI" title="Permalink" target="_top">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.Datatype@iri()(implicitextent:gov.nasa.jpl.imce.oml.resolver.api.Extent):Option[gov.nasa.jpl.imce.oml.tables.IRI]" title="Permalink" target="_top">
         <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -469,23 +452,6 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="gov.nasa.jpl.imce.oml.resolver.impl.Datatype#uuid" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="uuid:java.util.UUID"></a>
-      <a id="uuid:UUID"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">uuid</span><span class="result">: <span class="extype" name="java.util.UUID">UUID</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.Datatype@uuid:java.util.UUID" title="Permalink" target="_top">
-        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.Datatype">Datatype</a> → <a href="Term.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.Term">Term</a> → <a href="TerminologyBoxStatement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.TerminologyBoxStatement">TerminologyBoxStatement</a> → <a href="ModuleElement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ModuleElement">ModuleElement</a> → <a href="Element.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.Element">Element</a> → Element</dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
