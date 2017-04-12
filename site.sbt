@@ -4,7 +4,7 @@ enablePlugins(PreprocessPlugin)
 
 enablePlugins(SiteScaladocPlugin)
 
-import com.typesafe.sbt.SbtGhPages._
+enablePlugins(GhpagesPlugin)
 
 preprocessVars in Preprocess := Map(
   "REPO" -> "gov.nasa.jpl.imce",
@@ -40,8 +40,6 @@ preprocessVars in Preprocess := Map(
 )
 
 target in preprocess := (target in makeSite).value
-
-ghpages.settings
 
 makeSite := {
   val _ = dumpLicenseReport.value
