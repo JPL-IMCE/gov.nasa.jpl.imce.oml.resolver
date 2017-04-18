@@ -36,4 +36,9 @@ override val domain: resolver.api.Entity
 		
 
 
+
+  override def canEqual(that: scala.Any): scala.Boolean = that match {
+  	case _: DataRelationshipFromEntity => true
+  	case _ => false
+  }
 }

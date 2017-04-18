@@ -24,11 +24,10 @@ case class ScalarDataPropertyValue private[impl]
 (
  override val uuid: java.util.UUID,
  override val scalarDataProperty: resolver.api.DataRelationshipToScalar,
- override val name: gov.nasa.jpl.imce.oml.tables.LocalName,
  override val scalarPropertyValue: scala.Predef.String
 )
 extends resolver.api.ScalarDataPropertyValue
-  with TerminologyInstanceAssertion
+  with Element
 {
 		
   def descriptionBox
@@ -48,14 +47,13 @@ extends resolver.api.ScalarDataPropertyValue
 
   override val hashCode
   : scala.Int
-  = (uuid, scalarDataProperty, name, scalarPropertyValue).##
+  = (uuid, scalarDataProperty, scalarPropertyValue).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: ScalarDataPropertyValue =>
 	    (that canEqual this) &&
 	    (this.uuid == that.uuid) &&
 	    (this.scalarDataProperty == that.scalarDataProperty) &&
-	    (this.name == that.name) &&
 	    (this.scalarPropertyValue == that.scalarPropertyValue)
 
 	  case _ =>

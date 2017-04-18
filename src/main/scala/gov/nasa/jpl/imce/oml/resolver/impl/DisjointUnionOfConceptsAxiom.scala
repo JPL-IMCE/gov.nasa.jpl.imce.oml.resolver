@@ -22,13 +22,16 @@ import gov.nasa.jpl.imce.oml._
 
 trait DisjointUnionOfConceptsAxiom
 extends resolver.api.DisjointUnionOfConceptsAxiom
-  with TerminologyBundleStatement
+  with Element
 {
-/*
-   * The parent of this node in a disjoint concept taxonomy tree.
-   */
-  override val disjointTaxonomyParent: resolver.api.ConceptTreeDisjunction
 		
+  def conceptTreeDisjunctionParent
+  ()(implicit extent: resolver.api.Extent)
+  : scala.Option[resolver.api.ConceptTreeDisjunction]
+  = {
+    extent.conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom.get(this)
+  }
+  
 
 
 

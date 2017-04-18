@@ -23,11 +23,10 @@ import gov.nasa.jpl.imce.oml._
 case class StructuredDataPropertyValue private[impl] 
 (
  override val uuid: java.util.UUID,
- override val structuredDataProperty: resolver.api.DataRelationshipToStructure,
- override val name: gov.nasa.jpl.imce.oml.tables.LocalName
+ override val structuredDataProperty: resolver.api.DataRelationshipToStructure
 )
 extends resolver.api.StructuredDataPropertyValue
-  with TerminologyInstanceAssertion
+  with Element
 {
 		
   def descriptionBox
@@ -47,14 +46,13 @@ extends resolver.api.StructuredDataPropertyValue
 
   override val hashCode
   : scala.Int
-  = (uuid, structuredDataProperty, name).##
+  = (uuid, structuredDataProperty).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: StructuredDataPropertyValue =>
 	    (that canEqual this) &&
 	    (this.uuid == that.uuid) &&
-	    (this.structuredDataProperty == that.structuredDataProperty) &&
-	    (this.name == that.name)
+	    (this.structuredDataProperty == that.structuredDataProperty)
 
 	  case _ =>
 	    false

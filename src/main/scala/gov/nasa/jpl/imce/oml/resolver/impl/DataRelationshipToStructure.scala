@@ -28,4 +28,9 @@ override val range: resolver.api.Structure
 		
 
 
+
+  override def canEqual(that: scala.Any): scala.Boolean = that match {
+  	case _: DataRelationshipToStructure => true
+  	case _ => false
+  }
 }

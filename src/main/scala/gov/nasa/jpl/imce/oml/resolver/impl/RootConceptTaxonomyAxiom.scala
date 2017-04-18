@@ -30,6 +30,13 @@ extends resolver.api.RootConceptTaxonomyAxiom
   with ConceptTreeDisjunction
 {
 		
+  override def bundleContainer
+  ()
+  : resolver.api.Bundle
+  = {
+    bundle
+  }
+  
 
 
 

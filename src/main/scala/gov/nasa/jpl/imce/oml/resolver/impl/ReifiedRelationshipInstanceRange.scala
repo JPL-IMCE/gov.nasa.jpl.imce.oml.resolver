@@ -24,8 +24,7 @@ case class ReifiedRelationshipInstanceRange private[impl]
 (
  override val uuid: java.util.UUID,
  override val reifiedRelationshipInstance: resolver.api.ReifiedRelationshipInstance,
- override val range: resolver.api.ConceptualEntitySingletonInstance,
- override val name: gov.nasa.jpl.imce.oml.tables.LocalName
+ override val range: resolver.api.ConceptualEntitySingletonInstance
 )
 extends resolver.api.ReifiedRelationshipInstanceRange
   with TerminologyInstanceAssertion
@@ -48,15 +47,14 @@ extends resolver.api.ReifiedRelationshipInstanceRange
 
   override val hashCode
   : scala.Int
-  = (uuid, reifiedRelationshipInstance, range, name).##
+  = (uuid, reifiedRelationshipInstance, range).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: ReifiedRelationshipInstanceRange =>
 	    (that canEqual this) &&
 	    (this.uuid == that.uuid) &&
 	    (this.reifiedRelationshipInstance == that.reifiedRelationshipInstance) &&
-	    (this.range == that.range) &&
-	    (this.name == that.name)
+	    (this.range == that.range)
 
 	  case _ =>
 	    false

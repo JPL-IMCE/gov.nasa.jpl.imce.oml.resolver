@@ -23,17 +23,8 @@ import gov.nasa.jpl.imce.oml._
 trait TerminologyInstanceAssertion
 extends resolver.api.TerminologyInstanceAssertion
   with ModuleElement
-  with Resource
 {
-override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 		
-  override def iri
-  ()(implicit extent: resolver.api.Extent)
-  : scala.Option[gov.nasa.jpl.imce.oml.tables.IRI]
-  = {
-    descriptionBox().flatMap(_.iri())
-  }
-  
 
 
 

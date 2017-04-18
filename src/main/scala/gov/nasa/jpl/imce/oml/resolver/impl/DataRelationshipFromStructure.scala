@@ -28,4 +28,9 @@ override val domain: resolver.api.Structure
 		
 
 
+
+  override def canEqual(that: scala.Any): scala.Boolean = that match {
+  	case _: DataRelationshipFromStructure => true
+  	case _ => false
+  }
 }

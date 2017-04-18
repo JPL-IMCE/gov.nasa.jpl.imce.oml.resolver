@@ -25,8 +25,7 @@ case class UnreifiedRelationshipInstanceTuple private[impl]
  override val uuid: java.util.UUID,
  override val unreifiedRelationship: resolver.api.UnreifiedRelationship,
  override val domain: resolver.api.ConceptualEntitySingletonInstance,
- override val range: resolver.api.ConceptualEntitySingletonInstance,
- override val name: gov.nasa.jpl.imce.oml.tables.LocalName
+ override val range: resolver.api.ConceptualEntitySingletonInstance
 )
 extends resolver.api.UnreifiedRelationshipInstanceTuple
   with TerminologyInstanceAssertion
@@ -49,7 +48,7 @@ extends resolver.api.UnreifiedRelationshipInstanceTuple
 
   override val hashCode
   : scala.Int
-  = (uuid, unreifiedRelationship, domain, range, name).##
+  = (uuid, unreifiedRelationship, domain, range).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: UnreifiedRelationshipInstanceTuple =>
@@ -57,8 +56,7 @@ extends resolver.api.UnreifiedRelationshipInstanceTuple
 	    (this.uuid == that.uuid) &&
 	    (this.unreifiedRelationship == that.unreifiedRelationship) &&
 	    (this.domain == that.domain) &&
-	    (this.range == that.range) &&
-	    (this.name == that.name)
+	    (this.range == that.range)
 
 	  case _ =>
 	    false

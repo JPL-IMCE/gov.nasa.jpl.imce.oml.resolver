@@ -23,8 +23,18 @@ import gov.nasa.jpl.imce.oml._
 trait ConceptualEntitySingletonInstance
 extends resolver.api.ConceptualEntitySingletonInstance
   with SingletonInstance
+  with TerminologyInstanceAssertion
+  with Resource
 {
+override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 		
+  override def iri
+  ()(implicit extent: resolver.api.Extent)
+  : scala.Option[gov.nasa.jpl.imce.oml.tables.IRI]
+  = {
+    descriptionBox().flatMap(_.iri())
+  }
+  
   def identifyingScalarValues
   ()(implicit extent: resolver.api.Extent)
   : scala.collection.immutable.Set[_ <: resolver.api.ScalarDataPropertyValue]

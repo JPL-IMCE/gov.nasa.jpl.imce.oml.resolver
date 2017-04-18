@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 trait SingletonInstance
 extends resolver.api.SingletonInstance
-  with TerminologyInstanceAssertion
+  with Element
 {
 		
 

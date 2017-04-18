@@ -80,19 +80,19 @@ extends resolver.api.OMLResolvedFactory {
   override def createAnonymousConceptTaxonomyAxiom
   ( extent: resolver.api.Extent,
     uuid: java.util.UUID,
-    bundle: resolver.api.Bundle,
-    disjointTaxonomyParent: resolver.api.ConceptTreeDisjunction )
+    disjointTaxonomyParent: resolver.api.ConceptTreeDisjunction,
+    name: gov.nasa.jpl.imce.oml.tables.LocalName )
   : (resolver.api.Extent, resolver.api.AnonymousConceptTaxonomyAxiom)
   = {
-    // factoryMethodWithDerivedUUID
-    // container: bundle Bundle
-    // contained: bundleStatements TerminologyBundleStatement
-    val anonymousConceptTaxonomyAxiom = AnonymousConceptTaxonomyAxiom( uuid, disjointTaxonomyParent )
+    // factoryMethodWithUUIDGenerator
+    // container: disjointTaxonomyParent ConceptTreeDisjunction
+    // contained: disjunctions DisjointUnionOfConceptsAxiom
+    val anonymousConceptTaxonomyAxiom = AnonymousConceptTaxonomyAxiom( uuid, name )
     scala.Tuple2(
-    	extent.copy(
-    	  bundleStatements = extent.withTerminologyBundleStatement(bundle, anonymousConceptTaxonomyAxiom),
-    	  bundleOfTerminologyBundleStatement = extent.bundleOfTerminologyBundleStatement + (anonymousConceptTaxonomyAxiom -> bundle),
-    	  terminologyBundleStatementByUUID = extent.terminologyBundleStatementByUUID + (uuid -> anonymousConceptTaxonomyAxiom)),
+      extent.copy(
+    	  disjunctions = extent.withDisjointUnionOfConceptsAxiom(disjointTaxonomyParent, anonymousConceptTaxonomyAxiom),
+    	  conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom = extent.conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom + (anonymousConceptTaxonomyAxiom -> disjointTaxonomyParent),
+    	  disjointUnionOfConceptsAxiomByUUID = extent.disjointUnionOfConceptsAxiomByUUID + (uuid -> anonymousConceptTaxonomyAxiom)),
     	anonymousConceptTaxonomyAxiom)
   }
   		  
@@ -283,16 +283,15 @@ extends resolver.api.OMLResolvedFactory {
   ( extent: resolver.api.Extent,
     uuid: java.util.UUID,
     dataStructureType: resolver.api.Structure,
-    structuredDataPropertyValue: resolver.api.StructuredDataPropertyValue,
-    name: gov.nasa.jpl.imce.oml.tables.LocalName )
+    structuredDataPropertyValue: resolver.api.StructuredDataPropertyValue )
   : (resolver.api.Extent, resolver.api.DataStructureTuple)
   = {
-    // factoryMethodWithUUIDGenerator
+    // factoryMethodWithDerivedUUID
     // container: structuredDataPropertyValue StructuredDataPropertyValue
     // contained: structuredPropertyTuple DataStructureTuple
-    val dataStructureTuple = DataStructureTuple( uuid, dataStructureType, name )
+    val dataStructureTuple = DataStructureTuple( uuid, dataStructureType )
     scala.Tuple2(
-      extent.copy(
+    	extent.copy(
     	  structuredPropertyTuple = extent.withDataStructureTuple(structuredDataPropertyValue, dataStructureTuple),
     	  structuredDataPropertyValueOfDataStructureTuple = extent.structuredDataPropertyValueOfDataStructureTuple + (dataStructureTuple -> structuredDataPropertyValue),
     	  dataStructureTupleByUUID = extent.dataStructureTupleByUUID + (uuid -> dataStructureTuple)),
@@ -645,16 +644,15 @@ extends resolver.api.OMLResolvedFactory {
     uuid: java.util.UUID,
     descriptionBox: resolver.api.DescriptionBox,
     reifiedRelationshipInstance: resolver.api.ReifiedRelationshipInstance,
-    domain: resolver.api.ConceptualEntitySingletonInstance,
-    name: gov.nasa.jpl.imce.oml.tables.LocalName )
+    domain: resolver.api.ConceptualEntitySingletonInstance )
   : (resolver.api.Extent, resolver.api.ReifiedRelationshipInstanceDomain)
   = {
-    // factoryMethodWithUUIDGenerator
+    // factoryMethodWithDerivedUUID
     // container: descriptionBox DescriptionBox
     // contained: reifiedRelationshipInstanceDomains ReifiedRelationshipInstanceDomain
-    val reifiedRelationshipInstanceDomain = ReifiedRelationshipInstanceDomain( uuid, reifiedRelationshipInstance, domain, name )
+    val reifiedRelationshipInstanceDomain = ReifiedRelationshipInstanceDomain( uuid, reifiedRelationshipInstance, domain )
     scala.Tuple2(
-      extent.copy(
+    	extent.copy(
     	  reifiedRelationshipInstanceDomains = extent.withReifiedRelationshipInstanceDomain(descriptionBox, reifiedRelationshipInstanceDomain),
     	  descriptionBoxOfReifiedRelationshipInstanceDomain = extent.descriptionBoxOfReifiedRelationshipInstanceDomain + (reifiedRelationshipInstanceDomain -> descriptionBox),
     	  reifiedRelationshipInstanceDomainByUUID = extent.reifiedRelationshipInstanceDomainByUUID + (uuid -> reifiedRelationshipInstanceDomain)),
@@ -667,16 +665,15 @@ extends resolver.api.OMLResolvedFactory {
     uuid: java.util.UUID,
     descriptionBox: resolver.api.DescriptionBox,
     reifiedRelationshipInstance: resolver.api.ReifiedRelationshipInstance,
-    range: resolver.api.ConceptualEntitySingletonInstance,
-    name: gov.nasa.jpl.imce.oml.tables.LocalName )
+    range: resolver.api.ConceptualEntitySingletonInstance )
   : (resolver.api.Extent, resolver.api.ReifiedRelationshipInstanceRange)
   = {
-    // factoryMethodWithUUIDGenerator
+    // factoryMethodWithDerivedUUID
     // container: descriptionBox DescriptionBox
     // contained: reifiedRelationshipInstanceRanges ReifiedRelationshipInstanceRange
-    val reifiedRelationshipInstanceRange = ReifiedRelationshipInstanceRange( uuid, reifiedRelationshipInstance, range, name )
+    val reifiedRelationshipInstanceRange = ReifiedRelationshipInstanceRange( uuid, reifiedRelationshipInstance, range )
     scala.Tuple2(
-      extent.copy(
+    	extent.copy(
     	  reifiedRelationshipInstanceRanges = extent.withReifiedRelationshipInstanceRange(descriptionBox, reifiedRelationshipInstanceRange),
     	  descriptionBoxOfReifiedRelationshipInstanceRange = extent.descriptionBoxOfReifiedRelationshipInstanceRange + (reifiedRelationshipInstanceRange -> descriptionBox),
     	  reifiedRelationshipInstanceRangeByUUID = extent.reifiedRelationshipInstanceRangeByUUID + (uuid -> reifiedRelationshipInstanceRange)),
@@ -772,16 +769,15 @@ extends resolver.api.OMLResolvedFactory {
     uuid: java.util.UUID,
     singletonInstance: resolver.api.SingletonInstance,
     scalarDataProperty: resolver.api.DataRelationshipToScalar,
-    name: gov.nasa.jpl.imce.oml.tables.LocalName,
     scalarPropertyValue: scala.Predef.String )
   : (resolver.api.Extent, resolver.api.ScalarDataPropertyValue)
   = {
-    // factoryMethodWithUUIDGenerator
+    // factoryMethodWithDerivedUUID
     // container: singletonInstance SingletonInstance
     // contained: scalarDataPropertyValues ScalarDataPropertyValue
-    val scalarDataPropertyValue = ScalarDataPropertyValue( uuid, scalarDataProperty, name, scalarPropertyValue )
+    val scalarDataPropertyValue = ScalarDataPropertyValue( uuid, scalarDataProperty, scalarPropertyValue )
     scala.Tuple2(
-      extent.copy(
+    	extent.copy(
     	  scalarDataPropertyValues = extent.withScalarDataPropertyValue(singletonInstance, scalarDataPropertyValue),
     	  singletonInstanceOfScalarDataPropertyValue = extent.singletonInstanceOfScalarDataPropertyValue + (scalarDataPropertyValue -> singletonInstance),
     	  scalarDataPropertyValueByUUID = extent.scalarDataPropertyValueByUUID + (uuid -> scalarDataPropertyValue)),
@@ -834,20 +830,19 @@ extends resolver.api.OMLResolvedFactory {
   override def createSpecificDisjointConceptAxiom
   ( extent: resolver.api.Extent,
     uuid: java.util.UUID,
-    bundle: resolver.api.Bundle,
     disjointTaxonomyParent: resolver.api.ConceptTreeDisjunction,
     disjointLeaf: resolver.api.Concept )
   : (resolver.api.Extent, resolver.api.SpecificDisjointConceptAxiom)
   = {
     // factoryMethodWithDerivedUUID
-    // container: bundle Bundle
-    // contained: bundleStatements TerminologyBundleStatement
-    val specificDisjointConceptAxiom = SpecificDisjointConceptAxiom( uuid, disjointTaxonomyParent, disjointLeaf )
+    // container: disjointTaxonomyParent ConceptTreeDisjunction
+    // contained: disjunctions DisjointUnionOfConceptsAxiom
+    val specificDisjointConceptAxiom = SpecificDisjointConceptAxiom( uuid, disjointLeaf )
     scala.Tuple2(
     	extent.copy(
-    	  bundleStatements = extent.withTerminologyBundleStatement(bundle, specificDisjointConceptAxiom),
-    	  bundleOfTerminologyBundleStatement = extent.bundleOfTerminologyBundleStatement + (specificDisjointConceptAxiom -> bundle),
-    	  terminologyBundleStatementByUUID = extent.terminologyBundleStatementByUUID + (uuid -> specificDisjointConceptAxiom)),
+    	  disjunctions = extent.withDisjointUnionOfConceptsAxiom(disjointTaxonomyParent, specificDisjointConceptAxiom),
+    	  conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom = extent.conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom + (specificDisjointConceptAxiom -> disjointTaxonomyParent),
+    	  disjointUnionOfConceptsAxiomByUUID = extent.disjointUnionOfConceptsAxiomByUUID + (uuid -> specificDisjointConceptAxiom)),
     	specificDisjointConceptAxiom)
   }
   		  
@@ -923,16 +918,15 @@ extends resolver.api.OMLResolvedFactory {
   ( extent: resolver.api.Extent,
     uuid: java.util.UUID,
     singletonInstance: resolver.api.SingletonInstance,
-    structuredDataProperty: resolver.api.DataRelationshipToStructure,
-    name: gov.nasa.jpl.imce.oml.tables.LocalName )
+    structuredDataProperty: resolver.api.DataRelationshipToStructure )
   : (resolver.api.Extent, resolver.api.StructuredDataPropertyValue)
   = {
-    // factoryMethodWithUUIDGenerator
+    // factoryMethodWithDerivedUUID
     // container: singletonInstance SingletonInstance
     // contained: structuredDataPropertyValues StructuredDataPropertyValue
-    val structuredDataPropertyValue = StructuredDataPropertyValue( uuid, structuredDataProperty, name )
+    val structuredDataPropertyValue = StructuredDataPropertyValue( uuid, structuredDataProperty )
     scala.Tuple2(
-      extent.copy(
+    	extent.copy(
     	  structuredDataPropertyValues = extent.withStructuredDataPropertyValue(singletonInstance, structuredDataPropertyValue),
     	  singletonInstanceOfStructuredDataPropertyValue = extent.singletonInstanceOfStructuredDataPropertyValue + (structuredDataPropertyValue -> singletonInstance),
     	  structuredDataPropertyValueByUUID = extent.structuredDataPropertyValueByUUID + (uuid -> structuredDataPropertyValue)),
@@ -1078,16 +1072,15 @@ extends resolver.api.OMLResolvedFactory {
     descriptionBox: resolver.api.DescriptionBox,
     unreifiedRelationship: resolver.api.UnreifiedRelationship,
     domain: resolver.api.ConceptualEntitySingletonInstance,
-    range: resolver.api.ConceptualEntitySingletonInstance,
-    name: gov.nasa.jpl.imce.oml.tables.LocalName )
+    range: resolver.api.ConceptualEntitySingletonInstance )
   : (resolver.api.Extent, resolver.api.UnreifiedRelationshipInstanceTuple)
   = {
-    // factoryMethodWithUUIDGenerator
+    // factoryMethodWithDerivedUUID
     // container: descriptionBox DescriptionBox
     // contained: unreifiedRelationshipInstanceTuples UnreifiedRelationshipInstanceTuple
-    val unreifiedRelationshipInstanceTuple = UnreifiedRelationshipInstanceTuple( uuid, unreifiedRelationship, domain, range, name )
+    val unreifiedRelationshipInstanceTuple = UnreifiedRelationshipInstanceTuple( uuid, unreifiedRelationship, domain, range )
     scala.Tuple2(
-      extent.copy(
+    	extent.copy(
     	  unreifiedRelationshipInstanceTuples = extent.withUnreifiedRelationshipInstanceTuple(descriptionBox, unreifiedRelationshipInstanceTuple),
     	  descriptionBoxOfUnreifiedRelationshipInstanceTuple = extent.descriptionBoxOfUnreifiedRelationshipInstanceTuple + (unreifiedRelationshipInstanceTuple -> descriptionBox),
     	  unreifiedRelationshipInstanceTupleByUUID = extent.unreifiedRelationshipInstanceTupleByUUID + (uuid -> unreifiedRelationshipInstanceTuple)),

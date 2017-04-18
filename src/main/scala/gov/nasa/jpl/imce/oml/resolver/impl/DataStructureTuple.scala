@@ -23,11 +23,11 @@ import gov.nasa.jpl.imce.oml._
 case class DataStructureTuple private[impl] 
 (
  override val uuid: java.util.UUID,
- override val dataStructureType: resolver.api.Structure,
- override val name: gov.nasa.jpl.imce.oml.tables.LocalName
+ override val dataStructureType: resolver.api.Structure
 )
 extends resolver.api.DataStructureTuple
   with SingletonInstance
+  with Element
 {
 		
   def descriptionBox
@@ -47,14 +47,13 @@ extends resolver.api.DataStructureTuple
 
   override val hashCode
   : scala.Int
-  = (uuid, dataStructureType, name).##
+  = (uuid, dataStructureType).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
 	  case that: DataStructureTuple =>
 	    (that canEqual this) &&
 	    (this.uuid == that.uuid) &&
-	    (this.dataStructureType == that.dataStructureType) &&
-	    (this.name == that.name)
+	    (this.dataStructureType == that.dataStructureType)
 
 	  case _ =>
 	    false

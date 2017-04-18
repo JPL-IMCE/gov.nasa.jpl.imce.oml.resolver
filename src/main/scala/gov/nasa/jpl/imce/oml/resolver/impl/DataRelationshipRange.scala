@@ -22,8 +22,14 @@ import gov.nasa.jpl.imce.oml._
 
 trait DataRelationshipRange
 extends resolver.api.DataRelationshipRange
+  with Element
 {
 		
 
 
+
+  override def canEqual(that: scala.Any): scala.Boolean = that match {
+  	case _: DataRelationshipRange => true
+  	case _ => false
+  }
 }

@@ -28,4 +28,9 @@ override val range: resolver.api.DataRange
 		
 
 
+
+  override def canEqual(that: scala.Any): scala.Boolean = that match {
+  	case _: DataRelationshipToScalar => true
+  	case _ => false
+  }
 }
