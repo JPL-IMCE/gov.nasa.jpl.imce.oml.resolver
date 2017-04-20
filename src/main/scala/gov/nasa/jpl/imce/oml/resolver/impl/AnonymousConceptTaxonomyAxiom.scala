@@ -32,7 +32,7 @@ extends resolver.api.AnonymousConceptTaxonomyAxiom
 {
 		
   override def bundleContainer
-  ()
+  ()(implicit extent: resolver.api.Extent)
   : resolver.api.Bundle
   = {
     disjointTaxonomyParent.bundleContainer()

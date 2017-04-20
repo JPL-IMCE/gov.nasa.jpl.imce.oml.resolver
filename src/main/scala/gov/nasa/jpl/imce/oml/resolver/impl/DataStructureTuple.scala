@@ -30,7 +30,7 @@ extends resolver.api.DataStructureTuple
   with Element
 {
 		
-  def descriptionBox
+  override def descriptionBox
   ()(implicit extent: resolver.api.Extent)
   : scala.Option[resolver.api.DescriptionBox]
   = {

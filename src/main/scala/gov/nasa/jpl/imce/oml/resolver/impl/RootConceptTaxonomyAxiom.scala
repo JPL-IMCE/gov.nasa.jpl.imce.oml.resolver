@@ -31,10 +31,10 @@ extends resolver.api.RootConceptTaxonomyAxiom
 {
 		
   override def bundleContainer
-  ()
+  ()(implicit extent: resolver.api.Extent)
   : resolver.api.Bundle
   = {
-    bundle
+    extent.structuredDataPropertyValueOfDataStructureTuple.get(this).flatMap(_.descriptionBox())
   }
   
 
