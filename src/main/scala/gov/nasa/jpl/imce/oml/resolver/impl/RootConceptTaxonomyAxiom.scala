@@ -32,9 +32,9 @@ extends resolver.api.RootConceptTaxonomyAxiom
 		
   override def bundleContainer
   ()(implicit extent: resolver.api.Extent)
-  : resolver.api.Bundle
+  : scala.Option[resolver.api.Bundle]
   = {
-    extent.structuredDataPropertyValueOfDataStructureTuple.get(this).flatMap(_.descriptionBox())
+    extent.bundleOfTerminologyBundleStatement.get(this)
   }
   
 

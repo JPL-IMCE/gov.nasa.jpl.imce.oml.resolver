@@ -33,9 +33,9 @@ extends resolver.api.AnonymousConceptTaxonomyAxiom
 		
   override def bundleContainer
   ()(implicit extent: resolver.api.Extent)
-  : resolver.api.Bundle
+  : scala.Option[resolver.api.Bundle]
   = {
-    disjointTaxonomyParent.bundleContainer()
+    conceptTreeDisjunctionParent().flatMap(_.bundleContainer())
   }
   
 
