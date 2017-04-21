@@ -41,6 +41,21 @@ preprocessVars in Preprocess := Map(
 
 target in preprocess := (target in makeSite).value
 
+dependencyDotFile := baseDirectory.value / "target" / "dependencies.dot"
+
+lazy val dependencySvgFile = settingKey[File]("Location of the dependency graph in SVG format")
+
+dependencySvgFile := baseDirectory.value / "target" / "dependencies.svg"
+
+lazy val filter: ScopeFilter = ScopeFilter(inProjects(ThisProject), inConfigurations(Compile))
+
+dumpLicenseReport := {
+  val dotFile = dependencyDot.all(filter).value
+  val ok = Process(command="dot", arguments=Seq[String]("-Tsvg", dotFile.head.getAbsolutePath, "-o"+dependencySvgFile.value.getAbsolutePath)).!
+  require(0 == ok, "dot2svg failed: $ok")
+  dumpLicenseReport.value
+}
+
 makeSite := {
   val _ = dumpLicenseReport.value
   makeSite.value
@@ -52,6 +67,7 @@ siteMappings := {
 }
 
 siteMappings += (licenseReportDir.value / "LicenseReportOfAggregatedSBTPluginsAndLibraries.html") -> "LicenseReportOfAggregatedSBTPluginsAndLibraries.html"
+siteMappings += dependencySvgFile.value -> "dependencies.svg"
 
 previewFixedPort := Some(4004)
 

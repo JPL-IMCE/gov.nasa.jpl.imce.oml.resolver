@@ -1,3 +1,2 @@
 resolvers += Resolver.bintrayRepo("jpl-imce", "gov.nasa.jpl.imce")
-addSbtPlugin("gov.nasa.jpl.imce" % "imce.sbt.plugin" % "4.21.0")
-
+addSbtPlugin("gov.nasa.jpl.imce" % "imce.sbt.plugin" % "4.22.0")

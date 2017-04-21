@@ -14,10 +14,8 @@ import ProjectRefHelper._
 
 lazy val core = Project("oml-resolver", file("."))
   .enablePlugins(IMCEGitPlugin)
-  .enablePlugins(IMCEReleasePlugin)
   .settings(dynamicScriptsResourceSettings(Settings.name))
   .settings(IMCEPlugin.strictScalacFatalWarningsSettings)
-  .settings(IMCEReleasePlugin.packageReleaseProcessSettings)
   .settings(
     IMCEKeys.licenseYearOrRange := "2016",
     IMCEKeys.organizationInfo := IMCEPlugin.Organizations.omf,
@@ -28,7 +26,7 @@ lazy val core = Project("oml-resolver", file("."))
     projectID := {
       val previous = projectID.value
       previous.extra(
-        "build.date.utc" -> buildUTCDate.value,
+        "build.date.utc" -> IMCEKeys.buildUTCDate.value,
         "artifact.kind" -> "generic.library")
     },
 
@@ -36,8 +34,6 @@ lazy val core = Project("oml-resolver", file("."))
     git.baseVersion := Settings.version,
     // include all test artifacts
     publishArtifact in Test := true,
-
-    extractArchives := {},
 
     resolvers += Resolver.bintrayRepo("jpl-imce", "gov.nasa.jpl.imce"),
     resolvers += Resolver.bintrayRepo("tiwg", "org.omg.tiwg"),
