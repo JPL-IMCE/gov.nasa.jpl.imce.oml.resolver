@@ -48,13 +48,6 @@ override val iri: gov.nasa.jpl.imce.oml.tables.IRI
 	    nsPrefix
 	  }
 	  
-  def abbrevIRI
-  ()(implicit extent: resolver.api.Extent)
-	  : scala.Option[scala.Predef.String]
-	  = {
-	    scala.Some(nsPrefix)
-	  }
-	  
 
 
 
