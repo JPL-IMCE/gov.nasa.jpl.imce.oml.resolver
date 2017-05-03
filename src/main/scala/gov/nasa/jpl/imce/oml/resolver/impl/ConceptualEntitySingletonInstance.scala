@@ -38,7 +38,7 @@ override val name: gov.nasa.jpl.imce.oml.tables.LocalName
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[scala.Predef.String]
 	  = {
-	    descriptionBox().flatMap(dbox => dbox.nsPrefix()+":"+name())
+	    descriptionBox().map(dbox => dbox.nsPrefix+":"+name)
 	  }
 	  
 
