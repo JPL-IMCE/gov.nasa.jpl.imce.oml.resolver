@@ -20,53 +20,40 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-case class EntityScalarDataProperty private[impl] 
+case class AnonymousConceptUnionAxiom private[impl] 
 	(
 	 override val uuid: java.util.UUID,
-	 override val domain: resolver.api.Entity,
-	 override val range: resolver.api.DataRange,
-	 override val isIdentityCriteria: scala.Boolean,
 	 override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 )
-extends resolver.api.EntityScalarDataProperty
-  with DataRelationship
-  with DataRelationshipFromEntity
-  with DataRelationshipToScalar
+extends resolver.api.AnonymousConceptUnionAxiom
+  with DisjointUnionOfConceptsAxiom
+  with ConceptTreeDisjunction
+  with Element
 {
 		
-  override def source
-  ()
-	  : resolver.api.Term
+  override def bundleContainer
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.Option[resolver.api.Bundle]
 	  = {
-	    domain
-	  }
-	  
-  override def target
-  ()
-	  : resolver.api.Datatype
-	  = {
-	    range
+	    conceptTreeDisjunctionParent().flatMap(_.bundleContainer())
 	  }
 	  
 
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: EntityScalarDataProperty => true
+  	case _: AnonymousConceptUnionAxiom => true
   	case _ => false
   }
 
   override val hashCode
   : scala.Int
-  = (uuid, domain, range, isIdentityCriteria, name).##
+  = (uuid, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: EntityScalarDataProperty =>
+   case that: AnonymousConceptUnionAxiom =>
      (that canEqual this) &&
      (this.uuid == that.uuid) &&
-     (this.domain == that.domain) &&
-     (this.range == that.range) &&
-     (this.isIdentityCriteria == that.isIdentityCriteria) &&
      (this.name == that.name)
 
 	  case _ =>

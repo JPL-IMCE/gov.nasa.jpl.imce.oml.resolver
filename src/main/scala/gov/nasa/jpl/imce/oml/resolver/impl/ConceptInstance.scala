@@ -21,10 +21,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 import gov.nasa.jpl.imce.oml._
 
 case class ConceptInstance private[impl] 
-(
- override val uuid: java.util.UUID,
- override val singletonConceptClassifier: resolver.api.Concept,
- override val name: gov.nasa.jpl.imce.oml.tables.LocalName
+	(
+	 override val uuid: java.util.UUID,
+	 override val singletonConceptClassifier: resolver.api.Concept,
+	 override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 )
 extends resolver.api.ConceptInstance
   with ConceptualEntitySingletonInstance
@@ -32,18 +32,18 @@ extends resolver.api.ConceptInstance
 		
   override def conceptualEntitySingletonClassifier
   ()
-  : resolver.api.ConceptualEntity
-  = {
-    singletonConceptClassifier
-  }
-  
+	  : resolver.api.ConceptualEntity
+	  = {
+	    singletonConceptClassifier
+	  }
+	  
   def descriptionBox
   ()(implicit extent: resolver.api.Extent)
-  : scala.Option[resolver.api.DescriptionBox]
-  = {
-    extent.descriptionBoxOfConceptInstance.get(this)
-  }
-  
+	  : scala.Option[resolver.api.DescriptionBox]
+	  = {
+	    extent.descriptionBoxOfConceptInstance.get(this)
+	  }
+	  
 
 
 
@@ -57,13 +57,13 @@ extends resolver.api.ConceptInstance
   = (uuid, singletonConceptClassifier, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: ConceptInstance =>
-	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.singletonConceptClassifier == that.singletonConceptClassifier) &&
-	    (this.name == that.name)
+   case that: ConceptInstance =>
+     (that canEqual this) &&
+     (this.uuid == that.uuid) &&
+     (this.singletonConceptClassifier == that.singletonConceptClassifier) &&
+     (this.name == that.name)
 
 	  case _ =>
 	    false
-  }
+}
 }

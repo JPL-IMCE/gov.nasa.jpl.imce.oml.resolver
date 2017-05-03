@@ -21,10 +21,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 import gov.nasa.jpl.imce.oml._
 
 case class ReifiedRelationshipInstanceRange private[impl] 
-(
- override val uuid: java.util.UUID,
- override val reifiedRelationshipInstance: resolver.api.ReifiedRelationshipInstance,
- override val range: resolver.api.ConceptualEntitySingletonInstance
+	(
+	 override val uuid: java.util.UUID,
+	 override val reifiedRelationshipInstance: resolver.api.ReifiedRelationshipInstance,
+	 override val range: resolver.api.ConceptualEntitySingletonInstance
 )
 extends resolver.api.ReifiedRelationshipInstanceRange
   with TerminologyInstanceAssertion
@@ -32,11 +32,11 @@ extends resolver.api.ReifiedRelationshipInstanceRange
 		
   def descriptionBox
   ()(implicit extent: resolver.api.Extent)
-  : scala.Option[resolver.api.DescriptionBox]
-  = {
-    extent.descriptionBoxOfReifiedRelationshipInstanceRange.get(this)
-  }
-  
+	  : scala.Option[resolver.api.DescriptionBox]
+	  = {
+	    extent.descriptionBoxOfReifiedRelationshipInstanceRange.get(this)
+	  }
+	  
 
 
 
@@ -50,13 +50,13 @@ extends resolver.api.ReifiedRelationshipInstanceRange
   = (uuid, reifiedRelationshipInstance, range).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: ReifiedRelationshipInstanceRange =>
-	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.reifiedRelationshipInstance == that.reifiedRelationshipInstance) &&
-	    (this.range == that.range)
+   case that: ReifiedRelationshipInstanceRange =>
+     (that canEqual this) &&
+     (this.uuid == that.uuid) &&
+     (this.reifiedRelationshipInstance == that.reifiedRelationshipInstance) &&
+     (this.range == that.range)
 
 	  case _ =>
 	    false
-  }
+}
 }

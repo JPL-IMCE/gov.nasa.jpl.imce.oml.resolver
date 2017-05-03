@@ -21,10 +21,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 import gov.nasa.jpl.imce.oml._
 
 case class TerminologyGraph private[impl] 
-(
- override val uuid: java.util.UUID,
- override val kind: gov.nasa.jpl.imce.oml.tables.TerminologyKind,
- override val iri: gov.nasa.jpl.imce.oml.tables.IRI
+	(
+	 override val uuid: java.util.UUID,
+	 override val kind: gov.nasa.jpl.imce.oml.tables.TerminologyKind,
+	 override val iri: gov.nasa.jpl.imce.oml.tables.IRI
 )
 extends resolver.api.TerminologyGraph
   with TerminologyBox
@@ -43,13 +43,13 @@ extends resolver.api.TerminologyGraph
   = (uuid, kind, iri).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: TerminologyGraph =>
-	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.kind == that.kind) &&
-	    (this.iri == that.iri)
+   case that: TerminologyGraph =>
+     (that canEqual this) &&
+     (this.uuid == that.uuid) &&
+     (this.kind == that.kind) &&
+     (this.iri == that.iri)
 
 	  case _ =>
 	    false
-  }
+}
 }

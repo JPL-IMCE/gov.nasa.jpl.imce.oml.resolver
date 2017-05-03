@@ -20,12 +20,12 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-case class AnonymousConceptTaxonomyAxiom private[impl] 
-(
- override val uuid: java.util.UUID,
- override val name: gov.nasa.jpl.imce.oml.tables.LocalName
+case class ConceptTreeTaxonomyAxiom private[impl] 
+	(
+	 override val uuid: java.util.UUID,
+	 override val disjointTree: resolver.api.Concept
 )
-extends resolver.api.AnonymousConceptTaxonomyAxiom
+extends resolver.api.ConceptTreeTaxonomyAxiom
   with DisjointUnionOfConceptsAxiom
   with ConceptTreeDisjunction
   with Element
@@ -33,30 +33,30 @@ extends resolver.api.AnonymousConceptTaxonomyAxiom
 		
   override def bundleContainer
   ()(implicit extent: resolver.api.Extent)
-  : scala.Option[resolver.api.Bundle]
-  = {
-    conceptTreeDisjunctionParent().flatMap(_.bundleContainer())
-  }
-  
+	  : scala.Option[resolver.api.Bundle]
+	  = {
+	    conceptTreeDisjunctionParent().flatMap(_.bundleContainer())
+	  }
+	  
 
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: AnonymousConceptTaxonomyAxiom => true
+  	case _: ConceptTreeTaxonomyAxiom => true
   	case _ => false
   }
 
   override val hashCode
   : scala.Int
-  = (uuid, name).##
+  = (uuid, disjointTree).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: AnonymousConceptTaxonomyAxiom =>
-	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.name == that.name)
+   case that: ConceptTreeTaxonomyAxiom =>
+     (that canEqual this) &&
+     (this.uuid == that.uuid) &&
+     (this.disjointTree == that.disjointTree)
 
 	  case _ =>
 	    false
-  }
+}
 }

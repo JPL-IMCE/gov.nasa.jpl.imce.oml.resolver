@@ -27,11 +27,11 @@ extends resolver.api.DescriptionBoxRelationship
 		
   def sourceModule
   ()(implicit extent: resolver.api.Extent)
-  : scala.Option[resolver.api.Module]
-  = {
-    descriptionDomain()
-  }
-  
+	  : scala.Option[resolver.api.Module]
+	  = {
+	    descriptionDomain()
+	  }
+	  
 
 
 

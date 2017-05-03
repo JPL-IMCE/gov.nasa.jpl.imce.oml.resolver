@@ -20,54 +20,43 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-case class EntityScalarDataProperty private[impl] 
+case class SingletonInstanceScalarDataPropertyValue private[impl] 
 	(
 	 override val uuid: java.util.UUID,
-	 override val domain: resolver.api.Entity,
-	 override val range: resolver.api.DataRange,
-	 override val isIdentityCriteria: scala.Boolean,
-	 override val name: gov.nasa.jpl.imce.oml.tables.LocalName
+	 override val singletonInstance: resolver.api.ConceptualEntitySingletonInstance,
+	 override val scalarDataProperty: resolver.api.EntityScalarDataProperty,
+	 override val scalarPropertyValue: scala.Predef.String
 )
-extends resolver.api.EntityScalarDataProperty
-  with DataRelationship
-  with DataRelationshipFromEntity
-  with DataRelationshipToScalar
+extends resolver.api.SingletonInstanceScalarDataPropertyValue
+  with ModuleElement
 {
 		
-  override def source
-  ()
-	  : resolver.api.Term
+  def descriptionBox
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.Option[resolver.api.DescriptionBox]
 	  = {
-	    domain
-	  }
-	  
-  override def target
-  ()
-	  : resolver.api.Datatype
-	  = {
-	    range
+	    extent.descriptionBoxOfSingletonInstanceScalarDataPropertyValue.get(this)
 	  }
 	  
 
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: EntityScalarDataProperty => true
+  	case _: SingletonInstanceScalarDataPropertyValue => true
   	case _ => false
   }
 
   override val hashCode
   : scala.Int
-  = (uuid, domain, range, isIdentityCriteria, name).##
+  = (uuid, singletonInstance, scalarDataProperty, scalarPropertyValue).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: EntityScalarDataProperty =>
+   case that: SingletonInstanceScalarDataPropertyValue =>
      (that canEqual this) &&
      (this.uuid == that.uuid) &&
-     (this.domain == that.domain) &&
-     (this.range == that.range) &&
-     (this.isIdentityCriteria == that.isIdentityCriteria) &&
-     (this.name == that.name)
+     (this.singletonInstance == that.singletonInstance) &&
+     (this.scalarDataProperty == that.scalarDataProperty) &&
+     (this.scalarPropertyValue == that.scalarPropertyValue)
 
 	  case _ =>
 	    false

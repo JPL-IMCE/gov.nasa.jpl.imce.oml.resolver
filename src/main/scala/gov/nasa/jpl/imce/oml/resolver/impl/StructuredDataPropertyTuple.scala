@@ -20,27 +20,27 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-case class StructuredDataPropertyValue private[impl] 
-(
- override val uuid: java.util.UUID,
- override val structuredDataProperty: resolver.api.DataRelationshipToStructure
+case class StructuredDataPropertyTuple private[impl] 
+	(
+	 override val uuid: java.util.UUID,
+	 override val structuredDataProperty: resolver.api.DataRelationshipToStructure
 )
-extends resolver.api.StructuredDataPropertyValue
-  with Element
+extends resolver.api.StructuredDataPropertyTuple
+  with SingletonInstanceStructuredDataPropertyContext
 {
 		
-  def descriptionBox
+  override def descriptionBox
   ()(implicit extent: resolver.api.Extent)
-  : scala.Option[resolver.api.DescriptionBox]
-  = {
-    extent.singletonInstanceOfStructuredDataPropertyValue.get(this).flatMap(_.descriptionBox())
-  }
-  
+	  : scala.Option[resolver.api.DescriptionBox]
+	  = {
+	    extent.singletonInstanceStructuredDataPropertyContextOfStructuredDataPropertyTuple.get(this).flatMap(_.descriptionBox())
+	  }
+	  
 
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: StructuredDataPropertyValue => true
+  	case _: StructuredDataPropertyTuple => true
   	case _ => false
   }
 
@@ -49,12 +49,12 @@ extends resolver.api.StructuredDataPropertyValue
   = (uuid, structuredDataProperty).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: StructuredDataPropertyValue =>
-	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.structuredDataProperty == that.structuredDataProperty)
+   case that: StructuredDataPropertyTuple =>
+     (that canEqual this) &&
+     (this.uuid == that.uuid) &&
+     (this.structuredDataProperty == that.structuredDataProperty)
 
 	  case _ =>
 	    false
-  }
+}
 }

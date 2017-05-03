@@ -20,16 +20,17 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-trait SingletonInstance
-extends resolver.api.SingletonInstance
+trait SingletonInstanceStructuredDataPropertyContext
+extends resolver.api.SingletonInstanceStructuredDataPropertyContext
   with Element
 {
+override val structuredDataProperty: resolver.api.DataRelationshipToStructure
 		
 
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: SingletonInstance => true
+  	case _: SingletonInstanceStructuredDataPropertyContext => true
   	case _ => false
   }
 }

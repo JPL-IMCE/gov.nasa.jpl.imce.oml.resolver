@@ -21,10 +21,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 import gov.nasa.jpl.imce.oml._
 
 case class AnnotationProperty private[impl] 
-(
- override val uuid: java.util.UUID,
- override val iri: gov.nasa.jpl.imce.oml.tables.IRI,
- override val abbrevIRI: gov.nasa.jpl.imce.oml.tables.AbbrevIRI
+	(
+	 override val uuid: java.util.UUID,
+	 override val iri: gov.nasa.jpl.imce.oml.tables.IRI,
+	 override val abbrevIRI: gov.nasa.jpl.imce.oml.tables.AbbrevIRI
 )
 extends resolver.api.AnnotationProperty
 {
@@ -37,13 +37,13 @@ extends resolver.api.AnnotationProperty
   = (uuid, iri, abbrevIRI).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: AnnotationProperty =>
-	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.iri == that.iri) &&
-	    (this.abbrevIRI == that.abbrevIRI)
+   case that: AnnotationProperty =>
+     (that canEqual this) &&
+     (this.uuid == that.uuid) &&
+     (this.iri == that.iri) &&
+     (this.abbrevIRI == that.abbrevIRI)
 
 	  case _ =>
 	    false
-  }
+}
 }

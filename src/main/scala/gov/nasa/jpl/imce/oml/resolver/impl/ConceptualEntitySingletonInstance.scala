@@ -22,7 +22,6 @@ import gov.nasa.jpl.imce.oml._
 
 trait ConceptualEntitySingletonInstance
 extends resolver.api.ConceptualEntitySingletonInstance
-  with SingletonInstance
   with TerminologyInstanceAssertion
   with Resource
 {
@@ -30,35 +29,18 @@ override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 		
   override def iri
   ()(implicit extent: resolver.api.Extent)
-  : scala.Option[gov.nasa.jpl.imce.oml.tables.IRI]
-  = {
-    descriptionBox().flatMap(_.iri())
-  }
-  
-  def identifyingScalarValues
+	  : scala.Option[gov.nasa.jpl.imce.oml.tables.IRI]
+	  = {
+	    descriptionBox().flatMap(_.iri())
+	  }
+	  
+  override def abbrevIRI
   ()(implicit extent: resolver.api.Extent)
-  : scala.collection.immutable.Set[_ <: resolver.api.ScalarDataPropertyValue]
-  = {
-    extent.scalarDataPropertyValues.getOrElse(this, scala.collection.immutable.Set.empty[resolver.api.ScalarDataPropertyValue]).filter {
-          case ep: EntityScalarDataProperty =>
-            ep.isIdentityCriteria
-          case _ =>
-            false
-        }
-  }
-  
-  def identifyingStructuredTuples
-  ()(implicit extent: resolver.api.Extent)
-  : scala.collection.immutable.Set[_ <: resolver.api.StructuredDataPropertyValue]
-  = {
-    extent.structuredDataPropertyValues.getOrElse(this, scala.collection.immutable.Set.empty[resolver.api.StructuredDataPropertyValue]).filter {
-          case ep: EntityStructuredDataProperty =>
-            ep.isIdentityCriteria
-          case _ =>
-            false
-        }
-  }
-  
+	  : scala.Option[scala.Predef.String]
+	  = {
+	    descriptionBox().flatMap(dbox => dbox.nsPrefix()+":"+name())
+	  }
+	  
 
 
 

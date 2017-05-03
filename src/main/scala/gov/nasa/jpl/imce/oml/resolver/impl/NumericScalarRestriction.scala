@@ -21,14 +21,14 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 import gov.nasa.jpl.imce.oml._
 
 case class NumericScalarRestriction private[impl] 
-(
- override val uuid: java.util.UUID,
- override val restrictedRange: resolver.api.DataRange,
- override val minExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalNumber],
- override val minInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalNumber],
- override val maxExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalNumber],
- override val maxInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalNumber],
- override val name: gov.nasa.jpl.imce.oml.tables.LocalName
+	(
+	 override val uuid: java.util.UUID,
+	 override val restrictedRange: resolver.api.DataRange,
+	 override val minExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalNumber],
+	 override val minInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalNumber],
+	 override val maxExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalNumber],
+	 override val maxInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalNumber],
+	 override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 )
 extends resolver.api.NumericScalarRestriction
   with RestrictedDataRange
@@ -47,17 +47,17 @@ extends resolver.api.NumericScalarRestriction
   = (uuid, restrictedRange, minExclusive, minInclusive, maxExclusive, maxInclusive, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: NumericScalarRestriction =>
-	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.restrictedRange == that.restrictedRange) &&
-	    (this.minExclusive == that.minExclusive) &&
-	    (this.minInclusive == that.minInclusive) &&
-	    (this.maxExclusive == that.maxExclusive) &&
-	    (this.maxInclusive == that.maxInclusive) &&
-	    (this.name == that.name)
+   case that: NumericScalarRestriction =>
+     (that canEqual this) &&
+     (this.uuid == that.uuid) &&
+     (this.restrictedRange == that.restrictedRange) &&
+     (this.minExclusive == that.minExclusive) &&
+     (this.minInclusive == that.minInclusive) &&
+     (this.maxExclusive == that.maxExclusive) &&
+     (this.maxInclusive == that.maxInclusive) &&
+     (this.name == that.name)
 
 	  case _ =>
 	    false
-  }
+}
 }

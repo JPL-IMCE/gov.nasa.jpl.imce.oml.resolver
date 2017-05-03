@@ -21,15 +21,15 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 import gov.nasa.jpl.imce.oml._
 
 case class PlainLiteralScalarRestriction private[impl] 
-(
- override val uuid: java.util.UUID,
- override val restrictedRange: resolver.api.DataRange,
- override val length: scala.Option[scala.Int],
- override val minLength: scala.Option[scala.Int],
- override val maxLength: scala.Option[scala.Int],
- override val name: gov.nasa.jpl.imce.oml.tables.LocalName,
- override val langRange: scala.Option[gov.nasa.jpl.imce.oml.tables.LangRange],
- override val pattern: scala.Option[gov.nasa.jpl.imce.oml.tables.Pattern]
+	(
+	 override val uuid: java.util.UUID,
+	 override val restrictedRange: resolver.api.DataRange,
+	 override val length: scala.Option[scala.Int],
+	 override val minLength: scala.Option[scala.Int],
+	 override val maxLength: scala.Option[scala.Int],
+	 override val name: gov.nasa.jpl.imce.oml.tables.LocalName,
+	 override val langRange: scala.Option[gov.nasa.jpl.imce.oml.tables.LangRange],
+	 override val pattern: scala.Option[gov.nasa.jpl.imce.oml.tables.Pattern]
 )
 extends resolver.api.PlainLiteralScalarRestriction
   with RestrictedDataRange
@@ -48,18 +48,18 @@ extends resolver.api.PlainLiteralScalarRestriction
   = (uuid, restrictedRange, length, minLength, maxLength, name, langRange, pattern).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: PlainLiteralScalarRestriction =>
-	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.restrictedRange == that.restrictedRange) &&
-	    (this.length == that.length) &&
-	    (this.minLength == that.minLength) &&
-	    (this.maxLength == that.maxLength) &&
-	    (this.name == that.name) &&
-	    (this.langRange == that.langRange) &&
-	    (this.pattern == that.pattern)
+   case that: PlainLiteralScalarRestriction =>
+     (that canEqual this) &&
+     (this.uuid == that.uuid) &&
+     (this.restrictedRange == that.restrictedRange) &&
+     (this.length == that.length) &&
+     (this.minLength == that.minLength) &&
+     (this.maxLength == that.maxLength) &&
+     (this.name == that.name) &&
+     (this.langRange == that.langRange) &&
+     (this.pattern == that.pattern)
 
 	  case _ =>
 	    false
-  }
+}
 }

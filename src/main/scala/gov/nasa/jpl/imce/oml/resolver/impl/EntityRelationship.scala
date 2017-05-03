@@ -66,18 +66,18 @@ override val source: resolver.api.Entity
 		
   override def relationDomain
   ()
-  : resolver.api.Term
-  = {
-    source
-  }
-  
+	  : resolver.api.Term
+	  = {
+	    source
+	  }
+	  
   override def relationRange
   ()
-  : resolver.api.Term
-  = {
-    target
-  }
-  
+	  : resolver.api.Term
+	  = {
+	    target
+	  }
+	  
 
 
 

@@ -21,9 +21,9 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 import gov.nasa.jpl.imce.oml._
 
 case class SpecificDisjointConceptAxiom private[impl] 
-(
- override val uuid: java.util.UUID,
- override val disjointLeaf: resolver.api.Concept
+	(
+	 override val uuid: java.util.UUID,
+	 override val disjointLeaf: resolver.api.Concept
 )
 extends resolver.api.SpecificDisjointConceptAxiom
   with DisjointUnionOfConceptsAxiom
@@ -43,12 +43,12 @@ extends resolver.api.SpecificDisjointConceptAxiom
   = (uuid, disjointLeaf).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: SpecificDisjointConceptAxiom =>
-	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.disjointLeaf == that.disjointLeaf)
+   case that: SpecificDisjointConceptAxiom =>
+     (that canEqual this) &&
+     (this.uuid == that.uuid) &&
+     (this.disjointLeaf == that.disjointLeaf)
 
 	  case _ =>
 	    false
-  }
+}
 }

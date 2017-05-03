@@ -21,10 +21,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 import gov.nasa.jpl.imce.oml._
 
 case class ScalarDataPropertyValue private[impl] 
-(
- override val uuid: java.util.UUID,
- override val scalarDataProperty: resolver.api.DataRelationshipToScalar,
- override val scalarPropertyValue: scala.Predef.String
+	(
+	 override val uuid: java.util.UUID,
+	 override val scalarDataProperty: resolver.api.DataRelationshipToScalar,
+	 override val scalarPropertyValue: scala.Predef.String
 )
 extends resolver.api.ScalarDataPropertyValue
   with Element
@@ -32,11 +32,11 @@ extends resolver.api.ScalarDataPropertyValue
 		
   def descriptionBox
   ()(implicit extent: resolver.api.Extent)
-  : scala.Option[resolver.api.DescriptionBox]
-  = {
-    extent.singletonInstanceOfScalarDataPropertyValue.get(this).flatMap(_.descriptionBox())
-  }
-  
+	  : scala.Option[resolver.api.DescriptionBox]
+	  = {
+	    extent.singletonInstanceStructuredDataPropertyContextOfScalarDataPropertyValue.get(this).flatMap(_.descriptionBox())
+	  }
+	  
 
 
 
@@ -50,13 +50,13 @@ extends resolver.api.ScalarDataPropertyValue
   = (uuid, scalarDataProperty, scalarPropertyValue).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: ScalarDataPropertyValue =>
-	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.scalarDataProperty == that.scalarDataProperty) &&
-	    (this.scalarPropertyValue == that.scalarPropertyValue)
+   case that: ScalarDataPropertyValue =>
+     (that canEqual this) &&
+     (this.uuid == that.uuid) &&
+     (this.scalarDataProperty == that.scalarDataProperty) &&
+     (this.scalarPropertyValue == that.scalarPropertyValue)
 
 	  case _ =>
 	    false
-  }
+}
 }

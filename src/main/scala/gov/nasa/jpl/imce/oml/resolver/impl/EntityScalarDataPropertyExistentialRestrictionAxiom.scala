@@ -21,11 +21,11 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 import gov.nasa.jpl.imce.oml._
 
 case class EntityScalarDataPropertyExistentialRestrictionAxiom private[impl] 
-(
- override val uuid: java.util.UUID,
- override val restrictedEntity: resolver.api.Entity,
- override val scalarProperty: resolver.api.EntityScalarDataProperty,
- override val scalarRestriction: resolver.api.DataRange
+	(
+	 override val uuid: java.util.UUID,
+	 override val restrictedEntity: resolver.api.Entity,
+	 override val scalarProperty: resolver.api.EntityScalarDataProperty,
+	 override val scalarRestriction: resolver.api.DataRange
 )
 extends resolver.api.EntityScalarDataPropertyExistentialRestrictionAxiom
   with EntityScalarDataPropertyRestrictionAxiom
@@ -44,14 +44,14 @@ extends resolver.api.EntityScalarDataPropertyExistentialRestrictionAxiom
   = (uuid, restrictedEntity, scalarProperty, scalarRestriction).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: EntityScalarDataPropertyExistentialRestrictionAxiom =>
-	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.restrictedEntity == that.restrictedEntity) &&
-	    (this.scalarProperty == that.scalarProperty) &&
-	    (this.scalarRestriction == that.scalarRestriction)
+   case that: EntityScalarDataPropertyExistentialRestrictionAxiom =>
+     (that canEqual this) &&
+     (this.uuid == that.uuid) &&
+     (this.restrictedEntity == that.restrictedEntity) &&
+     (this.scalarProperty == that.scalarProperty) &&
+     (this.scalarRestriction == that.scalarRestriction)
 
 	  case _ =>
 	    false
-  }
+}
 }

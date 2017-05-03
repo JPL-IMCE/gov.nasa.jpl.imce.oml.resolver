@@ -21,9 +21,9 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 import gov.nasa.jpl.imce.oml._
 
 case class BundledTerminologyAxiom private[impl] 
-(
- override val uuid: java.util.UUID,
- override val bundledTerminology: resolver.api.TerminologyBox
+	(
+	 override val uuid: java.util.UUID,
+	 override val bundledTerminology: resolver.api.TerminologyBox
 )
 extends resolver.api.BundledTerminologyAxiom
   with TerminologyBundleAxiom
@@ -34,21 +34,21 @@ extends resolver.api.BundledTerminologyAxiom
    */
   override def source
   ()(implicit extent: resolver.api.Extent)
-  : scala.Option[resolver.api.TerminologyBox]
-  = {
-    extent.bundleOfTerminologyBundleAxiom.get(this)
-  }
-  
+	  : scala.Option[resolver.api.TerminologyBox]
+	  = {
+	    extent.bundleOfTerminologyBundleAxiom.get(this)
+	  }
+	  
   /*
    * The bundledTerminology is the target
    */
   override def target
   ()(implicit extent: resolver.api.Extent)
-  : resolver.api.TerminologyBox
-  = {
-    bundledTerminology
-  }
-  
+	  : resolver.api.TerminologyBox
+	  = {
+	    bundledTerminology
+	  }
+	  
 
 
 
@@ -62,12 +62,12 @@ extends resolver.api.BundledTerminologyAxiom
   = (uuid, bundledTerminology).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: BundledTerminologyAxiom =>
-	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.bundledTerminology == that.bundledTerminology)
+   case that: BundledTerminologyAxiom =>
+     (that canEqual this) &&
+     (this.uuid == that.uuid) &&
+     (this.bundledTerminology == that.bundledTerminology)
 
 	  case _ =>
 	    false
-  }
+}
 }

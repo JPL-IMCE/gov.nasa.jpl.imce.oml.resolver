@@ -21,9 +21,9 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 import gov.nasa.jpl.imce.oml._
 
 case class Structure private[impl] 
-(
- override val uuid: java.util.UUID,
- override val name: gov.nasa.jpl.imce.oml.tables.LocalName
+	(
+	 override val uuid: java.util.UUID,
+	 override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 )
 extends resolver.api.Structure
   with Datatype
@@ -43,12 +43,12 @@ extends resolver.api.Structure
   = (uuid, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: Structure =>
-	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.name == that.name)
+   case that: Structure =>
+     (that canEqual this) &&
+     (this.uuid == that.uuid) &&
+     (this.name == that.name)
 
 	  case _ =>
 	    false
-  }
+}
 }

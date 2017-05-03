@@ -21,10 +21,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 import gov.nasa.jpl.imce.oml._
 
 case class TerminologyNestingAxiom private[impl] 
-(
- override val uuid: java.util.UUID,
- override val nestingTerminology: resolver.api.TerminologyBox,
- override val nestingContext: resolver.api.Concept
+	(
+	 override val uuid: java.util.UUID,
+	 override val nestingTerminology: resolver.api.TerminologyBox,
+	 override val nestingContext: resolver.api.Concept
 )
 extends resolver.api.TerminologyNestingAxiom
   with TerminologyBoxAxiom
@@ -32,34 +32,34 @@ extends resolver.api.TerminologyNestingAxiom
 		
   def nestedTerminology
   ()(implicit extent: resolver.api.Extent)
-  : scala.Option[resolver.api.TerminologyGraph]
-  = {
-    extent.terminologyBoxOfTerminologyBoxAxiom.get(this) match {
-          case scala.Some(g: resolver.api.TerminologyGraph) => scala.Some(g)
-          case _ => scala.None
-        }
-  }
-  
+	  : scala.Option[resolver.api.TerminologyGraph]
+	  = {
+	    extent.terminologyBoxOfTerminologyBoxAxiom.get(this) match {
+	          case scala.Some(g: resolver.api.TerminologyGraph) => scala.Some(g)
+	          case _ => scala.None
+	        }
+	  }
+	  
   /*
    * The nestedTerminology is the source
    */
   override def source
   ()(implicit extent: resolver.api.Extent)
-  : scala.Option[resolver.api.TerminologyBox]
-  = {
-    nestedTerminology()
-  }
-  
+	  : scala.Option[resolver.api.TerminologyBox]
+	  = {
+	    nestedTerminology()
+	  }
+	  
   /*
    * The nestingTerminology is the target
    */
   override def target
   ()(implicit extent: resolver.api.Extent)
-  : resolver.api.TerminologyBox
-  = {
-    nestingTerminology
-  }
-  
+	  : resolver.api.TerminologyBox
+	  = {
+	    nestingTerminology
+	  }
+	  
 
 
 
@@ -73,13 +73,13 @@ extends resolver.api.TerminologyNestingAxiom
   = (uuid, nestingTerminology, nestingContext).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: TerminologyNestingAxiom =>
-	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.nestingTerminology == that.nestingTerminology) &&
-	    (this.nestingContext == that.nestingContext)
+   case that: TerminologyNestingAxiom =>
+     (that canEqual this) &&
+     (this.uuid == that.uuid) &&
+     (this.nestingTerminology == that.nestingTerminology) &&
+     (this.nestingContext == that.nestingContext)
 
 	  case _ =>
 	    false
-  }
+}
 }

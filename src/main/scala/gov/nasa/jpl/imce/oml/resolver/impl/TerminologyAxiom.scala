@@ -27,18 +27,18 @@ extends resolver.api.TerminologyAxiom
 		
   def sourceModule
   ()(implicit extent: resolver.api.Extent)
-  : scala.Option[resolver.api.Module]
-  = {
-    source()
-  }
-  
+	  : scala.Option[resolver.api.Module]
+	  = {
+	    source()
+	  }
+	  
   def targetModule
   ()(implicit extent: resolver.api.Extent)
-  : resolver.api.Module
-  = {
-    target()
-  }
-  
+	  : resolver.api.Module
+	  = {
+	    target()
+	  }
+	  
 
 
 

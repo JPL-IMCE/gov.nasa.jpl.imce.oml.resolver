@@ -21,10 +21,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 import gov.nasa.jpl.imce.oml._
 
 case class ReifiedRelationshipInstance private[impl] 
-(
- override val uuid: java.util.UUID,
- override val singletonReifiedRelationshipClassifier: resolver.api.ReifiedRelationship,
- override val name: gov.nasa.jpl.imce.oml.tables.LocalName
+	(
+	 override val uuid: java.util.UUID,
+	 override val singletonReifiedRelationshipClassifier: resolver.api.ReifiedRelationship,
+	 override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 )
 extends resolver.api.ReifiedRelationshipInstance
   with ConceptualEntitySingletonInstance
@@ -32,18 +32,18 @@ extends resolver.api.ReifiedRelationshipInstance
 		
   override def conceptualEntitySingletonClassifier
   ()
-  : resolver.api.ConceptualEntity
-  = {
-    singletonReifiedRelationshipClassifier
-  }
-  
+	  : resolver.api.ConceptualEntity
+	  = {
+	    singletonReifiedRelationshipClassifier
+	  }
+	  
   def descriptionBox
   ()(implicit extent: resolver.api.Extent)
-  : scala.Option[resolver.api.DescriptionBox]
-  = {
-    extent.descriptionBoxOfReifiedRelationshipInstance.get(this)
-  }
-  
+	  : scala.Option[resolver.api.DescriptionBox]
+	  = {
+	    extent.descriptionBoxOfReifiedRelationshipInstance.get(this)
+	  }
+	  
 
 
 
@@ -57,13 +57,13 @@ extends resolver.api.ReifiedRelationshipInstance
   = (uuid, singletonReifiedRelationshipClassifier, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: ReifiedRelationshipInstance =>
-	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.singletonReifiedRelationshipClassifier == that.singletonReifiedRelationshipClassifier) &&
-	    (this.name == that.name)
+   case that: ReifiedRelationshipInstance =>
+     (that canEqual this) &&
+     (this.uuid == that.uuid) &&
+     (this.singletonReifiedRelationshipClassifier == that.singletonReifiedRelationshipClassifier) &&
+     (this.name == that.name)
 
 	  case _ =>
 	    false
-  }
+}
 }

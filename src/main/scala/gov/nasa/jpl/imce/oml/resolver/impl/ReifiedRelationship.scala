@@ -21,22 +21,22 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 import gov.nasa.jpl.imce.oml._
 
 case class ReifiedRelationship private[impl] 
-(
- override val uuid: java.util.UUID,
- override val source: resolver.api.Entity,
- override val target: resolver.api.Entity,
- override val isAsymmetric: scala.Boolean,
- override val isEssential: scala.Boolean,
- override val isFunctional: scala.Boolean,
- override val isInverseEssential: scala.Boolean,
- override val isInverseFunctional: scala.Boolean,
- override val isIrreflexive: scala.Boolean,
- override val isReflexive: scala.Boolean,
- override val isSymmetric: scala.Boolean,
- override val isTransitive: scala.Boolean,
- override val name: gov.nasa.jpl.imce.oml.tables.LocalName,
- override val unreifiedPropertyName: gov.nasa.jpl.imce.oml.tables.LocalName,
- override val unreifiedInversePropertyName: scala.Option[gov.nasa.jpl.imce.oml.tables.LocalName]
+	(
+	 override val uuid: java.util.UUID,
+	 override val source: resolver.api.Entity,
+	 override val target: resolver.api.Entity,
+	 override val isAsymmetric: scala.Boolean,
+	 override val isEssential: scala.Boolean,
+	 override val isFunctional: scala.Boolean,
+	 override val isInverseEssential: scala.Boolean,
+	 override val isInverseFunctional: scala.Boolean,
+	 override val isIrreflexive: scala.Boolean,
+	 override val isReflexive: scala.Boolean,
+	 override val isSymmetric: scala.Boolean,
+	 override val isTransitive: scala.Boolean,
+	 override val name: gov.nasa.jpl.imce.oml.tables.LocalName,
+	 override val unreifiedPropertyName: gov.nasa.jpl.imce.oml.tables.LocalName,
+	 override val unreifiedInversePropertyName: scala.Option[gov.nasa.jpl.imce.oml.tables.LocalName]
 )
 extends resolver.api.ReifiedRelationship
   with EntityRelationship
@@ -57,25 +57,25 @@ extends resolver.api.ReifiedRelationship
   = (uuid, source, target, isAsymmetric, isEssential, isFunctional, isInverseEssential, isInverseFunctional, isIrreflexive, isReflexive, isSymmetric, isTransitive, name, unreifiedPropertyName, unreifiedInversePropertyName).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: ReifiedRelationship =>
-	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.source == that.source) &&
-	    (this.target == that.target) &&
-	    (this.isAsymmetric == that.isAsymmetric) &&
-	    (this.isEssential == that.isEssential) &&
-	    (this.isFunctional == that.isFunctional) &&
-	    (this.isInverseEssential == that.isInverseEssential) &&
-	    (this.isInverseFunctional == that.isInverseFunctional) &&
-	    (this.isIrreflexive == that.isIrreflexive) &&
-	    (this.isReflexive == that.isReflexive) &&
-	    (this.isSymmetric == that.isSymmetric) &&
-	    (this.isTransitive == that.isTransitive) &&
-	    (this.name == that.name) &&
-	    (this.unreifiedPropertyName == that.unreifiedPropertyName) &&
-	    (this.unreifiedInversePropertyName == that.unreifiedInversePropertyName)
+   case that: ReifiedRelationship =>
+     (that canEqual this) &&
+     (this.uuid == that.uuid) &&
+     (this.source == that.source) &&
+     (this.target == that.target) &&
+     (this.isAsymmetric == that.isAsymmetric) &&
+     (this.isEssential == that.isEssential) &&
+     (this.isFunctional == that.isFunctional) &&
+     (this.isInverseEssential == that.isInverseEssential) &&
+     (this.isInverseFunctional == that.isInverseFunctional) &&
+     (this.isIrreflexive == that.isIrreflexive) &&
+     (this.isReflexive == that.isReflexive) &&
+     (this.isSymmetric == that.isSymmetric) &&
+     (this.isTransitive == that.isTransitive) &&
+     (this.name == that.name) &&
+     (this.unreifiedPropertyName == that.unreifiedPropertyName) &&
+     (this.unreifiedInversePropertyName == that.unreifiedInversePropertyName)
 
 	  case _ =>
 	    false
-  }
+}
 }

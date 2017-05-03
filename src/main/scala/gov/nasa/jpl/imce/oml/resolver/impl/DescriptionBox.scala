@@ -21,10 +21,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 import gov.nasa.jpl.imce.oml._
 
 case class DescriptionBox private[impl] 
-(
- override val uuid: java.util.UUID,
- override val kind: gov.nasa.jpl.imce.oml.tables.DescriptionKind,
- override val iri: gov.nasa.jpl.imce.oml.tables.IRI
+	(
+	 override val uuid: java.util.UUID,
+	 override val kind: gov.nasa.jpl.imce.oml.tables.DescriptionKind,
+	 override val iri: gov.nasa.jpl.imce.oml.tables.IRI
 )
 extends resolver.api.DescriptionBox
   with Module
@@ -43,13 +43,13 @@ extends resolver.api.DescriptionBox
   = (uuid, kind, iri).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: DescriptionBox =>
-	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.kind == that.kind) &&
-	    (this.iri == that.iri)
+   case that: DescriptionBox =>
+     (that canEqual this) &&
+     (this.uuid == that.uuid) &&
+     (this.kind == that.kind) &&
+     (this.iri == that.iri)
 
 	  case _ =>
 	    false
-  }
+}
 }

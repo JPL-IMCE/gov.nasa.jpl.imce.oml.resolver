@@ -27,11 +27,11 @@ extends resolver.api.DisjointUnionOfConceptsAxiom
 		
   def conceptTreeDisjunctionParent
   ()(implicit extent: resolver.api.Extent)
-  : scala.Option[resolver.api.ConceptTreeDisjunction]
-  = {
-    extent.conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom.get(this)
-  }
-  
+	  : scala.Option[resolver.api.ConceptTreeDisjunction]
+	  = {
+	    extent.conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom.get(this)
+	  }
+	  
 
 
 

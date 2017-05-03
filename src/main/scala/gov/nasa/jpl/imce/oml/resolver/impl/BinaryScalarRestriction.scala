@@ -21,13 +21,13 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 import gov.nasa.jpl.imce.oml._
 
 case class BinaryScalarRestriction private[impl] 
-(
- override val uuid: java.util.UUID,
- override val restrictedRange: resolver.api.DataRange,
- override val length: scala.Option[scala.Int],
- override val minLength: scala.Option[scala.Int],
- override val maxLength: scala.Option[scala.Int],
- override val name: gov.nasa.jpl.imce.oml.tables.LocalName
+	(
+	 override val uuid: java.util.UUID,
+	 override val restrictedRange: resolver.api.DataRange,
+	 override val length: scala.Option[scala.Int],
+	 override val minLength: scala.Option[scala.Int],
+	 override val maxLength: scala.Option[scala.Int],
+	 override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 )
 extends resolver.api.BinaryScalarRestriction
   with RestrictedDataRange
@@ -46,16 +46,16 @@ extends resolver.api.BinaryScalarRestriction
   = (uuid, restrictedRange, length, minLength, maxLength, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: BinaryScalarRestriction =>
-	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.restrictedRange == that.restrictedRange) &&
-	    (this.length == that.length) &&
-	    (this.minLength == that.minLength) &&
-	    (this.maxLength == that.maxLength) &&
-	    (this.name == that.name)
+   case that: BinaryScalarRestriction =>
+     (that canEqual this) &&
+     (this.uuid == that.uuid) &&
+     (this.restrictedRange == that.restrictedRange) &&
+     (this.length == that.length) &&
+     (this.minLength == that.minLength) &&
+     (this.maxLength == that.maxLength) &&
+     (this.name == that.name)
 
 	  case _ =>
 	    false
-  }
+}
 }

@@ -21,10 +21,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 import gov.nasa.jpl.imce.oml._
 
 case class AnnotationEntry private[impl] 
-(
- override val module: resolver.api.Module,
- override val subject: resolver.api.Element,
- override val value: scala.Predef.String
+	(
+	 override val module: resolver.api.Module,
+	 override val subject: resolver.api.Element,
+	 override val value: scala.Predef.String
 )
 extends resolver.api.AnnotationEntry
 {
@@ -37,13 +37,13 @@ extends resolver.api.AnnotationEntry
   = (module, subject, value).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: AnnotationEntry =>
-	    (that canEqual this) &&
-	    (this.module == that.module) &&
-	    (this.subject == that.subject) &&
-	    (this.value == that.value)
+   case that: AnnotationEntry =>
+     (that canEqual this) &&
+     (this.module == that.module) &&
+     (this.subject == that.subject) &&
+     (this.value == that.value)
 
 	  case _ =>
 	    false
-  }
+}
 }

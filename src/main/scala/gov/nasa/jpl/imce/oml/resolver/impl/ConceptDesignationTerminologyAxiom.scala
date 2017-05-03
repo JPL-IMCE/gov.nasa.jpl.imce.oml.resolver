@@ -21,10 +21,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 import gov.nasa.jpl.imce.oml._
 
 case class ConceptDesignationTerminologyAxiom private[impl] 
-(
- override val uuid: java.util.UUID,
- override val designatedConcept: resolver.api.Concept,
- override val designatedTerminology: resolver.api.TerminologyBox
+	(
+	 override val uuid: java.util.UUID,
+	 override val designatedConcept: resolver.api.Concept,
+	 override val designatedTerminology: resolver.api.TerminologyBox
 )
 extends resolver.api.ConceptDesignationTerminologyAxiom
   with TerminologyBoxAxiom
@@ -32,34 +32,34 @@ extends resolver.api.ConceptDesignationTerminologyAxiom
 		
   def designationTerminologyGraph
   ()(implicit extent: resolver.api.Extent)
-  : scala.Option[resolver.api.TerminologyGraph]
-  = {
-    extent.terminologyBoxOfTerminologyBoxAxiom.get(this) match {
-          case scala.Some(g: resolver.api.TerminologyGraph) => scala.Some(g)
-          case _ => scala.None
-        }
-  }
-  
+	  : scala.Option[resolver.api.TerminologyGraph]
+	  = {
+	    extent.terminologyBoxOfTerminologyBoxAxiom.get(this) match {
+	          case scala.Some(g: resolver.api.TerminologyGraph) => scala.Some(g)
+	          case _ => scala.None
+	        }
+	  }
+	  
   /*
    * The designationTerminologyGraph is the source
    */
   override def source
   ()(implicit extent: resolver.api.Extent)
-  : scala.Option[resolver.api.TerminologyBox]
-  = {
-    designationTerminologyGraph()
-  }
-  
+	  : scala.Option[resolver.api.TerminologyBox]
+	  = {
+	    designationTerminologyGraph()
+	  }
+	  
   /*
    * The TerminologyBox that asserts the designatedConcept is the target
    */
   override def target
   ()(implicit extent: resolver.api.Extent)
-  : resolver.api.TerminologyBox
-  = {
-    designatedTerminology
-  }
-  
+	  : resolver.api.TerminologyBox
+	  = {
+	    designatedTerminology
+	  }
+	  
 
 
 
@@ -73,13 +73,13 @@ extends resolver.api.ConceptDesignationTerminologyAxiom
   = (uuid, designatedConcept, designatedTerminology).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: ConceptDesignationTerminologyAxiom =>
-	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.designatedConcept == that.designatedConcept) &&
-	    (this.designatedTerminology == that.designatedTerminology)
+   case that: ConceptDesignationTerminologyAxiom =>
+     (that canEqual this) &&
+     (this.uuid == that.uuid) &&
+     (this.designatedConcept == that.designatedConcept) &&
+     (this.designatedTerminology == that.designatedTerminology)
 
 	  case _ =>
 	    false
-  }
+}
 }

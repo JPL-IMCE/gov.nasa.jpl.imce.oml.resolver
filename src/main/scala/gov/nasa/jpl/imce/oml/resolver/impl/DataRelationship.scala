@@ -28,18 +28,18 @@ extends resolver.api.DataRelationship
 		
   override def relationDomain
   ()
-  : resolver.api.Term
-  = {
-    source
-  }
-  
+	  : resolver.api.Term
+	  = {
+	    source
+	  }
+	  
   override def relationRange
   ()
-  : resolver.api.Term
-  = {
-    target
-  }
-  
+	  : resolver.api.Term
+	  = {
+	    target
+	  }
+	  
 
 
 

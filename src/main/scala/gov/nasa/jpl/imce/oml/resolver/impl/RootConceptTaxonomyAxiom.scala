@@ -21,9 +21,9 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 import gov.nasa.jpl.imce.oml._
 
 case class RootConceptTaxonomyAxiom private[impl] 
-(
- override val uuid: java.util.UUID,
- override val root: resolver.api.Concept
+	(
+	 override val uuid: java.util.UUID,
+	 override val root: resolver.api.Concept
 )
 extends resolver.api.RootConceptTaxonomyAxiom
   with TerminologyBundleStatement
@@ -32,11 +32,11 @@ extends resolver.api.RootConceptTaxonomyAxiom
 		
   override def bundleContainer
   ()(implicit extent: resolver.api.Extent)
-  : scala.Option[resolver.api.Bundle]
-  = {
-    extent.bundleOfTerminologyBundleStatement.get(this)
-  }
-  
+	  : scala.Option[resolver.api.Bundle]
+	  = {
+	    extent.bundleOfTerminologyBundleStatement.get(this)
+	  }
+	  
 
 
 
@@ -50,12 +50,12 @@ extends resolver.api.RootConceptTaxonomyAxiom
   = (uuid, root).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: RootConceptTaxonomyAxiom =>
-	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.root == that.root)
+   case that: RootConceptTaxonomyAxiom =>
+     (that canEqual this) &&
+     (this.uuid == that.uuid) &&
+     (this.root == that.root)
 
 	  case _ =>
 	    false
-  }
+}
 }

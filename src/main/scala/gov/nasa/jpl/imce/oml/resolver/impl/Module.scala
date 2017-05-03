@@ -29,25 +29,25 @@ override val iri: gov.nasa.jpl.imce.oml.tables.IRI
 		
   override def iri
   ()(implicit extent: resolver.api.Extent)
-  : scala.Option[gov.nasa.jpl.imce.oml.tables.IRI]
-  = {
-    scala.Some(iri)
-  }
-  
+	  : scala.Option[gov.nasa.jpl.imce.oml.tables.IRI]
+	  = {
+	    scala.Some(iri)
+	  }
+	  
   def nsPrefix
   ()
-  : gov.nasa.jpl.imce.oml.tables.NamespacePrefix
-  = {
-    iri.substring(1+iri.lastIndexOf('/'))
-  }
-  
+	  : gov.nasa.jpl.imce.oml.tables.NamespacePrefix
+	  = {
+	    iri.substring(1+iri.lastIndexOf('/'))
+	  }
+	  
   def name
   ()
-  : gov.nasa.jpl.imce.oml.tables.LocalName
-  = {
-    nsPrefix
-  }
-  
+	  : gov.nasa.jpl.imce.oml.tables.LocalName
+	  = {
+	    nsPrefix
+	  }
+	  
 
 
 

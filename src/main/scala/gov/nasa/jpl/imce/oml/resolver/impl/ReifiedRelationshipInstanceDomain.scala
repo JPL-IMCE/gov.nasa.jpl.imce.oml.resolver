@@ -21,10 +21,10 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 import gov.nasa.jpl.imce.oml._
 
 case class ReifiedRelationshipInstanceDomain private[impl] 
-(
- override val uuid: java.util.UUID,
- override val reifiedRelationshipInstance: resolver.api.ReifiedRelationshipInstance,
- override val domain: resolver.api.ConceptualEntitySingletonInstance
+	(
+	 override val uuid: java.util.UUID,
+	 override val reifiedRelationshipInstance: resolver.api.ReifiedRelationshipInstance,
+	 override val domain: resolver.api.ConceptualEntitySingletonInstance
 )
 extends resolver.api.ReifiedRelationshipInstanceDomain
   with TerminologyInstanceAssertion
@@ -32,11 +32,11 @@ extends resolver.api.ReifiedRelationshipInstanceDomain
 		
   def descriptionBox
   ()(implicit extent: resolver.api.Extent)
-  : scala.Option[resolver.api.DescriptionBox]
-  = {
-    extent.descriptionBoxOfReifiedRelationshipInstanceDomain.get(this)
-  }
-  
+	  : scala.Option[resolver.api.DescriptionBox]
+	  = {
+	    extent.descriptionBoxOfReifiedRelationshipInstanceDomain.get(this)
+	  }
+	  
 
 
 
@@ -50,13 +50,13 @@ extends resolver.api.ReifiedRelationshipInstanceDomain
   = (uuid, reifiedRelationshipInstance, domain).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: ReifiedRelationshipInstanceDomain =>
-	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.reifiedRelationshipInstance == that.reifiedRelationshipInstance) &&
-	    (this.domain == that.domain)
+   case that: ReifiedRelationshipInstanceDomain =>
+     (that canEqual this) &&
+     (this.uuid == that.uuid) &&
+     (this.reifiedRelationshipInstance == that.reifiedRelationshipInstance) &&
+     (this.domain == that.domain)
 
 	  case _ =>
 	    false
-  }
+}
 }

@@ -21,11 +21,11 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 import gov.nasa.jpl.imce.oml._
 
 case class UnreifiedRelationshipInstanceTuple private[impl] 
-(
- override val uuid: java.util.UUID,
- override val unreifiedRelationship: resolver.api.UnreifiedRelationship,
- override val domain: resolver.api.ConceptualEntitySingletonInstance,
- override val range: resolver.api.ConceptualEntitySingletonInstance
+	(
+	 override val uuid: java.util.UUID,
+	 override val unreifiedRelationship: resolver.api.UnreifiedRelationship,
+	 override val domain: resolver.api.ConceptualEntitySingletonInstance,
+	 override val range: resolver.api.ConceptualEntitySingletonInstance
 )
 extends resolver.api.UnreifiedRelationshipInstanceTuple
   with TerminologyInstanceAssertion
@@ -33,11 +33,11 @@ extends resolver.api.UnreifiedRelationshipInstanceTuple
 		
   def descriptionBox
   ()(implicit extent: resolver.api.Extent)
-  : scala.Option[resolver.api.DescriptionBox]
-  = {
-    extent.descriptionBoxOfUnreifiedRelationshipInstanceTuple.get(this)
-  }
-  
+	  : scala.Option[resolver.api.DescriptionBox]
+	  = {
+	    extent.descriptionBoxOfUnreifiedRelationshipInstanceTuple.get(this)
+	  }
+	  
 
 
 
@@ -51,14 +51,14 @@ extends resolver.api.UnreifiedRelationshipInstanceTuple
   = (uuid, unreifiedRelationship, domain, range).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: UnreifiedRelationshipInstanceTuple =>
-	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.unreifiedRelationship == that.unreifiedRelationship) &&
-	    (this.domain == that.domain) &&
-	    (this.range == that.range)
+   case that: UnreifiedRelationshipInstanceTuple =>
+     (that canEqual this) &&
+     (this.uuid == that.uuid) &&
+     (this.unreifiedRelationship == that.unreifiedRelationship) &&
+     (this.domain == that.domain) &&
+     (this.range == that.range)
 
 	  case _ =>
 	    false
-  }
+}
 }

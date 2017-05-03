@@ -21,12 +21,12 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 import gov.nasa.jpl.imce.oml._
 
 case class EntityStructuredDataProperty private[impl] 
-(
- override val uuid: java.util.UUID,
- override val domain: resolver.api.Entity,
- override val range: resolver.api.Structure,
- override val isIdentityCriteria: scala.Boolean,
- override val name: gov.nasa.jpl.imce.oml.tables.LocalName
+	(
+	 override val uuid: java.util.UUID,
+	 override val domain: resolver.api.Entity,
+	 override val range: resolver.api.Structure,
+	 override val isIdentityCriteria: scala.Boolean,
+	 override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 )
 extends resolver.api.EntityStructuredDataProperty
   with DataRelationship
@@ -36,18 +36,18 @@ extends resolver.api.EntityStructuredDataProperty
 		
   override def source
   ()
-  : resolver.api.Term
-  = {
-    domain
-  }
-  
+	  : resolver.api.Term
+	  = {
+	    domain
+	  }
+	  
   override def target
   ()
-  : resolver.api.Datatype
-  = {
-    range
-  }
-  
+	  : resolver.api.Datatype
+	  = {
+	    range
+	  }
+	  
 
 
 
@@ -61,15 +61,15 @@ extends resolver.api.EntityStructuredDataProperty
   = (uuid, domain, range, isIdentityCriteria, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-	  case that: EntityStructuredDataProperty =>
-	    (that canEqual this) &&
-	    (this.uuid == that.uuid) &&
-	    (this.domain == that.domain) &&
-	    (this.range == that.range) &&
-	    (this.isIdentityCriteria == that.isIdentityCriteria) &&
-	    (this.name == that.name)
+   case that: EntityStructuredDataProperty =>
+     (that canEqual this) &&
+     (this.uuid == that.uuid) &&
+     (this.domain == that.domain) &&
+     (this.range == that.range) &&
+     (this.isIdentityCriteria == that.isIdentityCriteria) &&
+     (this.name == that.name)
 
 	  case _ =>
 	    false
-  }
+}
 }
