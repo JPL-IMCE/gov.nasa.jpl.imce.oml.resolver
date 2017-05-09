@@ -31,7 +31,7 @@ override val name: gov.nasa.jpl.imce.oml.tables.LocalName
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[gov.nasa.jpl.imce.oml.tables.IRI]
 	  = {
-	    extent.terminologyBoxOfTerminologyBoxStatement.get(this).flatMap(_.iri())
+	    extent.terminologyBoxOfTerminologyBoxStatement.get(this).flatMap(_.iri().map(_ + "#" + name))
 	  }
 	  
   override def abbrevIRI
