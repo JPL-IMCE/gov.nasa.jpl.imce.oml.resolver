@@ -30,6 +30,13 @@ extends resolver.api.Bundle
   with TerminologyBox
 {
 		
+  override def moduleEdges
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.collection.immutable.Set[_ <: resolver.api.ModuleEdge]
+	  = {
+	    extent.boxAxioms.getOrElse(this, scala.collection.immutable.Set.empty[resolver.api.ModuleEdge]) ++ extent.bundleAxioms.getOrElse(this, scala.collection.immutable.Set.empty[resolver.api.ModuleEdge])
+	  }
+	  
 
 
 

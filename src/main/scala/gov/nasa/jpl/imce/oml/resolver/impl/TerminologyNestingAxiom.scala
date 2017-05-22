@@ -23,6 +23,7 @@ import gov.nasa.jpl.imce.oml._
 case class TerminologyNestingAxiom private[impl] 
 	(
 	 override val uuid: java.util.UUID,
+	 override val tbox: resolver.api.TerminologyBox,
 	 override val nestingTerminology: resolver.api.TerminologyBox,
 	 override val nestingContext: resolver.api.Concept
 )
@@ -70,12 +71,13 @@ extends resolver.api.TerminologyNestingAxiom
 
   override val hashCode
   : scala.Int
-  = (uuid, nestingTerminology, nestingContext).##
+  = (uuid, tbox, nestingTerminology, nestingContext).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
    case that: TerminologyNestingAxiom =>
      (that canEqual this) &&
      (this.uuid == that.uuid) &&
+     (this.tbox == that.tbox) &&
      (this.nestingTerminology == that.nestingTerminology) &&
      (this.nestingContext == that.nestingContext)
 

@@ -23,6 +23,7 @@ import gov.nasa.jpl.imce.oml._
 case class RootConceptTaxonomyAxiom private[impl] 
 	(
 	 override val uuid: java.util.UUID,
+	 override val bundle: resolver.api.Bundle,
 	 override val root: resolver.api.Concept
 )
 extends resolver.api.RootConceptTaxonomyAxiom
@@ -47,12 +48,13 @@ extends resolver.api.RootConceptTaxonomyAxiom
 
   override val hashCode
   : scala.Int
-  = (uuid, root).##
+  = (uuid, bundle, root).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
    case that: RootConceptTaxonomyAxiom =>
      (that canEqual this) &&
      (this.uuid == that.uuid) &&
+     (this.bundle == that.bundle) &&
      (this.root == that.root)
 
 	  case _ =>

@@ -30,6 +30,13 @@ extends resolver.api.DescriptionBox
   with Module
 {
 		
+  override def moduleEdges
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.collection.immutable.Set[_ <: resolver.api.ModuleEdge]
+	  = {
+	    extent.descriptionBoxRefinements.getOrElse(this, scala.collection.immutable.Set.empty[resolver.api.ModuleEdge]) ++ extent.closedWorldDefinitions.getOrElse(this, scala.collection.immutable.Set.empty[resolver.api.ModuleEdge])
+	  }
+	  
 
 
 

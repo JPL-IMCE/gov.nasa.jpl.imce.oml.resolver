@@ -186,7 +186,7 @@ extends resolver.api.OMLResolvedFactory {
 	   // factoryMethodWithDerivedUUID
 	   // container: bundle Bundle
 	   // contained: bundleAxioms TerminologyBundleAxiom
-	   val bundledTerminologyAxiom = BundledTerminologyAxiom( uuid, bundledTerminology )
+	   val bundledTerminologyAxiom = BundledTerminologyAxiom( uuid, bundledTerminology, bundle )
 	   scala.Tuple2(
 	   	extent.copy(
 	   	  bundleAxioms = extent.withTerminologyBundleAxiom(bundle, bundledTerminologyAxiom),
@@ -227,7 +227,7 @@ extends resolver.api.OMLResolvedFactory {
 	   // factoryMethodWithDerivedUUID
 	   // container: tbox TerminologyBox
 	   // contained: boxAxioms TerminologyBoxAxiom
-	   val conceptDesignationTerminologyAxiom = ConceptDesignationTerminologyAxiom( uuid, designatedConcept, designatedTerminology )
+	   val conceptDesignationTerminologyAxiom = ConceptDesignationTerminologyAxiom( uuid, tbox, designatedConcept, designatedTerminology )
 	   scala.Tuple2(
 	   	extent.copy(
 	   	  boxAxioms = extent.withTerminologyBoxAxiom(tbox, conceptDesignationTerminologyAxiom),
@@ -692,7 +692,7 @@ extends resolver.api.OMLResolvedFactory {
 	   // factoryMethodWithDerivedUUID
 	   // container: bundle Bundle
 	   // contained: bundleStatements TerminologyBundleStatement
-	   val rootConceptTaxonomyAxiom = RootConceptTaxonomyAxiom( uuid, root )
+	   val rootConceptTaxonomyAxiom = RootConceptTaxonomyAxiom( uuid, bundle, root )
 	   scala.Tuple2(
 	   	extent.copy(
 	   	  bundleStatements = extent.withTerminologyBundleStatement(bundle, rootConceptTaxonomyAxiom),
@@ -988,7 +988,7 @@ extends resolver.api.OMLResolvedFactory {
 	   // factoryMethodWithDerivedUUID
 	   // container: tbox TerminologyBox
 	   // contained: boxAxioms TerminologyBoxAxiom
-	   val terminologyExtensionAxiom = TerminologyExtensionAxiom( uuid, extendedTerminology )
+	   val terminologyExtensionAxiom = TerminologyExtensionAxiom( uuid, tbox, extendedTerminology )
 	   scala.Tuple2(
 	   	extent.copy(
 	   	  boxAxioms = extent.withTerminologyBoxAxiom(tbox, terminologyExtensionAxiom),
@@ -1023,7 +1023,7 @@ extends resolver.api.OMLResolvedFactory {
 	   // factoryMethodWithDerivedUUID
 	   // container: tbox TerminologyBox
 	   // contained: boxAxioms TerminologyBoxAxiom
-	   val terminologyNestingAxiom = TerminologyNestingAxiom( uuid, nestingTerminology, nestingContext )
+	   val terminologyNestingAxiom = TerminologyNestingAxiom( uuid, tbox, nestingTerminology, nestingContext )
 	   scala.Tuple2(
 	   	extent.copy(
 	   	  boxAxioms = extent.withTerminologyBoxAxiom(tbox, terminologyNestingAxiom),

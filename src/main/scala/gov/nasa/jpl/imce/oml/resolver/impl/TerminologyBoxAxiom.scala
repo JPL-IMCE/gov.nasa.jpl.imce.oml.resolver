@@ -24,6 +24,7 @@ trait TerminologyBoxAxiom
 extends resolver.api.TerminologyBoxAxiom
   with TerminologyAxiom
 {
+override val tbox: resolver.api.TerminologyBox
 		
 
 

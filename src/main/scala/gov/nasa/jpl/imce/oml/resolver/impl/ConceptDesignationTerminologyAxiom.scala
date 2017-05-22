@@ -23,6 +23,7 @@ import gov.nasa.jpl.imce.oml._
 case class ConceptDesignationTerminologyAxiom private[impl] 
 	(
 	 override val uuid: java.util.UUID,
+	 override val tbox: resolver.api.TerminologyBox,
 	 override val designatedConcept: resolver.api.Concept,
 	 override val designatedTerminology: resolver.api.TerminologyBox
 )
@@ -70,12 +71,13 @@ extends resolver.api.ConceptDesignationTerminologyAxiom
 
   override val hashCode
   : scala.Int
-  = (uuid, designatedConcept, designatedTerminology).##
+  = (uuid, tbox, designatedConcept, designatedTerminology).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
    case that: ConceptDesignationTerminologyAxiom =>
      (that canEqual this) &&
      (this.uuid == that.uuid) &&
+     (this.tbox == that.tbox) &&
      (this.designatedConcept == that.designatedConcept) &&
      (this.designatedTerminology == that.designatedTerminology)
 
