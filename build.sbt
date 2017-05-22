@@ -50,7 +50,19 @@ lazy val core = Project("oml-resolver", file("."))
       "gov.nasa.jpl.imce" %% "imce.third_party.scala_graph_libraries"
         % Settings.versions.scalaGraphLibraries artifacts
         Artifact("imce.third_party.scala_graph_libraries", "zip", "zip", "resource")
-    )
+    ),
+
+    // Avoid unresolvable dependencies from old versions of log4j
+    libraryDependencies ~= {
+      _ map {
+        case m if m.organization == "log4j" =>
+          m
+            .exclude("javax.jms", "jms")
+            .exclude("com.sun.jmx", "jmxri")
+            .exclude("com.sun.jdmk", "jmxtools")
+        case m => m
+      }
+    }
   )
   //.dependsOn(ProjectRef(file("../gov.nasa.jpl.imce.oml.tables"), "tablesJVM"))
   .dependsOnSourceProjectRefOrLibraryArtifacts(
