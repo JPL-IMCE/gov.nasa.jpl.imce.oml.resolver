@@ -1,0 +1,8 @@
+gov.nasa.jpl.imce.oml.resolver 0.27.0 resolves minor bugs in the 0.26.1 release
+
+## Bugs fixed
+
+- [#4 Generate the Module.moduleEdges Scala library implementation](https://github.com/JPL-IMCE/gov.nasa.jpl.imce.oml.resolver/issues/4)
+
+    - Ran from [oml.tycho #5602af4](https://github.com/JPL-IMCE/gov.nasa.jpl.imce.oml.tycho/commit/5602af46174ec16c58c9c556bb518063bb4a2cc9)
+
