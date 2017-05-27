@@ -45,14 +45,14 @@ override val iri: gov.nasa.jpl.imce.oml.tables.IRI
   ()
 	  : gov.nasa.jpl.imce.oml.tables.LocalName
 	  = {
-	    nsPrefix
+	    nsPrefix()
 	  }
 	  
   def abbrevIRI
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[scala.Predef.String]
 	  = {
-	    scala.Some(nsPrefix)
+	    scala.Some(nsPrefix())
 	  }
 	  
 

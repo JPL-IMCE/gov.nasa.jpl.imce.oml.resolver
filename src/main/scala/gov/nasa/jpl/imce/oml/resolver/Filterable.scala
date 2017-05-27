@@ -55,7 +55,7 @@ object Filterable {
 
   }
 
-  implicit def filterable[U, F[U] <: Iterable[U]](f: F[U])
+  implicit def filterable[U, F[V] <: Iterable[V]](f: F[U])
   : FilterableIterable[U, F]
   = new FilterableIterable[U, F](f)
 
