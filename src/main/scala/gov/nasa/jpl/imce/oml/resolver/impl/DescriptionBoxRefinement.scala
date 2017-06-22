@@ -23,7 +23,7 @@ import gov.nasa.jpl.imce.oml._
 case class DescriptionBoxRefinement private[impl] 
 	(
 	 override val uuid: java.util.UUID,
-	 override val refinedDescriptionBox: resolver.api.DescriptionBox
+	 override val refinedDescriptionBox: gov.nasa.jpl.imce.oml.tables.IRI
 )
 extends resolver.api.DescriptionBoxRefinement
   with DescriptionBoxRelationship
@@ -38,7 +38,7 @@ extends resolver.api.DescriptionBoxRefinement
 	  
   def targetModule
   ()(implicit extent: resolver.api.Extent)
-	  : resolver.api.Module
+	  : gov.nasa.jpl.imce.oml.tables.IRI
 	  = {
 	    refinedDescriptionBox
 	  }

@@ -25,7 +25,7 @@ case class ConceptDesignationTerminologyAxiom private[impl]
 	 override val uuid: java.util.UUID,
 	 override val tbox: resolver.api.TerminologyBox,
 	 override val designatedConcept: resolver.api.Concept,
-	 override val designatedTerminology: resolver.api.TerminologyBox
+	 override val designatedTerminology: gov.nasa.jpl.imce.oml.tables.IRI
 )
 extends resolver.api.ConceptDesignationTerminologyAxiom
   with TerminologyBoxAxiom
@@ -56,7 +56,7 @@ extends resolver.api.ConceptDesignationTerminologyAxiom
    */
   override def target
   ()(implicit extent: resolver.api.Extent)
-	  : resolver.api.TerminologyBox
+	  : gov.nasa.jpl.imce.oml.tables.IRI
 	  = {
 	    designatedTerminology
 	  }

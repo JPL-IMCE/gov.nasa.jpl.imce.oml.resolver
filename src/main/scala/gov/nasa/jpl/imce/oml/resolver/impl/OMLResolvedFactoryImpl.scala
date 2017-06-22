@@ -179,14 +179,14 @@ extends resolver.api.OMLResolvedFactory {
 	 override def createBundledTerminologyAxiom
 	 ( extent: resolver.api.Extent,
 	   uuid: java.util.UUID,
-	   bundledTerminology: resolver.api.TerminologyBox,
-	   bundle: resolver.api.Bundle )
+	   bundle: resolver.api.Bundle,
+	   bundledTerminology: gov.nasa.jpl.imce.oml.tables.IRI )
 	 : (resolver.api.Extent, resolver.api.BundledTerminologyAxiom)
 	 = {
 	   // factoryMethodWithDerivedUUID
 	   // container: bundle Bundle
 	   // contained: bundleAxioms TerminologyBundleAxiom
-	   val bundledTerminologyAxiom = BundledTerminologyAxiom( uuid, bundledTerminology, bundle )
+	   val bundledTerminologyAxiom = BundledTerminologyAxiom( uuid, bundle, bundledTerminology )
 	   scala.Tuple2(
 	   	extent.copy(
 	   	  bundleAxioms = extent.withTerminologyBundleAxiom(bundle, bundledTerminologyAxiom),
@@ -221,7 +221,7 @@ extends resolver.api.OMLResolvedFactory {
 	   uuid: java.util.UUID,
 	   tbox: resolver.api.TerminologyBox,
 	   designatedConcept: resolver.api.Concept,
-	   designatedTerminology: resolver.api.TerminologyBox )
+	   designatedTerminology: gov.nasa.jpl.imce.oml.tables.IRI )
 	 : (resolver.api.Extent, resolver.api.ConceptDesignationTerminologyAxiom)
 	 = {
 	   // factoryMethodWithDerivedUUID
@@ -297,7 +297,7 @@ extends resolver.api.OMLResolvedFactory {
 	 ( extent: resolver.api.Extent,
 	   uuid: java.util.UUID,
 	   descriptionBox: resolver.api.DescriptionBox,
-	   closedWorldDefinitions: resolver.api.TerminologyBox )
+	   closedWorldDefinitions: gov.nasa.jpl.imce.oml.tables.IRI )
 	 : (resolver.api.Extent, resolver.api.DescriptionBoxExtendsClosedWorldDefinitions)
 	 = {
 	   // factoryMethodWithDerivedUUID
@@ -317,7 +317,7 @@ extends resolver.api.OMLResolvedFactory {
 	 ( extent: resolver.api.Extent,
 	   uuid: java.util.UUID,
 	   refiningDescriptionBox: resolver.api.DescriptionBox,
-	   refinedDescriptionBox: resolver.api.DescriptionBox )
+	   refinedDescriptionBox: gov.nasa.jpl.imce.oml.tables.IRI )
 	 : (resolver.api.Extent, resolver.api.DescriptionBoxRefinement)
 	 = {
 	   // factoryMethodWithDerivedUUID
@@ -982,7 +982,7 @@ extends resolver.api.OMLResolvedFactory {
 	 ( extent: resolver.api.Extent,
 	   uuid: java.util.UUID,
 	   tbox: resolver.api.TerminologyBox,
-	   extendedTerminology: resolver.api.TerminologyBox )
+	   extendedTerminology: gov.nasa.jpl.imce.oml.tables.IRI )
 	 : (resolver.api.Extent, resolver.api.TerminologyExtensionAxiom)
 	 = {
 	   // factoryMethodWithDerivedUUID
@@ -1016,14 +1016,14 @@ extends resolver.api.OMLResolvedFactory {
 	 ( extent: resolver.api.Extent,
 	   uuid: java.util.UUID,
 	   tbox: resolver.api.TerminologyBox,
-	   nestingTerminology: resolver.api.TerminologyBox,
-	   nestingContext: resolver.api.Concept )
+	   nestingContext: resolver.api.Concept,
+	   nestingTerminology: gov.nasa.jpl.imce.oml.tables.IRI )
 	 : (resolver.api.Extent, resolver.api.TerminologyNestingAxiom)
 	 = {
 	   // factoryMethodWithDerivedUUID
 	   // container: tbox TerminologyBox
 	   // contained: boxAxioms TerminologyBoxAxiom
-	   val terminologyNestingAxiom = TerminologyNestingAxiom( uuid, tbox, nestingTerminology, nestingContext )
+	   val terminologyNestingAxiom = TerminologyNestingAxiom( uuid, tbox, nestingContext, nestingTerminology )
 	   scala.Tuple2(
 	   	extent.copy(
 	   	  boxAxioms = extent.withTerminologyBoxAxiom(tbox, terminologyNestingAxiom),

@@ -23,7 +23,7 @@ import gov.nasa.jpl.imce.oml._
 case class DescriptionBoxExtendsClosedWorldDefinitions private[impl] 
 	(
 	 override val uuid: java.util.UUID,
-	 override val closedWorldDefinitions: resolver.api.TerminologyBox
+	 override val closedWorldDefinitions: gov.nasa.jpl.imce.oml.tables.IRI
 )
 extends resolver.api.DescriptionBoxExtendsClosedWorldDefinitions
   with DescriptionBoxRelationship
@@ -38,7 +38,7 @@ extends resolver.api.DescriptionBoxExtendsClosedWorldDefinitions
 	  
   def targetModule
   ()(implicit extent: resolver.api.Extent)
-	  : resolver.api.Module
+	  : gov.nasa.jpl.imce.oml.tables.IRI
 	  = {
 	    closedWorldDefinitions
 	  }

@@ -23,8 +23,8 @@ import gov.nasa.jpl.imce.oml._
 case class BundledTerminologyAxiom private[impl] 
 	(
 	 override val uuid: java.util.UUID,
-	 override val bundledTerminology: resolver.api.TerminologyBox,
-	 override val bundle: resolver.api.Bundle
+	 override val bundle: resolver.api.Bundle,
+	 override val bundledTerminology: gov.nasa.jpl.imce.oml.tables.IRI
 )
 extends resolver.api.BundledTerminologyAxiom
   with TerminologyBundleAxiom
@@ -45,7 +45,7 @@ extends resolver.api.BundledTerminologyAxiom
    */
   override def target
   ()(implicit extent: resolver.api.Extent)
-	  : resolver.api.TerminologyBox
+	  : gov.nasa.jpl.imce.oml.tables.IRI
 	  = {
 	    bundledTerminology
 	  }
@@ -60,14 +60,14 @@ extends resolver.api.BundledTerminologyAxiom
 
   override val hashCode
   : scala.Int
-  = (uuid, bundledTerminology, bundle).##
+  = (uuid, bundle, bundledTerminology).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
    case that: BundledTerminologyAxiom =>
      (that canEqual this) &&
      (this.uuid == that.uuid) &&
-     (this.bundledTerminology == that.bundledTerminology) &&
-     (this.bundle == that.bundle)
+     (this.bundle == that.bundle) &&
+     (this.bundledTerminology == that.bundledTerminology)
 
 	  case _ =>
 	    false

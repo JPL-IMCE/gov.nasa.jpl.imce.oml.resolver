@@ -24,8 +24,8 @@ case class TerminologyNestingAxiom private[impl]
 	(
 	 override val uuid: java.util.UUID,
 	 override val tbox: resolver.api.TerminologyBox,
-	 override val nestingTerminology: resolver.api.TerminologyBox,
-	 override val nestingContext: resolver.api.Concept
+	 override val nestingContext: resolver.api.Concept,
+	 override val nestingTerminology: gov.nasa.jpl.imce.oml.tables.IRI
 )
 extends resolver.api.TerminologyNestingAxiom
   with TerminologyBoxAxiom
@@ -56,7 +56,7 @@ extends resolver.api.TerminologyNestingAxiom
    */
   override def target
   ()(implicit extent: resolver.api.Extent)
-	  : resolver.api.TerminologyBox
+	  : gov.nasa.jpl.imce.oml.tables.IRI
 	  = {
 	    nestingTerminology
 	  }
@@ -71,15 +71,15 @@ extends resolver.api.TerminologyNestingAxiom
 
   override val hashCode
   : scala.Int
-  = (uuid, tbox, nestingTerminology, nestingContext).##
+  = (uuid, tbox, nestingContext, nestingTerminology).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
    case that: TerminologyNestingAxiom =>
      (that canEqual this) &&
      (this.uuid == that.uuid) &&
      (this.tbox == that.tbox) &&
-     (this.nestingTerminology == that.nestingTerminology) &&
-     (this.nestingContext == that.nestingContext)
+     (this.nestingContext == that.nestingContext) &&
+     (this.nestingTerminology == that.nestingTerminology)
 
 	  case _ =>
 	    false
