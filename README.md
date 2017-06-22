@@ -3,20 +3,18 @@
 [![Build Status](https://travis-ci.org/JPL-IMCE/gov.nasa.jpl.imce.oml.resolver.svg?branch=master)](https://travis-ci.org/JPL-IMCE/gov.nasa.jpl.imce.oml.resolver)
  [ ![Download](https://api.bintray.com/packages/jpl-imce/gov.nasa.jpl.imce/gov.nasa.jpl.imce.oml.resolver/images/download.svg) ](https://bintray.com/jpl-imce/gov.nasa.jpl.imce/gov.nasa.jpl.imce.oml.resolver/_latestVersion)
 
-## Running
+  
+## Copyrights
 
-```shell
-sbt "run <program> <absolute path to OMF Schema.json.zip>"
-```
+[Caltech](copyrights/Caltech.md)
 
-or:
+## License
 
-```shell
-sbt 
-jpl.omf.schema.resolver(master)> run <program> <absolute path to OMF Schema.json.zip>
-```
+[Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
-where `<program>` is currently `test.Test1`
+## Description
+
+This library provides an implementation of the OML Resolver API.
 
 ### Developer notes
 

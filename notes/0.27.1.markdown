@@ -1,0 +1,5 @@
+gov.nasa.jpl.imce.oml.resolver 0.27.1 resolves minor problems in the 0.27.0 release
+
+# Changes
+
+- Minor code cleanup
