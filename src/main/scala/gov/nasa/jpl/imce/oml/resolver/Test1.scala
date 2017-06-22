@@ -53,13 +53,12 @@ object Test1 {
       for {
         tables <- OMLSpecificationTables.loadOMLSpecificationTables(new File(omfSchemaJsonZipFile))
         _ = System.out.println(s"... loaded tables")
-        euuid = java.util.UUID.randomUUID()
-        resolver <- OMLTablesResolver.resolve(tables, factory, euuid)
+        prev = OMLTablesResolver.initializeTablesResolver(factory).copy(queue = tables)
+        next <- OMLTablesResolver.resolve(prev)
         _ = System.out.println(s"... resolved tables")
       } yield {
         System.out.println(s"...done!")
-        System.out.println(s"valid? ${resolver.queue.isEmpty}")
-        System.out.println(s"context graph:\n${resolver.context.g}")
+        System.out.println(s"valid? ${next.queue.isEmpty}")
         ()
       }
 
