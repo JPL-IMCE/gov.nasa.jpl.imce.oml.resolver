@@ -45,13 +45,13 @@
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <span class="name">DataRelationshipDomain</span><span class="result"> extends <span class="extype" name="gov.nasa.jpl.imce.oml.resolver.api.DataRelationshipDomain">api.DataRelationshipDomain</span> with <a href="Element.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.Element">Element</a> with <a href="Resource.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.Resource">Resource</a></span>
+        <span class="name">DataRelationshipDomain</span><span class="result"> extends <span class="extype" name="gov.nasa.jpl.imce.oml.resolver.api.DataRelationshipDomain">api.DataRelationshipDomain</span> with <a href="ModuleElement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ModuleElement">ModuleElement</a> with <a href="Resource.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.Resource">Resource</a></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="Resource.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.Resource">Resource</a>, <a href="Element.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.Element">Element</a>, <span class="extype" name="gov.nasa.jpl.imce.oml.resolver.api.DataRelationshipDomain">api.DataRelationshipDomain</span>, <span class="extype" name="gov.nasa.jpl.imce.oml.resolver.api.Resource">api.Resource</span>, <span class="extype" name="gov.nasa.jpl.imce.oml.resolver.api.Element">api.Element</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="Resource.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.Resource">Resource</a>, <a href="ModuleElement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ModuleElement">ModuleElement</a>, <a href="Element.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.Element">Element</a>, <span class="extype" name="gov.nasa.jpl.imce.oml.resolver.api.DataRelationshipDomain">api.DataRelationshipDomain</span>, <span class="extype" name="gov.nasa.jpl.imce.oml.resolver.api.Resource">api.Resource</span>, <span class="extype" name="gov.nasa.jpl.imce.oml.resolver.api.ModuleElement">api.ModuleElement</span>, <span class="extype" name="gov.nasa.jpl.imce.oml.resolver.api.Element">api.Element</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div><div class="toggleContainer block">
             <span class="toggle">Known Subclasses</span>
             <div class="subClasses hiddenContent"><a href="DataRelationshipFromEntity.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.DataRelationshipFromEntity">DataRelationshipFromEntity</a>, <a href="DataRelationshipFromStructure.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.DataRelationshipFromStructure">DataRelationshipFromStructure</a>, <a href="EntityScalarDataProperty.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.EntityScalarDataProperty">EntityScalarDataProperty</a>, <a href="EntityStructuredDataProperty.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.EntityStructuredDataProperty">EntityStructuredDataProperty</a>, <a href="ScalarDataProperty.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ScalarDataProperty">ScalarDataProperty</a>, <a href="StructuredDataProperty.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.StructuredDataProperty">StructuredDataProperty</a></div>
@@ -72,7 +72,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.DataRelationshipDomain"><span>DataRelationshipDomain</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.Resource"><span>Resource</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.Element"><span>Element</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.DataRelationshipDomain"><span>DataRelationshipDomain</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.Resource"><span>Resource</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.Element"><span>Element</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.DataRelationshipDomain"><span>DataRelationshipDomain</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.Resource"><span>Resource</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.ModuleElement"><span>ModuleElement</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.Element"><span>Element</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.DataRelationshipDomain"><span>DataRelationshipDomain</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.Resource"><span>Resource</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.ModuleElement"><span>ModuleElement</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.Element"><span>Element</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -112,6 +112,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Resource</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.api.ModuleElement#allNestedElements" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="allNestedElements()(implicitextent:gov.nasa.jpl.imce.oml.resolver.api.Extent):scala.collection.immutable.Set[_&lt;:gov.nasa.jpl.imce.oml.resolver.api.Element]"></a>
+      <a id="allNestedElements()(Extent):Set[_&lt;:api.Element]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">allNestedElements</span><span class="params">()</span><span class="params">(<span class="implicit">implicit </span><span name="extent">extent: <span class="extype" name="gov.nasa.jpl.imce.oml.resolver.api.Extent">Extent</span></span>)</span><span class="result">: <span class="extype" name="scala.collection.immutable.Set">Set</span>[_ &lt;: <span class="extype" name="gov.nasa.jpl.imce.oml.resolver.api.Element">api.Element</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.DataRelationshipDomain@allNestedElements()(implicitextent:gov.nasa.jpl.imce.oml.resolver.api.Extent):scala.collection.immutable.Set[_&lt;:gov.nasa.jpl.imce.oml.resolver.api.Element]" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ModuleElement</dd></dl></div>
     </li><li name="gov.nasa.jpl.imce.oml.resolver.api.Resource#iri" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="iri()(implicitextent:gov.nasa.jpl.imce.oml.resolver.api.Extent):Option[gov.nasa.jpl.imce.oml.tables.IRI]"></a>
       <a id="iri()(Extent):Option[IRI]"></a>
@@ -129,6 +146,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Resource</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.api.Element#moduleContext" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="moduleContext()(implicitextent:gov.nasa.jpl.imce.oml.resolver.api.Extent):Option[gov.nasa.jpl.imce.oml.resolver.api.Module]"></a>
+      <a id="moduleContext()(Extent):Option[api.Module]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">moduleContext</span><span class="params">()</span><span class="params">(<span class="implicit">implicit </span><span name="extent">extent: <span class="extype" name="gov.nasa.jpl.imce.oml.resolver.api.Extent">Extent</span></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="gov.nasa.jpl.imce.oml.resolver.api.Module">api.Module</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.DataRelationshipDomain@moduleContext()(implicitextent:gov.nasa.jpl.imce.oml.resolver.api.Extent):Option[gov.nasa.jpl.imce.oml.resolver.api.Module]" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Element</dd></dl></div>
     </li><li name="gov.nasa.jpl.imce.oml.resolver.api.Resource#name" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="name():gov.nasa.jpl.imce.oml.tables.LocalName"></a>
       <a id="name():LocalName"></a>
@@ -252,7 +286,7 @@
         <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.DataRelationshipDomain">DataRelationshipDomain</a> → Element</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.DataRelationshipDomain">DataRelationshipDomain</a> → <a href="ModuleElement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ModuleElement">ModuleElement</a> → Element</dd></dl></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -549,12 +583,16 @@
         <div id="inheritedMembers">
         <div class="parent" name="gov.nasa.jpl.imce.oml.resolver.impl.Resource">
               <h3>Inherited from <a href="Resource.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.Resource">Resource</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.impl.ModuleElement">
+              <h3>Inherited from <a href="ModuleElement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ModuleElement">ModuleElement</a></h3>
             </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.impl.Element">
               <h3>Inherited from <a href="Element.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.Element">Element</a></h3>
             </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.api.DataRelationshipDomain">
               <h3>Inherited from <span class="extype" name="gov.nasa.jpl.imce.oml.resolver.api.DataRelationshipDomain">api.DataRelationshipDomain</span></h3>
             </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.api.Resource">
               <h3>Inherited from <span class="extype" name="gov.nasa.jpl.imce.oml.resolver.api.Resource">api.Resource</span></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.api.ModuleElement">
+              <h3>Inherited from <span class="extype" name="gov.nasa.jpl.imce.oml.resolver.api.ModuleElement">api.ModuleElement</span></h3>
             </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.api.Element">
               <h3>Inherited from <span class="extype" name="gov.nasa.jpl.imce.oml.resolver.api.Element">api.Element</span></h3>
             </div><div class="parent" name="scala.AnyRef">
