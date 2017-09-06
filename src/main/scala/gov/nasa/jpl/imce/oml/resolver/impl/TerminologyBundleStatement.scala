@@ -26,6 +26,13 @@ extends resolver.api.TerminologyBundleStatement
 {
 override val bundle: resolver.api.Bundle
 		
+  def moduleContext
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.Option[resolver.api.Module]
+	  = {
+	    extent.bundleOfTerminologyBundleStatement.get(this)
+	  }
+	  
 
 
 

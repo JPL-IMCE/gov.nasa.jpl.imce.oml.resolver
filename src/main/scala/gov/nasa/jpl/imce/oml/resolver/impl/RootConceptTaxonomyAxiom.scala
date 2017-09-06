@@ -38,6 +38,20 @@ extends resolver.api.RootConceptTaxonomyAxiom
 	    extent.bundleOfTerminologyBundleStatement.get(this)
 	  }
 	  
+  def allNestedElements
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
+	  = {
+	    allNestedDisjunctions
+	  }
+	  
+  def allNestedDisjunctions
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
+	  = {
+	    extent.lookupDisjunctions(this).flatMap{ d => scala.collection.immutable.Set.empty[resolver.api.Element] + d ++ d.allNestedUnions() }
+	  }
+	  
 
 
 

@@ -24,9 +24,9 @@ case class BinaryScalarRestriction private[impl]
 	(
 	 override val uuid: java.util.UUID,
 	 override val restrictedRange: resolver.api.DataRange,
-	 override val length: scala.Option[scala.Int],
-	 override val minLength: scala.Option[scala.Int],
-	 override val maxLength: scala.Option[scala.Int],
+	 override val length: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
+	 override val minLength: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
+	 override val maxLength: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
 	 override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 )
 extends resolver.api.BinaryScalarRestriction

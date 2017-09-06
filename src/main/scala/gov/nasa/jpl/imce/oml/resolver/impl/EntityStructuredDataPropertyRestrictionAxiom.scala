@@ -20,30 +20,17 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-case class Annotation private[impl] 
-	(
-	 override val subject: resolver.api.Element,
-	 override val property: resolver.api.AnnotationProperty,
-	 override val value: scala.Predef.String
-)
-extends resolver.api.Annotation
+trait EntityStructuredDataPropertyRestrictionAxiom
+extends resolver.api.EntityStructuredDataPropertyRestrictionAxiom
+  with TermAxiom
 {
+override val restrictedEntity: resolver.api.Entity
 		
 
 
 
-  override val hashCode
-  : scala.Int
-  = (subject, property, value).##
-
-  override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: Annotation =>
-     (that canEqual this) &&
-     (this.subject == that.subject) &&
-     (this.property == that.property) &&
-     (this.value == that.value)
-
-	  case _ =>
-	    false
-}
+  override def canEqual(that: scala.Any): scala.Boolean = that match {
+  	case _: EntityStructuredDataPropertyRestrictionAxiom => true
+  	case _ => false
+  }
 }

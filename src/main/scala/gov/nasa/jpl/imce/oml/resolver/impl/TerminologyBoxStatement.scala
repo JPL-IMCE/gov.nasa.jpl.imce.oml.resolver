@@ -25,6 +25,13 @@ extends resolver.api.TerminologyBoxStatement
   with ModuleElement
 {
 		
+  def moduleContext
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.Option[resolver.api.Module]
+	  = {
+	    extent.terminologyBoxOfTerminologyBoxStatement.get(this)
+	  }
+	  
 
 
 

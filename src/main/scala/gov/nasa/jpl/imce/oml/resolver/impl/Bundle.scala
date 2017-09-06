@@ -34,7 +34,14 @@ extends resolver.api.Bundle
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.ModuleEdge]
 	  = {
-	    extent.boxAxioms.getOrElse(this, scala.collection.immutable.Set.empty[resolver.api.ModuleEdge]) ++ extent.bundleAxioms.getOrElse(this, scala.collection.immutable.Set.empty[resolver.api.ModuleEdge])
+	    extent.lookupBoxAxioms(this) ++ extent.lookupBundleAxioms(this)
+	  }
+	  
+  def moduleElements
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.collection.immutable.Set[_ <: resolver.api.ModuleElement]
+	  = {
+	    extent.lookupBundleStatements(this) ++ extent.lookupBoxStatements(this)
 	  }
 	  
 

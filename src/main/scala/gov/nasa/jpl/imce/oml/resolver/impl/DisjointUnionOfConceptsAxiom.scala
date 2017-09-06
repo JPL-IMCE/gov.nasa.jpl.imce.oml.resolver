@@ -32,6 +32,13 @@ extends resolver.api.DisjointUnionOfConceptsAxiom
 	    extent.conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom.get(this)
 	  }
 	  
+  def moduleContext
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.Option[resolver.api.Module]
+	  = {
+	    conceptTreeDisjunctionParent().flatMap(_.bundleContainer())
+	  }
+	  
 
 
 

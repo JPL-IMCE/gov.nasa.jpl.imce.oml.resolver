@@ -30,38 +30,6 @@ extends resolver.api.OMLResolvedFactory {
 	 : resolver.api.Extent 
 	 = resolver.api.Extent()
 	 
-	 // Annotation
-	 override def createAnnotation
-	 ( extent: resolver.api.Extent,
-	   module: resolver.api.Module,
-	   subject: resolver.api.Element,
-	   property: resolver.api.AnnotationProperty,
-	   value: scala.Predef.String )
-	 : (resolver.api.Extent, resolver.api.Annotation)
-	 = {
-	   // factoryMethodWithoutUUID
-	   // container: module Module
-	   // contained: annotations Annotation
-	   val annotation = Annotation( subject, property, value )
-	   scala.Tuple2(
-	     extent.copy(
-	       annotations = extent.withAnnotation(module, annotation),
-	       moduleOfAnnotation = extent.moduleOfAnnotation + (annotation -> module)),
-	     annotation)
-	 }
-	 		  
-	 // AnnotationEntry
-	 override def createAnnotationEntry
-	 ( extent: resolver.api.Extent,
-	   module: resolver.api.Module,
-	   subject: resolver.api.Element,
-	   value: scala.Predef.String )
-	 : (resolver.api.Extent, resolver.api.AnnotationEntry)
-	 = scala.Tuple2(
-	 	extent, 
-	 		AnnotationEntry( module, subject, value )
-	 )
-	 		  
 	 // AnnotationProperty
 	 override def createAnnotationProperty
 	 ( extent: resolver.api.Extent,
@@ -74,6 +42,27 @@ extends resolver.api.OMLResolvedFactory {
 	   scala.Tuple2(
 	 	extent.copy(annotationProperties = extent.annotationProperties + (uuid -> annotationProperty)), 
 	 		annotationProperty)
+	 }
+	 		  
+	 // AnnotationPropertyValue
+	 override def createAnnotationPropertyValue
+	 ( extent: resolver.api.Extent,
+	   uuid: java.util.UUID,
+	   subject: resolver.api.Element,
+	   property: resolver.api.AnnotationProperty,
+	   value: gov.nasa.jpl.imce.oml.tables.StringDataType )
+	 : (resolver.api.Extent, resolver.api.AnnotationPropertyValue)
+	 = {
+	   // factoryMethodWithImplicitlyDerivedUUID
+	   // container: subject Element
+	   // contained: annotations AnnotationPropertyValue
+	   val annotationPropertyValue = AnnotationPropertyValue( uuid, property, value )
+	   scala.Tuple2(
+	   	extent.copy(
+	   	  annotations = extent.withAnnotationPropertyValue(subject, annotationPropertyValue),
+	   	  elementOfAnnotationPropertyValue = extent.elementOfAnnotationPropertyValue + (annotationPropertyValue -> subject),
+	   	  annotationPropertyValueByUUID = extent.annotationPropertyValueByUUID + (uuid -> annotationPropertyValue)),
+	   	annotationPropertyValue)
 	 }
 	 		  
 	 // AnonymousConceptUnionAxiom
@@ -143,9 +132,9 @@ extends resolver.api.OMLResolvedFactory {
 	   uuid: java.util.UUID,
 	   tbox: resolver.api.TerminologyBox,
 	   restrictedRange: resolver.api.DataRange,
-	   length: scala.Option[scala.Int],
-	   minLength: scala.Option[scala.Int],
-	   maxLength: scala.Option[scala.Int],
+	   length: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
+	   minLength: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
+	   maxLength: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
 	   name: gov.nasa.jpl.imce.oml.tables.LocalName )
 	 : (resolver.api.Extent, resolver.api.BinaryScalarRestriction)
 	 = {
@@ -406,7 +395,7 @@ extends resolver.api.OMLResolvedFactory {
 	   tbox: resolver.api.TerminologyBox,
 	   restrictedEntity: resolver.api.Entity,
 	   scalarProperty: resolver.api.EntityScalarDataProperty,
-	   literalValue: gov.nasa.jpl.imce.oml.tables.LexicalValue )
+	   literalValue: gov.nasa.jpl.imce.oml.tables.LiteralValue )
 	 : (resolver.api.Extent, resolver.api.EntityScalarDataPropertyParticularRestrictionAxiom)
 	 = {
 	   // factoryMethodWithDerivedUUID
@@ -466,6 +455,27 @@ extends resolver.api.OMLResolvedFactory {
 	   	entityStructuredDataProperty)
 	 }
 	 		  
+	 // EntityStructuredDataPropertyParticularRestrictionAxiom
+	 override def createEntityStructuredDataPropertyParticularRestrictionAxiom
+	 ( extent: resolver.api.Extent,
+	   uuid: java.util.UUID,
+	   tbox: resolver.api.TerminologyBox,
+	   structuredDataProperty: resolver.api.DataRelationshipToStructure,
+	   restrictedEntity: resolver.api.Entity )
+	 : (resolver.api.Extent, resolver.api.EntityStructuredDataPropertyParticularRestrictionAxiom)
+	 = {
+	   // factoryMethodWithDerivedUUID
+	   // container: tbox TerminologyBox
+	   // contained: boxStatements TerminologyBoxStatement
+	   val entityStructuredDataPropertyParticularRestrictionAxiom = EntityStructuredDataPropertyParticularRestrictionAxiom( uuid, structuredDataProperty, restrictedEntity )
+	   scala.Tuple2(
+	   	extent.copy(
+	   	  boxStatements = extent.withTerminologyBoxStatement(tbox, entityStructuredDataPropertyParticularRestrictionAxiom),
+	   	  terminologyBoxOfTerminologyBoxStatement = extent.terminologyBoxOfTerminologyBoxStatement + (entityStructuredDataPropertyParticularRestrictionAxiom -> tbox),
+	   	  terminologyBoxStatementByUUID = extent.terminologyBoxStatementByUUID + (uuid -> entityStructuredDataPropertyParticularRestrictionAxiom)),
+	   	entityStructuredDataPropertyParticularRestrictionAxiom)
+	 }
+	 		  
 	 // EntityUniversalRestrictionAxiom
 	 override def createEntityUniversalRestrictionAxiom
 	 ( extent: resolver.api.Extent,
@@ -494,11 +504,11 @@ extends resolver.api.OMLResolvedFactory {
 	   uuid: java.util.UUID,
 	   tbox: resolver.api.TerminologyBox,
 	   restrictedRange: resolver.api.DataRange,
-	   length: scala.Option[scala.Int],
-	   minLength: scala.Option[scala.Int],
-	   maxLength: scala.Option[scala.Int],
+	   length: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
+	   minLength: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
+	   maxLength: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
 	   name: gov.nasa.jpl.imce.oml.tables.LocalName,
-	   pattern: scala.Option[gov.nasa.jpl.imce.oml.tables.Pattern] )
+	   pattern: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralPattern] )
 	 : (resolver.api.Extent, resolver.api.IRIScalarRestriction)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -519,10 +529,10 @@ extends resolver.api.OMLResolvedFactory {
 	   uuid: java.util.UUID,
 	   tbox: resolver.api.TerminologyBox,
 	   restrictedRange: resolver.api.DataRange,
-	   minExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalNumber],
-	   minInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalNumber],
-	   maxExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalNumber],
-	   maxInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalNumber],
+	   minExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralNumber],
+	   minInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralNumber],
+	   maxExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralNumber],
+	   maxInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralNumber],
 	   name: gov.nasa.jpl.imce.oml.tables.LocalName )
 	 : (resolver.api.Extent, resolver.api.NumericScalarRestriction)
 	 = {
@@ -544,12 +554,12 @@ extends resolver.api.OMLResolvedFactory {
 	   uuid: java.util.UUID,
 	   tbox: resolver.api.TerminologyBox,
 	   restrictedRange: resolver.api.DataRange,
-	   length: scala.Option[scala.Int],
-	   minLength: scala.Option[scala.Int],
-	   maxLength: scala.Option[scala.Int],
+	   length: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
+	   minLength: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
+	   maxLength: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
 	   name: gov.nasa.jpl.imce.oml.tables.LocalName,
-	   langRange: scala.Option[gov.nasa.jpl.imce.oml.tables.LangRange],
-	   pattern: scala.Option[gov.nasa.jpl.imce.oml.tables.Pattern] )
+	   langRange: scala.Option[gov.nasa.jpl.imce.oml.tables.LanguageTagDataType],
+	   pattern: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralPattern] )
 	 : (resolver.api.Extent, resolver.api.PlainLiteralScalarRestriction)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -681,6 +691,47 @@ extends resolver.api.OMLResolvedFactory {
 	   	reifiedRelationshipSpecializationAxiom)
 	 }
 	 		  
+	 // RestrictionScalarDataPropertyValue
+	 override def createRestrictionScalarDataPropertyValue
+	 ( extent: resolver.api.Extent,
+	   uuid: java.util.UUID,
+	   scalarDataProperty: resolver.api.DataRelationshipToScalar,
+	   scalarPropertyValue: gov.nasa.jpl.imce.oml.tables.LiteralValue,
+	   structuredDataPropertyContext: resolver.api.RestrictionStructuredDataPropertyContext )
+	 : (resolver.api.Extent, resolver.api.RestrictionScalarDataPropertyValue)
+	 = {
+	   // factoryMethodWithDerivedUUID
+	   // container: structuredDataPropertyContext RestrictionStructuredDataPropertyContext
+	   // contained: scalarDataPropertyRestrictions RestrictionScalarDataPropertyValue
+	   val restrictionScalarDataPropertyValue = RestrictionScalarDataPropertyValue( uuid, scalarDataProperty, scalarPropertyValue )
+	   scala.Tuple2(
+	   	extent.copy(
+	   	  scalarDataPropertyRestrictions = extent.withRestrictionScalarDataPropertyValue(structuredDataPropertyContext, restrictionScalarDataPropertyValue),
+	   	  restrictionStructuredDataPropertyContextOfRestrictionScalarDataPropertyValue = extent.restrictionStructuredDataPropertyContextOfRestrictionScalarDataPropertyValue + (restrictionScalarDataPropertyValue -> structuredDataPropertyContext),
+	   	  restrictionScalarDataPropertyValueByUUID = extent.restrictionScalarDataPropertyValueByUUID + (uuid -> restrictionScalarDataPropertyValue)),
+	   	restrictionScalarDataPropertyValue)
+	 }
+	 		  
+	 // RestrictionStructuredDataPropertyTuple
+	 override def createRestrictionStructuredDataPropertyTuple
+	 ( extent: resolver.api.Extent,
+	   uuid: java.util.UUID,
+	   structuredDataProperty: resolver.api.DataRelationshipToStructure,
+	   structuredDataPropertyContext: resolver.api.RestrictionStructuredDataPropertyContext )
+	 : (resolver.api.Extent, resolver.api.RestrictionStructuredDataPropertyTuple)
+	 = {
+	   // factoryMethodWithDerivedUUID
+	   // container: structuredDataPropertyContext RestrictionStructuredDataPropertyContext
+	   // contained: structuredDataPropertyRestrictions RestrictionStructuredDataPropertyTuple
+	   val restrictionStructuredDataPropertyTuple = RestrictionStructuredDataPropertyTuple( uuid, structuredDataProperty )
+	   scala.Tuple2(
+	   	extent.copy(
+	   	  structuredDataPropertyRestrictions = extent.withRestrictionStructuredDataPropertyTuple(structuredDataPropertyContext, restrictionStructuredDataPropertyTuple),
+	   	  restrictionStructuredDataPropertyContextOfRestrictionStructuredDataPropertyTuple = extent.restrictionStructuredDataPropertyContextOfRestrictionStructuredDataPropertyTuple + (restrictionStructuredDataPropertyTuple -> structuredDataPropertyContext),
+	   	  restrictionStructuredDataPropertyTupleByUUID = extent.restrictionStructuredDataPropertyTupleByUUID + (uuid -> restrictionStructuredDataPropertyTuple)),
+	   	restrictionStructuredDataPropertyTuple)
+	 }
+	 		  
 	 // RootConceptTaxonomyAxiom
 	 override def createRootConceptTaxonomyAxiom
 	 ( extent: resolver.api.Extent,
@@ -748,7 +799,7 @@ extends resolver.api.OMLResolvedFactory {
 	 ( extent: resolver.api.Extent,
 	   uuid: java.util.UUID,
 	   scalarDataProperty: resolver.api.DataRelationshipToScalar,
-	   scalarPropertyValue: scala.Predef.String,
+	   scalarPropertyValue: gov.nasa.jpl.imce.oml.tables.LiteralValue,
 	   structuredDataPropertyContext: resolver.api.SingletonInstanceStructuredDataPropertyContext )
 	 : (resolver.api.Extent, resolver.api.ScalarDataPropertyValue)
 	 = {
@@ -770,7 +821,7 @@ extends resolver.api.OMLResolvedFactory {
 	   uuid: java.util.UUID,
 	   tbox: resolver.api.TerminologyBox,
 	   axiom: resolver.api.ScalarOneOfRestriction,
-	   value: gov.nasa.jpl.imce.oml.tables.LexicalValue )
+	   value: gov.nasa.jpl.imce.oml.tables.LiteralValue )
 	 : (resolver.api.Extent, resolver.api.ScalarOneOfLiteralAxiom)
 	 = {
 	   // factoryMethodWithImplicitlyDerivedUUID
@@ -813,7 +864,7 @@ extends resolver.api.OMLResolvedFactory {
 	   descriptionBox: resolver.api.DescriptionBox,
 	   singletonInstance: resolver.api.ConceptualEntitySingletonInstance,
 	   scalarDataProperty: resolver.api.EntityScalarDataProperty,
-	   scalarPropertyValue: scala.Predef.String )
+	   scalarPropertyValue: gov.nasa.jpl.imce.oml.tables.LiteralValue )
 	 : (resolver.api.Extent, resolver.api.SingletonInstanceScalarDataPropertyValue)
 	 = {
 	   // factoryMethodWithDerivedUUID
@@ -875,11 +926,11 @@ extends resolver.api.OMLResolvedFactory {
 	   uuid: java.util.UUID,
 	   tbox: resolver.api.TerminologyBox,
 	   restrictedRange: resolver.api.DataRange,
-	   length: scala.Option[scala.Int],
-	   minLength: scala.Option[scala.Int],
-	   maxLength: scala.Option[scala.Int],
+	   length: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
+	   minLength: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
+	   maxLength: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
 	   name: gov.nasa.jpl.imce.oml.tables.LocalName,
-	   pattern: scala.Option[gov.nasa.jpl.imce.oml.tables.Pattern] )
+	   pattern: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralPattern] )
 	 : (resolver.api.Extent, resolver.api.StringScalarRestriction)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -1038,10 +1089,10 @@ extends resolver.api.OMLResolvedFactory {
 	   uuid: java.util.UUID,
 	   tbox: resolver.api.TerminologyBox,
 	   restrictedRange: resolver.api.DataRange,
-	   minExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalTime],
-	   minInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalTime],
-	   maxExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalTime],
-	   maxInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalTime],
+	   minExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralDateTime],
+	   minInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralDateTime],
+	   maxExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralDateTime],
+	   maxInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralDateTime],
 	   name: gov.nasa.jpl.imce.oml.tables.LocalName )
 	 : (resolver.api.Extent, resolver.api.TimeScalarRestriction)
 	 = {

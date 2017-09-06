@@ -25,6 +25,13 @@ extends resolver.api.ModuleEdge
   with Element
 {
 		
+  def moduleContext
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.Option[resolver.api.Module]
+	  = {
+	    sourceModule
+	  }
+	  
 
 
 

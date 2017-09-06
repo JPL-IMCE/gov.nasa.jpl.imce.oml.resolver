@@ -28,6 +28,13 @@ override val restrictedRelation: resolver.api.EntityRelationship
   override val restrictedRange: resolver.api.Entity
   override val restrictedDomain: resolver.api.Entity
 		
+  def allNestedElements
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
+	  = {
+	    scala.collection.immutable.Set.empty[resolver.api.Element]
+	  }
+	  
 
 
 

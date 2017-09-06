@@ -27,9 +27,15 @@ case class SpecificDisjointConceptAxiom private[impl]
 )
 extends resolver.api.SpecificDisjointConceptAxiom
   with DisjointUnionOfConceptsAxiom
-  with Element
 {
 		
+  def allNestedUnions
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
+	  = {
+	    scala.collection.immutable.Set.empty[resolver.api.Element]
+	  }
+	  
 
 
 

@@ -38,6 +38,13 @@ extends resolver.api.SingletonInstanceStructuredDataPropertyValue
 	    extent.descriptionBoxOfSingletonInstanceStructuredDataPropertyValue.get(this)
 	  }
 	  
+  def allNestedElements
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
+	  = {
+	    allNestedRestrictionElements
+	  }
+	  
 
 
 

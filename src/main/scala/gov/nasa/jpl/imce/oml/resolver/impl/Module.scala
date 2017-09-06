@@ -55,6 +55,13 @@ override val iri: gov.nasa.jpl.imce.oml.tables.IRI
 	    scala.Some(nsPrefix)
 	  }
 	  
+  def moduleContext
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.Option[resolver.api.Module]
+	  = {
+	    scala.Some(this)
+	  }
+	  
 
 
 

@@ -25,7 +25,7 @@ case class SingletonInstanceScalarDataPropertyValue private[impl]
 	 override val uuid: java.util.UUID,
 	 override val singletonInstance: resolver.api.ConceptualEntitySingletonInstance,
 	 override val scalarDataProperty: resolver.api.EntityScalarDataProperty,
-	 override val scalarPropertyValue: scala.Predef.String
+	 override val scalarPropertyValue: gov.nasa.jpl.imce.oml.tables.LiteralValue
 )
 extends resolver.api.SingletonInstanceScalarDataPropertyValue
   with ModuleElement
@@ -36,6 +36,20 @@ extends resolver.api.SingletonInstanceScalarDataPropertyValue
 	  : scala.Option[resolver.api.DescriptionBox]
 	  = {
 	    extent.descriptionBoxOfSingletonInstanceScalarDataPropertyValue.get(this)
+	  }
+	  
+  def moduleContext
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.Option[resolver.api.Module]
+	  = {
+	    descriptionBox()
+	  }
+	  
+  def allNestedElements
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
+	  = {
+	    scala.collection.immutable.Set.empty[resolver.api.Element]
 	  }
 	  
 

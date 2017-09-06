@@ -24,7 +24,7 @@ case class ScalarDataPropertyValue private[impl]
 	(
 	 override val uuid: java.util.UUID,
 	 override val scalarDataProperty: resolver.api.DataRelationshipToScalar,
-	 override val scalarPropertyValue: scala.Predef.String
+	 override val scalarPropertyValue: gov.nasa.jpl.imce.oml.tables.LiteralValue
 )
 extends resolver.api.ScalarDataPropertyValue
   with Element
@@ -35,6 +35,13 @@ extends resolver.api.ScalarDataPropertyValue
 	  : scala.Option[resolver.api.DescriptionBox]
 	  = {
 	    extent.singletonInstanceStructuredDataPropertyContextOfScalarDataPropertyValue.get(this).flatMap(_.descriptionBox())
+	  }
+	  
+  def moduleContext
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.Option[resolver.api.Module]
+	  = {
+	    descriptionBox()
 	  }
 	  
 

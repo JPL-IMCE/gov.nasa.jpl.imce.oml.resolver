@@ -34,7 +34,20 @@ extends resolver.api.DescriptionBox
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.ModuleEdge]
 	  = {
-	    extent.descriptionBoxRefinements.getOrElse(this, scala.collection.immutable.Set.empty[resolver.api.ModuleEdge]) ++ extent.closedWorldDefinitions.getOrElse(this, scala.collection.immutable.Set.empty[resolver.api.ModuleEdge])
+	    extent.lookupDescriptionBoxRefinements(this) ++ extent.lookupClosedWorldDefinitions(this)
+	  }
+	  
+  def moduleElements
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.collection.immutable.Set[_ <: resolver.api.ModuleElement]
+	  = {
+	    extent.lookupConceptInstances(this) ++
+	    		extent.lookupReifiedRelationshipInstances(this) ++
+	    		extent.lookupReifiedRelationshipInstanceDomains(this) ++
+	    		extent.lookupReifiedRelationshipInstanceRanges(this) ++
+	    		extent.lookupUnreifiedRelationshipInstanceTuples(this) ++
+	    		extent.lookupSingletonScalarDataPropertyValues(this) ++
+	    		extent.lookupSingletonStructuredDataPropertyValues(this)
 	  }
 	  
 

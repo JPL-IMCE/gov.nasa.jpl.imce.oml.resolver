@@ -37,6 +37,13 @@ extends resolver.api.TerminologyGraph
 	    extent.boxAxioms.getOrElse(this, scala.collection.immutable.Set.empty[resolver.api.ModuleEdge])
 	  }
 	  
+  def moduleElements
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.collection.immutable.Set[_ <: resolver.api.ModuleElement]
+	  = {
+	    extent.lookupBoxStatements(this)
+	  }
+	  
 
 
 

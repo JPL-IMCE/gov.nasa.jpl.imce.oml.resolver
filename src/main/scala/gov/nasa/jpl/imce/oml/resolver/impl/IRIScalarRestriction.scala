@@ -24,11 +24,11 @@ case class IRIScalarRestriction private[impl]
 	(
 	 override val uuid: java.util.UUID,
 	 override val restrictedRange: resolver.api.DataRange,
-	 override val length: scala.Option[scala.Int],
-	 override val minLength: scala.Option[scala.Int],
-	 override val maxLength: scala.Option[scala.Int],
+	 override val length: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
+	 override val minLength: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
+	 override val maxLength: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
 	 override val name: gov.nasa.jpl.imce.oml.tables.LocalName,
-	 override val pattern: scala.Option[gov.nasa.jpl.imce.oml.tables.Pattern]
+	 override val pattern: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralPattern]
 )
 extends resolver.api.IRIScalarRestriction
   with RestrictedDataRange

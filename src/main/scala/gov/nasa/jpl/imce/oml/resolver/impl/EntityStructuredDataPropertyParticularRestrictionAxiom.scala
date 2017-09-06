@@ -20,55 +20,49 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-case class ReifiedRelationshipInstanceDomain private[impl] 
+case class EntityStructuredDataPropertyParticularRestrictionAxiom private[impl] 
 	(
 	 override val uuid: java.util.UUID,
-	 override val reifiedRelationshipInstance: resolver.api.ReifiedRelationshipInstance,
-	 override val domain: resolver.api.ConceptualEntitySingletonInstance
+	 override val structuredDataProperty: resolver.api.DataRelationshipToStructure,
+	 override val restrictedEntity: resolver.api.Entity
 )
-extends resolver.api.ReifiedRelationshipInstanceDomain
-  with TerminologyInstanceAssertion
+extends resolver.api.EntityStructuredDataPropertyParticularRestrictionAxiom
+  with EntityStructuredDataPropertyRestrictionAxiom
+  with RestrictionStructuredDataPropertyContext
 {
 		
-  def descriptionBox
+  override def terminologyBox
   ()(implicit extent: resolver.api.Extent)
-	  : scala.Option[resolver.api.DescriptionBox]
+	  : scala.Option[resolver.api.TerminologyBox]
 	  = {
-	    extent.descriptionBoxOfReifiedRelationshipInstanceDomain.get(this)
-	  }
-	  
-  def moduleContext
-  ()(implicit extent: resolver.api.Extent)
-	  : scala.Option[resolver.api.Module]
-	  = {
-	    descriptionBox()
+	    extent.terminologyBoxOfTerminologyBoxStatement.get(this)
 	  }
 	  
   def allNestedElements
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
 	  = {
-	    scala.collection.immutable.Set.empty[resolver.api.Element]
+	    allNestedRestrictionElements
 	  }
 	  
 
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: ReifiedRelationshipInstanceDomain => true
+  	case _: EntityStructuredDataPropertyParticularRestrictionAxiom => true
   	case _ => false
   }
 
   override val hashCode
   : scala.Int
-  = (uuid, reifiedRelationshipInstance, domain).##
+  = (uuid, structuredDataProperty, restrictedEntity).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: ReifiedRelationshipInstanceDomain =>
+   case that: EntityStructuredDataPropertyParticularRestrictionAxiom =>
      (that canEqual this) &&
      (this.uuid == that.uuid) &&
-     (this.reifiedRelationshipInstance == that.reifiedRelationshipInstance) &&
-     (this.domain == that.domain)
+     (this.structuredDataProperty == that.structuredDataProperty) &&
+     (this.restrictedEntity == that.restrictedEntity)
 
 	  case _ =>
 	    false

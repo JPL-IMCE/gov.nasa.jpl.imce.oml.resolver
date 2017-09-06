@@ -15,6 +15,7 @@
  * limitations under the License.
  * License Terms
  */
+
 package gov.nasa.jpl.imce.oml.resolver
 
 import scala.collection.generic.CanBuildFrom

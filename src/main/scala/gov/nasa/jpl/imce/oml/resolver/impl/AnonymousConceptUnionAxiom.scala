@@ -28,7 +28,6 @@ case class AnonymousConceptUnionAxiom private[impl]
 extends resolver.api.AnonymousConceptUnionAxiom
   with DisjointUnionOfConceptsAxiom
   with ConceptTreeDisjunction
-  with Element
 {
 		
   override def bundleContainer
@@ -36,6 +35,20 @@ extends resolver.api.AnonymousConceptUnionAxiom
 	  : scala.Option[resolver.api.Bundle]
 	  = {
 	    conceptTreeDisjunctionParent().flatMap(_.bundleContainer())
+	  }
+	  
+  def allNestedDisjunctions
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
+	  = {
+	    scala.collection.immutable.Set.empty[resolver.api.Element]
+	  }
+	  
+  def allNestedUnions
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
+	  = {
+	    scala.collection.immutable.Set.empty[resolver.api.Element]
 	  }
 	  
 

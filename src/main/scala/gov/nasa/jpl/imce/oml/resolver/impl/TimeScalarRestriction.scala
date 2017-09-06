@@ -24,10 +24,10 @@ case class TimeScalarRestriction private[impl]
 	(
 	 override val uuid: java.util.UUID,
 	 override val restrictedRange: resolver.api.DataRange,
-	 override val minExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalTime],
-	 override val minInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalTime],
-	 override val maxExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalTime],
-	 override val maxInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalTime],
+	 override val minExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralDateTime],
+	 override val minInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralDateTime],
+	 override val maxExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralDateTime],
+	 override val maxInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralDateTime],
 	 override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 )
 extends resolver.api.TimeScalarRestriction

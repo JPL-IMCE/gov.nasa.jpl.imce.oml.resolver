@@ -41,6 +41,13 @@ override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 	    extent.terminologyBoxOfTerminologyBoxStatement.get(this).map(tbox => tbox.nsPrefix+":"+name)
 	  }
 	  
+  def allNestedElements
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
+	  = {
+	    scala.collection.immutable.Set.empty[resolver.api.Element]
+	  }
+	  
 
 
 

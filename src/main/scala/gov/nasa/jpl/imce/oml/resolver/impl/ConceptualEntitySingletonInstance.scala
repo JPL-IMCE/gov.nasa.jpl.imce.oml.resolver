@@ -41,6 +41,13 @@ override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 	    descriptionBox().map(dbox => dbox.nsPrefix+":"+name)
 	  }
 	  
+  def moduleContext
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.Option[resolver.api.Module]
+	  = {
+	    descriptionBox
+	  }
+	  
 
 
 

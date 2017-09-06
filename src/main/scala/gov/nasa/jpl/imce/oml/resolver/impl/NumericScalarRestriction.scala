@@ -24,10 +24,10 @@ case class NumericScalarRestriction private[impl]
 	(
 	 override val uuid: java.util.UUID,
 	 override val restrictedRange: resolver.api.DataRange,
-	 override val minExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalNumber],
-	 override val minInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalNumber],
-	 override val maxExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalNumber],
-	 override val maxInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LexicalNumber],
+	 override val minExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralNumber],
+	 override val minInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralNumber],
+	 override val maxExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralNumber],
+	 override val maxInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralNumber],
 	 override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 )
 extends resolver.api.NumericScalarRestriction

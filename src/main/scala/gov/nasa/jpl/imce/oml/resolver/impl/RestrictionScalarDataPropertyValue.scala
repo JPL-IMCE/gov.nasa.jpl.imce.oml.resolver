@@ -20,41 +20,48 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-case class ConceptTreeTaxonomyAxiom private[impl] 
+case class RestrictionScalarDataPropertyValue private[impl] 
 	(
 	 override val uuid: java.util.UUID,
-	 override val disjointTree: resolver.api.Concept
+	 override val scalarDataProperty: resolver.api.DataRelationshipToScalar,
+	 override val scalarPropertyValue: gov.nasa.jpl.imce.oml.tables.LiteralValue
 )
-extends resolver.api.ConceptTreeTaxonomyAxiom
-  with DisjointUnionOfConceptsAxiom
-  with ConceptTreeDisjunction
+extends resolver.api.RestrictionScalarDataPropertyValue
   with Element
 {
 		
-  override def bundleContainer
+  def terminologyBox
   ()(implicit extent: resolver.api.Extent)
-	  : scala.Option[resolver.api.Bundle]
+	  : scala.Option[resolver.api.TerminologyBox]
 	  = {
-	    conceptTreeDisjunctionParent().flatMap(_.bundleContainer())
+	    extent.restrictionStructuredDataPropertyContextOfRestrictionScalarDataPropertyValue.get(this).flatMap(_.terminologyBox())
+	  }
+	  
+  def moduleContext
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.Option[resolver.api.Module]
+	  = {
+	    extent.restrictionStructuredDataPropertyContextOfRestrictionScalarDataPropertyValue.get(this).flatMap(_.moduleContext)
 	  }
 	  
 
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: ConceptTreeTaxonomyAxiom => true
+  	case _: RestrictionScalarDataPropertyValue => true
   	case _ => false
   }
 
   override val hashCode
   : scala.Int
-  = (uuid, disjointTree).##
+  = (uuid, scalarDataProperty, scalarPropertyValue).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: ConceptTreeTaxonomyAxiom =>
+   case that: RestrictionScalarDataPropertyValue =>
      (that canEqual this) &&
      (this.uuid == that.uuid) &&
-     (this.disjointTree == that.disjointTree)
+     (this.scalarDataProperty == that.scalarDataProperty) &&
+     (this.scalarPropertyValue == that.scalarPropertyValue)
 
 	  case _ =>
 	    false

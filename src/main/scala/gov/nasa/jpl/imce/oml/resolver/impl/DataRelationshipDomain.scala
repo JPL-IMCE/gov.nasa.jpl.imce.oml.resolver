@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 trait DataRelationshipDomain
 extends resolver.api.DataRelationshipDomain
-  with Element
+  with ModuleElement
   with Resource
 {
 		

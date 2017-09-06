@@ -24,12 +24,19 @@ case class ScalarOneOfLiteralAxiom private[impl]
 	(
 	 override val uuid: java.util.UUID,
 	 override val axiom: resolver.api.ScalarOneOfRestriction,
-	 override val value: gov.nasa.jpl.imce.oml.tables.LexicalValue
+	 override val value: gov.nasa.jpl.imce.oml.tables.LiteralValue
 )
 extends resolver.api.ScalarOneOfLiteralAxiom
   with TermAxiom
 {
 		
+  def allNestedElements
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
+	  = {
+	    scala.collection.immutable.Set.empty[resolver.api.Element]
+	  }
+	  
 
 
 

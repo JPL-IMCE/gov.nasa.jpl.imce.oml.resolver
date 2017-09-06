@@ -38,6 +38,20 @@ extends resolver.api.UnreifiedRelationshipInstanceTuple
 	    extent.descriptionBoxOfUnreifiedRelationshipInstanceTuple.get(this)
 	  }
 	  
+  def moduleContext
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.Option[resolver.api.Module]
+	  = {
+	    descriptionBox()
+	  }
+	  
+  def allNestedElements
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
+	  = {
+	    scala.collection.immutable.Set.empty[resolver.api.Element]
+	  }
+	  
 
 
 

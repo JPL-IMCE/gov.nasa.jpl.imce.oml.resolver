@@ -27,6 +27,13 @@ extends resolver.api.EntityScalarDataPropertyRestrictionAxiom
 override val restrictedEntity: resolver.api.Entity
   override val scalarProperty: resolver.api.EntityScalarDataProperty
 		
+  def allNestedElements
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
+	  = {
+	    scala.collection.immutable.Set.empty[resolver.api.Element]
+	  }
+	  
 
 
 
