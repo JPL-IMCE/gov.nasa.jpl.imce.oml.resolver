@@ -45,11 +45,7 @@ lazy val core = Project("oml-resolver", file("."))
     scalacOptions in (Test, doc) += "-Xplugin-disable:artima-supersafe",
 
     libraryDependencies ++= Seq(
-      "com.fasterxml.uuid" % "java-uuid-generator" % "3.1.+",
-
-      "gov.nasa.jpl.imce" %% "imce.third_party.scala_graph_libraries"
-        % Settings.versions.scalaGraphLibraries artifacts
-        Artifact("imce.third_party.scala_graph_libraries", "zip", "zip", "resource")
+      "com.fasterxml.uuid" % "java-uuid-generator" % "3.1.+"
     ),
 
     // Avoid unresolvable dependencies from old versions of log4j
@@ -64,7 +60,7 @@ lazy val core = Project("oml-resolver", file("."))
       }
     }
   )
-  //.dependsOn(ProjectRef(file("../gov.nasa.jpl.imce.oml.tables"), "tablesJVM"))
+//  .dependsOn(ProjectRef(file("../gov.nasa.jpl.imce.oml.tables"), "tablesJVM"))
   .dependsOnSourceProjectRefOrLibraryArtifacts(
     "gov.nasa.jpl.imce.oml.tables",
     "gov.nasa.jpl.imce.oml.tables",
