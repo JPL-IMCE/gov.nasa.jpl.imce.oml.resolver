@@ -32,7 +32,7 @@ object Settings {
   )
 
   object versions {
-    val jpl_omf_schema_tables = "0.80.0-M11"
+    val jpl_omf_schema_tables = "0.90.0-M01"
     val scala = "2.11.8"
     val scalaJ8CompatVersion = "0.8.0-RC8"
   }

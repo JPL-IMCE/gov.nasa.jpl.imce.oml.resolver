@@ -20,30 +20,41 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-case class AnnotationPropertyValue private[impl] 
+case class ConceptPredicate private[impl] 
 	(
 	 override val uuid: java.util.UUID,
-	 override val subject: resolver.api.Element,
-	 override val property: resolver.api.AnnotationProperty,
-	 override val value: gov.nasa.jpl.imce.oml.tables.StringDataType
+	 override val bodySegment: resolver.api.RuleBodySegment,
+	 override val concept: resolver.api.Concept
 )
-extends resolver.api.AnnotationPropertyValue
+extends resolver.api.ConceptPredicate
+  with UnarySegmentPredicate
 {
 		
+  override def termPredicate
+  ()
+	  : resolver.api.Term
+	  = {
+	    concept
+	  }
+	  
 
 
+
+  override def canEqual(that: scala.Any): scala.Boolean = that match {
+  	case _: ConceptPredicate => true
+  	case _ => false
+  }
 
   override val hashCode
   : scala.Int
-  = (uuid, subject, property, value).##
+  = (uuid, bodySegment, concept).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: AnnotationPropertyValue =>
+   case that: ConceptPredicate =>
      (that canEqual this) &&
      (this.uuid == that.uuid) &&
-     (this.subject == that.subject) &&
-     (this.property == that.property) &&
-     (this.value == that.value)
+     (this.bodySegment == that.bodySegment) &&
+     (this.concept == that.concept)
 
 	  case _ =>
 	    false

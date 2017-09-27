@@ -20,30 +20,41 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-case class AnnotationPropertyValue private[impl] 
+case class UnreifiedRelationshipPropertyPredicate private[impl] 
 	(
 	 override val uuid: java.util.UUID,
-	 override val subject: resolver.api.Element,
-	 override val property: resolver.api.AnnotationProperty,
-	 override val value: gov.nasa.jpl.imce.oml.tables.StringDataType
+	 override val unreifiedRelationship: resolver.api.UnreifiedRelationship,
+	 override val bodySegment: resolver.api.RuleBodySegment
 )
-extends resolver.api.AnnotationPropertyValue
+extends resolver.api.UnreifiedRelationshipPropertyPredicate
+  with BinarySegmentForwardPropertyPredicate
 {
 		
+  override def termPredicate
+  ()
+	  : resolver.api.Term
+	  = {
+	    unreifiedRelationship
+	  }
+	  
 
 
+
+  override def canEqual(that: scala.Any): scala.Boolean = that match {
+  	case _: UnreifiedRelationshipPropertyPredicate => true
+  	case _ => false
+  }
 
   override val hashCode
   : scala.Int
-  = (uuid, subject, property, value).##
+  = (uuid, unreifiedRelationship, bodySegment).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: AnnotationPropertyValue =>
+   case that: UnreifiedRelationshipPropertyPredicate =>
      (that canEqual this) &&
      (this.uuid == that.uuid) &&
-     (this.subject == that.subject) &&
-     (this.property == that.property) &&
-     (this.value == that.value)
+     (this.unreifiedRelationship == that.unreifiedRelationship) &&
+     (this.bodySegment == that.bodySegment)
 
 	  case _ =>
 	    false

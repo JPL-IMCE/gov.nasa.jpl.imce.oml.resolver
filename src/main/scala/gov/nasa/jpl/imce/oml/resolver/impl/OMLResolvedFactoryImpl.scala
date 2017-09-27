@@ -56,7 +56,7 @@ extends resolver.api.OMLResolvedFactory {
 	   // factoryMethodWithImplicitlyDerivedUUID
 	   // container: subject Element
 	   // contained: annotations AnnotationPropertyValue
-	   val annotationPropertyValue = AnnotationPropertyValue( uuid, property, value )
+	   val annotationPropertyValue = AnnotationPropertyValue( uuid, subject, property, value )
 	   scala.Tuple2(
 	   	extent.copy(
 	   	  annotations = extent.withAnnotationPropertyValue(subject, annotationPropertyValue),
@@ -103,6 +103,26 @@ extends resolver.api.OMLResolvedFactory {
 	      terminologyBoxOfTerminologyBoxStatement = extent.terminologyBoxOfTerminologyBoxStatement + (aspect -> tbox),
 	      terminologyBoxStatementByUUID = extent.terminologyBoxStatementByUUID + (uuid -> aspect)),
 	   	aspect)
+	 }
+	 		  
+	 // AspectPredicate
+	 override def createAspectPredicate
+	 ( extent: resolver.api.Extent,
+	   uuid: java.util.UUID,
+	   aspect: resolver.api.Aspect,
+	   bodySegment: resolver.api.RuleBodySegment )
+	 : (resolver.api.Extent, resolver.api.AspectPredicate)
+	 = {
+	   // factoryMethodWithImplicitlyDerivedUUID
+	   // container: bodySegment RuleBodySegment
+	   // contained: predicate SegmentPredicate
+	   val aspectPredicate = AspectPredicate( uuid, aspect, bodySegment )
+	   scala.Tuple2(
+	   	extent.copy(
+	   	  predicate = extent.withSegmentPredicate(bodySegment, aspectPredicate),
+	   	  ruleBodySegmentOfSegmentPredicate = extent.ruleBodySegmentOfSegmentPredicate + (aspectPredicate -> bodySegment),
+	   	  segmentPredicateByUUID = extent.segmentPredicateByUUID + (uuid -> aspectPredicate)),
+	   	aspectPredicate)
 	 }
 	 		  
 	 // AspectSpecializationAxiom
@@ -184,6 +204,27 @@ extends resolver.api.OMLResolvedFactory {
 	   	bundledTerminologyAxiom)
 	 }
 	 		  
+	 // ChainRule
+	 override def createChainRule
+	 ( extent: resolver.api.Extent,
+	   uuid: java.util.UUID,
+	   tbox: resolver.api.TerminologyBox,
+	   name: gov.nasa.jpl.imce.oml.tables.LocalName,
+	   head: resolver.api.UnreifiedRelationship )
+	 : (resolver.api.Extent, resolver.api.ChainRule)
+	 = {
+	   // factoryMethodWithUUIDGenerator
+	   // container: tbox TerminologyBox
+	   // contained: boxStatements TerminologyBoxStatement
+	   val chainRule = ChainRule( uuid, name, head )
+	   scala.Tuple2(
+	     extent.copy(
+	      boxStatements = extent.withTerminologyBoxStatement(tbox, chainRule),
+	      terminologyBoxOfTerminologyBoxStatement = extent.terminologyBoxOfTerminologyBoxStatement + (chainRule -> tbox),
+	      terminologyBoxStatementByUUID = extent.terminologyBoxStatementByUUID + (uuid -> chainRule)),
+	   	chainRule)
+	 }
+	 		  
 	 // Concept
 	 override def createConcept
 	 ( extent: resolver.api.Extent,
@@ -244,6 +285,26 @@ extends resolver.api.OMLResolvedFactory {
 	      descriptionBoxOfConceptInstance = extent.descriptionBoxOfConceptInstance + (conceptInstance -> descriptionBox),
 	      conceptInstanceByUUID = extent.conceptInstanceByUUID + (uuid -> conceptInstance)),
 	   	conceptInstance)
+	 }
+	 		  
+	 // ConceptPredicate
+	 override def createConceptPredicate
+	 ( extent: resolver.api.Extent,
+	   uuid: java.util.UUID,
+	   bodySegment: resolver.api.RuleBodySegment,
+	   concept: resolver.api.Concept )
+	 : (resolver.api.Extent, resolver.api.ConceptPredicate)
+	 = {
+	   // factoryMethodWithImplicitlyDerivedUUID
+	   // container: bodySegment RuleBodySegment
+	   // contained: predicate SegmentPredicate
+	   val conceptPredicate = ConceptPredicate( uuid, bodySegment, concept )
+	   scala.Tuple2(
+	   	extent.copy(
+	   	  predicate = extent.withSegmentPredicate(bodySegment, conceptPredicate),
+	   	  ruleBodySegmentOfSegmentPredicate = extent.ruleBodySegmentOfSegmentPredicate + (conceptPredicate -> bodySegment),
+	   	  segmentPredicateByUUID = extent.segmentPredicateByUUID + (uuid -> conceptPredicate)),
+	   	conceptPredicate)
 	 }
 	 		  
 	 // ConceptSpecializationAxiom
@@ -670,6 +731,106 @@ extends resolver.api.OMLResolvedFactory {
 	   	reifiedRelationshipInstanceRange)
 	 }
 	 		  
+	 // ReifiedRelationshipInversePropertyPredicate
+	 override def createReifiedRelationshipInversePropertyPredicate
+	 ( extent: resolver.api.Extent,
+	   uuid: java.util.UUID,
+	   bodySegment: resolver.api.RuleBodySegment,
+	   reifiedRelationship: resolver.api.ReifiedRelationship )
+	 : (resolver.api.Extent, resolver.api.ReifiedRelationshipInversePropertyPredicate)
+	 = {
+	   // factoryMethodWithImplicitlyDerivedUUID
+	   // container: bodySegment RuleBodySegment
+	   // contained: predicate SegmentPredicate
+	   val reifiedRelationshipInversePropertyPredicate = ReifiedRelationshipInversePropertyPredicate( uuid, bodySegment, reifiedRelationship )
+	   scala.Tuple2(
+	   	extent.copy(
+	   	  predicate = extent.withSegmentPredicate(bodySegment, reifiedRelationshipInversePropertyPredicate),
+	   	  ruleBodySegmentOfSegmentPredicate = extent.ruleBodySegmentOfSegmentPredicate + (reifiedRelationshipInversePropertyPredicate -> bodySegment),
+	   	  segmentPredicateByUUID = extent.segmentPredicateByUUID + (uuid -> reifiedRelationshipInversePropertyPredicate)),
+	   	reifiedRelationshipInversePropertyPredicate)
+	 }
+	 		  
+	 // ReifiedRelationshipPredicate
+	 override def createReifiedRelationshipPredicate
+	 ( extent: resolver.api.Extent,
+	   uuid: java.util.UUID,
+	   bodySegment: resolver.api.RuleBodySegment,
+	   reifiedRelationship: resolver.api.ReifiedRelationship )
+	 : (resolver.api.Extent, resolver.api.ReifiedRelationshipPredicate)
+	 = {
+	   // factoryMethodWithImplicitlyDerivedUUID
+	   // container: bodySegment RuleBodySegment
+	   // contained: predicate SegmentPredicate
+	   val reifiedRelationshipPredicate = ReifiedRelationshipPredicate( uuid, bodySegment, reifiedRelationship )
+	   scala.Tuple2(
+	   	extent.copy(
+	   	  predicate = extent.withSegmentPredicate(bodySegment, reifiedRelationshipPredicate),
+	   	  ruleBodySegmentOfSegmentPredicate = extent.ruleBodySegmentOfSegmentPredicate + (reifiedRelationshipPredicate -> bodySegment),
+	   	  segmentPredicateByUUID = extent.segmentPredicateByUUID + (uuid -> reifiedRelationshipPredicate)),
+	   	reifiedRelationshipPredicate)
+	 }
+	 		  
+	 // ReifiedRelationshipPropertyPredicate
+	 override def createReifiedRelationshipPropertyPredicate
+	 ( extent: resolver.api.Extent,
+	   uuid: java.util.UUID,
+	   bodySegment: resolver.api.RuleBodySegment,
+	   reifiedRelationship: resolver.api.ReifiedRelationship )
+	 : (resolver.api.Extent, resolver.api.ReifiedRelationshipPropertyPredicate)
+	 = {
+	   // factoryMethodWithImplicitlyDerivedUUID
+	   // container: bodySegment RuleBodySegment
+	   // contained: predicate SegmentPredicate
+	   val reifiedRelationshipPropertyPredicate = ReifiedRelationshipPropertyPredicate( uuid, bodySegment, reifiedRelationship )
+	   scala.Tuple2(
+	   	extent.copy(
+	   	  predicate = extent.withSegmentPredicate(bodySegment, reifiedRelationshipPropertyPredicate),
+	   	  ruleBodySegmentOfSegmentPredicate = extent.ruleBodySegmentOfSegmentPredicate + (reifiedRelationshipPropertyPredicate -> bodySegment),
+	   	  segmentPredicateByUUID = extent.segmentPredicateByUUID + (uuid -> reifiedRelationshipPropertyPredicate)),
+	   	reifiedRelationshipPropertyPredicate)
+	 }
+	 		  
+	 // ReifiedRelationshipSourceInversePropertyPredicate
+	 override def createReifiedRelationshipSourceInversePropertyPredicate
+	 ( extent: resolver.api.Extent,
+	   uuid: java.util.UUID,
+	   bodySegment: resolver.api.RuleBodySegment,
+	   reifiedRelationship: resolver.api.ReifiedRelationship )
+	 : (resolver.api.Extent, resolver.api.ReifiedRelationshipSourceInversePropertyPredicate)
+	 = {
+	   // factoryMethodWithImplicitlyDerivedUUID
+	   // container: bodySegment RuleBodySegment
+	   // contained: predicate SegmentPredicate
+	   val reifiedRelationshipSourceInversePropertyPredicate = ReifiedRelationshipSourceInversePropertyPredicate( uuid, bodySegment, reifiedRelationship )
+	   scala.Tuple2(
+	   	extent.copy(
+	   	  predicate = extent.withSegmentPredicate(bodySegment, reifiedRelationshipSourceInversePropertyPredicate),
+	   	  ruleBodySegmentOfSegmentPredicate = extent.ruleBodySegmentOfSegmentPredicate + (reifiedRelationshipSourceInversePropertyPredicate -> bodySegment),
+	   	  segmentPredicateByUUID = extent.segmentPredicateByUUID + (uuid -> reifiedRelationshipSourceInversePropertyPredicate)),
+	   	reifiedRelationshipSourceInversePropertyPredicate)
+	 }
+	 		  
+	 // ReifiedRelationshipSourcePropertyPredicate
+	 override def createReifiedRelationshipSourcePropertyPredicate
+	 ( extent: resolver.api.Extent,
+	   uuid: java.util.UUID,
+	   bodySegment: resolver.api.RuleBodySegment,
+	   reifiedRelationship: resolver.api.ReifiedRelationship )
+	 : (resolver.api.Extent, resolver.api.ReifiedRelationshipSourcePropertyPredicate)
+	 = {
+	   // factoryMethodWithImplicitlyDerivedUUID
+	   // container: bodySegment RuleBodySegment
+	   // contained: predicate SegmentPredicate
+	   val reifiedRelationshipSourcePropertyPredicate = ReifiedRelationshipSourcePropertyPredicate( uuid, bodySegment, reifiedRelationship )
+	   scala.Tuple2(
+	   	extent.copy(
+	   	  predicate = extent.withSegmentPredicate(bodySegment, reifiedRelationshipSourcePropertyPredicate),
+	   	  ruleBodySegmentOfSegmentPredicate = extent.ruleBodySegmentOfSegmentPredicate + (reifiedRelationshipSourcePropertyPredicate -> bodySegment),
+	   	  segmentPredicateByUUID = extent.segmentPredicateByUUID + (uuid -> reifiedRelationshipSourcePropertyPredicate)),
+	   	reifiedRelationshipSourcePropertyPredicate)
+	 }
+	 		  
 	 // ReifiedRelationshipSpecializationAxiom
 	 override def createReifiedRelationshipSpecializationAxiom
 	 ( extent: resolver.api.Extent,
@@ -689,6 +850,46 @@ extends resolver.api.OMLResolvedFactory {
 	   	  terminologyBoxOfTerminologyBoxStatement = extent.terminologyBoxOfTerminologyBoxStatement + (reifiedRelationshipSpecializationAxiom -> tbox),
 	   	  terminologyBoxStatementByUUID = extent.terminologyBoxStatementByUUID + (uuid -> reifiedRelationshipSpecializationAxiom)),
 	   	reifiedRelationshipSpecializationAxiom)
+	 }
+	 		  
+	 // ReifiedRelationshipTargetInversePropertyPredicate
+	 override def createReifiedRelationshipTargetInversePropertyPredicate
+	 ( extent: resolver.api.Extent,
+	   uuid: java.util.UUID,
+	   bodySegment: resolver.api.RuleBodySegment,
+	   reifiedRelationship: resolver.api.ReifiedRelationship )
+	 : (resolver.api.Extent, resolver.api.ReifiedRelationshipTargetInversePropertyPredicate)
+	 = {
+	   // factoryMethodWithImplicitlyDerivedUUID
+	   // container: bodySegment RuleBodySegment
+	   // contained: predicate SegmentPredicate
+	   val reifiedRelationshipTargetInversePropertyPredicate = ReifiedRelationshipTargetInversePropertyPredicate( uuid, bodySegment, reifiedRelationship )
+	   scala.Tuple2(
+	   	extent.copy(
+	   	  predicate = extent.withSegmentPredicate(bodySegment, reifiedRelationshipTargetInversePropertyPredicate),
+	   	  ruleBodySegmentOfSegmentPredicate = extent.ruleBodySegmentOfSegmentPredicate + (reifiedRelationshipTargetInversePropertyPredicate -> bodySegment),
+	   	  segmentPredicateByUUID = extent.segmentPredicateByUUID + (uuid -> reifiedRelationshipTargetInversePropertyPredicate)),
+	   	reifiedRelationshipTargetInversePropertyPredicate)
+	 }
+	 		  
+	 // ReifiedRelationshipTargetPropertyPredicate
+	 override def createReifiedRelationshipTargetPropertyPredicate
+	 ( extent: resolver.api.Extent,
+	   uuid: java.util.UUID,
+	   bodySegment: resolver.api.RuleBodySegment,
+	   reifiedRelationship: resolver.api.ReifiedRelationship )
+	 : (resolver.api.Extent, resolver.api.ReifiedRelationshipTargetPropertyPredicate)
+	 = {
+	   // factoryMethodWithImplicitlyDerivedUUID
+	   // container: bodySegment RuleBodySegment
+	   // contained: predicate SegmentPredicate
+	   val reifiedRelationshipTargetPropertyPredicate = ReifiedRelationshipTargetPropertyPredicate( uuid, bodySegment, reifiedRelationship )
+	   scala.Tuple2(
+	   	extent.copy(
+	   	  predicate = extent.withSegmentPredicate(bodySegment, reifiedRelationshipTargetPropertyPredicate),
+	   	  ruleBodySegmentOfSegmentPredicate = extent.ruleBodySegmentOfSegmentPredicate + (reifiedRelationshipTargetPropertyPredicate -> bodySegment),
+	   	  segmentPredicateByUUID = extent.segmentPredicateByUUID + (uuid -> reifiedRelationshipTargetPropertyPredicate)),
+	   	reifiedRelationshipTargetPropertyPredicate)
 	 }
 	 		  
 	 // RestrictionScalarDataPropertyValue
@@ -750,6 +951,31 @@ extends resolver.api.OMLResolvedFactory {
 	   	  bundleOfTerminologyBundleStatement = extent.bundleOfTerminologyBundleStatement + (rootConceptTaxonomyAxiom -> bundle),
 	   	  terminologyBundleStatementByUUID = extent.terminologyBundleStatementByUUID + (uuid -> rootConceptTaxonomyAxiom)),
 	   	rootConceptTaxonomyAxiom)
+	 }
+	 		  
+	 // RuleBodySegment
+	 override def createRuleBodySegment
+	 ( extent: resolver.api.Extent,
+	   uuid: java.util.UUID,
+	   previousSegment: scala.Option[resolver.api.RuleBodySegment],
+	   rule: scala.Option[resolver.api.ChainRule] )
+	 : (resolver.api.Extent, resolver.api.RuleBodySegment)
+	 = {
+	   // factoryMethodWithUUIDGenerator (scala...)
+	   // container: previousSegment RuleBodySegment
+	   // contained: nextSegment RuleBodySegment
+	   val ruleBodySegment = RuleBodySegment( uuid, previousSegment, rule )
+	   scala.Tuple2(
+	     previousSegment.fold {
+	     extent.copy(
+	      ruleBodySegmentByUUID = extent.ruleBodySegmentByUUID + (uuid -> ruleBodySegment))
+	     }{ _previousSegment_ =>
+	     extent.copy(
+	      nextSegment = extent.withRuleBodySegment(_previousSegment_, ruleBodySegment),
+	      ruleBodySegmentOfRuleBodySegment = extent.ruleBodySegmentOfRuleBodySegment + (ruleBodySegment -> _previousSegment_),
+	      ruleBodySegmentByUUID = extent.ruleBodySegmentByUUID + (uuid -> ruleBodySegment))
+	     },
+	   	ruleBodySegment)
 	 }
 	 		  
 	 // Scalar
@@ -1159,6 +1385,46 @@ extends resolver.api.OMLResolvedFactory {
 	   	  descriptionBoxOfUnreifiedRelationshipInstanceTuple = extent.descriptionBoxOfUnreifiedRelationshipInstanceTuple + (unreifiedRelationshipInstanceTuple -> descriptionBox),
 	   	  unreifiedRelationshipInstanceTupleByUUID = extent.unreifiedRelationshipInstanceTupleByUUID + (uuid -> unreifiedRelationshipInstanceTuple)),
 	   	unreifiedRelationshipInstanceTuple)
+	 }
+	 		  
+	 // UnreifiedRelationshipInversePropertyPredicate
+	 override def createUnreifiedRelationshipInversePropertyPredicate
+	 ( extent: resolver.api.Extent,
+	   uuid: java.util.UUID,
+	   unreifiedRelationship: resolver.api.UnreifiedRelationship,
+	   bodySegment: resolver.api.RuleBodySegment )
+	 : (resolver.api.Extent, resolver.api.UnreifiedRelationshipInversePropertyPredicate)
+	 = {
+	   // factoryMethodWithImplicitlyDerivedUUID
+	   // container: bodySegment RuleBodySegment
+	   // contained: predicate SegmentPredicate
+	   val unreifiedRelationshipInversePropertyPredicate = UnreifiedRelationshipInversePropertyPredicate( uuid, unreifiedRelationship, bodySegment )
+	   scala.Tuple2(
+	   	extent.copy(
+	   	  predicate = extent.withSegmentPredicate(bodySegment, unreifiedRelationshipInversePropertyPredicate),
+	   	  ruleBodySegmentOfSegmentPredicate = extent.ruleBodySegmentOfSegmentPredicate + (unreifiedRelationshipInversePropertyPredicate -> bodySegment),
+	   	  segmentPredicateByUUID = extent.segmentPredicateByUUID + (uuid -> unreifiedRelationshipInversePropertyPredicate)),
+	   	unreifiedRelationshipInversePropertyPredicate)
+	 }
+	 		  
+	 // UnreifiedRelationshipPropertyPredicate
+	 override def createUnreifiedRelationshipPropertyPredicate
+	 ( extent: resolver.api.Extent,
+	   uuid: java.util.UUID,
+	   unreifiedRelationship: resolver.api.UnreifiedRelationship,
+	   bodySegment: resolver.api.RuleBodySegment )
+	 : (resolver.api.Extent, resolver.api.UnreifiedRelationshipPropertyPredicate)
+	 = {
+	   // factoryMethodWithImplicitlyDerivedUUID
+	   // container: bodySegment RuleBodySegment
+	   // contained: predicate SegmentPredicate
+	   val unreifiedRelationshipPropertyPredicate = UnreifiedRelationshipPropertyPredicate( uuid, unreifiedRelationship, bodySegment )
+	   scala.Tuple2(
+	   	extent.copy(
+	   	  predicate = extent.withSegmentPredicate(bodySegment, unreifiedRelationshipPropertyPredicate),
+	   	  ruleBodySegmentOfSegmentPredicate = extent.ruleBodySegmentOfSegmentPredicate + (unreifiedRelationshipPropertyPredicate -> bodySegment),
+	   	  segmentPredicateByUUID = extent.segmentPredicateByUUID + (uuid -> unreifiedRelationshipPropertyPredicate)),
+	   	unreifiedRelationshipPropertyPredicate)
 	 }
 	 		  
 }
