@@ -456,13 +456,14 @@ extends resolver.api.OMLResolvedFactory {
 	   tbox: resolver.api.TerminologyBox,
 	   restrictedEntity: resolver.api.Entity,
 	   scalarProperty: resolver.api.EntityScalarDataProperty,
-	   literalValue: gov.nasa.jpl.imce.oml.tables.LiteralValue )
+	   literalValue: gov.nasa.jpl.imce.oml.tables.LiteralValue,
+	   valueType: scala.Option[resolver.api.DataRange] )
 	 : (resolver.api.Extent, resolver.api.EntityScalarDataPropertyParticularRestrictionAxiom)
 	 = {
 	   // factoryMethodWithDerivedUUID
 	   // container: tbox TerminologyBox
 	   // contained: boxStatements TerminologyBoxStatement
-	   val entityScalarDataPropertyParticularRestrictionAxiom = EntityScalarDataPropertyParticularRestrictionAxiom( uuid, restrictedEntity, scalarProperty, literalValue )
+	   val entityScalarDataPropertyParticularRestrictionAxiom = EntityScalarDataPropertyParticularRestrictionAxiom( uuid, restrictedEntity, scalarProperty, literalValue, valueType )
 	   scala.Tuple2(
 	   	extent.copy(
 	   	  boxStatements = extent.withTerminologyBoxStatement(tbox, entityScalarDataPropertyParticularRestrictionAxiom),
@@ -898,13 +899,14 @@ extends resolver.api.OMLResolvedFactory {
 	   uuid: java.util.UUID,
 	   scalarDataProperty: resolver.api.DataRelationshipToScalar,
 	   scalarPropertyValue: gov.nasa.jpl.imce.oml.tables.LiteralValue,
-	   structuredDataPropertyContext: resolver.api.RestrictionStructuredDataPropertyContext )
+	   structuredDataPropertyContext: resolver.api.RestrictionStructuredDataPropertyContext,
+	   valueType: scala.Option[resolver.api.DataRange] )
 	 : (resolver.api.Extent, resolver.api.RestrictionScalarDataPropertyValue)
 	 = {
 	   // factoryMethodWithDerivedUUID
 	   // container: structuredDataPropertyContext RestrictionStructuredDataPropertyContext
 	   // contained: scalarDataPropertyRestrictions RestrictionScalarDataPropertyValue
-	   val restrictionScalarDataPropertyValue = RestrictionScalarDataPropertyValue( uuid, scalarDataProperty, scalarPropertyValue )
+	   val restrictionScalarDataPropertyValue = RestrictionScalarDataPropertyValue( uuid, scalarDataProperty, scalarPropertyValue, valueType )
 	   scala.Tuple2(
 	   	extent.copy(
 	   	  scalarDataPropertyRestrictions = extent.withRestrictionScalarDataPropertyValue(structuredDataPropertyContext, restrictionScalarDataPropertyValue),
@@ -1026,13 +1028,14 @@ extends resolver.api.OMLResolvedFactory {
 	   uuid: java.util.UUID,
 	   scalarDataProperty: resolver.api.DataRelationshipToScalar,
 	   scalarPropertyValue: gov.nasa.jpl.imce.oml.tables.LiteralValue,
-	   structuredDataPropertyContext: resolver.api.SingletonInstanceStructuredDataPropertyContext )
+	   structuredDataPropertyContext: resolver.api.SingletonInstanceStructuredDataPropertyContext,
+	   valueType: scala.Option[resolver.api.DataRange] )
 	 : (resolver.api.Extent, resolver.api.ScalarDataPropertyValue)
 	 = {
 	   // factoryMethodWithDerivedUUID
 	   // container: structuredDataPropertyContext SingletonInstanceStructuredDataPropertyContext
 	   // contained: scalarDataPropertyValues ScalarDataPropertyValue
-	   val scalarDataPropertyValue = ScalarDataPropertyValue( uuid, scalarDataProperty, scalarPropertyValue )
+	   val scalarDataPropertyValue = ScalarDataPropertyValue( uuid, scalarDataProperty, scalarPropertyValue, valueType )
 	   scala.Tuple2(
 	   	extent.copy(
 	   	  scalarDataPropertyValues = extent.withScalarDataPropertyValue(structuredDataPropertyContext, scalarDataPropertyValue),
@@ -1047,13 +1050,14 @@ extends resolver.api.OMLResolvedFactory {
 	   uuid: java.util.UUID,
 	   tbox: resolver.api.TerminologyBox,
 	   axiom: resolver.api.ScalarOneOfRestriction,
-	   value: gov.nasa.jpl.imce.oml.tables.LiteralValue )
+	   value: gov.nasa.jpl.imce.oml.tables.LiteralValue,
+	   valueType: scala.Option[resolver.api.DataRange] )
 	 : (resolver.api.Extent, resolver.api.ScalarOneOfLiteralAxiom)
 	 = {
 	   // factoryMethodWithImplicitlyDerivedUUID
 	   // container: tbox TerminologyBox
 	   // contained: boxStatements TerminologyBoxStatement
-	   val scalarOneOfLiteralAxiom = ScalarOneOfLiteralAxiom( uuid, axiom, value )
+	   val scalarOneOfLiteralAxiom = ScalarOneOfLiteralAxiom( uuid, axiom, value, valueType )
 	   scala.Tuple2(
 	   	extent.copy(
 	   	  boxStatements = extent.withTerminologyBoxStatement(tbox, scalarOneOfLiteralAxiom),
@@ -1090,13 +1094,14 @@ extends resolver.api.OMLResolvedFactory {
 	   descriptionBox: resolver.api.DescriptionBox,
 	   singletonInstance: resolver.api.ConceptualEntitySingletonInstance,
 	   scalarDataProperty: resolver.api.EntityScalarDataProperty,
-	   scalarPropertyValue: gov.nasa.jpl.imce.oml.tables.LiteralValue )
+	   scalarPropertyValue: gov.nasa.jpl.imce.oml.tables.LiteralValue,
+	   valueType: scala.Option[resolver.api.DataRange] )
 	 : (resolver.api.Extent, resolver.api.SingletonInstanceScalarDataPropertyValue)
 	 = {
 	   // factoryMethodWithDerivedUUID
 	   // container: descriptionBox DescriptionBox
 	   // contained: singletonScalarDataPropertyValues SingletonInstanceScalarDataPropertyValue
-	   val singletonInstanceScalarDataPropertyValue = SingletonInstanceScalarDataPropertyValue( uuid, singletonInstance, scalarDataProperty, scalarPropertyValue )
+	   val singletonInstanceScalarDataPropertyValue = SingletonInstanceScalarDataPropertyValue( uuid, singletonInstance, scalarDataProperty, scalarPropertyValue, valueType )
 	   scala.Tuple2(
 	   	extent.copy(
 	   	  singletonScalarDataPropertyValues = extent.withSingletonInstanceScalarDataPropertyValue(descriptionBox, singletonInstanceScalarDataPropertyValue),

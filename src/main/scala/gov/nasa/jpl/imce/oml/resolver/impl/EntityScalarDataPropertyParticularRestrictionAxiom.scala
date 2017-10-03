@@ -25,7 +25,8 @@ case class EntityScalarDataPropertyParticularRestrictionAxiom private[impl]
 	 override val uuid: java.util.UUID,
 	 override val restrictedEntity: resolver.api.Entity,
 	 override val scalarProperty: resolver.api.EntityScalarDataProperty,
-	 override val literalValue: gov.nasa.jpl.imce.oml.tables.LiteralValue
+	 override val literalValue: gov.nasa.jpl.imce.oml.tables.LiteralValue,
+	 override val valueType: scala.Option[resolver.api.DataRange]
 )
 extends resolver.api.EntityScalarDataPropertyParticularRestrictionAxiom
   with EntityScalarDataPropertyRestrictionAxiom
@@ -41,7 +42,7 @@ extends resolver.api.EntityScalarDataPropertyParticularRestrictionAxiom
 
   override val hashCode
   : scala.Int
-  = (uuid, restrictedEntity, scalarProperty, literalValue).##
+  = (uuid, restrictedEntity, scalarProperty, literalValue, valueType).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
    case that: EntityScalarDataPropertyParticularRestrictionAxiom =>
@@ -49,7 +50,8 @@ extends resolver.api.EntityScalarDataPropertyParticularRestrictionAxiom
      (this.uuid == that.uuid) &&
      (this.restrictedEntity == that.restrictedEntity) &&
      (this.scalarProperty == that.scalarProperty) &&
-     (this.literalValue == that.literalValue)
+     (this.literalValue == that.literalValue) &&
+     (this.valueType == that.valueType)
 
 	  case _ =>
 	    false

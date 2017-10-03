@@ -25,7 +25,8 @@ case class SingletonInstanceScalarDataPropertyValue private[impl]
 	 override val uuid: java.util.UUID,
 	 override val singletonInstance: resolver.api.ConceptualEntitySingletonInstance,
 	 override val scalarDataProperty: resolver.api.EntityScalarDataProperty,
-	 override val scalarPropertyValue: gov.nasa.jpl.imce.oml.tables.LiteralValue
+	 override val scalarPropertyValue: gov.nasa.jpl.imce.oml.tables.LiteralValue,
+	 override val valueType: scala.Option[resolver.api.DataRange]
 )
 extends resolver.api.SingletonInstanceScalarDataPropertyValue
   with ModuleElement
@@ -62,7 +63,7 @@ extends resolver.api.SingletonInstanceScalarDataPropertyValue
 
   override val hashCode
   : scala.Int
-  = (uuid, singletonInstance, scalarDataProperty, scalarPropertyValue).##
+  = (uuid, singletonInstance, scalarDataProperty, scalarPropertyValue, valueType).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
    case that: SingletonInstanceScalarDataPropertyValue =>
@@ -70,7 +71,8 @@ extends resolver.api.SingletonInstanceScalarDataPropertyValue
      (this.uuid == that.uuid) &&
      (this.singletonInstance == that.singletonInstance) &&
      (this.scalarDataProperty == that.scalarDataProperty) &&
-     (this.scalarPropertyValue == that.scalarPropertyValue)
+     (this.scalarPropertyValue == that.scalarPropertyValue) &&
+     (this.valueType == that.valueType)
 
 	  case _ =>
 	    false

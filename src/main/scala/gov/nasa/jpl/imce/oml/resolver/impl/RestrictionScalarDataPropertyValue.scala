@@ -24,7 +24,8 @@ case class RestrictionScalarDataPropertyValue private[impl]
 	(
 	 override val uuid: java.util.UUID,
 	 override val scalarDataProperty: resolver.api.DataRelationshipToScalar,
-	 override val scalarPropertyValue: gov.nasa.jpl.imce.oml.tables.LiteralValue
+	 override val scalarPropertyValue: gov.nasa.jpl.imce.oml.tables.LiteralValue,
+	 override val valueType: scala.Option[resolver.api.DataRange]
 )
 extends resolver.api.RestrictionScalarDataPropertyValue
   with Element
@@ -54,14 +55,15 @@ extends resolver.api.RestrictionScalarDataPropertyValue
 
   override val hashCode
   : scala.Int
-  = (uuid, scalarDataProperty, scalarPropertyValue).##
+  = (uuid, scalarDataProperty, scalarPropertyValue, valueType).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
    case that: RestrictionScalarDataPropertyValue =>
      (that canEqual this) &&
      (this.uuid == that.uuid) &&
      (this.scalarDataProperty == that.scalarDataProperty) &&
-     (this.scalarPropertyValue == that.scalarPropertyValue)
+     (this.scalarPropertyValue == that.scalarPropertyValue) &&
+     (this.valueType == that.valueType)
 
 	  case _ =>
 	    false

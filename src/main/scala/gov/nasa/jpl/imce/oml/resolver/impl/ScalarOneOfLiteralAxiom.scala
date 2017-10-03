@@ -24,7 +24,8 @@ case class ScalarOneOfLiteralAxiom private[impl]
 	(
 	 override val uuid: java.util.UUID,
 	 override val axiom: resolver.api.ScalarOneOfRestriction,
-	 override val value: gov.nasa.jpl.imce.oml.tables.LiteralValue
+	 override val value: gov.nasa.jpl.imce.oml.tables.LiteralValue,
+	 override val valueType: scala.Option[resolver.api.DataRange]
 )
 extends resolver.api.ScalarOneOfLiteralAxiom
   with TermAxiom
@@ -47,14 +48,15 @@ extends resolver.api.ScalarOneOfLiteralAxiom
 
   override val hashCode
   : scala.Int
-  = (uuid, axiom, value).##
+  = (uuid, axiom, value, valueType).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
    case that: ScalarOneOfLiteralAxiom =>
      (that canEqual this) &&
      (this.uuid == that.uuid) &&
      (this.axiom == that.axiom) &&
-     (this.value == that.value)
+     (this.value == that.value) &&
+     (this.valueType == that.valueType)
 
 	  case _ =>
 	    false
