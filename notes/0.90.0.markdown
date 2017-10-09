@@ -5,3 +5,5 @@ gov.nasa.jpl.imce.oml.resolver 0.90.0 is a major update of 0.80.0
 - [#7 Add support for OML rules](https://github.com/JPL-IMCE/gov.nasa.jpl.imce.oml.resolver/issues/7)
 
 - [#8 Add support for typed OML LiteralValues](https://github.com/JPL-IMCE/gov.nasa.jpl.imce.oml.resolver/issues/8)
+
+- [#9 Spark/GraphX vertexId](https://github.com/JPL-IMCE/gov.nasa.jpl.imce.oml.resolver/issues/9)

@@ -35,6 +35,8 @@ lazy val core = Project("oml-resolver", file("."))
     // include all test artifacts
     publishArtifact in Test := true,
 
+    scalaVersion := Settings.versions.scala,
+
     resolvers += Resolver.bintrayRepo("jpl-imce", "gov.nasa.jpl.imce"),
     resolvers += Resolver.bintrayRepo("tiwg", "org.omg.tiwg"),
 
@@ -45,8 +47,9 @@ lazy val core = Project("oml-resolver", file("."))
     scalacOptions in (Test, doc) += "-Xplugin-disable:artima-supersafe",
 
     libraryDependencies ++= Seq(
-      "com.fasterxml.uuid" % "java-uuid-generator" % "3.1.+"
-    ),
+      "com.fasterxml.uuid" % "java-uuid-generator" % "3.1.+",
+      "com.lihaoyi" % "ammonite" % "1.0.2" cross CrossVersion.full
+      ),
 
     // Avoid unresolvable dependencies from old versions of log4j
     libraryDependencies ~= {
@@ -60,7 +63,7 @@ lazy val core = Project("oml-resolver", file("."))
       }
     }
   )
-//  .dependsOn(ProjectRef(file("../gov.nasa.jpl.imce.oml.tables"), "tablesJVM"))
+  //.dependsOn(ProjectRef(file("../gov.nasa.jpl.imce.oml.tables"), "tablesJVM"))
   .dependsOnSourceProjectRefOrLibraryArtifacts(
     "gov.nasa.jpl.imce.oml.tables",
     "gov.nasa.jpl.imce.oml.tables",

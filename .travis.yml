@@ -20,6 +20,10 @@ before_cache:
 jdk:
 - oraclejdk8
 
+env:
+  global:
+    - CI=true
+
 language: scala
 
 scala:
