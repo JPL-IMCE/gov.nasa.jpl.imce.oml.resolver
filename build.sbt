@@ -1,7 +1,7 @@
 
+import com.typesafe.sbt.packager.SettingsHelper
 import sbt.Keys._
 import sbt._
-
 import gov.nasa.jpl.imce.sbt._
 import gov.nasa.jpl.imce.sbt.ProjectHelper._
 
@@ -37,8 +37,38 @@ lazy val core = Project("oml-resolver", file("."))
 
     scalaVersion := Settings.versions.scala,
 
-    resolvers += Resolver.bintrayRepo("jpl-imce", "gov.nasa.jpl.imce"),
-    resolvers += Resolver.bintrayRepo("tiwg", "org.omg.tiwg"),
+    // 'omlResolver' will be a command-line script to run a single application
+    mainClass in Compile := Some("gov.nasa.jpl.imce.oml.resolver.Test1"),
+
+    executableScriptName := "omlResolver",
+
+    // skip doc on stage
+    mappings in (Compile, packageDoc) := Seq(),
+
+    SettingsHelper.makeDeploymentSettings(Universal, packageZipTarball in Universal, "tgz"),
+
+    SettingsHelper.makeDeploymentSettings(UniversalDocs, packageXzTarball in UniversalDocs, "tgz"),
+
+    packagedArtifacts in publish += {
+      val p = (packageZipTarball in Universal).value
+      val n = (name in Universal).value
+      Artifact(n, "tgz", "tgz", Some("resource"), Seq(), None, Map()) -> p
+    },
+    packagedArtifacts in publishLocal += {
+      val p = (packageZipTarball in Universal).value
+      val n = (name in Universal).value
+      Artifact(n, "tgz", "tgz", Some("resource"), Seq(), None, Map()) -> p
+    },
+    packagedArtifacts in publishM2 += {
+      val p = (packageZipTarball in Universal).value
+      val n = (name in Universal).value
+      Artifact(n, "tgz", "tgz", Some("resource"), Seq(), None, Map()) -> p
+    },
+
+    // temporary workaround to JFrog issue #70187
+    resolvers += Resolver.mavenLocal,
+    // restore when JFrog issue #70187 is closed.
+    //resolvers += Resolver.bintrayRepo("jpl-imce", "gov.nasa.jpl.imce"),
 
     resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases",
     scalacOptions in (Compile, compile) += s"-P:artima-supersafe:config-file:${baseDirectory.value}/project/supersafe.cfg",
