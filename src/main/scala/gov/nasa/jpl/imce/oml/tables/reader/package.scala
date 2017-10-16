@@ -53,6 +53,8 @@ package object reader {
             seqop = OMLSpecificationTables.readZipArchive(zip),
             combop = OMLSpecificationTables.mergeTables)
 
+      zip.close()
+
       next
     }
 

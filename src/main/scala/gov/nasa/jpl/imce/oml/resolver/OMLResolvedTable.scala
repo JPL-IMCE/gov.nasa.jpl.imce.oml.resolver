@@ -18,7 +18,7 @@
 
 package gov.nasa.jpl.imce.oml.resolver
 
-import scala.collection.immutable.{Map, Seq, Set}
+import scala.collection.immutable.{Iterable, Map, Seq, Set}
 import scala.util.{Failure, Success, Try}
 import scala.Predef.ArrowAssoc
 
@@ -99,7 +99,47 @@ case class OMLResolvedTable
   : Map[api.StructuredDataPropertyTuple, api.SingletonInstanceStructuredDataPropertyContext] = Map.empty,
   singletonInstanceStructuredDataPropertyContextOfScalarDataPropertyValue
   : Map[api.ScalarDataPropertyValue, api.SingletonInstanceStructuredDataPropertyContext] = Map.empty
-)
+) {
+
+  import Filterable._
+
+  def allAspects
+  : Iterable[api.Aspect]
+  = terminologyBoxOfTerminologyBoxStatement.selectByKindOf {
+    case (a: api.Aspect, _) => a
+  }
+
+  def allConcepts
+  : Iterable[api.Concept]
+  = terminologyBoxOfTerminologyBoxStatement.selectByKindOf {
+    case (c: api.Concept, _) => c
+  }
+
+  def allReifiedRelationships
+  : Iterable[api.ReifiedRelationship]
+  = terminologyBoxOfTerminologyBoxStatement.selectByKindOf {
+    case (rr: api.ReifiedRelationship, _) => rr
+  }
+
+  def allAspectSpecializationAxioms
+  : Iterable[api.AspectSpecializationAxiom]
+  = terminologyBoxOfTerminologyBoxStatement.selectByKindOf {
+    case (ax: api.AspectSpecializationAxiom, _) => ax
+  }
+
+  def allConceptSpecializationAxioms
+  : Iterable[api.ConceptSpecializationAxiom]
+  = terminologyBoxOfTerminologyBoxStatement.selectByKindOf {
+    case (ax: api.ConceptSpecializationAxiom, _) => ax
+  }
+
+  def allReifiedRelationshipSpecializationAxioms
+  : Iterable[api.ReifiedRelationshipSpecializationAxiom]
+  = terminologyBoxOfTerminologyBoxStatement.selectByKindOf {
+    case (ax: api.ReifiedRelationshipSpecializationAxiom, _) => ax
+  }
+
+}
 
 object OMLResolvedTable {
 
