@@ -48,7 +48,8 @@ package object reader {
         zip
           .getEntries
           .to[Seq]
-          .par
+          // @TODO Investigate why this causes out of memory errors when running zeppeling in docker
+          // .par
           .aggregate(prev)(
             seqop = OMLSpecificationTables.readZipArchive(zip),
             combop = OMLSpecificationTables.mergeTables)
@@ -59,7 +60,8 @@ package object reader {
     }
 
     omlZips
-      .par
+      // @TODO Investigate why this causes out of memory errors when running zeppeling in docker
+      // .par
       .aggregate[OMLSpecificationTables](
       OMLSpecificationTables.createEmptyOMLSpecificationTables()
     )(seqop=readOMLZipFile, combop=OMLSpecificationTables.mergeTables)
