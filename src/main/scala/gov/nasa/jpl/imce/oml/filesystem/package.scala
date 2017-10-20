@@ -36,7 +36,7 @@ package object filesystem {
     *         if it is a directory or `p`'s parent folder if it is a file named 'oml.catalog.xml'.
     *         In other cases, the result sequence is empty.
     */
-  protected def lsRecOML
+  def lsRecOML
   (p: Path, kindFilter: Path => Boolean)
   : Seq[Path]
   = {
@@ -53,6 +53,8 @@ package object filesystem {
       Seq.empty[Path]
   }
 
+  def omlJsonZipFilePredicate(p: Path): Boolean = p.isFile && p.segments.last.endsWith(".oml.json.zip")
+
   /**
     * Find *.oml.json.zip files recursively from a directory path or the parent directory of an `oml.catalog.xml` file
     * @param p The directory or `oml.catalog.xml` file
@@ -61,11 +63,9 @@ package object filesystem {
   def lsRecOMLJsonZipFiles
   (p: Path)
   : Seq[Path]
-  = {
-    def f(p: Path): Boolean = p.isFile && p.segments.last.endsWith(".oml.json.zip")
+  = lsRecOML(p, kindFilter = omlJsonZipFilePredicate)
 
-    lsRecOML(p, kindFilter = f)
-  }
+  def omlTextFilePredicate(p: Path): Boolean = p.isFile && p.segments.last.endsWith(".oml")
 
   /**
     * Find *.oml files recursively from a directory path or the parent directory of an `oml.catalog.xml` file
@@ -75,11 +75,9 @@ package object filesystem {
   def lsRecOMLTextFiles
   (p: Path)
   : Seq[Path]
-  = {
-    def f(p: Path): Boolean = p.isFile && p.segments.last.endsWith(".oml")
+  = lsRecOML(p, kindFilter = omlTextFilePredicate)
 
-    lsRecOML(p, kindFilter = f)
-  }
+  def omlOWLFilePredicate(p: Path): Boolean = p.isFile && p.segments.last.endsWith(".owl")
 
   /**
     * Find *.owl files recursively from a directory path or the parent directory of an `oml.catalog.xml` file
@@ -89,9 +87,6 @@ package object filesystem {
   def lsRecOMLOwlFiles
   (p: Path)
   : Seq[Path]
-  = {
-    def f(p: Path): Boolean = p.isFile && p.segments.last.endsWith(".owl")
+  = lsRecOML(p, kindFilter = omlOWLFilePredicate)
 
-    lsRecOML(p, kindFilter = f)
-  }
 }
