@@ -25,6 +25,9 @@ import scala.Boolean
 
 package object filesystem {
 
+  /**
+    * Predicate for an OML OASIS Catalog XML file
+    */
   val omlCatalogFilter = (p: Path) => p.isFile && p.segments.last == "oml.catalog.xml"
 
   /**
@@ -53,6 +56,9 @@ package object filesystem {
       Seq.empty[Path]
   }
 
+  /**
+    * Predicate for an OML concrete syntax representation file in 4th normal database tabular form (*.oml.json.zip)
+    */
   def omlJsonZipFilePredicate(p: Path): Boolean = p.isFile && p.segments.last.endsWith(".oml.json.zip")
 
   /**
@@ -65,6 +71,9 @@ package object filesystem {
   : Seq[Path]
   = lsRecOML(p, kindFilter = omlJsonZipFilePredicate)
 
+  /**
+    * Predicate for an OML concrete syntax representation file in OML's Xtext DSL (*.oml)
+    */
   def omlTextFilePredicate(p: Path): Boolean = p.isFile && p.segments.last.endsWith(".oml")
 
   /**
@@ -77,6 +86,9 @@ package object filesystem {
   : Seq[Path]
   = lsRecOML(p, kindFilter = omlTextFilePredicate)
 
+  /**
+    * Predicate for an OML concrete syntax representation file in W3C OWL2-DL + SWRL (*.owl)
+    */
   def omlOWLFilePredicate(p: Path): Boolean = p.isFile && p.segments.last.endsWith(".owl")
 
   /**
