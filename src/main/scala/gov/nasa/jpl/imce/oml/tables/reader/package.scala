@@ -35,6 +35,47 @@ package object reader {
     * @param omlZips A set of `*.oml.json.zip` files to read
     * @return The aggregated OML tables read from all `*.oml.json.zip` files.
     */
+  def parallelReadOMLZipFiles
+  (omlZips: Seq[Path])
+  : OMLSpecificationTables
+  = {
+    def readOMLZipFile
+    (prev: OMLSpecificationTables, file: Path)
+    : OMLSpecificationTables
+    = {
+      val zip = new ZipFile(file.toIO)
+      val next =
+        zip
+          .getEntries
+          .to[Seq]
+          .par
+          .aggregate(prev)(
+            seqop = OMLSpecificationTables.readZipArchive(zip),
+            combop = OMLSpecificationTables.mergeTables)
+
+      zip.close()
+
+      next
+    }
+
+    omlZips
+      .par
+      .aggregate[OMLSpecificationTables](
+      OMLSpecificationTables.createEmptyOMLSpecificationTables()
+    )(seqop=readOMLZipFile, combop=OMLSpecificationTables.mergeTables)
+  }
+
+
+  /**
+    *
+    * Read `*.oml.json.zip` files and aggregate the OML tables from each file.
+    *
+    * Note: The aggregation is done sequentially across all `*.oml.json.zip` files
+    * and across all OML tables within each file.
+    *
+    * @param omlZips A set of `*.oml.json.zip` files to read
+    * @return The aggregated OML tables read from all `*.oml.json.zip` files.
+    */
   def readOMLZipFiles
   (omlZips: Seq[Path])
   : OMLSpecificationTables
@@ -48,23 +89,21 @@ package object reader {
         zip
           .getEntries
           .to[Seq]
-          // @TODO Investigate why this causes out of memory errors when running zeppeling in docker
-          // .par
-          .aggregate(prev)(
-            seqop = OMLSpecificationTables.readZipArchive(zip),
-            combop = OMLSpecificationTables.mergeTables)
+          .foldLeft(prev)(OMLSpecificationTables.readZipArchive(zip))
 
       zip.close()
 
       next
     }
 
-    omlZips
-      // @TODO Investigate why this causes out of memory errors when running zeppeling in docker
-      // .par
-      .aggregate[OMLSpecificationTables](
-      OMLSpecificationTables.createEmptyOMLSpecificationTables()
-    )(seqop=readOMLZipFile, combop=OMLSpecificationTables.mergeTables)
+    val result = omlZips
+      .foldLeft(OMLSpecificationTables.createEmptyOMLSpecificationTables()) { case (acc1, tablesPath) =>
+        val acc2 = readOMLZipFile(acc1, tablesPath)
+        val acc3 = OMLSpecificationTables.mergeTables(acc1, acc2)
+        acc3
+      }
+
+    result
   }
 
 }
