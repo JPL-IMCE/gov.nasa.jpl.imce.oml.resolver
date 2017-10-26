@@ -18,7 +18,7 @@
 
 package gov.nasa.jpl.imce.oml
 
-import ammonite.ops.{ls,Path,RelPath}
+import ammonite.ops.{ls,up,Path}
 
 import scala.collection.immutable.Seq
 import scala.Boolean
@@ -49,7 +49,7 @@ package object filesystem {
         .filter(kindFilter).to[Seq]
 
     if (omlCatalogFilter(p))
-      lsRec(p / RelPath(".."))
+      lsRec(p / up)
     else if (p.isDir)
       lsRec(p)
     else
