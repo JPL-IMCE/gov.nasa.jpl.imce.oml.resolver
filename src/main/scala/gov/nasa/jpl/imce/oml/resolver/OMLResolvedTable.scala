@@ -139,6 +139,12 @@ case class OMLResolvedTable
     case (ax: api.ReifiedRelationshipSpecializationAxiom, _) => ax
   }
 
+  override def toString: String =
+    s"OMLResolvedTable(" +
+      s"${extents.size} extents, " +
+      s"${elements.size} elements, " +
+      s"${annotationPropertyValues.size} annotations," +
+      s"...)"
 }
 
 object OMLResolvedTable {
