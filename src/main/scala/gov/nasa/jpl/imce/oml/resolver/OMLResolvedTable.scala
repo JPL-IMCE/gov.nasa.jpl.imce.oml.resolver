@@ -171,8 +171,35 @@ object OMLResolvedTable {
           terminologyGraphs.values.to[Set] ++
           bundles.values.to[Set] ++
           descriptionBoxes.values.to[Set] ++
-          firstSegment.keySet
-      elements.par.aggregate(acc)(seqop = { case (prev, e) => prev + (e -> ext) }, combop = _ ++ _)
+          firstSegment.keys.to[Set] ++
+          predicate.keys.to[Set] ++
+          predicate.values.to[Set] ++
+          structuredDataPropertyRestrictions.keys.to[Set] ++
+          scalarDataPropertyRestrictions.keys.to[Set] ++
+          terminologyBoxOfTerminologyBoxAxiom.keys.to[Set] ++
+          terminologyBoxOfTerminologyBoxStatement.keys.to[Set] ++
+          chainRuleOfRuleBodySegment.keys.to[Set] ++
+          ruleBodySegmentOfSegmentPredicate.keys.to[Set] ++
+          ruleBodySegmentOfRuleBodySegment.keys.to[Set] ++
+          restrictionStructuredDataPropertyContextOfRestrictionStructuredDataPropertyTuple.keys.to[Set] ++
+          restrictionStructuredDataPropertyContextOfRestrictionScalarDataPropertyValue.keys.to[Set] ++
+          bundleOfTerminologyBundleAxiom.keys.to[Set] ++
+          bundleOfTerminologyBundleStatement.keys.to[Set] ++
+          conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom.keys.to[Set] ++
+          descriptionBoxOfDescriptionBoxRefinement.keys.to[Set] ++
+          descriptionBoxOfDescriptionBoxExtendsClosedWorldDefinitions.keys.to[Set] ++
+          descriptionBoxOfConceptInstance.keys.to[Set] ++
+          descriptionBoxOfReifiedRelationshipInstance.keys.to[Set] ++
+          descriptionBoxOfReifiedRelationshipInstanceDomain.keys.to[Set] ++
+          descriptionBoxOfReifiedRelationshipInstanceRange.keys.to[Set] ++
+          descriptionBoxOfUnreifiedRelationshipInstanceTuple.keys.to[Set] ++
+          descriptionBoxOfSingletonInstanceScalarDataPropertyValue.keys.to[Set] ++
+          descriptionBoxOfSingletonInstanceStructuredDataPropertyValue.keys.to[Set] ++
+          singletonInstanceStructuredDataPropertyContextOfStructuredDataPropertyTuple.keys.to[Set] ++
+          singletonInstanceStructuredDataPropertyContextOfScalarDataPropertyValue.keys.to[Set]
+      elements.par.aggregate(acc)(seqop = {
+        case (prev, e) => prev + (e -> ext)
+      }, combop = _ ++ _)
     }
 
     Success(
