@@ -19,7 +19,7 @@
 package gov.nasa.jpl.imce.oml.resolver
 
 import scala.collection.immutable.{Iterable, Map, Seq, Set}
-import scala.{Option,StringContext}
+import scala.StringContext
 import scala.util.{Failure, Success, Try}
 import scala.Predef.{ArrowAssoc,String}
 
