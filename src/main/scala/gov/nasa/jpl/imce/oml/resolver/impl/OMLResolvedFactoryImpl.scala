@@ -1054,7 +1054,7 @@ extends resolver.api.OMLResolvedFactory {
 	   valueType: scala.Option[resolver.api.DataRange] )
 	 : (resolver.api.Extent, resolver.api.ScalarOneOfLiteralAxiom)
 	 = {
-	   // factoryMethodWithImplicitlyDerivedUUID
+	   // factoryMethodWithDerivedUUID
 	   // container: tbox TerminologyBox
 	   // contained: boxStatements TerminologyBoxStatement
 	   val scalarOneOfLiteralAxiom = ScalarOneOfLiteralAxiom( uuid, axiom, value, valueType )

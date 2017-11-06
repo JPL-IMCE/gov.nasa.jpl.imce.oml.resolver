@@ -23,3 +23,5 @@ gov.nasa.jpl.imce.oml.resolver 0.90.0 is a major update of 0.80.0
 - [#16 Add convenience query: OMLResolvedTable.getViaExtent](https://github.com/JPL-IMCE/gov.nasa.jpl.imce.oml.resolver/issues/16)
 
 - [#17 Migrate the hierarchical graph sorting algorithm from the owlapi library](https://github.com/JPL-IMCE/gov.nasa.jpl.imce.oml.resolver/issues/17)
+
+- [#18 Update OMLResolverFactoryImpl based on @DerivedUUID without optional attributes](https://github.com/JPL-IMCE/gov.nasa.jpl.imce.oml.resolver/issues/18)
