@@ -22,27 +22,24 @@ import gov.nasa.jpl.imce.oml._
 
 case class AspectPredicate private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.AspectPredicateUUID,
 	 override val aspect: resolver.api.Aspect,
 	 override val bodySegment: resolver.api.RuleBodySegment
 )
 extends resolver.api.AspectPredicate
   with UnarySegmentPredicate
 {
-		
+
   override def termPredicate
   ()
 	  : resolver.api.Term
 	  = {
 	    aspect
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: AspectPredicate => true
-  	case _ => false
+	  case _: AspectPredicate => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -50,13 +47,13 @@ extends resolver.api.AspectPredicate
   = (uuid, aspect, bodySegment).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: AspectPredicate =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.aspect == that.aspect) &&
-     (this.bodySegment == that.bodySegment)
+    case that: AspectPredicate =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.aspect == that.aspect) &&
+      (this.bodySegment == that.bodySegment)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

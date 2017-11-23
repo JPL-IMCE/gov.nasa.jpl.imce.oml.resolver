@@ -24,12 +24,11 @@ trait Entity
 extends resolver.api.Entity
   with Term
 {
-		
-
-
+  override val uuid: resolver.api.taggedTypes.EntityUUID
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: Entity => true
-  	case _ => false
+	  case _: Entity => true
+ 	  case _ => false
   }
+
 }

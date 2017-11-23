@@ -24,12 +24,11 @@ trait ConceptTreeDisjunction
 extends resolver.api.ConceptTreeDisjunction
   with Element
 {
-		
-
-
+  override val uuid: resolver.api.taggedTypes.ConceptTreeDisjunctionUUID
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: ConceptTreeDisjunction => true
-  	case _ => false
+	  case _: ConceptTreeDisjunction => true
+ 	  case _ => false
   }
+
 }

@@ -22,15 +22,15 @@ import gov.nasa.jpl.imce.oml._
 
 case class TerminologyNestingAxiom private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.TerminologyNestingAxiomUUID,
 	 override val tbox: resolver.api.TerminologyBox,
 	 override val nestingContext: resolver.api.Concept,
-	 override val nestingTerminology: gov.nasa.jpl.imce.oml.tables.IRI
+	 override val nestingTerminology: gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI
 )
 extends resolver.api.TerminologyNestingAxiom
   with TerminologyBoxAxiom
 {
-		
+
   def nestedTerminology
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.TerminologyGraph]
@@ -40,7 +40,7 @@ extends resolver.api.TerminologyNestingAxiom
 	          case _ => scala.None
 	        }
 	  }
-	  
+
   /*
    * The nestedTerminology is the source
    */
@@ -50,23 +50,20 @@ extends resolver.api.TerminologyNestingAxiom
 	  = {
 	    nestedTerminology()
 	  }
-	  
+
   /*
    * The nestingTerminology is the target
    */
   override def target
   ()(implicit extent: resolver.api.Extent)
-	  : gov.nasa.jpl.imce.oml.tables.IRI
+	  : gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI
 	  = {
 	    nestingTerminology
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: TerminologyNestingAxiom => true
-  	case _ => false
+	  case _: TerminologyNestingAxiom => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -74,14 +71,14 @@ extends resolver.api.TerminologyNestingAxiom
   = (uuid, tbox, nestingContext, nestingTerminology).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: TerminologyNestingAxiom =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.tbox == that.tbox) &&
-     (this.nestingContext == that.nestingContext) &&
-     (this.nestingTerminology == that.nestingTerminology)
+    case that: TerminologyNestingAxiom =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.tbox == that.tbox) &&
+      (this.nestingContext == that.nestingContext) &&
+      (this.nestingTerminology == that.nestingTerminology)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

@@ -22,15 +22,13 @@ import gov.nasa.jpl.imce.oml._
 
 trait DataRelationshipDomain
 extends resolver.api.DataRelationshipDomain
-  with ModuleElement
-  with Resource
+  with DataRelationship
 {
-		
-
-
+  override val uuid: resolver.api.taggedTypes.DataRelationshipDomainUUID
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: DataRelationshipDomain => true
-  	case _ => false
+	  case _: DataRelationshipDomain => true
+ 	  case _ => false
   }
+
 }

@@ -22,27 +22,24 @@ import gov.nasa.jpl.imce.oml._
 
 case class UnreifiedRelationshipInversePropertyPredicate private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.UnreifiedRelationshipInversePropertyPredicateUUID,
 	 override val unreifiedRelationship: resolver.api.UnreifiedRelationship,
 	 override val bodySegment: resolver.api.RuleBodySegment
 )
 extends resolver.api.UnreifiedRelationshipInversePropertyPredicate
   with BinarySegmentReversePropertyPredicate
 {
-		
+
   override def termPredicate
   ()
 	  : resolver.api.Term
 	  = {
 	    unreifiedRelationship
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: UnreifiedRelationshipInversePropertyPredicate => true
-  	case _ => false
+	  case _: UnreifiedRelationshipInversePropertyPredicate => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -50,13 +47,13 @@ extends resolver.api.UnreifiedRelationshipInversePropertyPredicate
   = (uuid, unreifiedRelationship, bodySegment).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: UnreifiedRelationshipInversePropertyPredicate =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.unreifiedRelationship == that.unreifiedRelationship) &&
-     (this.bodySegment == that.bodySegment)
+    case that: UnreifiedRelationshipInversePropertyPredicate =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.unreifiedRelationship == that.unreifiedRelationship) &&
+      (this.bodySegment == that.bodySegment)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

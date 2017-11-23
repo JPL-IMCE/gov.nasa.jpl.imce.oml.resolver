@@ -22,30 +22,27 @@ import gov.nasa.jpl.imce.oml._
 
 case class AnnotationPropertyValue private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.AnnotationPropertyValueUUID,
 	 override val subject: resolver.api.Element,
 	 override val property: resolver.api.AnnotationProperty,
-	 override val value: gov.nasa.jpl.imce.oml.tables.StringDataType
+	 override val value: gov.nasa.jpl.imce.oml.tables.taggedTypes.StringDataType
 )
 extends resolver.api.AnnotationPropertyValue
 {
-		
-
-
 
   override val hashCode
   : scala.Int
   = (uuid, subject, property, value).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: AnnotationPropertyValue =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.subject == that.subject) &&
-     (this.property == that.property) &&
-     (this.value == that.value)
+    case that: AnnotationPropertyValue =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.subject == that.subject) &&
+      (this.property == that.property) &&
+      (this.value == that.value)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

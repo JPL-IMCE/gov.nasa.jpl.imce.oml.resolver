@@ -22,15 +22,15 @@ import gov.nasa.jpl.imce.oml._
 
 case class ConceptDesignationTerminologyAxiom private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.ConceptDesignationTerminologyAxiomUUID,
 	 override val tbox: resolver.api.TerminologyBox,
 	 override val designatedConcept: resolver.api.Concept,
-	 override val designatedTerminology: gov.nasa.jpl.imce.oml.tables.IRI
+	 override val designatedTerminology: gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI
 )
 extends resolver.api.ConceptDesignationTerminologyAxiom
   with TerminologyBoxAxiom
 {
-		
+
   def designationTerminologyGraph
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.TerminologyGraph]
@@ -40,7 +40,7 @@ extends resolver.api.ConceptDesignationTerminologyAxiom
 	          case _ => scala.None
 	        }
 	  }
-	  
+
   /*
    * The designationTerminologyGraph is the source
    */
@@ -50,23 +50,20 @@ extends resolver.api.ConceptDesignationTerminologyAxiom
 	  = {
 	    designationTerminologyGraph()
 	  }
-	  
+
   /*
    * The TerminologyBox that asserts the designatedConcept is the target
    */
   override def target
   ()(implicit extent: resolver.api.Extent)
-	  : gov.nasa.jpl.imce.oml.tables.IRI
+	  : gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI
 	  = {
 	    designatedTerminology
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: ConceptDesignationTerminologyAxiom => true
-  	case _ => false
+	  case _: ConceptDesignationTerminologyAxiom => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -74,14 +71,14 @@ extends resolver.api.ConceptDesignationTerminologyAxiom
   = (uuid, tbox, designatedConcept, designatedTerminology).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: ConceptDesignationTerminologyAxiom =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.tbox == that.tbox) &&
-     (this.designatedConcept == that.designatedConcept) &&
-     (this.designatedTerminology == that.designatedTerminology)
+    case that: ConceptDesignationTerminologyAxiom =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.tbox == that.tbox) &&
+      (this.designatedConcept == that.designatedConcept) &&
+      (this.designatedTerminology == that.designatedTerminology)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

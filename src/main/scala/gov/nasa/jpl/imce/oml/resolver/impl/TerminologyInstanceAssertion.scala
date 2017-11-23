@@ -24,12 +24,11 @@ trait TerminologyInstanceAssertion
 extends resolver.api.TerminologyInstanceAssertion
   with ModuleElement
 {
-		
-
-
+  override val uuid: resolver.api.taggedTypes.TerminologyInstanceAssertionUUID
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: TerminologyInstanceAssertion => true
-  	case _ => false
+	  case _: TerminologyInstanceAssertion => true
+ 	  case _ => false
   }
+
 }

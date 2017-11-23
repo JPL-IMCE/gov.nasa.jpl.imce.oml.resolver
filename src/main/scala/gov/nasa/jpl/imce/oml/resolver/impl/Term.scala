@@ -25,34 +25,33 @@ extends resolver.api.Term
   with TerminologyBoxStatement
   with Resource
 {
-override val name: gov.nasa.jpl.imce.oml.tables.LocalName
-		
+  override val uuid: resolver.api.taggedTypes.TermUUID
+  override val name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName
+
   override def iri
   ()(implicit extent: resolver.api.Extent)
-	  : scala.Option[gov.nasa.jpl.imce.oml.tables.IRI]
+	  : scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI]
 	  = {
-	    extent.terminologyBoxOfTerminologyBoxStatement.get(this).flatMap(_.iri().map(_ + "#" + name))
+	    extent.terminologyBoxOfTerminologyBoxStatement.get(this).flatMap(tbox => tbox.iri().map(i =>  gov.nasa.jpl.imce.oml.tables.taggedTypes.iri(i + "#" + name)))
 	  }
-	  
+
   override def abbrevIRI
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[scala.Predef.String]
 	  = {
 	    extent.terminologyBoxOfTerminologyBoxStatement.get(this).map(tbox => tbox.nsPrefix+":"+name)
 	  }
-	  
+
   def allNestedElements
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
 	  = {
 	    scala.collection.immutable.Set.empty[resolver.api.Element]
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: Term => true
-  	case _ => false
+	  case _: Term => true
+ 	  case _ => false
   }
+
 }

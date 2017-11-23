@@ -24,26 +24,25 @@ trait DisjointUnionOfConceptsAxiom
 extends resolver.api.DisjointUnionOfConceptsAxiom
   with Element
 {
-		
+  override val uuid: resolver.api.taggedTypes.DisjointUnionOfConceptsAxiomUUID
+
   def conceptTreeDisjunctionParent
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.ConceptTreeDisjunction]
 	  = {
 	    extent.conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom.get(this)
 	  }
-	  
+
   def moduleContext
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.Module]
 	  = {
 	    conceptTreeDisjunctionParent().flatMap(_.bundleContainer())
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: DisjointUnionOfConceptsAxiom => true
-  	case _ => false
+	  case _: DisjointUnionOfConceptsAxiom => true
+ 	  case _ => false
   }
+
 }

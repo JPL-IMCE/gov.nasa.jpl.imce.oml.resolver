@@ -24,19 +24,18 @@ trait TerminologyBoxStatement
 extends resolver.api.TerminologyBoxStatement
   with ModuleElement
 {
-		
+  override val uuid: resolver.api.taggedTypes.TerminologyBoxStatementUUID
+
   def moduleContext
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.Module]
 	  = {
 	    extent.terminologyBoxOfTerminologyBoxStatement.get(this)
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: TerminologyBoxStatement => true
-  	case _ => false
+	  case _: TerminologyBoxStatement => true
+ 	  case _ => false
   }
+
 }

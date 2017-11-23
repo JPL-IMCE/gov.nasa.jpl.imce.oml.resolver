@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 case class UnreifiedRelationshipInstanceTuple private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.UnreifiedRelationshipInstanceTupleUUID,
 	 override val unreifiedRelationship: resolver.api.UnreifiedRelationship,
 	 override val domain: resolver.api.ConceptualEntitySingletonInstance,
 	 override val range: resolver.api.ConceptualEntitySingletonInstance
@@ -30,34 +30,31 @@ case class UnreifiedRelationshipInstanceTuple private[impl]
 extends resolver.api.UnreifiedRelationshipInstanceTuple
   with TerminologyInstanceAssertion
 {
-		
+
   def descriptionBox
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.DescriptionBox]
 	  = {
 	    extent.descriptionBoxOfUnreifiedRelationshipInstanceTuple.get(this)
 	  }
-	  
+
   def moduleContext
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.Module]
 	  = {
 	    descriptionBox()
 	  }
-	  
+
   def allNestedElements
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
 	  = {
 	    scala.collection.immutable.Set.empty[resolver.api.Element]
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: UnreifiedRelationshipInstanceTuple => true
-  	case _ => false
+	  case _: UnreifiedRelationshipInstanceTuple => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -65,14 +62,14 @@ extends resolver.api.UnreifiedRelationshipInstanceTuple
   = (uuid, unreifiedRelationship, domain, range).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: UnreifiedRelationshipInstanceTuple =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.unreifiedRelationship == that.unreifiedRelationship) &&
-     (this.domain == that.domain) &&
-     (this.range == that.range)
+    case that: UnreifiedRelationshipInstanceTuple =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.unreifiedRelationship == that.unreifiedRelationship) &&
+      (this.domain == that.domain) &&
+      (this.range == that.range)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

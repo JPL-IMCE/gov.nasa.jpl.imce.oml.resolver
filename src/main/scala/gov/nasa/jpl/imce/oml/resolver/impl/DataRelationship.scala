@@ -25,26 +25,25 @@ extends resolver.api.DataRelationship
   with Term
   with DirectedBinaryRelationshipKind
 {
-		
+  override val uuid: resolver.api.taggedTypes.DataRelationshipUUID
+
   override def relationDomain
   ()
 	  : resolver.api.Term
 	  = {
 	    source
 	  }
-	  
+
   override def relationRange
   ()
 	  : resolver.api.Term
 	  = {
 	    target
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: DataRelationship => true
-  	case _ => false
+	  case _: DataRelationship => true
+ 	  case _ => false
   }
+
 }

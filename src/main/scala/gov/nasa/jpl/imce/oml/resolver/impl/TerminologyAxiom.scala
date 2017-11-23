@@ -24,26 +24,25 @@ trait TerminologyAxiom
 extends resolver.api.TerminologyAxiom
   with ModuleEdge
 {
-		
+  override val uuid: resolver.api.taggedTypes.TerminologyAxiomUUID
+
   def sourceModule
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.Module]
 	  = {
 	    source()
 	  }
-	  
+
   def targetModule
   ()(implicit extent: resolver.api.Extent)
-	  : gov.nasa.jpl.imce.oml.tables.IRI
+	  : gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI
 	  = {
 	    target()
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: TerminologyAxiom => true
-  	case _ => false
+	  case _: TerminologyAxiom => true
+ 	  case _ => false
   }
+
 }

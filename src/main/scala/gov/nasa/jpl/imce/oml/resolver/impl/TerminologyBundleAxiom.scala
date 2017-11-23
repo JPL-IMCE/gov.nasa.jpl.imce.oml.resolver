@@ -24,13 +24,12 @@ trait TerminologyBundleAxiom
 extends resolver.api.TerminologyBundleAxiom
   with TerminologyAxiom
 {
-override val bundle: resolver.api.Bundle
-		
-
-
+  override val uuid: resolver.api.taggedTypes.TerminologyBundleAxiomUUID
+  override val bundle: resolver.api.Bundle
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: TerminologyBundleAxiom => true
-  	case _ => false
+	  case _: TerminologyBundleAxiom => true
+ 	  case _ => false
   }
+
 }

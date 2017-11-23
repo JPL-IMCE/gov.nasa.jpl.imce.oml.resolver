@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 case class RootConceptTaxonomyAxiom private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.RootConceptTaxonomyAxiomUUID,
 	 override val bundle: resolver.api.Bundle,
 	 override val root: resolver.api.Concept
 )
@@ -30,34 +30,31 @@ extends resolver.api.RootConceptTaxonomyAxiom
   with TerminologyBundleStatement
   with ConceptTreeDisjunction
 {
-		
+
   override def bundleContainer
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.Bundle]
 	  = {
 	    extent.bundleOfTerminologyBundleStatement.get(this)
 	  }
-	  
+
   def allNestedElements
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
 	  = {
 	    allNestedDisjunctions
 	  }
-	  
+
   def allNestedDisjunctions
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
 	  = {
 	    extent.lookupDisjunctions(this).flatMap{ d => scala.collection.immutable.Set.empty[resolver.api.Element] + d ++ d.allNestedUnions() }
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: RootConceptTaxonomyAxiom => true
-  	case _ => false
+	  case _: RootConceptTaxonomyAxiom => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -65,13 +62,13 @@ extends resolver.api.RootConceptTaxonomyAxiom
   = (uuid, bundle, root).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: RootConceptTaxonomyAxiom =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.bundle == that.bundle) &&
-     (this.root == that.root)
+    case that: RootConceptTaxonomyAxiom =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.bundle == that.bundle) &&
+      (this.root == that.root)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

@@ -22,40 +22,37 @@ import gov.nasa.jpl.imce.oml._
 
 case class RestrictionStructuredDataPropertyTuple private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.RestrictionStructuredDataPropertyTupleUUID,
 	 override val structuredDataProperty: resolver.api.DataRelationshipToStructure
 )
 extends resolver.api.RestrictionStructuredDataPropertyTuple
   with RestrictionStructuredDataPropertyContext
 {
-		
+
   override def terminologyBox
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.TerminologyBox]
 	  = {
 	    extent.restrictionStructuredDataPropertyContextOfRestrictionStructuredDataPropertyTuple.get(this).flatMap(_.terminologyBox())
 	  }
-	  
+
   def moduleContext
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.Module]
 	  = {
 	    extent.restrictionStructuredDataPropertyContextOfRestrictionStructuredDataPropertyTuple.get(this).flatMap(_.moduleContext)
 	  }
-	  
+
   def allNestedElements
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
 	  = {
 	    allNestedRestrictionElements
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: RestrictionStructuredDataPropertyTuple => true
-  	case _ => false
+	  case _: RestrictionStructuredDataPropertyTuple => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -63,12 +60,12 @@ extends resolver.api.RestrictionStructuredDataPropertyTuple
   = (uuid, structuredDataProperty).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: RestrictionStructuredDataPropertyTuple =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.structuredDataProperty == that.structuredDataProperty)
+    case that: RestrictionStructuredDataPropertyTuple =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.structuredDataProperty == that.structuredDataProperty)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

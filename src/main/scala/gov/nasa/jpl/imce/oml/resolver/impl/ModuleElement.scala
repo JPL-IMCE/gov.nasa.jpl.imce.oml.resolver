@@ -24,12 +24,11 @@ trait ModuleElement
 extends resolver.api.ModuleElement
   with Element
 {
-		
-
-
+  override val uuid: resolver.api.taggedTypes.ModuleElementUUID
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: ModuleElement => true
-  	case _ => false
+	  case _: ModuleElement => true
+ 	  case _ => false
   }
+
 }

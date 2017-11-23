@@ -24,15 +24,16 @@ trait SingletonInstanceStructuredDataPropertyContext
 extends resolver.api.SingletonInstanceStructuredDataPropertyContext
   with Element
 {
-override val structuredDataProperty: resolver.api.DataRelationshipToStructure
-		
+  override val uuid: resolver.api.taggedTypes.SingletonInstanceStructuredDataPropertyContextUUID
+  override val structuredDataProperty: resolver.api.DataRelationshipToStructure
+
   def moduleContext
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.Module]
 	  = {
 	    descriptionBox
 	  }
-	  
+
   def allNestedRestrictionElements
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
@@ -40,12 +41,10 @@ override val structuredDataProperty: resolver.api.DataRelationshipToStructure
 	    extent.lookupStructuredPropertyTuples(this).flatMap{ r => scala.collection.immutable.Set.empty[resolver.api.Element] + r ++ r.allNestedRestrictionElements() } ++
 	    		extent.lookupScalarDataPropertyValues(this)
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: SingletonInstanceStructuredDataPropertyContext => true
-  	case _ => false
+	  case _: SingletonInstanceStructuredDataPropertyContext => true
+ 	  case _ => false
   }
+
 }

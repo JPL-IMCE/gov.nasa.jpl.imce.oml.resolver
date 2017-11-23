@@ -24,19 +24,18 @@ trait ModuleEdge
 extends resolver.api.ModuleEdge
   with Element
 {
-		
+  override val uuid: resolver.api.taggedTypes.ModuleEdgeUUID
+
   def moduleContext
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.Module]
 	  = {
 	    sourceModule
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: ModuleEdge => true
-  	case _ => false
+	  case _: ModuleEdge => true
+ 	  case _ => false
   }
+
 }

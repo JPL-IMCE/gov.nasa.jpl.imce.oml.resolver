@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 case class ScalarOneOfLiteralAxiom private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.ScalarOneOfLiteralAxiomUUID,
 	 override val axiom: resolver.api.ScalarOneOfRestriction,
 	 override val value: gov.nasa.jpl.imce.oml.tables.LiteralValue,
 	 override val valueType: scala.Option[resolver.api.DataRange]
@@ -30,20 +30,17 @@ case class ScalarOneOfLiteralAxiom private[impl]
 extends resolver.api.ScalarOneOfLiteralAxiom
   with TermAxiom
 {
-		
+
   def allNestedElements
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
 	  = {
 	    scala.collection.immutable.Set.empty[resolver.api.Element]
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: ScalarOneOfLiteralAxiom => true
-  	case _ => false
+	  case _: ScalarOneOfLiteralAxiom => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -51,14 +48,14 @@ extends resolver.api.ScalarOneOfLiteralAxiom
   = (uuid, axiom, value, valueType).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: ScalarOneOfLiteralAxiom =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.axiom == that.axiom) &&
-     (this.value == that.value) &&
-     (this.valueType == that.valueType)
+    case that: ScalarOneOfLiteralAxiom =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.axiom == that.axiom) &&
+      (this.value == that.value) &&
+      (this.valueType == that.valueType)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

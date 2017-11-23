@@ -24,12 +24,11 @@ trait Rule
 extends resolver.api.Rule
   with Term
 {
-		
-
-
+  override val uuid: resolver.api.taggedTypes.RuleUUID
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: Rule => true
-  	case _ => false
+	  case _: Rule => true
+ 	  case _ => false
   }
+
 }

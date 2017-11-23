@@ -24,16 +24,15 @@ trait RestrictedDataRange
 extends resolver.api.RestrictedDataRange
   with DataRange
 {
-/*
-   * The restricted (general) data range of this data range (specific)
-   */
-  override val restrictedRange: resolver.api.DataRange
-		
-
-
+  override val uuid: resolver.api.taggedTypes.RestrictedDataRangeUUID
+  /*
+     * The restricted (general) data range of this data range (specific)
+     */
+    override val restrictedRange: resolver.api.DataRange
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: RestrictedDataRange => true
-  	case _ => false
+	  case _: RestrictedDataRange => true
+ 	  case _ => false
   }
+
 }

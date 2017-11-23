@@ -24,20 +24,19 @@ trait TerminologyBundleStatement
 extends resolver.api.TerminologyBundleStatement
   with ModuleElement
 {
-override val bundle: resolver.api.Bundle
-		
+  override val uuid: resolver.api.taggedTypes.TerminologyBundleStatementUUID
+  override val bundle: resolver.api.Bundle
+
   def moduleContext
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.Module]
 	  = {
 	    extent.bundleOfTerminologyBundleStatement.get(this)
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: TerminologyBundleStatement => true
-  	case _ => false
+	  case _: TerminologyBundleStatement => true
+ 	  case _ => false
   }
+
 }

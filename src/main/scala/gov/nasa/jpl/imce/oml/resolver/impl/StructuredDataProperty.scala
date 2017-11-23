@@ -22,37 +22,34 @@ import gov.nasa.jpl.imce.oml._
 
 case class StructuredDataProperty private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.StructuredDataPropertyUUID,
 	 override val domain: resolver.api.Structure,
 	 override val range: resolver.api.Structure,
-	 override val name: gov.nasa.jpl.imce.oml.tables.LocalName
+	 override val name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName
 )
 extends resolver.api.StructuredDataProperty
   with DataRelationship
   with DataRelationshipFromStructure
   with DataRelationshipToStructure
 {
-		
+
   override def source
   ()
 	  : resolver.api.Term
 	  = {
 	    domain
 	  }
-	  
+
   override def target
   ()
 	  : resolver.api.Datatype
 	  = {
 	    range
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: StructuredDataProperty => true
-  	case _ => false
+	  case _: StructuredDataProperty => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -60,14 +57,14 @@ extends resolver.api.StructuredDataProperty
   = (uuid, domain, range, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: StructuredDataProperty =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.domain == that.domain) &&
-     (this.range == that.range) &&
-     (this.name == that.name)
+    case that: StructuredDataProperty =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.domain == that.domain) &&
+      (this.range == that.range) &&
+      (this.name == that.name)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

@@ -22,34 +22,31 @@ import gov.nasa.jpl.imce.oml._
 
 case class TerminologyGraph private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.TerminologyGraphUUID,
 	 override val kind: gov.nasa.jpl.imce.oml.tables.TerminologyKind,
-	 override val iri: gov.nasa.jpl.imce.oml.tables.IRI
+	 override val iri: gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI
 )
 extends resolver.api.TerminologyGraph
   with TerminologyBox
 {
-		
+
   override def moduleEdges
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.ModuleEdge]
 	  = {
 	    extent.boxAxioms.getOrElse(this, scala.collection.immutable.Set.empty[resolver.api.ModuleEdge])
 	  }
-	  
+
   def moduleElements
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.ModuleElement]
 	  = {
 	    extent.lookupBoxStatements(this)
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: TerminologyGraph => true
-  	case _ => false
+	  case _: TerminologyGraph => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -57,13 +54,13 @@ extends resolver.api.TerminologyGraph
   = (uuid, kind, iri).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: TerminologyGraph =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.kind == that.kind) &&
-     (this.iri == that.iri)
+    case that: TerminologyGraph =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.kind == that.kind) &&
+      (this.iri == that.iri)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

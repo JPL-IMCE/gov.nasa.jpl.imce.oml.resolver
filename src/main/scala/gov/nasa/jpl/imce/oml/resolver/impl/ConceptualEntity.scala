@@ -24,7 +24,11 @@ trait ConceptualEntity
 extends resolver.api.ConceptualEntity
   with Entity
 {
+  override val uuid: resolver.api.taggedTypes.ConceptualEntityUUID
 
-
+  override def canEqual(that: scala.Any): scala.Boolean = that match {
+	  case _: ConceptualEntity => true
+ 	  case _ => false
+  }
 
 }

@@ -24,21 +24,20 @@ trait DataRelationshipFromEntity
 extends resolver.api.DataRelationshipFromEntity
   with DataRelationshipDomain
 {
-override val domain: resolver.api.Entity
+  override val uuid: resolver.api.taggedTypes.DataRelationshipFromEntityUUID
+  override val domain: resolver.api.Entity
   /*
-   * Specifies the OntoClean IdentityCriteria semantics of an OML DataRelationshipFromEntity:
-   * - +IC, if true; which means that every OML ConceptualEntity defined in a ClosedWorldDesignations OML Terminology
-   *   has an exact cardinality restriction of 1 for the possible values of the relationship, which is an
-   *   encoding in [OWL2-DL] of
-   * - ~IC, if false
-   */
-  override val isIdentityCriteria: scala.Boolean
-		
-
-
+     * Specifies the OntoClean IdentityCriteria semantics of an OML DataRelationshipFromEntity:
+     * - +IC, if true; which means that every OML ConceptualEntity defined in a ClosedWorldDesignations OML Terminology
+     *   has an exact cardinality restriction of 1 for the possible values of the relationship, which is an
+     *   encoding in [OWL2-DL] of
+     * - ~IC, if false
+     */
+    override val isIdentityCriteria: scala.Boolean
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: DataRelationshipFromEntity => true
-  	case _ => false
+	  case _: DataRelationshipFromEntity => true
+ 	  case _ => false
   }
+
 }

@@ -24,13 +24,12 @@ trait DataRelationshipFromStructure
 extends resolver.api.DataRelationshipFromStructure
   with DataRelationshipDomain
 {
-override val domain: resolver.api.Structure
-		
-
-
+  override val uuid: resolver.api.taggedTypes.DataRelationshipFromStructureUUID
+  override val domain: resolver.api.Structure
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: DataRelationshipFromStructure => true
-  	case _ => false
+	  case _: DataRelationshipFromStructure => true
+ 	  case _ => false
   }
+
 }

@@ -24,7 +24,11 @@ trait UnaryTermKind
 extends resolver.api.UnaryTermKind
   with Term
 {
+  override val uuid: resolver.api.taggedTypes.UnaryTermKindUUID
 
-
+  override def canEqual(that: scala.Any): scala.Boolean = that match {
+	  case _: UnaryTermKind => true
+ 	  case _ => false
+  }
 
 }

@@ -22,41 +22,38 @@ import gov.nasa.jpl.imce.oml._
 
 case class AnonymousConceptUnionAxiom private[impl] 
 	(
-	 override val uuid: java.util.UUID,
-	 override val name: gov.nasa.jpl.imce.oml.tables.LocalName
+	 override val uuid: resolver.api.taggedTypes.AnonymousConceptUnionAxiomUUID,
+	 override val name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName
 )
 extends resolver.api.AnonymousConceptUnionAxiom
   with DisjointUnionOfConceptsAxiom
   with ConceptTreeDisjunction
 {
-		
+
   override def bundleContainer
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.Bundle]
 	  = {
 	    conceptTreeDisjunctionParent().flatMap(_.bundleContainer())
 	  }
-	  
+
   def allNestedDisjunctions
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
 	  = {
 	    scala.collection.immutable.Set.empty[resolver.api.Element]
 	  }
-	  
+
   def allNestedUnions
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
 	  = {
 	    scala.collection.immutable.Set.empty[resolver.api.Element]
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: AnonymousConceptUnionAxiom => true
-  	case _ => false
+	  case _: AnonymousConceptUnionAxiom => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -64,12 +61,12 @@ extends resolver.api.AnonymousConceptUnionAxiom
   = (uuid, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: AnonymousConceptUnionAxiom =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.name == that.name)
+    case that: AnonymousConceptUnionAxiom =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.name == that.name)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

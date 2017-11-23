@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 case class SingletonInstanceStructuredDataPropertyValue private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.SingletonInstanceStructuredDataPropertyValueUUID,
 	 override val singletonInstance: resolver.api.ConceptualEntitySingletonInstance,
 	 override val structuredDataProperty: resolver.api.DataRelationshipToStructure
 )
@@ -30,27 +30,24 @@ extends resolver.api.SingletonInstanceStructuredDataPropertyValue
   with SingletonInstanceStructuredDataPropertyContext
   with ModuleElement
 {
-		
+
   def descriptionBox
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.DescriptionBox]
 	  = {
 	    extent.descriptionBoxOfSingletonInstanceStructuredDataPropertyValue.get(this)
 	  }
-	  
+
   def allNestedElements
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
 	  = {
 	    allNestedRestrictionElements
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: SingletonInstanceStructuredDataPropertyValue => true
-  	case _ => false
+	  case _: SingletonInstanceStructuredDataPropertyValue => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -58,13 +55,13 @@ extends resolver.api.SingletonInstanceStructuredDataPropertyValue
   = (uuid, singletonInstance, structuredDataProperty).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: SingletonInstanceStructuredDataPropertyValue =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.singletonInstance == that.singletonInstance) &&
-     (this.structuredDataProperty == that.structuredDataProperty)
+    case that: SingletonInstanceStructuredDataPropertyValue =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.singletonInstance == that.singletonInstance) &&
+      (this.structuredDataProperty == that.structuredDataProperty)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

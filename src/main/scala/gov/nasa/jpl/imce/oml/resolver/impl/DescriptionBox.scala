@@ -22,21 +22,21 @@ import gov.nasa.jpl.imce.oml._
 
 case class DescriptionBox private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.DescriptionBoxUUID,
 	 override val kind: gov.nasa.jpl.imce.oml.tables.DescriptionKind,
-	 override val iri: gov.nasa.jpl.imce.oml.tables.IRI
+	 override val iri: gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI
 )
 extends resolver.api.DescriptionBox
   with Module
 {
-		
+
   override def moduleEdges
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.ModuleEdge]
 	  = {
 	    extent.lookupDescriptionBoxRefinements(this) ++ extent.lookupClosedWorldDefinitions(this)
 	  }
-	  
+
   def moduleElements
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.ModuleElement]
@@ -49,13 +49,10 @@ extends resolver.api.DescriptionBox
 	    		extent.lookupSingletonScalarDataPropertyValues(this) ++
 	    		extent.lookupSingletonStructuredDataPropertyValues(this)
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: DescriptionBox => true
-  	case _ => false
+	  case _: DescriptionBox => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -63,13 +60,13 @@ extends resolver.api.DescriptionBox
   = (uuid, kind, iri).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: DescriptionBox =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.kind == that.kind) &&
-     (this.iri == that.iri)
+    case that: DescriptionBox =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.kind == that.kind) &&
+      (this.iri == that.iri)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

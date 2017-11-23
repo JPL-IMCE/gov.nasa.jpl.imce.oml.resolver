@@ -22,33 +22,30 @@ import gov.nasa.jpl.imce.oml._
 
 case class DescriptionBoxExtendsClosedWorldDefinitions private[impl] 
 	(
-	 override val uuid: java.util.UUID,
-	 override val closedWorldDefinitions: gov.nasa.jpl.imce.oml.tables.IRI
+	 override val uuid: resolver.api.taggedTypes.DescriptionBoxExtendsClosedWorldDefinitionsUUID,
+	 override val closedWorldDefinitions: gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI
 )
 extends resolver.api.DescriptionBoxExtendsClosedWorldDefinitions
   with DescriptionBoxRelationship
 {
-		
+
   def descriptionDomain
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.DescriptionBox]
 	  = {
 	    extent.descriptionBoxOfDescriptionBoxExtendsClosedWorldDefinitions.get(this)
 	  }
-	  
+
   def targetModule
   ()(implicit extent: resolver.api.Extent)
-	  : gov.nasa.jpl.imce.oml.tables.IRI
+	  : gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI
 	  = {
 	    closedWorldDefinitions
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: DescriptionBoxExtendsClosedWorldDefinitions => true
-  	case _ => false
+	  case _: DescriptionBoxExtendsClosedWorldDefinitions => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -56,12 +53,12 @@ extends resolver.api.DescriptionBoxExtendsClosedWorldDefinitions
   = (uuid, closedWorldDefinitions).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: DescriptionBoxExtendsClosedWorldDefinitions =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.closedWorldDefinitions == that.closedWorldDefinitions)
+    case that: DescriptionBoxExtendsClosedWorldDefinitions =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.closedWorldDefinitions == that.closedWorldDefinitions)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

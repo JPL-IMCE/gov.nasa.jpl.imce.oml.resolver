@@ -33,9 +33,9 @@ extends resolver.api.OMLResolvedFactory {
 	 // AnnotationProperty
 	 override def createAnnotationProperty
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
-	   iri: gov.nasa.jpl.imce.oml.tables.IRI,
-	   abbrevIRI: gov.nasa.jpl.imce.oml.tables.AbbrevIRI )
+	   uuid: resolver.api.taggedTypes.AnnotationPropertyUUID,
+	   iri: gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI,
+	   abbrevIRI: gov.nasa.jpl.imce.oml.tables.taggedTypes.AbbrevIRI )
 	 : (resolver.api.Extent, resolver.api.AnnotationProperty)
 	 = {
 	   val annotationProperty = AnnotationProperty( uuid, iri, abbrevIRI )
@@ -47,10 +47,10 @@ extends resolver.api.OMLResolvedFactory {
 	 // AnnotationPropertyValue
 	 override def createAnnotationPropertyValue
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.AnnotationPropertyValueUUID,
 	   subject: resolver.api.Element,
 	   property: resolver.api.AnnotationProperty,
-	   value: gov.nasa.jpl.imce.oml.tables.StringDataType )
+	   value: gov.nasa.jpl.imce.oml.tables.taggedTypes.StringDataType )
 	 : (resolver.api.Extent, resolver.api.AnnotationPropertyValue)
 	 = {
 	   // factoryMethodWithImplicitlyDerivedUUID
@@ -68,9 +68,9 @@ extends resolver.api.OMLResolvedFactory {
 	 // AnonymousConceptUnionAxiom
 	 override def createAnonymousConceptUnionAxiom
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.AnonymousConceptUnionAxiomUUID,
 	   disjointTaxonomyParent: resolver.api.ConceptTreeDisjunction,
-	   name: gov.nasa.jpl.imce.oml.tables.LocalName )
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName )
 	 : (resolver.api.Extent, resolver.api.AnonymousConceptUnionAxiom)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -88,9 +88,9 @@ extends resolver.api.OMLResolvedFactory {
 	 // Aspect
 	 override def createAspect
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.AspectUUID,
 	   tbox: resolver.api.TerminologyBox,
-	   name: gov.nasa.jpl.imce.oml.tables.LocalName )
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName )
 	 : (resolver.api.Extent, resolver.api.Aspect)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -108,7 +108,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // AspectPredicate
 	 override def createAspectPredicate
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.AspectPredicateUUID,
 	   aspect: resolver.api.Aspect,
 	   bodySegment: resolver.api.RuleBodySegment )
 	 : (resolver.api.Extent, resolver.api.AspectPredicate)
@@ -128,7 +128,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // AspectSpecializationAxiom
 	 override def createAspectSpecializationAxiom
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.AspectSpecializationAxiomUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   superAspect: resolver.api.Aspect,
 	   subEntity: resolver.api.Entity )
@@ -149,13 +149,13 @@ extends resolver.api.OMLResolvedFactory {
 	 // BinaryScalarRestriction
 	 override def createBinaryScalarRestriction
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.BinaryScalarRestrictionUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   restrictedRange: resolver.api.DataRange,
-	   length: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
-	   minLength: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
-	   maxLength: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
-	   name: gov.nasa.jpl.imce.oml.tables.LocalName )
+	   length: scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.PositiveIntegerLiteral],
+	   minLength: scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.PositiveIntegerLiteral],
+	   maxLength: scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.PositiveIntegerLiteral],
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName )
 	 : (resolver.api.Extent, resolver.api.BinaryScalarRestriction)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -173,9 +173,9 @@ extends resolver.api.OMLResolvedFactory {
 	 // Bundle
 	 override def createBundle
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.BundleUUID,
 	   kind: gov.nasa.jpl.imce.oml.tables.TerminologyKind,
-	   iri: gov.nasa.jpl.imce.oml.tables.IRI )
+	   iri: gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI )
 	 : (resolver.api.Extent, resolver.api.Bundle)
 	 = {
 	   val bundle = Bundle( uuid, kind, iri )
@@ -187,9 +187,9 @@ extends resolver.api.OMLResolvedFactory {
 	 // BundledTerminologyAxiom
 	 override def createBundledTerminologyAxiom
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.BundledTerminologyAxiomUUID,
 	   bundle: resolver.api.Bundle,
-	   bundledTerminology: gov.nasa.jpl.imce.oml.tables.IRI )
+	   bundledTerminology: gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI )
 	 : (resolver.api.Extent, resolver.api.BundledTerminologyAxiom)
 	 = {
 	   // factoryMethodWithDerivedUUID
@@ -207,9 +207,9 @@ extends resolver.api.OMLResolvedFactory {
 	 // ChainRule
 	 override def createChainRule
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.ChainRuleUUID,
 	   tbox: resolver.api.TerminologyBox,
-	   name: gov.nasa.jpl.imce.oml.tables.LocalName,
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName,
 	   head: resolver.api.UnreifiedRelationship )
 	 : (resolver.api.Extent, resolver.api.ChainRule)
 	 = {
@@ -228,9 +228,9 @@ extends resolver.api.OMLResolvedFactory {
 	 // Concept
 	 override def createConcept
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.ConceptUUID,
 	   tbox: resolver.api.TerminologyBox,
-	   name: gov.nasa.jpl.imce.oml.tables.LocalName )
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName )
 	 : (resolver.api.Extent, resolver.api.Concept)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -248,10 +248,10 @@ extends resolver.api.OMLResolvedFactory {
 	 // ConceptDesignationTerminologyAxiom
 	 override def createConceptDesignationTerminologyAxiom
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.ConceptDesignationTerminologyAxiomUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   designatedConcept: resolver.api.Concept,
-	   designatedTerminology: gov.nasa.jpl.imce.oml.tables.IRI )
+	   designatedTerminology: gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI )
 	 : (resolver.api.Extent, resolver.api.ConceptDesignationTerminologyAxiom)
 	 = {
 	   // factoryMethodWithDerivedUUID
@@ -269,10 +269,10 @@ extends resolver.api.OMLResolvedFactory {
 	 // ConceptInstance
 	 override def createConceptInstance
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.ConceptInstanceUUID,
 	   descriptionBox: resolver.api.DescriptionBox,
 	   singletonConceptClassifier: resolver.api.Concept,
-	   name: gov.nasa.jpl.imce.oml.tables.LocalName )
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName )
 	 : (resolver.api.Extent, resolver.api.ConceptInstance)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -290,7 +290,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // ConceptPredicate
 	 override def createConceptPredicate
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.ConceptPredicateUUID,
 	   bodySegment: resolver.api.RuleBodySegment,
 	   concept: resolver.api.Concept )
 	 : (resolver.api.Extent, resolver.api.ConceptPredicate)
@@ -310,7 +310,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // ConceptSpecializationAxiom
 	 override def createConceptSpecializationAxiom
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.ConceptSpecializationAxiomUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   superConcept: resolver.api.Concept,
 	   subConcept: resolver.api.Concept )
@@ -331,9 +331,9 @@ extends resolver.api.OMLResolvedFactory {
 	 // DescriptionBox
 	 override def createDescriptionBox
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.DescriptionBoxUUID,
 	   kind: gov.nasa.jpl.imce.oml.tables.DescriptionKind,
-	   iri: gov.nasa.jpl.imce.oml.tables.IRI )
+	   iri: gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI )
 	 : (resolver.api.Extent, resolver.api.DescriptionBox)
 	 = {
 	   val descriptionBox = DescriptionBox( uuid, kind, iri )
@@ -345,9 +345,9 @@ extends resolver.api.OMLResolvedFactory {
 	 // DescriptionBoxExtendsClosedWorldDefinitions
 	 override def createDescriptionBoxExtendsClosedWorldDefinitions
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.DescriptionBoxExtendsClosedWorldDefinitionsUUID,
 	   descriptionBox: resolver.api.DescriptionBox,
-	   closedWorldDefinitions: gov.nasa.jpl.imce.oml.tables.IRI )
+	   closedWorldDefinitions: gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI )
 	 : (resolver.api.Extent, resolver.api.DescriptionBoxExtendsClosedWorldDefinitions)
 	 = {
 	   // factoryMethodWithDerivedUUID
@@ -365,9 +365,9 @@ extends resolver.api.OMLResolvedFactory {
 	 // DescriptionBoxRefinement
 	 override def createDescriptionBoxRefinement
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.DescriptionBoxRefinementUUID,
 	   refiningDescriptionBox: resolver.api.DescriptionBox,
-	   refinedDescriptionBox: gov.nasa.jpl.imce.oml.tables.IRI )
+	   refinedDescriptionBox: gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI )
 	 : (resolver.api.Extent, resolver.api.DescriptionBoxRefinement)
 	 = {
 	   // factoryMethodWithDerivedUUID
@@ -385,7 +385,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // EntityExistentialRestrictionAxiom
 	 override def createEntityExistentialRestrictionAxiom
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.EntityExistentialRestrictionAxiomUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   restrictedRelation: resolver.api.EntityRelationship,
 	   restrictedDomain: resolver.api.Entity,
@@ -407,12 +407,12 @@ extends resolver.api.OMLResolvedFactory {
 	 // EntityScalarDataProperty
 	 override def createEntityScalarDataProperty
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.EntityScalarDataPropertyUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   domain: resolver.api.Entity,
 	   range: resolver.api.DataRange,
 	   isIdentityCriteria: scala.Boolean,
-	   name: gov.nasa.jpl.imce.oml.tables.LocalName )
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName )
 	 : (resolver.api.Extent, resolver.api.EntityScalarDataProperty)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -430,7 +430,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // EntityScalarDataPropertyExistentialRestrictionAxiom
 	 override def createEntityScalarDataPropertyExistentialRestrictionAxiom
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.EntityScalarDataPropertyExistentialRestrictionAxiomUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   restrictedEntity: resolver.api.Entity,
 	   scalarProperty: resolver.api.EntityScalarDataProperty,
@@ -452,7 +452,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // EntityScalarDataPropertyParticularRestrictionAxiom
 	 override def createEntityScalarDataPropertyParticularRestrictionAxiom
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.EntityScalarDataPropertyParticularRestrictionAxiomUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   restrictedEntity: resolver.api.Entity,
 	   scalarProperty: resolver.api.EntityScalarDataProperty,
@@ -475,7 +475,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // EntityScalarDataPropertyUniversalRestrictionAxiom
 	 override def createEntityScalarDataPropertyUniversalRestrictionAxiom
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.EntityScalarDataPropertyUniversalRestrictionAxiomUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   restrictedEntity: resolver.api.Entity,
 	   scalarProperty: resolver.api.EntityScalarDataProperty,
@@ -497,12 +497,12 @@ extends resolver.api.OMLResolvedFactory {
 	 // EntityStructuredDataProperty
 	 override def createEntityStructuredDataProperty
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.EntityStructuredDataPropertyUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   domain: resolver.api.Entity,
 	   range: resolver.api.Structure,
 	   isIdentityCriteria: scala.Boolean,
-	   name: gov.nasa.jpl.imce.oml.tables.LocalName )
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName )
 	 : (resolver.api.Extent, resolver.api.EntityStructuredDataProperty)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -520,7 +520,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // EntityStructuredDataPropertyParticularRestrictionAxiom
 	 override def createEntityStructuredDataPropertyParticularRestrictionAxiom
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.EntityStructuredDataPropertyParticularRestrictionAxiomUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   structuredDataProperty: resolver.api.DataRelationshipToStructure,
 	   restrictedEntity: resolver.api.Entity )
@@ -541,7 +541,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // EntityUniversalRestrictionAxiom
 	 override def createEntityUniversalRestrictionAxiom
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.EntityUniversalRestrictionAxiomUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   restrictedRelation: resolver.api.EntityRelationship,
 	   restrictedDomain: resolver.api.Entity,
@@ -563,14 +563,14 @@ extends resolver.api.OMLResolvedFactory {
 	 // IRIScalarRestriction
 	 override def createIRIScalarRestriction
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.IRIScalarRestrictionUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   restrictedRange: resolver.api.DataRange,
-	   length: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
-	   minLength: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
-	   maxLength: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
-	   name: gov.nasa.jpl.imce.oml.tables.LocalName,
-	   pattern: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralPattern] )
+	   length: scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.PositiveIntegerLiteral],
+	   minLength: scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.PositiveIntegerLiteral],
+	   maxLength: scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.PositiveIntegerLiteral],
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName,
+	   pattern: scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.LiteralPattern] )
 	 : (resolver.api.Extent, resolver.api.IRIScalarRestriction)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -588,14 +588,14 @@ extends resolver.api.OMLResolvedFactory {
 	 // NumericScalarRestriction
 	 override def createNumericScalarRestriction
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.NumericScalarRestrictionUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   restrictedRange: resolver.api.DataRange,
 	   minExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralNumber],
 	   minInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralNumber],
 	   maxExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralNumber],
 	   maxInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralNumber],
-	   name: gov.nasa.jpl.imce.oml.tables.LocalName )
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName )
 	 : (resolver.api.Extent, resolver.api.NumericScalarRestriction)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -613,15 +613,15 @@ extends resolver.api.OMLResolvedFactory {
 	 // PlainLiteralScalarRestriction
 	 override def createPlainLiteralScalarRestriction
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.PlainLiteralScalarRestrictionUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   restrictedRange: resolver.api.DataRange,
-	   length: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
-	   minLength: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
-	   maxLength: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
-	   name: gov.nasa.jpl.imce.oml.tables.LocalName,
-	   langRange: scala.Option[gov.nasa.jpl.imce.oml.tables.LanguageTagDataType],
-	   pattern: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralPattern] )
+	   length: scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.PositiveIntegerLiteral],
+	   minLength: scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.PositiveIntegerLiteral],
+	   maxLength: scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.PositiveIntegerLiteral],
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName,
+	   langRange: scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.LanguageTagDataType],
+	   pattern: scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.LiteralPattern] )
 	 : (resolver.api.Extent, resolver.api.PlainLiteralScalarRestriction)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -639,7 +639,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // ReifiedRelationship
 	 override def createReifiedRelationship
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.ReifiedRelationshipUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   source: resolver.api.Entity,
 	   target: resolver.api.Entity,
@@ -652,9 +652,9 @@ extends resolver.api.OMLResolvedFactory {
 	   isReflexive: scala.Boolean,
 	   isSymmetric: scala.Boolean,
 	   isTransitive: scala.Boolean,
-	   name: gov.nasa.jpl.imce.oml.tables.LocalName,
-	   unreifiedPropertyName: gov.nasa.jpl.imce.oml.tables.LocalName,
-	   unreifiedInversePropertyName: scala.Option[gov.nasa.jpl.imce.oml.tables.LocalName] )
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName,
+	   unreifiedPropertyName: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName,
+	   unreifiedInversePropertyName: scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName] )
 	 : (resolver.api.Extent, resolver.api.ReifiedRelationship)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -672,10 +672,10 @@ extends resolver.api.OMLResolvedFactory {
 	 // ReifiedRelationshipInstance
 	 override def createReifiedRelationshipInstance
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.ReifiedRelationshipInstanceUUID,
 	   descriptionBox: resolver.api.DescriptionBox,
 	   singletonReifiedRelationshipClassifier: resolver.api.ReifiedRelationship,
-	   name: gov.nasa.jpl.imce.oml.tables.LocalName )
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName )
 	 : (resolver.api.Extent, resolver.api.ReifiedRelationshipInstance)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -693,7 +693,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // ReifiedRelationshipInstanceDomain
 	 override def createReifiedRelationshipInstanceDomain
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.ReifiedRelationshipInstanceDomainUUID,
 	   descriptionBox: resolver.api.DescriptionBox,
 	   reifiedRelationshipInstance: resolver.api.ReifiedRelationshipInstance,
 	   domain: resolver.api.ConceptualEntitySingletonInstance )
@@ -714,7 +714,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // ReifiedRelationshipInstanceRange
 	 override def createReifiedRelationshipInstanceRange
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.ReifiedRelationshipInstanceRangeUUID,
 	   descriptionBox: resolver.api.DescriptionBox,
 	   reifiedRelationshipInstance: resolver.api.ReifiedRelationshipInstance,
 	   range: resolver.api.ConceptualEntitySingletonInstance )
@@ -735,7 +735,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // ReifiedRelationshipInversePropertyPredicate
 	 override def createReifiedRelationshipInversePropertyPredicate
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.ReifiedRelationshipInversePropertyPredicateUUID,
 	   bodySegment: resolver.api.RuleBodySegment,
 	   reifiedRelationship: resolver.api.ReifiedRelationship )
 	 : (resolver.api.Extent, resolver.api.ReifiedRelationshipInversePropertyPredicate)
@@ -755,7 +755,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // ReifiedRelationshipPredicate
 	 override def createReifiedRelationshipPredicate
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.ReifiedRelationshipPredicateUUID,
 	   bodySegment: resolver.api.RuleBodySegment,
 	   reifiedRelationship: resolver.api.ReifiedRelationship )
 	 : (resolver.api.Extent, resolver.api.ReifiedRelationshipPredicate)
@@ -775,7 +775,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // ReifiedRelationshipPropertyPredicate
 	 override def createReifiedRelationshipPropertyPredicate
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.ReifiedRelationshipPropertyPredicateUUID,
 	   bodySegment: resolver.api.RuleBodySegment,
 	   reifiedRelationship: resolver.api.ReifiedRelationship )
 	 : (resolver.api.Extent, resolver.api.ReifiedRelationshipPropertyPredicate)
@@ -795,7 +795,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // ReifiedRelationshipSourceInversePropertyPredicate
 	 override def createReifiedRelationshipSourceInversePropertyPredicate
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.ReifiedRelationshipSourceInversePropertyPredicateUUID,
 	   bodySegment: resolver.api.RuleBodySegment,
 	   reifiedRelationship: resolver.api.ReifiedRelationship )
 	 : (resolver.api.Extent, resolver.api.ReifiedRelationshipSourceInversePropertyPredicate)
@@ -815,7 +815,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // ReifiedRelationshipSourcePropertyPredicate
 	 override def createReifiedRelationshipSourcePropertyPredicate
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.ReifiedRelationshipSourcePropertyPredicateUUID,
 	   bodySegment: resolver.api.RuleBodySegment,
 	   reifiedRelationship: resolver.api.ReifiedRelationship )
 	 : (resolver.api.Extent, resolver.api.ReifiedRelationshipSourcePropertyPredicate)
@@ -835,7 +835,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // ReifiedRelationshipSpecializationAxiom
 	 override def createReifiedRelationshipSpecializationAxiom
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.ReifiedRelationshipSpecializationAxiomUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   superRelationship: resolver.api.ReifiedRelationship,
 	   subRelationship: resolver.api.ReifiedRelationship )
@@ -856,7 +856,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // ReifiedRelationshipTargetInversePropertyPredicate
 	 override def createReifiedRelationshipTargetInversePropertyPredicate
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.ReifiedRelationshipTargetInversePropertyPredicateUUID,
 	   bodySegment: resolver.api.RuleBodySegment,
 	   reifiedRelationship: resolver.api.ReifiedRelationship )
 	 : (resolver.api.Extent, resolver.api.ReifiedRelationshipTargetInversePropertyPredicate)
@@ -876,7 +876,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // ReifiedRelationshipTargetPropertyPredicate
 	 override def createReifiedRelationshipTargetPropertyPredicate
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.ReifiedRelationshipTargetPropertyPredicateUUID,
 	   bodySegment: resolver.api.RuleBodySegment,
 	   reifiedRelationship: resolver.api.ReifiedRelationship )
 	 : (resolver.api.Extent, resolver.api.ReifiedRelationshipTargetPropertyPredicate)
@@ -896,7 +896,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // RestrictionScalarDataPropertyValue
 	 override def createRestrictionScalarDataPropertyValue
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.RestrictionScalarDataPropertyValueUUID,
 	   scalarDataProperty: resolver.api.DataRelationshipToScalar,
 	   scalarPropertyValue: gov.nasa.jpl.imce.oml.tables.LiteralValue,
 	   structuredDataPropertyContext: resolver.api.RestrictionStructuredDataPropertyContext,
@@ -918,7 +918,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // RestrictionStructuredDataPropertyTuple
 	 override def createRestrictionStructuredDataPropertyTuple
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.RestrictionStructuredDataPropertyTupleUUID,
 	   structuredDataProperty: resolver.api.DataRelationshipToStructure,
 	   structuredDataPropertyContext: resolver.api.RestrictionStructuredDataPropertyContext )
 	 : (resolver.api.Extent, resolver.api.RestrictionStructuredDataPropertyTuple)
@@ -938,7 +938,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // RootConceptTaxonomyAxiom
 	 override def createRootConceptTaxonomyAxiom
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.RootConceptTaxonomyAxiomUUID,
 	   bundle: resolver.api.Bundle,
 	   root: resolver.api.Concept )
 	 : (resolver.api.Extent, resolver.api.RootConceptTaxonomyAxiom)
@@ -958,7 +958,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // RuleBodySegment
 	 override def createRuleBodySegment
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.RuleBodySegmentUUID,
 	   previousSegment: scala.Option[resolver.api.RuleBodySegment],
 	   rule: scala.Option[resolver.api.ChainRule] )
 	 : (resolver.api.Extent, resolver.api.RuleBodySegment)
@@ -983,9 +983,9 @@ extends resolver.api.OMLResolvedFactory {
 	 // Scalar
 	 override def createScalar
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.ScalarUUID,
 	   tbox: resolver.api.TerminologyBox,
-	   name: gov.nasa.jpl.imce.oml.tables.LocalName )
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName )
 	 : (resolver.api.Extent, resolver.api.Scalar)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -1003,11 +1003,11 @@ extends resolver.api.OMLResolvedFactory {
 	 // ScalarDataProperty
 	 override def createScalarDataProperty
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.ScalarDataPropertyUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   domain: resolver.api.Structure,
 	   range: resolver.api.DataRange,
-	   name: gov.nasa.jpl.imce.oml.tables.LocalName )
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName )
 	 : (resolver.api.Extent, resolver.api.ScalarDataProperty)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -1025,7 +1025,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // ScalarDataPropertyValue
 	 override def createScalarDataPropertyValue
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.ScalarDataPropertyValueUUID,
 	   scalarDataProperty: resolver.api.DataRelationshipToScalar,
 	   scalarPropertyValue: gov.nasa.jpl.imce.oml.tables.LiteralValue,
 	   structuredDataPropertyContext: resolver.api.SingletonInstanceStructuredDataPropertyContext,
@@ -1047,7 +1047,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // ScalarOneOfLiteralAxiom
 	 override def createScalarOneOfLiteralAxiom
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.ScalarOneOfLiteralAxiomUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   axiom: resolver.api.ScalarOneOfRestriction,
 	   value: gov.nasa.jpl.imce.oml.tables.LiteralValue,
@@ -1069,10 +1069,10 @@ extends resolver.api.OMLResolvedFactory {
 	 // ScalarOneOfRestriction
 	 override def createScalarOneOfRestriction
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.ScalarOneOfRestrictionUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   restrictedRange: resolver.api.DataRange,
-	   name: gov.nasa.jpl.imce.oml.tables.LocalName )
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName )
 	 : (resolver.api.Extent, resolver.api.ScalarOneOfRestriction)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -1090,7 +1090,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // SingletonInstanceScalarDataPropertyValue
 	 override def createSingletonInstanceScalarDataPropertyValue
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.SingletonInstanceScalarDataPropertyValueUUID,
 	   descriptionBox: resolver.api.DescriptionBox,
 	   singletonInstance: resolver.api.ConceptualEntitySingletonInstance,
 	   scalarDataProperty: resolver.api.EntityScalarDataProperty,
@@ -1113,7 +1113,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // SingletonInstanceStructuredDataPropertyValue
 	 override def createSingletonInstanceStructuredDataPropertyValue
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.SingletonInstanceStructuredDataPropertyValueUUID,
 	   descriptionBox: resolver.api.DescriptionBox,
 	   singletonInstance: resolver.api.ConceptualEntitySingletonInstance,
 	   structuredDataProperty: resolver.api.DataRelationshipToStructure )
@@ -1134,7 +1134,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // SpecificDisjointConceptAxiom
 	 override def createSpecificDisjointConceptAxiom
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.SpecificDisjointConceptAxiomUUID,
 	   disjointTaxonomyParent: resolver.api.ConceptTreeDisjunction,
 	   disjointLeaf: resolver.api.Concept )
 	 : (resolver.api.Extent, resolver.api.SpecificDisjointConceptAxiom)
@@ -1154,14 +1154,14 @@ extends resolver.api.OMLResolvedFactory {
 	 // StringScalarRestriction
 	 override def createStringScalarRestriction
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.StringScalarRestrictionUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   restrictedRange: resolver.api.DataRange,
-	   length: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
-	   minLength: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
-	   maxLength: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
-	   name: gov.nasa.jpl.imce.oml.tables.LocalName,
-	   pattern: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralPattern] )
+	   length: scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.PositiveIntegerLiteral],
+	   minLength: scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.PositiveIntegerLiteral],
+	   maxLength: scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.PositiveIntegerLiteral],
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName,
+	   pattern: scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.LiteralPattern] )
 	 : (resolver.api.Extent, resolver.api.StringScalarRestriction)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -1179,9 +1179,9 @@ extends resolver.api.OMLResolvedFactory {
 	 // Structure
 	 override def createStructure
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.StructureUUID,
 	   tbox: resolver.api.TerminologyBox,
-	   name: gov.nasa.jpl.imce.oml.tables.LocalName )
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName )
 	 : (resolver.api.Extent, resolver.api.Structure)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -1199,11 +1199,11 @@ extends resolver.api.OMLResolvedFactory {
 	 // StructuredDataProperty
 	 override def createStructuredDataProperty
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.StructuredDataPropertyUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   domain: resolver.api.Structure,
 	   range: resolver.api.Structure,
-	   name: gov.nasa.jpl.imce.oml.tables.LocalName )
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName )
 	 : (resolver.api.Extent, resolver.api.StructuredDataProperty)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -1221,7 +1221,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // StructuredDataPropertyTuple
 	 override def createStructuredDataPropertyTuple
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.StructuredDataPropertyTupleUUID,
 	   structuredDataProperty: resolver.api.DataRelationshipToStructure,
 	   structuredDataPropertyContext: resolver.api.SingletonInstanceStructuredDataPropertyContext )
 	 : (resolver.api.Extent, resolver.api.StructuredDataPropertyTuple)
@@ -1241,10 +1241,10 @@ extends resolver.api.OMLResolvedFactory {
 	 // SynonymScalarRestriction
 	 override def createSynonymScalarRestriction
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.SynonymScalarRestrictionUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   restrictedRange: resolver.api.DataRange,
-	   name: gov.nasa.jpl.imce.oml.tables.LocalName )
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName )
 	 : (resolver.api.Extent, resolver.api.SynonymScalarRestriction)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -1262,9 +1262,9 @@ extends resolver.api.OMLResolvedFactory {
 	 // TerminologyExtensionAxiom
 	 override def createTerminologyExtensionAxiom
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.TerminologyExtensionAxiomUUID,
 	   tbox: resolver.api.TerminologyBox,
-	   extendedTerminology: gov.nasa.jpl.imce.oml.tables.IRI )
+	   extendedTerminology: gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI )
 	 : (resolver.api.Extent, resolver.api.TerminologyExtensionAxiom)
 	 = {
 	   // factoryMethodWithDerivedUUID
@@ -1282,9 +1282,9 @@ extends resolver.api.OMLResolvedFactory {
 	 // TerminologyGraph
 	 override def createTerminologyGraph
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.TerminologyGraphUUID,
 	   kind: gov.nasa.jpl.imce.oml.tables.TerminologyKind,
-	   iri: gov.nasa.jpl.imce.oml.tables.IRI )
+	   iri: gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI )
 	 : (resolver.api.Extent, resolver.api.TerminologyGraph)
 	 = {
 	   val terminologyGraph = TerminologyGraph( uuid, kind, iri )
@@ -1296,10 +1296,10 @@ extends resolver.api.OMLResolvedFactory {
 	 // TerminologyNestingAxiom
 	 override def createTerminologyNestingAxiom
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.TerminologyNestingAxiomUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   nestingContext: resolver.api.Concept,
-	   nestingTerminology: gov.nasa.jpl.imce.oml.tables.IRI )
+	   nestingTerminology: gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI )
 	 : (resolver.api.Extent, resolver.api.TerminologyNestingAxiom)
 	 = {
 	   // factoryMethodWithDerivedUUID
@@ -1317,14 +1317,14 @@ extends resolver.api.OMLResolvedFactory {
 	 // TimeScalarRestriction
 	 override def createTimeScalarRestriction
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.TimeScalarRestrictionUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   restrictedRange: resolver.api.DataRange,
 	   minExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralDateTime],
 	   minInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralDateTime],
 	   maxExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralDateTime],
 	   maxInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralDateTime],
-	   name: gov.nasa.jpl.imce.oml.tables.LocalName )
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName )
 	 : (resolver.api.Extent, resolver.api.TimeScalarRestriction)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -1342,7 +1342,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // UnreifiedRelationship
 	 override def createUnreifiedRelationship
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.UnreifiedRelationshipUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   source: resolver.api.Entity,
 	   target: resolver.api.Entity,
@@ -1355,7 +1355,7 @@ extends resolver.api.OMLResolvedFactory {
 	   isReflexive: scala.Boolean,
 	   isSymmetric: scala.Boolean,
 	   isTransitive: scala.Boolean,
-	   name: gov.nasa.jpl.imce.oml.tables.LocalName )
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName )
 	 : (resolver.api.Extent, resolver.api.UnreifiedRelationship)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -1373,7 +1373,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // UnreifiedRelationshipInstanceTuple
 	 override def createUnreifiedRelationshipInstanceTuple
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.UnreifiedRelationshipInstanceTupleUUID,
 	   descriptionBox: resolver.api.DescriptionBox,
 	   unreifiedRelationship: resolver.api.UnreifiedRelationship,
 	   domain: resolver.api.ConceptualEntitySingletonInstance,
@@ -1395,7 +1395,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // UnreifiedRelationshipInversePropertyPredicate
 	 override def createUnreifiedRelationshipInversePropertyPredicate
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.UnreifiedRelationshipInversePropertyPredicateUUID,
 	   unreifiedRelationship: resolver.api.UnreifiedRelationship,
 	   bodySegment: resolver.api.RuleBodySegment )
 	 : (resolver.api.Extent, resolver.api.UnreifiedRelationshipInversePropertyPredicate)
@@ -1415,7 +1415,7 @@ extends resolver.api.OMLResolvedFactory {
 	 // UnreifiedRelationshipPropertyPredicate
 	 override def createUnreifiedRelationshipPropertyPredicate
 	 ( extent: resolver.api.Extent,
-	   uuid: java.util.UUID,
+	   uuid: resolver.api.taggedTypes.UnreifiedRelationshipPropertyPredicateUUID,
 	   unreifiedRelationship: resolver.api.UnreifiedRelationship,
 	   bodySegment: resolver.api.RuleBodySegment )
 	 : (resolver.api.Extent, resolver.api.UnreifiedRelationshipPropertyPredicate)

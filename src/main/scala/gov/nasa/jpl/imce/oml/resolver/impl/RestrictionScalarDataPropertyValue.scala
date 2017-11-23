@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 case class RestrictionScalarDataPropertyValue private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.RestrictionScalarDataPropertyValueUUID,
 	 override val scalarDataProperty: resolver.api.DataRelationshipToScalar,
 	 override val scalarPropertyValue: gov.nasa.jpl.imce.oml.tables.LiteralValue,
 	 override val valueType: scala.Option[resolver.api.DataRange]
@@ -30,27 +30,24 @@ case class RestrictionScalarDataPropertyValue private[impl]
 extends resolver.api.RestrictionScalarDataPropertyValue
   with Element
 {
-		
+
   def terminologyBox
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.TerminologyBox]
 	  = {
 	    extent.restrictionStructuredDataPropertyContextOfRestrictionScalarDataPropertyValue.get(this).flatMap(_.terminologyBox())
 	  }
-	  
+
   def moduleContext
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.Module]
 	  = {
 	    extent.restrictionStructuredDataPropertyContextOfRestrictionScalarDataPropertyValue.get(this).flatMap(_.moduleContext)
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: RestrictionScalarDataPropertyValue => true
-  	case _ => false
+	  case _: RestrictionScalarDataPropertyValue => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -58,14 +55,14 @@ extends resolver.api.RestrictionScalarDataPropertyValue
   = (uuid, scalarDataProperty, scalarPropertyValue, valueType).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: RestrictionScalarDataPropertyValue =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.scalarDataProperty == that.scalarDataProperty) &&
-     (this.scalarPropertyValue == that.scalarPropertyValue) &&
-     (this.valueType == that.valueType)
+    case that: RestrictionScalarDataPropertyValue =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.scalarDataProperty == that.scalarDataProperty) &&
+      (this.scalarPropertyValue == that.scalarPropertyValue) &&
+      (this.valueType == that.valueType)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

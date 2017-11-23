@@ -22,14 +22,14 @@ import gov.nasa.jpl.imce.oml._
 
 case class RuleBodySegment private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.RuleBodySegmentUUID,
 	 override val previousSegment: scala.Option[resolver.api.RuleBodySegment],
 	 override val rule: scala.Option[resolver.api.ChainRule]
 )
 extends resolver.api.RuleBodySegment
   with Element
 {
-		
+
   def position
   ()
 	  : scala.Int
@@ -41,7 +41,7 @@ extends resolver.api.RuleBodySegment
 	    						1 + prev.position()
 	    				}
 	  }
-	  
+
   def chainRule
   ()
 	  : resolver.api.ChainRule
@@ -57,20 +57,17 @@ extends resolver.api.RuleBodySegment
 	    								throw new java.lang.IllegalArgumentException("chainRule() must be well-defined")
 	    						}				}
 	  }
-	  
+
   def moduleContext
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.Module]
 	  = {
 	    chainRule().moduleContext()
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: RuleBodySegment => true
-  	case _ => false
+	  case _: RuleBodySegment => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -78,13 +75,13 @@ extends resolver.api.RuleBodySegment
   = (uuid, previousSegment, rule).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: RuleBodySegment =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.previousSegment == that.previousSegment) &&
-     (this.rule == that.rule)
+    case that: RuleBodySegment =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.previousSegment == that.previousSegment) &&
+      (this.rule == that.rule)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

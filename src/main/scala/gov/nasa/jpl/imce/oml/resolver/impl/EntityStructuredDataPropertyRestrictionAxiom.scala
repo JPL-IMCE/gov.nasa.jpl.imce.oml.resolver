@@ -24,13 +24,12 @@ trait EntityStructuredDataPropertyRestrictionAxiom
 extends resolver.api.EntityStructuredDataPropertyRestrictionAxiom
   with TermAxiom
 {
-override val restrictedEntity: resolver.api.Entity
-		
-
-
+  override val uuid: resolver.api.taggedTypes.EntityStructuredDataPropertyRestrictionAxiomUUID
+  override val restrictedEntity: resolver.api.Entity
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: EntityStructuredDataPropertyRestrictionAxiom => true
-  	case _ => false
+	  case _: EntityStructuredDataPropertyRestrictionAxiom => true
+ 	  case _ => false
   }
+
 }

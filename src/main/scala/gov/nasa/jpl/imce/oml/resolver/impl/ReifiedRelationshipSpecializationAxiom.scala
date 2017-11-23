@@ -22,14 +22,14 @@ import gov.nasa.jpl.imce.oml._
 
 case class ReifiedRelationshipSpecializationAxiom private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.ReifiedRelationshipSpecializationAxiomUUID,
 	 override val superRelationship: resolver.api.ReifiedRelationship,
 	 override val subRelationship: resolver.api.ReifiedRelationship
 )
 extends resolver.api.ReifiedRelationshipSpecializationAxiom
   with SpecializationAxiom
 {
-		
+
   /*
    * Get the sub (child) entity
    */
@@ -39,7 +39,7 @@ extends resolver.api.ReifiedRelationshipSpecializationAxiom
 	  = {
 	    subRelationship
 	  }
-	  
+
   /*
    * Get the super (parent) entity
    */
@@ -49,13 +49,10 @@ extends resolver.api.ReifiedRelationshipSpecializationAxiom
 	  = {
 	    superRelationship
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: ReifiedRelationshipSpecializationAxiom => true
-  	case _ => false
+	  case _: ReifiedRelationshipSpecializationAxiom => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -63,13 +60,13 @@ extends resolver.api.ReifiedRelationshipSpecializationAxiom
   = (uuid, superRelationship, subRelationship).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: ReifiedRelationshipSpecializationAxiom =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.superRelationship == that.superRelationship) &&
-     (this.subRelationship == that.subRelationship)
+    case that: ReifiedRelationshipSpecializationAxiom =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.superRelationship == that.superRelationship) &&
+      (this.subRelationship == that.subRelationship)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

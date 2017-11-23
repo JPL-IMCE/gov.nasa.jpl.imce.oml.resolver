@@ -22,20 +22,17 @@ import gov.nasa.jpl.imce.oml._
 
 case class Aspect private[impl] 
 	(
-	 override val uuid: java.util.UUID,
-	 override val name: gov.nasa.jpl.imce.oml.tables.LocalName
+	 override val uuid: resolver.api.taggedTypes.AspectUUID,
+	 override val name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName
 )
 extends resolver.api.Aspect
   with Entity
   with UnaryTermKind
 {
-		
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: Aspect => true
-  	case _ => false
+	  case _: Aspect => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -43,12 +40,12 @@ extends resolver.api.Aspect
   = (uuid, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: Aspect =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.name == that.name)
+    case that: Aspect =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.name == that.name)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

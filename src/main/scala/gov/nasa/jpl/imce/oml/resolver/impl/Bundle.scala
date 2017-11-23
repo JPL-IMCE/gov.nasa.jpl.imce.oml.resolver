@@ -22,34 +22,31 @@ import gov.nasa.jpl.imce.oml._
 
 case class Bundle private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.BundleUUID,
 	 override val kind: gov.nasa.jpl.imce.oml.tables.TerminologyKind,
-	 override val iri: gov.nasa.jpl.imce.oml.tables.IRI
+	 override val iri: gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI
 )
 extends resolver.api.Bundle
   with TerminologyBox
 {
-		
+
   override def moduleEdges
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.ModuleEdge]
 	  = {
 	    extent.lookupBoxAxioms(this) ++ extent.lookupBundleAxioms(this)
 	  }
-	  
+
   def moduleElements
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.ModuleElement]
 	  = {
 	    extent.lookupBundleStatements(this) ++ extent.lookupBoxStatements(this)
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: Bundle => true
-  	case _ => false
+	  case _: Bundle => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -57,13 +54,13 @@ extends resolver.api.Bundle
   = (uuid, kind, iri).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: Bundle =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.kind == that.kind) &&
-     (this.iri == that.iri)
+    case that: Bundle =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.kind == that.kind) &&
+      (this.iri == that.iri)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

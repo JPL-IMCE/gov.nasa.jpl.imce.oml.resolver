@@ -22,41 +22,38 @@ import gov.nasa.jpl.imce.oml._
 
 case class ReifiedRelationshipInstanceRange private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.ReifiedRelationshipInstanceRangeUUID,
 	 override val reifiedRelationshipInstance: resolver.api.ReifiedRelationshipInstance,
 	 override val range: resolver.api.ConceptualEntitySingletonInstance
 )
 extends resolver.api.ReifiedRelationshipInstanceRange
   with TerminologyInstanceAssertion
 {
-		
+
   def descriptionBox
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.DescriptionBox]
 	  = {
 	    extent.descriptionBoxOfReifiedRelationshipInstanceRange.get(this)
 	  }
-	  
+
   def moduleContext
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.Module]
 	  = {
 	    descriptionBox()
 	  }
-	  
+
   def allNestedElements
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
 	  = {
 	    scala.collection.immutable.Set.empty[resolver.api.Element]
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: ReifiedRelationshipInstanceRange => true
-  	case _ => false
+	  case _: ReifiedRelationshipInstanceRange => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -64,13 +61,13 @@ extends resolver.api.ReifiedRelationshipInstanceRange
   = (uuid, reifiedRelationshipInstance, range).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: ReifiedRelationshipInstanceRange =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.reifiedRelationshipInstance == that.reifiedRelationshipInstance) &&
-     (this.range == that.range)
+    case that: ReifiedRelationshipInstanceRange =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.reifiedRelationshipInstance == that.reifiedRelationshipInstance) &&
+      (this.range == that.range)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

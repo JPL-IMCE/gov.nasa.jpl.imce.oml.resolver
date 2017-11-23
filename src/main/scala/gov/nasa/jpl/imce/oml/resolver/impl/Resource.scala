@@ -24,7 +24,11 @@ trait Resource
 extends resolver.api.Resource
   with Element
 {
+  override val uuid: resolver.api.taggedTypes.ResourceUUID
 
-
+  override def canEqual(that: scala.Any): scala.Boolean = that match {
+	  case _: Resource => true
+ 	  case _ => false
+  }
 
 }

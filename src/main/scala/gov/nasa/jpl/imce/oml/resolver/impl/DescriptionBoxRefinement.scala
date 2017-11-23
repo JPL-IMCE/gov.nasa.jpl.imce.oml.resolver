@@ -22,33 +22,30 @@ import gov.nasa.jpl.imce.oml._
 
 case class DescriptionBoxRefinement private[impl] 
 	(
-	 override val uuid: java.util.UUID,
-	 override val refinedDescriptionBox: gov.nasa.jpl.imce.oml.tables.IRI
+	 override val uuid: resolver.api.taggedTypes.DescriptionBoxRefinementUUID,
+	 override val refinedDescriptionBox: gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI
 )
 extends resolver.api.DescriptionBoxRefinement
   with DescriptionBoxRelationship
 {
-		
+
   def descriptionDomain
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.DescriptionBox]
 	  = {
 	    extent.descriptionBoxOfDescriptionBoxRefinement.get(this)
 	  }
-	  
+
   def targetModule
   ()(implicit extent: resolver.api.Extent)
-	  : gov.nasa.jpl.imce.oml.tables.IRI
+	  : gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI
 	  = {
 	    refinedDescriptionBox
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: DescriptionBoxRefinement => true
-  	case _ => false
+	  case _: DescriptionBoxRefinement => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -56,12 +53,12 @@ extends resolver.api.DescriptionBoxRefinement
   = (uuid, refinedDescriptionBox).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: DescriptionBoxRefinement =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.refinedDescriptionBox == that.refinedDescriptionBox)
+    case that: DescriptionBoxRefinement =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.refinedDescriptionBox == that.refinedDescriptionBox)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

@@ -22,14 +22,14 @@ import gov.nasa.jpl.imce.oml._
 
 case class AspectSpecializationAxiom private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.AspectSpecializationAxiomUUID,
 	 override val superAspect: resolver.api.Aspect,
 	 override val subEntity: resolver.api.Entity
 )
 extends resolver.api.AspectSpecializationAxiom
   with SpecializationAxiom
 {
-		
+
   /*
    * Get the sub (child) entity
    */
@@ -39,7 +39,7 @@ extends resolver.api.AspectSpecializationAxiom
 	  = {
 	    subEntity
 	  }
-	  
+
   /*
    * Get the super (parent) entity
    */
@@ -49,13 +49,10 @@ extends resolver.api.AspectSpecializationAxiom
 	  = {
 	    superAspect
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: AspectSpecializationAxiom => true
-  	case _ => false
+	  case _: AspectSpecializationAxiom => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -63,13 +60,13 @@ extends resolver.api.AspectSpecializationAxiom
   = (uuid, superAspect, subEntity).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: AspectSpecializationAxiom =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.superAspect == that.superAspect) &&
-     (this.subEntity == that.subEntity)
+    case that: AspectSpecializationAxiom =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.superAspect == that.superAspect) &&
+      (this.subEntity == that.subEntity)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

@@ -24,13 +24,12 @@ trait TerminologyBox
 extends resolver.api.TerminologyBox
   with Module
 {
-override val kind: gov.nasa.jpl.imce.oml.tables.TerminologyKind
-		
-
-
+  override val uuid: resolver.api.taggedTypes.TerminologyBoxUUID
+  override val kind: gov.nasa.jpl.imce.oml.tables.TerminologyKind
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: TerminologyBox => true
-  	case _ => false
+	  case _: TerminologyBox => true
+ 	  case _ => false
   }
+
 }

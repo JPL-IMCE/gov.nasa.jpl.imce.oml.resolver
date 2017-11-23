@@ -22,26 +22,23 @@ import gov.nasa.jpl.imce.oml._
 
 case class SpecificDisjointConceptAxiom private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.SpecificDisjointConceptAxiomUUID,
 	 override val disjointLeaf: resolver.api.Concept
 )
 extends resolver.api.SpecificDisjointConceptAxiom
   with DisjointUnionOfConceptsAxiom
 {
-		
+
   def allNestedUnions
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
 	  = {
 	    scala.collection.immutable.Set.empty[resolver.api.Element]
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: SpecificDisjointConceptAxiom => true
-  	case _ => false
+	  case _: SpecificDisjointConceptAxiom => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -49,12 +46,12 @@ extends resolver.api.SpecificDisjointConceptAxiom
   = (uuid, disjointLeaf).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: SpecificDisjointConceptAxiom =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.disjointLeaf == that.disjointLeaf)
+    case that: SpecificDisjointConceptAxiom =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.disjointLeaf == that.disjointLeaf)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 case class EntityStructuredDataPropertyParticularRestrictionAxiom private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.EntityStructuredDataPropertyParticularRestrictionAxiomUUID,
 	 override val structuredDataProperty: resolver.api.DataRelationshipToStructure,
 	 override val restrictedEntity: resolver.api.Entity
 )
@@ -30,27 +30,24 @@ extends resolver.api.EntityStructuredDataPropertyParticularRestrictionAxiom
   with EntityStructuredDataPropertyRestrictionAxiom
   with RestrictionStructuredDataPropertyContext
 {
-		
+
   override def terminologyBox
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.TerminologyBox]
 	  = {
 	    extent.terminologyBoxOfTerminologyBoxStatement.get(this)
 	  }
-	  
+
   def allNestedElements
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
 	  = {
 	    allNestedRestrictionElements
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: EntityStructuredDataPropertyParticularRestrictionAxiom => true
-  	case _ => false
+	  case _: EntityStructuredDataPropertyParticularRestrictionAxiom => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -58,13 +55,13 @@ extends resolver.api.EntityStructuredDataPropertyParticularRestrictionAxiom
   = (uuid, structuredDataProperty, restrictedEntity).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: EntityStructuredDataPropertyParticularRestrictionAxiom =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.structuredDataProperty == that.structuredDataProperty) &&
-     (this.restrictedEntity == that.restrictedEntity)
+    case that: EntityStructuredDataPropertyParticularRestrictionAxiom =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.structuredDataProperty == that.structuredDataProperty) &&
+      (this.restrictedEntity == that.restrictedEntity)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

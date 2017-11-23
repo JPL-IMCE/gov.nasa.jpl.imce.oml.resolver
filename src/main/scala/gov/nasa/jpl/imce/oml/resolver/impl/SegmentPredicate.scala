@@ -24,20 +24,19 @@ trait SegmentPredicate
 extends resolver.api.SegmentPredicate
   with Element
 {
-override val bodySegment: resolver.api.RuleBodySegment
-		
+  override val uuid: resolver.api.taggedTypes.SegmentPredicateUUID
+  override val bodySegment: resolver.api.RuleBodySegment
+
   def moduleContext
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.Module]
 	  = {
 	    bodySegment.moduleContext()
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: SegmentPredicate => true
-  	case _ => false
+	  case _: SegmentPredicate => true
+ 	  case _ => false
   }
+
 }

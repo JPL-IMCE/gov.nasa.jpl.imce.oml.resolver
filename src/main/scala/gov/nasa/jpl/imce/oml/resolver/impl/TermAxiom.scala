@@ -24,12 +24,11 @@ trait TermAxiom
 extends resolver.api.TermAxiom
   with TerminologyBoxStatement
 {
-		
-
-
+  override val uuid: resolver.api.taggedTypes.TermAxiomUUID
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: TermAxiom => true
-  	case _ => false
+	  case _: TermAxiom => true
+ 	  case _ => false
   }
+
 }

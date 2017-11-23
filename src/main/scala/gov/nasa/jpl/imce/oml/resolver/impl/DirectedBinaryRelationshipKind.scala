@@ -24,7 +24,11 @@ trait DirectedBinaryRelationshipKind
 extends resolver.api.DirectedBinaryRelationshipKind
   with Term
 {
+  override val uuid: resolver.api.taggedTypes.DirectedBinaryRelationshipKindUUID
 
-
+  override def canEqual(that: scala.Any): scala.Boolean = that match {
+	  case _: DirectedBinaryRelationshipKind => true
+ 	  case _ => false
+  }
 
 }

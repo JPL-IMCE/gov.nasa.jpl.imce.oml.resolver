@@ -22,38 +22,35 @@ import gov.nasa.jpl.imce.oml._
 
 case class EntityScalarDataProperty private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.EntityScalarDataPropertyUUID,
 	 override val domain: resolver.api.Entity,
 	 override val range: resolver.api.DataRange,
 	 override val isIdentityCriteria: scala.Boolean,
-	 override val name: gov.nasa.jpl.imce.oml.tables.LocalName
+	 override val name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName
 )
 extends resolver.api.EntityScalarDataProperty
   with DataRelationship
   with DataRelationshipFromEntity
   with DataRelationshipToScalar
 {
-		
+
   override def source
   ()
 	  : resolver.api.Term
 	  = {
 	    domain
 	  }
-	  
+
   override def target
   ()
 	  : resolver.api.Datatype
 	  = {
 	    range
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: EntityScalarDataProperty => true
-  	case _ => false
+	  case _: EntityScalarDataProperty => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -61,15 +58,15 @@ extends resolver.api.EntityScalarDataProperty
   = (uuid, domain, range, isIdentityCriteria, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: EntityScalarDataProperty =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.domain == that.domain) &&
-     (this.range == that.range) &&
-     (this.isIdentityCriteria == that.isIdentityCriteria) &&
-     (this.name == that.name)
+    case that: EntityScalarDataProperty =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.domain == that.domain) &&
+      (this.range == that.range) &&
+      (this.isIdentityCriteria == that.isIdentityCriteria) &&
+      (this.name == that.name)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

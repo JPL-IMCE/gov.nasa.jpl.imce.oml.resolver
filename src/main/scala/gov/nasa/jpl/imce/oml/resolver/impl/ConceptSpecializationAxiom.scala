@@ -22,14 +22,14 @@ import gov.nasa.jpl.imce.oml._
 
 case class ConceptSpecializationAxiom private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.ConceptSpecializationAxiomUUID,
 	 override val superConcept: resolver.api.Concept,
 	 override val subConcept: resolver.api.Concept
 )
 extends resolver.api.ConceptSpecializationAxiom
   with SpecializationAxiom
 {
-		
+
   /*
    * Get the sub (child) entity
    */
@@ -39,7 +39,7 @@ extends resolver.api.ConceptSpecializationAxiom
 	  = {
 	    subConcept
 	  }
-	  
+
   /*
    * Get the super (parent) entity
    */
@@ -49,13 +49,10 @@ extends resolver.api.ConceptSpecializationAxiom
 	  = {
 	    superConcept
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: ConceptSpecializationAxiom => true
-  	case _ => false
+	  case _: ConceptSpecializationAxiom => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -63,13 +60,13 @@ extends resolver.api.ConceptSpecializationAxiom
   = (uuid, superConcept, subConcept).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: ConceptSpecializationAxiom =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.superConcept == that.superConcept) &&
-     (this.subConcept == that.subConcept)
+    case that: ConceptSpecializationAxiom =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.superConcept == that.superConcept) &&
+      (this.subConcept == that.subConcept)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

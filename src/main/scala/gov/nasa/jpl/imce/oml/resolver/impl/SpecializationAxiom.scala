@@ -24,19 +24,18 @@ trait SpecializationAxiom
 extends resolver.api.SpecializationAxiom
   with TermAxiom
 {
-		
+  override val uuid: resolver.api.taggedTypes.SpecializationAxiomUUID
+
   def allNestedElements
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
 	  = {
 	    scala.collection.immutable.Set.empty[resolver.api.Element]
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: SpecializationAxiom => true
-  	case _ => false
+	  case _: SpecializationAxiom => true
+ 	  case _ => false
   }
+
 }

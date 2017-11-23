@@ -22,51 +22,49 @@ import gov.nasa.jpl.imce.oml._
 
 trait Module
 extends resolver.api.Module
-  with Element
   with Resource
 {
-override val iri: gov.nasa.jpl.imce.oml.tables.IRI
-		
+  override val uuid: resolver.api.taggedTypes.ModuleUUID
+  override val iri: gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI
+
   override def iri
   ()(implicit extent: resolver.api.Extent)
-	  : scala.Option[gov.nasa.jpl.imce.oml.tables.IRI]
+	  : scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI]
 	  = {
 	    scala.Some(iri)
 	  }
-	  
+
   def nsPrefix
   ()
-	  : gov.nasa.jpl.imce.oml.tables.NamespacePrefix
+	  : gov.nasa.jpl.imce.oml.tables.taggedTypes.NamespacePrefix
 	  = {
-	    iri.substring(1+iri.lastIndexOf('/'))
+	    gov.nasa.jpl.imce.oml.tables.taggedTypes.namespacePrefix(iri.substring(1+iri.lastIndexOf('/')))
 	  }
-	  
+
   def name
   ()
-	  : gov.nasa.jpl.imce.oml.tables.LocalName
+	  : gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName
 	  = {
-	    nsPrefix
+	    gov.nasa.jpl.imce.oml.tables.taggedTypes.localName(nsPrefix)
 	  }
-	  
+
   def abbrevIRI
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[scala.Predef.String]
 	  = {
 	    scala.Some(nsPrefix)
 	  }
-	  
+
   def moduleContext
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.Module]
 	  = {
 	    scala.Some(this)
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: Module => true
-  	case _ => false
+	  case _: Module => true
+ 	  case _ => false
   }
+
 }

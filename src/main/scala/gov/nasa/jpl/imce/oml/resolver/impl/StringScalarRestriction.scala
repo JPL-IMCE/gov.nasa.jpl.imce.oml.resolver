@@ -22,24 +22,21 @@ import gov.nasa.jpl.imce.oml._
 
 case class StringScalarRestriction private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.StringScalarRestrictionUUID,
 	 override val restrictedRange: resolver.api.DataRange,
-	 override val length: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
-	 override val minLength: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
-	 override val maxLength: scala.Option[gov.nasa.jpl.imce.oml.tables.PositiveIntegerLiteral],
-	 override val name: gov.nasa.jpl.imce.oml.tables.LocalName,
-	 override val pattern: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralPattern]
+	 override val length: scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.PositiveIntegerLiteral],
+	 override val minLength: scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.PositiveIntegerLiteral],
+	 override val maxLength: scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.PositiveIntegerLiteral],
+	 override val name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName,
+	 override val pattern: scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.LiteralPattern]
 )
 extends resolver.api.StringScalarRestriction
   with RestrictedDataRange
 {
-		
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: StringScalarRestriction => true
-  	case _ => false
+	  case _: StringScalarRestriction => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -47,17 +44,17 @@ extends resolver.api.StringScalarRestriction
   = (uuid, restrictedRange, length, minLength, maxLength, name, pattern).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: StringScalarRestriction =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.restrictedRange == that.restrictedRange) &&
-     (this.length == that.length) &&
-     (this.minLength == that.minLength) &&
-     (this.maxLength == that.maxLength) &&
-     (this.name == that.name) &&
-     (this.pattern == that.pattern)
+    case that: StringScalarRestriction =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.restrictedRange == that.restrictedRange) &&
+      (this.length == that.length) &&
+      (this.minLength == that.minLength) &&
+      (this.maxLength == that.maxLength) &&
+      (this.name == that.name) &&
+      (this.pattern == that.pattern)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

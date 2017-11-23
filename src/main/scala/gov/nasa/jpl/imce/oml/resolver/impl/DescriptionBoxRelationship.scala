@@ -24,19 +24,18 @@ trait DescriptionBoxRelationship
 extends resolver.api.DescriptionBoxRelationship
   with ModuleEdge
 {
-		
+  override val uuid: resolver.api.taggedTypes.DescriptionBoxRelationshipUUID
+
   def sourceModule
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.Module]
 	  = {
 	    descriptionDomain()
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: DescriptionBoxRelationship => true
-  	case _ => false
+	  case _: DescriptionBoxRelationship => true
+ 	  case _ => false
   }
+
 }

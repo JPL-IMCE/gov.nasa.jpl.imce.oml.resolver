@@ -22,20 +22,17 @@ import gov.nasa.jpl.imce.oml._
 
 case class ChainRule private[impl] 
 	(
-	 override val uuid: java.util.UUID,
-	 override val name: gov.nasa.jpl.imce.oml.tables.LocalName,
+	 override val uuid: resolver.api.taggedTypes.ChainRuleUUID,
+	 override val name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName,
 	 override val head: resolver.api.UnreifiedRelationship
 )
 extends resolver.api.ChainRule
   with Rule
 {
-		
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: ChainRule => true
-  	case _ => false
+	  case _: ChainRule => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -43,13 +40,13 @@ extends resolver.api.ChainRule
   = (uuid, name, head).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: ChainRule =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.name == that.name) &&
-     (this.head == that.head)
+    case that: ChainRule =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.name == that.name) &&
+      (this.head == that.head)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

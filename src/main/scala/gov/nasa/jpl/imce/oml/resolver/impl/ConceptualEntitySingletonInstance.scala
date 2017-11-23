@@ -25,34 +25,33 @@ extends resolver.api.ConceptualEntitySingletonInstance
   with TerminologyInstanceAssertion
   with Resource
 {
-override val name: gov.nasa.jpl.imce.oml.tables.LocalName
-		
+  override val uuid: resolver.api.taggedTypes.ConceptualEntitySingletonInstanceUUID
+  override val name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName
+
   override def iri
   ()(implicit extent: resolver.api.Extent)
-	  : scala.Option[gov.nasa.jpl.imce.oml.tables.IRI]
+	  : scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI]
 	  = {
 	    descriptionBox().flatMap(_.iri())
 	  }
-	  
+
   override def abbrevIRI
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[scala.Predef.String]
 	  = {
 	    descriptionBox().map(dbox => dbox.nsPrefix+":"+name)
 	  }
-	  
+
   def moduleContext
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.Module]
 	  = {
 	    descriptionBox
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: ConceptualEntitySingletonInstance => true
-  	case _ => false
+	  case _: ConceptualEntitySingletonInstance => true
+ 	  case _ => false
   }
+
 }

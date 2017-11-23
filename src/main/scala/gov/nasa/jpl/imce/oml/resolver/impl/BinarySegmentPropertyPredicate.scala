@@ -24,12 +24,11 @@ trait BinarySegmentPropertyPredicate
 extends resolver.api.BinarySegmentPropertyPredicate
   with SegmentPredicate
 {
-		
-
-
+  override val uuid: resolver.api.taggedTypes.BinarySegmentPropertyPredicateUUID
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: BinarySegmentPropertyPredicate => true
-  	case _ => false
+	  case _: BinarySegmentPropertyPredicate => true
+ 	  case _ => false
   }
+
 }

@@ -24,13 +24,12 @@ trait DataRelationshipToScalar
 extends resolver.api.DataRelationshipToScalar
   with DataRelationshipRange
 {
-override val range: resolver.api.DataRange
-		
-
-
+  override val uuid: resolver.api.taggedTypes.DataRelationshipToScalarUUID
+  override val range: resolver.api.DataRange
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: DataRelationshipToScalar => true
-  	case _ => false
+	  case _: DataRelationshipToScalar => true
+ 	  case _ => false
   }
+
 }

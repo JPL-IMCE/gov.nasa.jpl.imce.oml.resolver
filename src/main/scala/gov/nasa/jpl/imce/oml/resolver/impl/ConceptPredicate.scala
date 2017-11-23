@@ -22,27 +22,24 @@ import gov.nasa.jpl.imce.oml._
 
 case class ConceptPredicate private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.ConceptPredicateUUID,
 	 override val bodySegment: resolver.api.RuleBodySegment,
 	 override val concept: resolver.api.Concept
 )
 extends resolver.api.ConceptPredicate
   with UnarySegmentPredicate
 {
-		
+
   override def termPredicate
   ()
 	  : resolver.api.Term
 	  = {
 	    concept
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: ConceptPredicate => true
-  	case _ => false
+	  case _: ConceptPredicate => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -50,13 +47,13 @@ extends resolver.api.ConceptPredicate
   = (uuid, bodySegment, concept).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: ConceptPredicate =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.bodySegment == that.bodySegment) &&
-     (this.concept == that.concept)
+    case that: ConceptPredicate =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.bodySegment == that.bodySegment) &&
+      (this.concept == that.concept)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

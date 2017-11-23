@@ -24,12 +24,11 @@ trait UnarySegmentPredicate
 extends resolver.api.UnarySegmentPredicate
   with SegmentPredicate
 {
-		
-
-
+  override val uuid: resolver.api.taggedTypes.UnarySegmentPredicateUUID
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: UnarySegmentPredicate => true
-  	case _ => false
+	  case _: UnarySegmentPredicate => true
+ 	  case _ => false
   }
+
 }

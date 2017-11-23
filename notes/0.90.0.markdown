@@ -25,3 +25,7 @@ gov.nasa.jpl.imce.oml.resolver 0.90.0 is a major update of 0.80.0
 - [#17 Migrate the hierarchical graph sorting algorithm from the owlapi library](https://github.com/JPL-IMCE/gov.nasa.jpl.imce.oml.resolver/issues/17)
 
 - [#18 Update OMLResolverFactoryImpl based on @DerivedUUID without optional attributes](https://github.com/JPL-IMCE/gov.nasa.jpl.imce.oml.resolver/issues/18)
+
+- [#19 Improve compile-time type safety of the OML Resolver representation of UUID and UUID cross references without runtime overhead](https://github.com/JPL-IMCE/gov.nasa.jpl.imce.oml.resolver/issues/19)
+
+- [#20 Updated classification of abstract OML classes](https://github.com/JPL-IMCE/gov.nasa.jpl.imce.oml.resolver/issues/20)

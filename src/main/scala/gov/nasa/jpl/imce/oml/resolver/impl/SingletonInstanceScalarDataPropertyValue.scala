@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 case class SingletonInstanceScalarDataPropertyValue private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.SingletonInstanceScalarDataPropertyValueUUID,
 	 override val singletonInstance: resolver.api.ConceptualEntitySingletonInstance,
 	 override val scalarDataProperty: resolver.api.EntityScalarDataProperty,
 	 override val scalarPropertyValue: gov.nasa.jpl.imce.oml.tables.LiteralValue,
@@ -31,34 +31,31 @@ case class SingletonInstanceScalarDataPropertyValue private[impl]
 extends resolver.api.SingletonInstanceScalarDataPropertyValue
   with ModuleElement
 {
-		
+
   def descriptionBox
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.DescriptionBox]
 	  = {
 	    extent.descriptionBoxOfSingletonInstanceScalarDataPropertyValue.get(this)
 	  }
-	  
+
   def moduleContext
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.Module]
 	  = {
 	    descriptionBox()
 	  }
-	  
+
   def allNestedElements
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
 	  = {
 	    scala.collection.immutable.Set.empty[resolver.api.Element]
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: SingletonInstanceScalarDataPropertyValue => true
-  	case _ => false
+	  case _: SingletonInstanceScalarDataPropertyValue => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -66,15 +63,15 @@ extends resolver.api.SingletonInstanceScalarDataPropertyValue
   = (uuid, singletonInstance, scalarDataProperty, scalarPropertyValue, valueType).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: SingletonInstanceScalarDataPropertyValue =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.singletonInstance == that.singletonInstance) &&
-     (this.scalarDataProperty == that.scalarDataProperty) &&
-     (this.scalarPropertyValue == that.scalarPropertyValue) &&
-     (this.valueType == that.valueType)
+    case that: SingletonInstanceScalarDataPropertyValue =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.singletonInstance == that.singletonInstance) &&
+      (this.scalarDataProperty == that.scalarDataProperty) &&
+      (this.scalarPropertyValue == that.scalarPropertyValue) &&
+      (this.valueType == that.valueType)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

@@ -24,8 +24,9 @@ trait RestrictionStructuredDataPropertyContext
 extends resolver.api.RestrictionStructuredDataPropertyContext
   with ModuleElement
 {
-override val structuredDataProperty: resolver.api.DataRelationshipToStructure
-		
+  override val uuid: resolver.api.taggedTypes.RestrictionStructuredDataPropertyContextUUID
+  override val structuredDataProperty: resolver.api.DataRelationshipToStructure
+
   def allNestedRestrictionElements
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
@@ -33,12 +34,10 @@ override val structuredDataProperty: resolver.api.DataRelationshipToStructure
 	    extent.lookupStructuredDataPropertyRestrictions(this).flatMap{ r => scala.collection.immutable.Set.empty[resolver.api.Element] + r ++ r.allNestedRestrictionElements() } ++
 	    		extent.lookupScalarDataPropertyRestrictions(this)
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: RestrictionStructuredDataPropertyContext => true
-  	case _ => false
+	  case _: RestrictionStructuredDataPropertyContext => true
+ 	  case _ => false
   }
+
 }

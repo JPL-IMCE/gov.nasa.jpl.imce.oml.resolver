@@ -24,22 +24,21 @@ trait EntityRestrictionAxiom
 extends resolver.api.EntityRestrictionAxiom
   with TermAxiom
 {
-override val restrictedRelation: resolver.api.EntityRelationship
+  override val uuid: resolver.api.taggedTypes.EntityRestrictionAxiomUUID
+  override val restrictedRelation: resolver.api.EntityRelationship
   override val restrictedRange: resolver.api.Entity
   override val restrictedDomain: resolver.api.Entity
-		
+
   def allNestedElements
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
 	  = {
 	    scala.collection.immutable.Set.empty[resolver.api.Element]
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: EntityRestrictionAxiom => true
-  	case _ => false
+	  case _: EntityRestrictionAxiom => true
+ 	  case _ => false
   }
+
 }

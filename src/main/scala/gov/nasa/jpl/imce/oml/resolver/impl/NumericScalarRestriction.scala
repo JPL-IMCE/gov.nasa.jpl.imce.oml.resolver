@@ -22,24 +22,21 @@ import gov.nasa.jpl.imce.oml._
 
 case class NumericScalarRestriction private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.NumericScalarRestrictionUUID,
 	 override val restrictedRange: resolver.api.DataRange,
 	 override val minExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralNumber],
 	 override val minInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralNumber],
 	 override val maxExclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralNumber],
 	 override val maxInclusive: scala.Option[gov.nasa.jpl.imce.oml.tables.LiteralNumber],
-	 override val name: gov.nasa.jpl.imce.oml.tables.LocalName
+	 override val name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName
 )
 extends resolver.api.NumericScalarRestriction
   with RestrictedDataRange
 {
-		
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: NumericScalarRestriction => true
-  	case _ => false
+	  case _: NumericScalarRestriction => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -47,17 +44,17 @@ extends resolver.api.NumericScalarRestriction
   = (uuid, restrictedRange, minExclusive, minInclusive, maxExclusive, maxInclusive, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: NumericScalarRestriction =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.restrictedRange == that.restrictedRange) &&
-     (this.minExclusive == that.minExclusive) &&
-     (this.minInclusive == that.minInclusive) &&
-     (this.maxExclusive == that.maxExclusive) &&
-     (this.maxInclusive == that.maxInclusive) &&
-     (this.name == that.name)
+    case that: NumericScalarRestriction =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.restrictedRange == that.restrictedRange) &&
+      (this.minExclusive == that.minExclusive) &&
+      (this.minInclusive == that.minInclusive) &&
+      (this.maxExclusive == that.maxExclusive) &&
+      (this.maxInclusive == that.maxInclusive) &&
+      (this.name == that.name)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

@@ -22,21 +22,21 @@ import gov.nasa.jpl.imce.oml._
 
 case class TerminologyExtensionAxiom private[impl] 
 	(
-	 override val uuid: java.util.UUID,
+	 override val uuid: resolver.api.taggedTypes.TerminologyExtensionAxiomUUID,
 	 override val tbox: resolver.api.TerminologyBox,
-	 override val extendedTerminology: gov.nasa.jpl.imce.oml.tables.IRI
+	 override val extendedTerminology: gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI
 )
 extends resolver.api.TerminologyExtensionAxiom
   with TerminologyBoxAxiom
 {
-		
+
   def extendingTerminology
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[resolver.api.TerminologyBox]
 	  = {
 	    extent.terminologyBoxOfTerminologyBoxAxiom.get(this)
 	  }
-	  
+
   /*
    * The extendingTerminology is the source
    */
@@ -46,23 +46,20 @@ extends resolver.api.TerminologyExtensionAxiom
 	  = {
 	    extendingTerminology()
 	  }
-	  
+
   /*
    * The extendedTerminology is the target
    */
   override def target
   ()(implicit extent: resolver.api.Extent)
-	  : gov.nasa.jpl.imce.oml.tables.IRI
+	  : gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI
 	  = {
 	    extendedTerminology
 	  }
-	  
-
-
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: TerminologyExtensionAxiom => true
-  	case _ => false
+	  case _: TerminologyExtensionAxiom => true
+ 	  case _ => false
   }
 
   override val hashCode
@@ -70,13 +67,13 @@ extends resolver.api.TerminologyExtensionAxiom
   = (uuid, tbox, extendedTerminology).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-   case that: TerminologyExtensionAxiom =>
-     (that canEqual this) &&
-     (this.uuid == that.uuid) &&
-     (this.tbox == that.tbox) &&
-     (this.extendedTerminology == that.extendedTerminology)
+    case that: TerminologyExtensionAxiom =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.tbox == that.tbox) &&
+      (this.extendedTerminology == that.extendedTerminology)
 
-	  case _ =>
-	    false
-}
+    case _ =>
+      false
+  }
 }

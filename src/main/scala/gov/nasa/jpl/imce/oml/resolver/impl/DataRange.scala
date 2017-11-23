@@ -24,12 +24,11 @@ trait DataRange
 extends resolver.api.DataRange
   with Datatype
 {
-		
-
-
+  override val uuid: resolver.api.taggedTypes.DataRangeUUID
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: DataRange => true
-  	case _ => false
+	  case _: DataRange => true
+ 	  case _ => false
   }
+
 }
