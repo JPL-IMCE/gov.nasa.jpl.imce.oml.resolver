@@ -40,16 +40,15 @@ case class ReifiedRelationship private[impl]
 )
 extends resolver.api.ReifiedRelationship
   with EntityRelationship
-  with Entity
   with ConceptualEntity
 {
-		
+
 
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: ReifiedRelationship => true
-  	case _ => false
+	  case _: ReifiedRelationship => true
+ 	  case _ => false
   }
 
   override val hashCode

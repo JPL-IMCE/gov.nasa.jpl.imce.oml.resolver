@@ -22,8 +22,9 @@ import gov.nasa.jpl.imce.oml._
 
 trait UnaryTermKind
 extends resolver.api.UnaryTermKind
+  with Term
 {
-		
+
 
 
 }

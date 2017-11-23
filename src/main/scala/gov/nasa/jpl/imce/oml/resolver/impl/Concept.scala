@@ -26,17 +26,16 @@ case class Concept private[impl]
 	 override val name: gov.nasa.jpl.imce.oml.tables.LocalName
 )
 extends resolver.api.Concept
-  with Entity
   with ConceptualEntity
   with UnaryTermKind
 {
-		
+
 
 
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-  	case _: Concept => true
-  	case _ => false
+	  case _: Concept => true
+ 	  case _ => false
   }
 
   override val hashCode
