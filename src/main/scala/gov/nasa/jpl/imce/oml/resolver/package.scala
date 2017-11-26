@@ -18,13 +18,20 @@
 
 package gov.nasa.jpl.imce.oml
 
+import java.util.UUID
+
+import gov.nasa.jpl.imce.oml.covariantTag.@@
 import gov.nasa.jpl.imce.oml.resolver.impl.OMLResolvedFactoryImpl
-import gov.nasa.jpl.imce.oml.tables.OMLSpecificationTables
 import gov.nasa.jpl.imce.oml.uuid.JVMUUIDGenerator
 
 import scala.util.Try
+import scala.Predef.String
 
 package object resolver {
+
+  implicit def toUUIDString[Tag](uuid: UUID @@ Tag)
+  : String @@ Tag
+  = covariantTag[Tag][String](uuid.toString)
 
   def initializeResolver
   ()
@@ -37,11 +44,11 @@ package object resolver {
   }
 
   def resolveTables
-  (r: Try[OMLTablesResolver], tables: OMLSpecificationTables)
+  (r: Try[OMLTablesResolver], ts: tables.OMLSpecificationTables)
   : Try[OMLTablesResolver]
   = for {
     current <- r
-    prev = current.copy(queue = tables)
+    prev = current.copy(queue = ts)
     updated <- OMLTablesResolver.resolve(prev)
     next <- OMLResolutionError.checkResolution(updated)
   } yield next
