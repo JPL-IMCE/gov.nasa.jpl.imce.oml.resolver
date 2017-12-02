@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 trait SingletonInstanceStructuredDataPropertyContext
 extends resolver.api.SingletonInstanceStructuredDataPropertyContext
-  with Element
+  with ElementCrossReferenceTuple
 {
   override val uuid: resolver.api.taggedTypes.SingletonInstanceStructuredDataPropertyContextUUID
   override val structuredDataProperty: resolver.api.DataRelationshipToStructure

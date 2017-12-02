@@ -23,6 +23,7 @@ import gov.nasa.jpl.imce.oml._
 trait EntityRestrictionAxiom
 extends resolver.api.EntityRestrictionAxiom
   with TermAxiom
+  with ElementCrossReferenceTuple
 {
   override val uuid: resolver.api.taggedTypes.EntityRestrictionAxiomUUID
   override val restrictedRelation: resolver.api.EntityRelationship

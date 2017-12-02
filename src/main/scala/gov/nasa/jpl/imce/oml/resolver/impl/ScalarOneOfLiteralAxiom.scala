@@ -29,6 +29,7 @@ case class ScalarOneOfLiteralAxiom private[impl]
 )
 extends resolver.api.ScalarOneOfLiteralAxiom
   with TermAxiom
+  with ValueCrossReferenceTuple
 {
 
   def allNestedElements

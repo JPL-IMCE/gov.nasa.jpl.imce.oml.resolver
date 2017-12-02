@@ -29,6 +29,7 @@ case class ScalarDataPropertyValue private[impl]
 )
 extends resolver.api.ScalarDataPropertyValue
   with Element
+  with ValueCrossReferenceTuple
 {
 
   def descriptionBox

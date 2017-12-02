@@ -20,14 +20,14 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-trait Element
-extends resolver.api.Element
-  with IdentityKind
+trait ValueCrossReferenceTuple
+extends resolver.api.ValueCrossReferenceTuple
+  with ExtrinsicIdentityKind
 {
-  override val uuid: resolver.api.taggedTypes.ElementUUID
+  override val uuid: resolver.api.taggedTypes.ValueCrossReferenceTupleUUID
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-	  case _: Element => true
+	  case _: ValueCrossReferenceTuple => true
  	  case _ => false
   }
 

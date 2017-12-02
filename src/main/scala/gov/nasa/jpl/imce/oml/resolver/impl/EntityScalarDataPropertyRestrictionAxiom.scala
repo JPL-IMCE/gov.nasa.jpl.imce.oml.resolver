@@ -23,6 +23,7 @@ import gov.nasa.jpl.imce.oml._
 trait EntityScalarDataPropertyRestrictionAxiom
 extends resolver.api.EntityScalarDataPropertyRestrictionAxiom
   with TermAxiom
+  with ExtrinsicIdentityKind
 {
   override val uuid: resolver.api.taggedTypes.EntityScalarDataPropertyRestrictionAxiomUUID
   override val restrictedEntity: resolver.api.Entity

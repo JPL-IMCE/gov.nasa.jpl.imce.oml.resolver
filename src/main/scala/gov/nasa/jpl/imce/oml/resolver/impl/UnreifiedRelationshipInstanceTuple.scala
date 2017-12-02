@@ -29,6 +29,7 @@ case class UnreifiedRelationshipInstanceTuple private[impl]
 )
 extends resolver.api.UnreifiedRelationshipInstanceTuple
   with TerminologyInstanceAssertion
+  with ElementCrossReferenceTuple
 {
 
   def descriptionBox

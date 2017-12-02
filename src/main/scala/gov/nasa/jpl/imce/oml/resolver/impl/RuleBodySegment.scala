@@ -27,7 +27,7 @@ case class RuleBodySegment private[impl]
 	 override val rule: scala.Option[resolver.api.ChainRule]
 )
 extends resolver.api.RuleBodySegment
-  with Element
+  with ElementCrossReferenceTuple
 {
 
   def position

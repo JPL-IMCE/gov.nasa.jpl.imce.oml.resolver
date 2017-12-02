@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 trait DisjointUnionOfConceptsAxiom
 extends resolver.api.DisjointUnionOfConceptsAxiom
-  with Element
+  with ElementCrossReferenceTuple
 {
   override val uuid: resolver.api.taggedTypes.DisjointUnionOfConceptsAxiomUUID
 

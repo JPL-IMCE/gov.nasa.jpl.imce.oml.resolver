@@ -27,7 +27,20 @@ case class AnnotationProperty private[impl]
 	 override val abbrevIRI: gov.nasa.jpl.imce.oml.tables.taggedTypes.AbbrevIRI
 )
 extends resolver.api.AnnotationProperty
+  with IntrinsicIdentityKind
 {
+
+  override def iri
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI]
+	  = {
+	    scala.Some(iri)
+	  }
+
+  override def canEqual(that: scala.Any): scala.Boolean = that match {
+	  case _: AnnotationProperty => true
+ 	  case _ => false
+  }
 
   override val hashCode
   : scala.Int

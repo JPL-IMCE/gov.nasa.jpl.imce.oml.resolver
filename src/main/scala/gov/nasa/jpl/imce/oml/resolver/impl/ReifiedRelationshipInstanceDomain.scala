@@ -28,6 +28,7 @@ case class ReifiedRelationshipInstanceDomain private[impl]
 )
 extends resolver.api.ReifiedRelationshipInstanceDomain
   with TerminologyInstanceAssertion
+  with ElementCrossReferenceTuple
 {
 
   def descriptionBox

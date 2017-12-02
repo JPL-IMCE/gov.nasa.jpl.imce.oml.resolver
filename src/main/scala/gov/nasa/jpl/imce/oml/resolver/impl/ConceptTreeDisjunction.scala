@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 trait ConceptTreeDisjunction
 extends resolver.api.ConceptTreeDisjunction
-  with Element
+  with ElementCrossReferenceTuple
 {
   override val uuid: resolver.api.taggedTypes.ConceptTreeDisjunctionUUID
 

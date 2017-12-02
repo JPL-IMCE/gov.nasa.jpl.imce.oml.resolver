@@ -30,6 +30,7 @@ case class SingletonInstanceScalarDataPropertyValue private[impl]
 )
 extends resolver.api.SingletonInstanceScalarDataPropertyValue
   with ModuleElement
+  with ValueCrossReferenceTuple
 {
 
   def descriptionBox

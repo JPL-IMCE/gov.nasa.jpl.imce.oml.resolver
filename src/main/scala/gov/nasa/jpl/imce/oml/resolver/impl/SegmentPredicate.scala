@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 trait SegmentPredicate
 extends resolver.api.SegmentPredicate
-  with Element
+  with ElementCrossReferenceTuple
 {
   override val uuid: resolver.api.taggedTypes.SegmentPredicateUUID
   override val bodySegment: resolver.api.RuleBodySegment

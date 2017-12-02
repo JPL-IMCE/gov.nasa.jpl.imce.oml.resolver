@@ -28,7 +28,13 @@ case class AnnotationPropertyValue private[impl]
 	 override val value: gov.nasa.jpl.imce.oml.tables.taggedTypes.StringDataType
 )
 extends resolver.api.AnnotationPropertyValue
+  with ValueCrossReferenceTuple
 {
+
+  override def canEqual(that: scala.Any): scala.Boolean = that match {
+	  case _: AnnotationPropertyValue => true
+ 	  case _ => false
+  }
 
   override val hashCode
   : scala.Int

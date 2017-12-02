@@ -29,6 +29,7 @@ case class RestrictionScalarDataPropertyValue private[impl]
 )
 extends resolver.api.RestrictionScalarDataPropertyValue
   with Element
+  with ValueCrossReferenceTuple
 {
 
   def terminologyBox

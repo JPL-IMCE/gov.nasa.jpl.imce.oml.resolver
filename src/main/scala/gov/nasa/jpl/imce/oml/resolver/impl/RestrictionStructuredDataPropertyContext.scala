@@ -23,6 +23,7 @@ import gov.nasa.jpl.imce.oml._
 trait RestrictionStructuredDataPropertyContext
 extends resolver.api.RestrictionStructuredDataPropertyContext
   with ModuleElement
+  with ElementCrossReferenceTuple
 {
   override val uuid: resolver.api.taggedTypes.RestrictionStructuredDataPropertyContextUUID
   override val structuredDataProperty: resolver.api.DataRelationshipToStructure

@@ -23,6 +23,7 @@ import gov.nasa.jpl.imce.oml._
 trait SpecializationAxiom
 extends resolver.api.SpecializationAxiom
   with TermAxiom
+  with ElementCrossReferenceTuple
 {
   override val uuid: resolver.api.taggedTypes.SpecializationAxiomUUID
 

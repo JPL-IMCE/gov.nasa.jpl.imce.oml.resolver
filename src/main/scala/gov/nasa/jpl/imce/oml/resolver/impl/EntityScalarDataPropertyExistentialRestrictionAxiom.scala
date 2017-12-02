@@ -29,6 +29,7 @@ case class EntityScalarDataPropertyExistentialRestrictionAxiom private[impl]
 )
 extends resolver.api.EntityScalarDataPropertyExistentialRestrictionAxiom
   with EntityScalarDataPropertyRestrictionAxiom
+  with ElementCrossReferenceTuple
 {
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {

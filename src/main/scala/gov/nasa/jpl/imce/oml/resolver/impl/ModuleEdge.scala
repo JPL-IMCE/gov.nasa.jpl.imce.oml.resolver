@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 trait ModuleEdge
 extends resolver.api.ModuleEdge
-  with Element
+  with ElementCrossReferenceTuple
 {
   override val uuid: resolver.api.taggedTypes.ModuleEdgeUUID
 
