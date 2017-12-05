@@ -40,7 +40,7 @@ extends resolver.api.EntityStructuredDataPropertyParticularRestrictionAxiom
 
   def allNestedElements
   ()(implicit extent: resolver.api.Extent)
-	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
+	  : scala.collection.immutable.Set[_ <: resolver.api.LogicalElement]
 	  = {
 	    allNestedRestrictionElements
 	  }

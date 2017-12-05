@@ -23,6 +23,7 @@ import gov.nasa.jpl.imce.oml._
 trait ValueCrossReferenceTuple
 extends resolver.api.ValueCrossReferenceTuple
   with ExtrinsicIdentityKind
+  with NonCrossReferencableKind
 {
   override val uuid: resolver.api.taggedTypes.ValueCrossReferenceTupleUUID
 

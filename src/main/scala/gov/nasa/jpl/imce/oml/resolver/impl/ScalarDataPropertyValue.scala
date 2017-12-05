@@ -28,7 +28,7 @@ case class ScalarDataPropertyValue private[impl]
 	 override val valueType: scala.Option[resolver.api.DataRange]
 )
 extends resolver.api.ScalarDataPropertyValue
-  with Element
+  with LogicalElement
   with ValueCrossReferenceTuple
 {
 

@@ -28,6 +28,7 @@ case class AnnotationProperty private[impl]
 )
 extends resolver.api.AnnotationProperty
   with IntrinsicIdentityKind
+  with NonLogicalElement
 {
 
   override def iri

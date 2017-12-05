@@ -27,7 +27,7 @@ import scala.Predef.{ArrowAssoc,String}
   * A global table of resolved OML Elements.
   *
   * @param extents The set of OML Extents resolved.
-  * @param elements The OML Extent of each OML Element resolved.
+  * @param logicalElements The OML Extent of each OML LogicalElement resolved.
   * @param annotationPropertyValues The set of OML AnnotationPropertyValues across all OML Extents.
   * @param terminologyBoxOfTerminologyBoxAxiom The OML TerminologyBox of each OML TerminologyBoxAxiom resolved.
   * @param terminologyBoxOfTerminologyBoxStatement The OML TerminologyBox of each OML TerminologyBoxStatement resolved.
@@ -52,53 +52,53 @@ import scala.Predef.{ArrowAssoc,String}
   * @param singletonInstanceStructuredDataPropertyContextOfScalarDataPropertyValue The OML SingletonInstanceStructuredDataPropertyContext of each OML ScalarDataPropertyValue resolved.
   */
 case class OMLResolvedTable
-( extents
+(extents
   : Seq[api.Extent] = Seq.empty,
-  elements
-  : Map[api.Element, api.Extent] = Map.empty,
-  annotationPropertyValues
+ logicalElements
+  : Map[api.LogicalElement, api.Extent] = Map.empty,
+ annotationPropertyValues
   : Seq[api.AnnotationPropertyValue] = Seq.empty,
-  terminologyBoxOfTerminologyBoxAxiom
+ terminologyBoxOfTerminologyBoxAxiom
   : Map[api.TerminologyBoxAxiom, api.TerminologyBox] = Map.empty,
-  terminologyBoxOfTerminologyBoxStatement
+ terminologyBoxOfTerminologyBoxStatement
   : Map[api.TerminologyBoxStatement, api.TerminologyBox] = Map.empty,
-  chainRuleOfRuleBodySegment
+ chainRuleOfRuleBodySegment
   : Map[api.RuleBodySegment, api.ChainRule] = Map.empty,
-  ruleBodySegmentOfSegmentPredicate
+ ruleBodySegmentOfSegmentPredicate
   : Map[api.SegmentPredicate, api.RuleBodySegment] = Map.empty,
-  ruleBodySegmentOfRuleBodySegment
+ ruleBodySegmentOfRuleBodySegment
   : Map[api.RuleBodySegment, api.RuleBodySegment] = Map.empty,
-  restrictionStructuredDataPropertyContextOfRestrictionStructuredDataPropertyTuple
+ restrictionStructuredDataPropertyContextOfRestrictionStructuredDataPropertyTuple
   : Map[api.RestrictionStructuredDataPropertyTuple, api.RestrictionStructuredDataPropertyContext] = Map.empty,
-  restrictionStructuredDataPropertyContextOfRestrictionScalarDataPropertyValue
+ restrictionStructuredDataPropertyContextOfRestrictionScalarDataPropertyValue
   : Map[api.RestrictionScalarDataPropertyValue, api.RestrictionStructuredDataPropertyContext] = Map.empty,
-  bundleOfTerminologyBundleAxiom
+ bundleOfTerminologyBundleAxiom
   : Map[api.TerminologyBundleAxiom, api.Bundle] = Map.empty,
-  bundleOfTerminologyBundleStatement
+ bundleOfTerminologyBundleStatement
   : Map[api.TerminologyBundleStatement, api.Bundle] = Map.empty,
-  conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom
+ conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom
   : Map[api.DisjointUnionOfConceptsAxiom, api.ConceptTreeDisjunction] = Map.empty,
-  descriptionBoxOfDescriptionBoxRefinement
+ descriptionBoxOfDescriptionBoxRefinement
   : Map[api.DescriptionBoxRefinement, api.DescriptionBox] = Map.empty,
-  descriptionBoxOfDescriptionBoxExtendsClosedWorldDefinitions
+ descriptionBoxOfDescriptionBoxExtendsClosedWorldDefinitions
   : Map[api.DescriptionBoxExtendsClosedWorldDefinitions, api.DescriptionBox] = Map.empty,
-  descriptionBoxOfConceptInstance
+ descriptionBoxOfConceptInstance
   : Map[api.ConceptInstance, api.DescriptionBox] = Map.empty,
-  descriptionBoxOfReifiedRelationshipInstance
+ descriptionBoxOfReifiedRelationshipInstance
   : Map[api.ReifiedRelationshipInstance, api.DescriptionBox] = Map.empty,
-  descriptionBoxOfReifiedRelationshipInstanceDomain
+ descriptionBoxOfReifiedRelationshipInstanceDomain
   : Map[api.ReifiedRelationshipInstanceDomain, api.DescriptionBox] = Map.empty,
-  descriptionBoxOfReifiedRelationshipInstanceRange
+ descriptionBoxOfReifiedRelationshipInstanceRange
   : Map[api.ReifiedRelationshipInstanceRange, api.DescriptionBox] = Map.empty,
-  descriptionBoxOfUnreifiedRelationshipInstanceTuple
+ descriptionBoxOfUnreifiedRelationshipInstanceTuple
   : Map[api.UnreifiedRelationshipInstanceTuple, api.DescriptionBox] = Map.empty,
-  descriptionBoxOfSingletonInstanceScalarDataPropertyValue
+ descriptionBoxOfSingletonInstanceScalarDataPropertyValue
   : Map[api.SingletonInstanceScalarDataPropertyValue, api.DescriptionBox] = Map.empty,
-  descriptionBoxOfSingletonInstanceStructuredDataPropertyValue
+ descriptionBoxOfSingletonInstanceStructuredDataPropertyValue
   : Map[api.SingletonInstanceStructuredDataPropertyValue, api.DescriptionBox] = Map.empty,
-  singletonInstanceStructuredDataPropertyContextOfStructuredDataPropertyTuple
+ singletonInstanceStructuredDataPropertyContextOfStructuredDataPropertyTuple
   : Map[api.StructuredDataPropertyTuple, api.SingletonInstanceStructuredDataPropertyContext] = Map.empty,
-  singletonInstanceStructuredDataPropertyContextOfScalarDataPropertyValue
+ singletonInstanceStructuredDataPropertyContextOfScalarDataPropertyValue
   : Map[api.ScalarDataPropertyValue, api.SingletonInstanceStructuredDataPropertyContext] = Map.empty
 ) {
 
@@ -133,7 +133,7 @@ case class OMLResolvedTable
     * @tparam V Return type of the Extent-based query function
     * @return The result of invoking the Extent-based query on the element with its corresponding extent.
     */
-  def getViaExtent[U <: api.Element,V](u: U, uv: (U, api.Extent) => V): V = uv(u, elements(u))
+  def getViaExtent[U <: api.LogicalElement,V](u: U, uv: (U, api.Extent) => V): V = uv(u, logicalElements(u))
 
   def allAspects
   : Iterable[api.Aspect]
@@ -174,7 +174,7 @@ case class OMLResolvedTable
   override def toString: String =
     s"OMLResolvedTable(" +
       s"${extents.size} extents, " +
-      s"${elements.size} elements, " +
+      s"${logicalElements.size} elements, " +
       s"${annotationPropertyValues.size} annotations," +
       s"...)"
 }
@@ -194,11 +194,11 @@ object OMLResolvedTable {
   } else {
     def aggregate[A, B](rmap: api.Extent => Map[A, B]): Map[A, B] = omltr.allContexts.flatMap(rmap).toMap
 
-    def addElementsOfExtent(acc: Map[api.Element, api.Extent], ext: api.Extent): Map[api.Element, api.Extent]
+    def addElementsOfExtent(acc: Map[api.LogicalElement, api.Extent], ext: api.Extent): Map[api.LogicalElement, api.Extent]
     = {
       import ext._
-      val elements: Set[api.Element] =
-        Set.empty[api.Element] ++
+      val elements: Set[api.LogicalElement] =
+        Set.empty[api.LogicalElement] ++
           terminologyGraphs.values.to[Set] ++
           bundles.values.to[Set] ++
           descriptionBoxes.values.to[Set] ++
@@ -237,12 +237,12 @@ object OMLResolvedTable {
       OMLResolvedTable(
         extents =
           omltr.allContexts,
-        elements =
-          omltr.allContexts.to[Set].par.aggregate[Map[api.Element, api.Extent]](Map.empty)(
+        logicalElements =
+          omltr.allContexts.to[Set].par.aggregate[Map[api.LogicalElement, api.Extent]](Map.empty)(
             seqop = addElementsOfExtent,
             combop = _ ++ _),
         annotationPropertyValues =
-          omltr.allContexts.flatMap(_.elementOfAnnotationPropertyValue.keys),
+          omltr.allContexts.flatMap(_.logicalElementOfAnnotationPropertyValue.keys),
         terminologyBoxOfTerminologyBoxAxiom =
           aggregate(_.terminologyBoxOfTerminologyBoxAxiom),
         terminologyBoxOfTerminologyBoxStatement =

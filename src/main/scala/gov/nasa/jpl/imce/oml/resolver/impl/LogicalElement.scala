@@ -20,15 +20,14 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-trait IntrinsicIdentityKind
-extends resolver.api.IntrinsicIdentityKind
+trait LogicalElement
+extends resolver.api.LogicalElement
   with IdentityKind
-  with CrossReferencableKind
 {
-  override val uuid: resolver.api.taggedTypes.IntrinsicIdentityKindUUID
+  override val uuid: resolver.api.taggedTypes.LogicalElementUUID
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-	  case _: IntrinsicIdentityKind => true
+	  case _: LogicalElement => true
  	  case _ => false
   }
 

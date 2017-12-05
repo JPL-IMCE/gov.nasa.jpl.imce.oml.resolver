@@ -23,7 +23,8 @@ import gov.nasa.jpl.imce.oml._
 trait ElementCrossReferenceTuple
 extends resolver.api.ElementCrossReferenceTuple
   with ExtrinsicIdentityKind
-  with Element
+  with CrossReferencableKind
+  with LogicalElement
 {
   override val uuid: resolver.api.taggedTypes.ElementCrossReferenceTupleUUID
 

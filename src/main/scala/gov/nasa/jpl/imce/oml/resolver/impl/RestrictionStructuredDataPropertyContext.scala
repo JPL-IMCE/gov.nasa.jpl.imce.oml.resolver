@@ -30,9 +30,9 @@ extends resolver.api.RestrictionStructuredDataPropertyContext
 
   def allNestedRestrictionElements
   ()(implicit extent: resolver.api.Extent)
-	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
+	  : scala.collection.immutable.Set[_ <: resolver.api.LogicalElement]
 	  = {
-	    extent.lookupStructuredDataPropertyRestrictions(this).flatMap{ r => scala.collection.immutable.Set.empty[resolver.api.Element] + r ++ r.allNestedRestrictionElements() } ++
+	    extent.lookupStructuredDataPropertyRestrictions(this).flatMap{ r => scala.collection.immutable.Set.empty[resolver.api.LogicalElement] + r ++ r.allNestedRestrictionElements() } ++
 	    		extent.lookupScalarDataPropertyRestrictions(this)
 	  }
 

@@ -29,11 +29,11 @@ extends resolver.api.SpecificDisjointConceptAxiom
   with DisjointUnionOfConceptsAxiom
 {
 
-  def allNestedUnions
+  def allNestedElements
   ()(implicit extent: resolver.api.Extent)
-	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
+	  : scala.collection.immutable.Set[_ <: resolver.api.LogicalElement]
 	  = {
-	    scala.collection.immutable.Set.empty[resolver.api.Element]
+	    scala.collection.immutable.Set.empty[resolver.api.LogicalElement]
 	  }
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {

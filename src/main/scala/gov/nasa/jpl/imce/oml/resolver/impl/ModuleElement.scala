@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 trait ModuleElement
 extends resolver.api.ModuleElement
-  with Element
+  with LogicalElement
 {
   override val uuid: resolver.api.taggedTypes.ModuleElementUUID
 

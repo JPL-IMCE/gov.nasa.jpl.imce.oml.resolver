@@ -22,7 +22,13 @@ import gov.nasa.jpl.imce.oml._
 
 trait IdentityKind
 extends resolver.api.IdentityKind
+  with CrossReferencabilityKind
 {
   override val uuid: resolver.api.taggedTypes.IdentityKindUUID
+
+  override def canEqual(that: scala.Any): scala.Boolean = that match {
+	  case _: IdentityKind => true
+ 	  case _ => false
+  }
 
 }

@@ -40,16 +40,9 @@ extends resolver.api.RootConceptTaxonomyAxiom
 
   def allNestedElements
   ()(implicit extent: resolver.api.Extent)
-	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
+	  : scala.collection.immutable.Set[_ <: resolver.api.LogicalElement]
 	  = {
-	    allNestedDisjunctions
-	  }
-
-  def allNestedDisjunctions
-  ()(implicit extent: resolver.api.Extent)
-	  : scala.collection.immutable.Set[_ <: resolver.api.Element]
-	  = {
-	    extent.lookupDisjunctions(this).flatMap{ d => scala.collection.immutable.Set.empty[resolver.api.Element] + d ++ d.allNestedUnions() }
+	    extent.lookupDisjunctions(this).flatMap{ d => scala.collection.immutable.Set.empty[resolver.api.LogicalElement] + d ++ d.allNestedElements() }
 	  }
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {

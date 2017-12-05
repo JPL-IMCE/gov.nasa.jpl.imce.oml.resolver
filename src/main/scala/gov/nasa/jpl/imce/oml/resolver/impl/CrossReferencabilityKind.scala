@@ -20,15 +20,9 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-trait Element
-extends resolver.api.Element
-  with IdentityKind
+trait CrossReferencabilityKind
+extends resolver.api.CrossReferencabilityKind
 {
-  override val uuid: resolver.api.taggedTypes.ElementUUID
-
-  override def canEqual(that: scala.Any): scala.Boolean = that match {
-	  case _: Element => true
- 	  case _ => false
-  }
+  override val uuid: resolver.api.taggedTypes.CrossReferencabilityKindUUID
 
 }

@@ -48,19 +48,19 @@ extends resolver.api.OMLResolvedFactory {
 	 override def createAnnotationPropertyValue
 	 ( extent: resolver.api.Extent,
 	   uuid: resolver.api.taggedTypes.AnnotationPropertyValueUUID,
-	   subject: resolver.api.Element,
+	   subject: resolver.api.LogicalElement,
 	   property: resolver.api.AnnotationProperty,
 	   value: gov.nasa.jpl.imce.oml.tables.taggedTypes.StringDataType )
 	 : (resolver.api.Extent, resolver.api.AnnotationPropertyValue)
 	 = {
 	   // factoryMethodWithImplicitlyDerivedUUID
-	   // container: subject Element
+	   // container: subject LogicalElement
 	   // contained: annotations AnnotationPropertyValue
 	   val annotationPropertyValue = AnnotationPropertyValue( uuid, subject, property, value )
 	   scala.Tuple2(
 	   	extent.copy(
 	   	  annotations = extent.withAnnotationPropertyValue(subject, annotationPropertyValue),
-	   	  elementOfAnnotationPropertyValue = extent.elementOfAnnotationPropertyValue + (annotationPropertyValue -> subject),
+	   	  logicalElementOfAnnotationPropertyValue = extent.logicalElementOfAnnotationPropertyValue + (annotationPropertyValue -> subject),
 	   	  annotationPropertyValueByUUID = extent.annotationPropertyValueByUUID + (uuid -> annotationPropertyValue)),
 	   	annotationPropertyValue)
 	 }

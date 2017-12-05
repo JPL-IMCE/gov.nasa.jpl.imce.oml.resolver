@@ -22,7 +22,7 @@ import gov.nasa.jpl.imce.oml._
 
 trait Resource
 extends resolver.api.Resource
-  with Element
+  with LogicalElement
   with IntrinsicIdentityKind
 {
   override val uuid: resolver.api.taggedTypes.ResourceUUID

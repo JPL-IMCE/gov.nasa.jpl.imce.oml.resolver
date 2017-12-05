@@ -23,12 +23,13 @@ import gov.nasa.jpl.imce.oml._
 case class AnnotationPropertyValue private[impl] 
 	(
 	 override val uuid: resolver.api.taggedTypes.AnnotationPropertyValueUUID,
-	 override val subject: resolver.api.Element,
+	 override val subject: resolver.api.LogicalElement,
 	 override val property: resolver.api.AnnotationProperty,
 	 override val value: gov.nasa.jpl.imce.oml.tables.taggedTypes.StringDataType
 )
 extends resolver.api.AnnotationPropertyValue
   with ValueCrossReferenceTuple
+  with NonLogicalElement
 {
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
