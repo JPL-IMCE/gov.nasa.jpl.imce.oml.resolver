@@ -27,13 +27,13 @@ import scala.collection.JavaConversions._
 package object reader {
 
   /**
-    * Read `*.oml.json.zip` files and aggregate the OML tables from each file.
+    * Read `*.omlzip` files and aggregate the OML tables from each file.
     *
-    * Note: The aggregation is done in parallel across all `*.oml.json.zip` files
+    * Note: The aggregation is done in parallel across all `*.omlzip` files
     * and across all OML tables within each file.
     *
-    * @param omlZips A set of `*.oml.json.zip` files to read
-    * @return The aggregated OML tables read from all `*.oml.json.zip` files.
+    * @param omlZips A set of `*.omlzip` files to read
+    * @return The aggregated OML tables read from all `*.omlzip` files.
     */
   def parallelReadOMLZipFiles
   (omlZips: Seq[Path])
@@ -68,13 +68,13 @@ package object reader {
 
   /**
     *
-    * Read `*.oml.json.zip` files and aggregate the OML tables from each file.
+    * Read `*.omlzip` files and aggregate the OML tables from each file.
     *
-    * Note: The aggregation is done sequentially across all `*.oml.json.zip` files
+    * Note: The aggregation is done sequentially across all `*.omlzip` files
     * and across all OML tables within each file.
     *
-    * @param omlZips A set of `*.oml.json.zip` files to read
-    * @return The aggregated OML tables read from all `*.oml.json.zip` files.
+    * @param omlZips A set of `*.omlzip` files to read
+    * @return The aggregated OML tables read from all `*.omlzip` files.
     */
   def readOMLZipFiles
   (omlZips: Seq[Path])

@@ -57,14 +57,14 @@ package object filesystem {
   }
 
   /**
-    * Predicate for an OML concrete syntax representation file in 4th normal database tabular form (*.oml.json.zip)
+    * Predicate for an OML concrete syntax representation file in 4th normal database tabular form (*.omlzip)
     */
-  def omlJsonZipFilePredicate(p: Path): Boolean = p.isFile && p.segments.last.endsWith(".oml.json.zip")
+  def omlJsonZipFilePredicate(p: Path): Boolean = p.isFile && p.segments.last.endsWith(".omlzip")
 
   /**
-    * Find *.oml.json.zip files recursively from a directory path or the parent directory of an `oml.catalog.xml` file
+    * Find *.omlzip files recursively from a directory path or the parent directory of an `oml.catalog.xml` file
     * @param p The directory or `oml.catalog.xml` file
-    * @return The set of `*.oml.json.zip` files found
+    * @return The set of `*.omlzip` files found
     */
   def lsRecOMLJsonZipFiles
   (p: Path)
