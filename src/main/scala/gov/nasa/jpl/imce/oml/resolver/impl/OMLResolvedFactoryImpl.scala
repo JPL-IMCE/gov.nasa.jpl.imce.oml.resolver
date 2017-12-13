@@ -1238,6 +1238,48 @@ extends resolver.api.OMLResolvedFactory {
 	   	structuredDataPropertyTuple)
 	 }
 	 		  
+	 // SubDataPropertyOfAxiom
+	 override def createSubDataPropertyOfAxiom
+	 ( extent: resolver.api.Extent,
+	   uuid: resolver.api.taggedTypes.SubDataPropertyOfAxiomUUID,
+	   tbox: resolver.api.TerminologyBox,
+	   subProperty: resolver.api.EntityScalarDataProperty,
+	   superProperty: resolver.api.EntityScalarDataProperty )
+	 : (resolver.api.Extent, resolver.api.SubDataPropertyOfAxiom)
+	 = {
+	   // factoryMethodWithImplicitlyDerivedUUID
+	   // container: tbox TerminologyBox
+	   // contained: boxStatements TerminologyBoxStatement
+	   val subDataPropertyOfAxiom = SubDataPropertyOfAxiom( uuid, subProperty, superProperty )
+	   scala.Tuple2(
+	   	extent.copy(
+	   	  boxStatements = extent.withTerminologyBoxStatement(tbox, subDataPropertyOfAxiom),
+	   	  terminologyBoxOfTerminologyBoxStatement = extent.terminologyBoxOfTerminologyBoxStatement + (subDataPropertyOfAxiom -> tbox),
+	   	  terminologyBoxStatementByUUID = extent.terminologyBoxStatementByUUID + (uuid -> subDataPropertyOfAxiom)),
+	   	subDataPropertyOfAxiom)
+	 }
+	 		  
+	 // SubObjectPropertyOfAxiom
+	 override def createSubObjectPropertyOfAxiom
+	 ( extent: resolver.api.Extent,
+	   uuid: resolver.api.taggedTypes.SubObjectPropertyOfAxiomUUID,
+	   tbox: resolver.api.TerminologyBox,
+	   subProperty: resolver.api.UnreifiedRelationship,
+	   superProperty: resolver.api.UnreifiedRelationship )
+	 : (resolver.api.Extent, resolver.api.SubObjectPropertyOfAxiom)
+	 = {
+	   // factoryMethodWithImplicitlyDerivedUUID
+	   // container: tbox TerminologyBox
+	   // contained: boxStatements TerminologyBoxStatement
+	   val subObjectPropertyOfAxiom = SubObjectPropertyOfAxiom( uuid, subProperty, superProperty )
+	   scala.Tuple2(
+	   	extent.copy(
+	   	  boxStatements = extent.withTerminologyBoxStatement(tbox, subObjectPropertyOfAxiom),
+	   	  terminologyBoxOfTerminologyBoxStatement = extent.terminologyBoxOfTerminologyBoxStatement + (subObjectPropertyOfAxiom -> tbox),
+	   	  terminologyBoxStatementByUUID = extent.terminologyBoxStatementByUUID + (uuid -> subObjectPropertyOfAxiom)),
+	   	subObjectPropertyOfAxiom)
+	 }
+	 		  
 	 // SynonymScalarRestriction
 	 override def createSynonymScalarRestriction
 	 ( extent: resolver.api.Extent,
