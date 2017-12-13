@@ -171,6 +171,18 @@ case class OMLResolvedTable
     case (ax: api.ReifiedRelationshipSpecializationAxiom, _) => ax
   }
 
+  def allSubDataPropertyOfAxioms
+  : Iterable[api.SubDataPropertyOfAxiom]
+  = terminologyBoxOfTerminologyBoxStatement.selectByKindOf {
+    case (ax: api.SubDataPropertyOfAxiom, _) => ax
+  }
+
+  def allSubObjectPropertyOfAxioms
+  : Iterable[api.SubObjectPropertyOfAxiom]
+  = terminologyBoxOfTerminologyBoxStatement.selectByKindOf {
+    case (ax: api.SubObjectPropertyOfAxiom, _) => ax
+  }
+
   override def toString: String =
     s"OMLResolvedTable(" +
       s"${extents.size} extents, " +
