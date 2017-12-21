@@ -34,14 +34,21 @@ extends resolver.api.OMLResolvedFactory {
 	 override def createAnnotationProperty
 	 ( extent: resolver.api.Extent,
 	   uuid: resolver.api.taggedTypes.AnnotationPropertyUUID,
+	   module: resolver.api.Module,
 	   iri: gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI,
 	   abbrevIRI: gov.nasa.jpl.imce.oml.tables.taggedTypes.AbbrevIRI )
 	 : (resolver.api.Extent, resolver.api.AnnotationProperty)
 	 = {
+	   // factoryMethodWithUUIDGenerator
+	   // container: module Module
+	   // contained: annotationProperties AnnotationProperty
 	   val annotationProperty = AnnotationProperty( uuid, iri, abbrevIRI )
 	   scala.Tuple2(
-	 	extent.copy(annotationProperties = extent.annotationProperties + (uuid -> annotationProperty)), 
-	 		annotationProperty)
+	     extent.copy(
+	      annotationProperties = extent.withAnnotationProperty(module, annotationProperty),
+	      moduleOfAnnotationProperty = extent.moduleOfAnnotationProperty + (annotationProperty -> module),
+	      annotationPropertyByUUID = extent.annotationPropertyByUUID + (uuid -> annotationProperty)),
+	   	annotationProperty)
 	 }
 	 		  
 	 // AnnotationPropertyValue

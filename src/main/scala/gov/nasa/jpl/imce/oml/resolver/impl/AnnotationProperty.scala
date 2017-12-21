@@ -31,6 +31,13 @@ extends resolver.api.AnnotationProperty
   with NonLogicalElement
 {
 
+  def moduleContext
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.Option[resolver.api.Module]
+	  = {
+	    extent.moduleOfAnnotationProperty.get(this)
+	  }
+
   override def iri
   ()(implicit extent: resolver.api.Extent)
 	  : scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI]
