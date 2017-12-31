@@ -32,9 +32,12 @@ object Settings {
   )
 
   object versions {
-    val jpl_omf_schema_tables = "0.90.0-M42"
+    val jpl_omf_schema_tables = "0.90.0-M43"
     val scala = "2.11.11"
     val scalaJ8CompatVersion = "0.8.0"
+
+    // spark requirements
+    val spark_jackson="2.8.10"
   }
 
   /**

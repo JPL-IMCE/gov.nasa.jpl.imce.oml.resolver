@@ -88,7 +88,9 @@ lazy val core = Project("oml-resolver", file("."))
             .exclude("com.sun.jdmk", "jmxtools")
         case m => m
       }
-    }
+    },
+    dependencyOverrides += "com.fasterxml.jackson.module" % "jackson-module-paranamer" % Settings.versions.spark_jackson % "compile",
+    dependencyOverrides += "com.fasterxml.jackson.module" %% "jackson-module-scala" % Settings.versions.spark_jackson % "compile"
   )
   //.dependsOn(ProjectRef(file("../gov.nasa.jpl.imce.oml.tables"), "tablesJVM"))
   .dependsOnSourceProjectRefOrLibraryArtifacts(
