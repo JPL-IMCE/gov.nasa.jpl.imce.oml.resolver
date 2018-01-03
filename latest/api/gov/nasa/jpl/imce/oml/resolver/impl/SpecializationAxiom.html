@@ -1,0 +1,648 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>SpecializationAxiom - gov.nasa.jpl.imce.oml.resolver - gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom</title>
+          <meta name="description" content="SpecializationAxiom - gov.nasa.jpl.imce.oml.resolver - gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom" />
+          <meta name="keywords" content="SpecializationAxiom gov.nasa.jpl.imce.oml.resolver gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../../../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../../../../lib/tools.tooltip.js"></script>
+      <script type="text/javascript" src="../../../../../../../lib/modernizr.custom.js"></script><script type="text/javascript" src="../../../../../../../lib/diagrams.js" id="diagrams-js"></script>
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../../../../index.html';
+            var hash = 'gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="type">
+      <div id="definition">
+        <img alt="Trait" src="../../../../../../../lib/trait_big.png" />
+        <p id="owner"><a href="../../../../../../package.html" class="extype" name="gov">gov</a>.<a href="../../../../../package.html" class="extype" name="gov.nasa">nasa</a>.<a href="../../../../package.html" class="extype" name="gov.nasa.jpl">jpl</a>.<a href="../../../package.html" class="extype" name="gov.nasa.jpl.imce">imce</a>.<a href="../../package.html" class="extype" name="gov.nasa.jpl.imce.oml">oml</a>.<a href="../package.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver">resolver</a>.<a href="package.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl">impl</a></p>
+        <h1>SpecializationAxiom</h1><h3><span class="morelinks"><div>Related Doc:
+            <a href="package.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl">package impl</a>
+          </div></span></h3><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <span class="name">SpecializationAxiom</span><span class="result"> extends <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.SpecializationAxiom" class="extype" target="_top">api.SpecializationAxiom</a> with <a href="TermAxiom.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.TermAxiom">TermAxiom</a> with <a href="ElementCrossReferenceTuple.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ElementCrossReferenceTuple">ElementCrossReferenceTuple</a></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><a href="ElementCrossReferenceTuple.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ElementCrossReferenceTuple">ElementCrossReferenceTuple</a>, <a href="CrossReferencableKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.CrossReferencableKind">CrossReferencableKind</a>, <a href="ExtrinsicIdentityKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ExtrinsicIdentityKind">ExtrinsicIdentityKind</a>, <a href="TermAxiom.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.TermAxiom">TermAxiom</a>, <a href="TerminologyBoxStatement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.TerminologyBoxStatement">TerminologyBoxStatement</a>, <a href="ModuleElement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ModuleElement">ModuleElement</a>, <a href="LogicalElement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.LogicalElement">LogicalElement</a>, <a href="IdentityKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.IdentityKind">IdentityKind</a>, <a href="CrossReferencabilityKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.CrossReferencabilityKind">CrossReferencabilityKind</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.SpecializationAxiom" class="extype" target="_top">api.SpecializationAxiom</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ElementCrossReferenceTuple" class="extype" target="_top">api.ElementCrossReferenceTuple</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.CrossReferencableKind" class="extype" target="_top">api.CrossReferencableKind</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ExtrinsicIdentityKind" class="extype" target="_top">api.ExtrinsicIdentityKind</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.TermAxiom" class="extype" target="_top">api.TermAxiom</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.TerminologyBoxStatement" class="extype" target="_top">api.TerminologyBoxStatement</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ModuleElement" class="extype" target="_top">api.ModuleElement</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.LogicalElement" class="extype" target="_top">api.LogicalElement</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.IdentityKind" class="extype" target="_top">api.IdentityKind</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.CrossReferencabilityKind" class="extype" target="_top">api.CrossReferencabilityKind</a>, <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a></div>
+        </div><div class="toggleContainer block">
+            <span class="toggle">Known Subclasses</span>
+            <div class="subClasses hiddenContent"><a href="AspectSpecializationAxiom.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.AspectSpecializationAxiom">AspectSpecializationAxiom</a>, <a href="ConceptSpecializationAxiom.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ConceptSpecializationAxiom">ConceptSpecializationAxiom</a>, <a href="ReifiedRelationshipSpecializationAxiom.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ReifiedRelationshipSpecializationAxiom">ReifiedRelationshipSpecializationAxiom</a></div>
+          </div><div class="toggleContainer block diagram-container" id="inheritance-diagram-container">
+                <span class="toggle diagram-link">Type Hierarchy</span>
+                <div class="diagram" id="inheritance-diagram"><svg class="class-diagram" id="graph1" viewBox="0.00 0.00 596.00 158.00" height="158pt" width="596pt" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g transform="scale(1 1) rotate(0) translate(4 154)" class="graph" id="graph0"><polygon points="-4,4 -4,-154 592,-154 592,4 -4,4" stroke="none" fill="white"></polygon><g class="cluster" id="clust1"></g><g class="cluster" id="clust2"></g><!-- node0 --><g class="node this trait" id="graph1_0"><g id="a_this trait|graph1_0"><a xlink:title="gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom (this trait)" xlink:href="#inheritance-diagram"><polygon points="335,-88 201,-88 201,-62 335,-62 335,-88" stroke="#37657d" fill="#498aad"></polygon><image xlink:href="../../../../../../../lib/trait_diagram.png" y="-81" x="213" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="10.00" font-family="Arial" y="-72.5" x="233" text-anchor="start">SpecializationAxiom</text></a></g></g><!-- node1 --><g class="node class" id="graph1_1"><g id="a_class|graph1_1"><a xlink:title="gov.nasa.jpl.imce.oml.resolver.impl.AspectSpecializationAxiom" xlink:href="AspectSpecializationAxiom.html#inheritance-diagram"><polygon points="164.25,-26 -0.25,-26 -0.25,-0 164.25,-0 164.25,-26" stroke="#115f3b" fill="#0a955b"></polygon><image xlink:href="../../../../../../../lib/class_diagram.png" y="-19" x="12" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="10.00" font-family="Arial" y="-10.5" x="32" text-anchor="start">AspectSpecializationAxiom</text></a></g></g><!-- node0&#45;&gt;node1 --><g class="edge inheritance" id="graph1_0_1"><g id="a_inheritance|graph1_0_1"><a xlink:title="AspectSpecializationAxiom is a subtype of SpecializationAxiom"><path d="M225.323,-60.2331C193.303,-49.9041 149.895,-35.9016 119.266,-26.0213" stroke="#d4d4d4" fill="none"></path><polygon points="225.064,-61.9885 230.36,-61.8581 226.139,-58.6575 225.064,-61.9885" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node2 --><g class="node class" id="graph1_2"><g id="a_class|graph1_2"><a xlink:title="gov.nasa.jpl.imce.oml.resolver.impl.ConceptSpecializationAxiom" xlink:href="ConceptSpecializationAxiom.html#inheritance-diagram"><polygon points="353,-26 183,-26 183,-0 353,-0 353,-26" stroke="#115f3b" fill="#0a955b"></polygon><image xlink:href="../../../../../../../lib/class_diagram.png" y="-19" x="195" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="10.00" font-family="Arial" y="-10.5" x="215" text-anchor="start">ConceptSpecializationAxiom</text></a></g></g><!-- node0&#45;&gt;node2 --><g class="edge inheritance" id="graph1_0_2"><g id="a_inheritance|graph1_0_2"><a xlink:title="ConceptSpecializationAxiom is a subtype of SpecializationAxiom"><path d="M268,-56.6826C268,-46.8961 268,-34.9026 268,-26.1238" stroke="#d4d4d4" fill="none"></path><polygon points="266.25,-56.8581 268,-61.8581 269.75,-56.8581 266.25,-56.8581" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node3 --><g class="node class" id="graph1_3"><g id="a_class|graph1_3"><a xlink:title="gov.nasa.jpl.imce.oml.resolver.impl.ReifiedRelationshipSpecializationAxiom" xlink:href="ReifiedRelationshipSpecializationAxiom.html#inheritance-diagram"><polygon points="588.25,-26 371.75,-26 371.75,-0 588.25,-0 588.25,-26" stroke="#115f3b" fill="#0a955b"></polygon><image xlink:href="../../../../../../../lib/class_diagram.png" y="-19" x="384" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="10.00" font-family="Arial" y="-10.5" x="404" text-anchor="start">ReifiedRelationshipSpecializationAxiom</text></a></g></g><!-- node0&#45;&gt;node3 --><g class="edge inheritance" id="graph1_0_3"><g id="a_inheritance|graph1_0_3"><a xlink:title="ReifiedRelationshipSpecializationAxiom is a subtype of SpecializationAxiom"><path d="M315.487,-60.5602C352.053,-50.2114 402.147,-36.0339 437.422,-26.0504" stroke="#d4d4d4" fill="none"></path><polygon points="314.981,-58.8847 310.646,-61.9303 315.934,-62.2525 314.981,-58.8847" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node4 --><g class="node trait" id="graph1_4"><g id="a_trait|graph1_4"><a xlink:title="gov.nasa.jpl.imce.oml.resolver.api.SpecializationAxiom"><polygon points="202.5,-150 53.5,-150 53.5,-124 202.5,-124 202.5,-150" stroke="#37657d" fill="#498aad"></polygon><image xlink:href="../../../../../../../lib/trait_diagram.png" y="-143" x="65" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="10.00" font-family="Arial" y="-134.5" x="85" text-anchor="start">api.SpecializationAxiom</text></a></g></g><!-- node4&#45;&gt;node0 --><g class="edge inheritance" id="graph1_4_0"><g id="a_inheritance|graph1_4_0"><a xlink:title="SpecializationAxiom is a subtype of api.SpecializationAxiom"><path d="M161.004,-121.856C184.931,-111.601 216.951,-97.8781 239.711,-88.1238" stroke="#d4d4d4" fill="none"></path><polygon points="160.237,-120.28 156.331,-123.858 161.616,-123.497 160.237,-120.28" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node5 --><g class="node trait" id="graph1_5"><g id="a_trait|graph1_5"><a xlink:title="gov.nasa.jpl.imce.oml.resolver.impl.TermAxiom" xlink:href="TermAxiom.html#inheritance-diagram"><polygon points="315,-150 221,-150 221,-124 315,-124 315,-150" stroke="#37657d" fill="#498aad"></polygon><image xlink:href="../../../../../../../lib/trait_diagram.png" y="-143" x="233" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="10.00" font-family="Arial" y="-134.5" x="253" text-anchor="start">TermAxiom</text></a></g></g><!-- node5&#45;&gt;node0 --><g class="edge inheritance" id="graph1_5_0"><g id="a_inheritance|graph1_5_0"><a xlink:title="SpecializationAxiom is a subtype of TermAxiom"><path d="M268,-118.683C268,-108.896 268,-96.9026 268,-88.1238" stroke="#d4d4d4" fill="none"></path><polygon points="266.25,-118.858 268,-123.858 269.75,-118.858 266.25,-118.858" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node6 --><g class="node trait" id="graph1_6"><g id="a_trait|graph1_6"><a xlink:title="gov.nasa.jpl.imce.oml.resolver.impl.ElementCrossReferenceTuple" xlink:href="ElementCrossReferenceTuple.html#inheritance-diagram"><polygon points="507,-150 333,-150 333,-124 507,-124 507,-150" stroke="#37657d" fill="#498aad"></polygon><image xlink:href="../../../../../../../lib/trait_diagram.png" y="-143" x="345" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="10.00" font-family="Arial" y="-134.5" x="365" text-anchor="start">ElementCrossReferenceTuple</text></a></g></g><!-- node6&#45;&gt;node0 --><g class="edge inheritance" id="graph1_6_0"><g id="a_inheritance|graph1_6_0"><a xlink:title="SpecializationAxiom is a subtype of ElementCrossReferenceTuple"><path d="M384.476,-121.977C358.374,-111.674 323.278,-97.8202 298.454,-88.0213" stroke="#d4d4d4" fill="none"></path><polygon points="383.947,-123.65 389.241,-123.858 385.232,-120.394 383.947,-123.65" stroke="#d4d4d4" fill="none"></polygon></a></g></g></g></svg></div>
+              </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom"><span>SpecializationAxiom</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.ElementCrossReferenceTuple"><span>ElementCrossReferenceTuple</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.CrossReferencableKind"><span>CrossReferencableKind</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.ExtrinsicIdentityKind"><span>ExtrinsicIdentityKind</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.TermAxiom"><span>TermAxiom</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.TerminologyBoxStatement"><span>TerminologyBoxStatement</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.ModuleElement"><span>ModuleElement</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.LogicalElement"><span>LogicalElement</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.IdentityKind"><span>IdentityKind</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.CrossReferencabilityKind"><span>CrossReferencabilityKind</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.SpecializationAxiom"><span>SpecializationAxiom</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.ElementCrossReferenceTuple"><span>ElementCrossReferenceTuple</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.CrossReferencableKind"><span>CrossReferencableKind</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.ExtrinsicIdentityKind"><span>ExtrinsicIdentityKind</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.TermAxiom"><span>TermAxiom</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.TerminologyBoxStatement"><span>TerminologyBoxStatement</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.ModuleElement"><span>ModuleElement</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.LogicalElement"><span>LogicalElement</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.IdentityKind"><span>IdentityKind</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.CrossReferencabilityKind"><span>CrossReferencabilityKind</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show All</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        
+
+        <div id="values" class="values members">
+              <h3>Abstract Value Members</h3>
+              <ol><li name="gov.nasa.jpl.imce.oml.resolver.api.SpecializationAxiom#child" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="child():gov.nasa.jpl.imce.oml.resolver.api.Entity"></a>
+      <a id="child():api.Entity"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">child</span><span class="params">()</span><span class="result">: <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Entity" class="extype" target="_top">api.Entity</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@child():gov.nasa.jpl.imce.oml.resolver.api.Entity" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>SpecializationAxiom</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.api.SpecializationAxiom#parent" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="parent():gov.nasa.jpl.imce.oml.resolver.api.Entity"></a>
+      <a id="parent():api.Entity"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">parent</span><span class="params">()</span><span class="result">: <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Entity" class="extype" target="_top">api.Entity</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@parent():gov.nasa.jpl.imce.oml.resolver.api.Entity" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>SpecializationAxiom</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom#uuid" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="uuid:gov.nasa.jpl.imce.oml.resolver.api.taggedTypes.SpecializationAxiomUUID"></a>
+      <a id="uuid:SpecializationAxiomUUID"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">uuid</span><span class="result">: <span class="extype" name="gov.nasa.jpl.imce.oml.resolver.api.taggedTypes.SpecializationAxiomUUID">SpecializationAxiomUUID</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@uuid:gov.nasa.jpl.imce.oml.resolver.api.taggedTypes.SpecializationAxiomUUID" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom">SpecializationAxiom</a> → <a href="ElementCrossReferenceTuple.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ElementCrossReferenceTuple">ElementCrossReferenceTuple</a> → <a href="CrossReferencableKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.CrossReferencableKind">CrossReferencableKind</a> → <a href="ExtrinsicIdentityKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ExtrinsicIdentityKind">ExtrinsicIdentityKind</a> → <a href="TermAxiom.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.TermAxiom">TermAxiom</a> → <a href="TerminologyBoxStatement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.TerminologyBoxStatement">TerminologyBoxStatement</a> → <a href="ModuleElement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ModuleElement">ModuleElement</a> → <a href="LogicalElement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.LogicalElement">LogicalElement</a> → <a href="IdentityKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.IdentityKind">IdentityKind</a> → <a href="CrossReferencabilityKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.CrossReferencabilityKind">CrossReferencabilityKind</a> → SpecializationAxiom → ElementCrossReferenceTuple → CrossReferencableKind → ExtrinsicIdentityKind → TermAxiom → TerminologyBoxStatement → ModuleElement → LogicalElement → IdentityKind → CrossReferencabilityKind</dd></dl></div>
+    </li></ol>
+            </div>
+
+        <div id="values" class="values members">
+              <h3>Concrete Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@##():Int" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@==(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom#allNestedElements" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="allNestedElements()(implicitextent:gov.nasa.jpl.imce.oml.resolver.api.Extent):scala.collection.immutable.Set[_&lt;:gov.nasa.jpl.imce.oml.resolver.api.LogicalElement]"></a>
+      <a id="allNestedElements()(Extent):Set[_&lt;:api.LogicalElement]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">allNestedElements</span><span class="params">()</span><span class="params">(<span class="implicit">implicit </span><span name="extent">extent: <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Extent" class="extype" target="_top">Extent</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Set" class="extype" target="_top">Set</a>[_ &lt;: <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.LogicalElement" class="extype" target="_top">api.LogicalElement</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@allNestedElements()(implicitextent:gov.nasa.jpl.imce.oml.resolver.api.Extent):scala.collection.immutable.Set[_&lt;:gov.nasa.jpl.imce.oml.resolver.api.LogicalElement]" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom">SpecializationAxiom</a> → SpecializationAxiom → ModuleElement</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom#canEqual" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="canEqual(that:Any):Boolean"></a>
+      <a id="canEqual(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">canEqual</span><span class="params">(<span name="that">that: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@canEqual(that:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom">SpecializationAxiom</a> → <a href="ElementCrossReferenceTuple.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ElementCrossReferenceTuple">ElementCrossReferenceTuple</a> → <a href="CrossReferencableKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.CrossReferencableKind">CrossReferencableKind</a> → <a href="ExtrinsicIdentityKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ExtrinsicIdentityKind">ExtrinsicIdentityKind</a> → <a href="TermAxiom.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.TermAxiom">TermAxiom</a> → <a href="TerminologyBoxStatement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.TerminologyBoxStatement">TerminologyBoxStatement</a> → <a href="ModuleElement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ModuleElement">ModuleElement</a> → <a href="LogicalElement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.LogicalElement">LogicalElement</a> → <a href="IdentityKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.IdentityKind">IdentityKind</a> → CrossReferencabilityKind</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@clone():Object" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@equals(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@finalize():Unit" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@getClass():Class[_]" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@hashCode():Int" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.impl.TerminologyBoxStatement#moduleContext" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="moduleContext()(implicitextent:gov.nasa.jpl.imce.oml.resolver.api.Extent):Option[gov.nasa.jpl.imce.oml.resolver.api.Module]"></a>
+      <a id="moduleContext()(Extent):Option[api.Module]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">moduleContext</span><span class="params">()</span><span class="params">(<span class="implicit">implicit </span><span name="extent">extent: <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Extent" class="extype" target="_top">Extent</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Option" class="extype" target="_top">Option</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Module" class="extype" target="_top">api.Module</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@moduleContext()(implicitextent:gov.nasa.jpl.imce.oml.resolver.api.Extent):Option[gov.nasa.jpl.imce.oml.resolver.api.Module]" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TerminologyBoxStatement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.TerminologyBoxStatement">TerminologyBoxStatement</a> → TerminologyBoxStatement → LogicalElement</dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@notify():Unit" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@notifyAll():Unit" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@toString():String" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.api.CrossReferencabilityKind#vertexId" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="vertexId:Long"></a>
+      <a id="vertexId:Long"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">vertexId</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Long" class="extype" target="_top">Long</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@vertexId:Long" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>CrossReferencabilityKind</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@wait():Unit" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Long" class="extype" target="_top">Long</a></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Long" class="extype" target="_top">Long</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.SpecializationAxiom@wait(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="gov.nasa.jpl.imce.oml.resolver.impl.ElementCrossReferenceTuple">
+              <h3>Inherited from <a href="ElementCrossReferenceTuple.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ElementCrossReferenceTuple">ElementCrossReferenceTuple</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.impl.CrossReferencableKind">
+              <h3>Inherited from <a href="CrossReferencableKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.CrossReferencableKind">CrossReferencableKind</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.impl.ExtrinsicIdentityKind">
+              <h3>Inherited from <a href="ExtrinsicIdentityKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ExtrinsicIdentityKind">ExtrinsicIdentityKind</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.impl.TermAxiom">
+              <h3>Inherited from <a href="TermAxiom.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.TermAxiom">TermAxiom</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.impl.TerminologyBoxStatement">
+              <h3>Inherited from <a href="TerminologyBoxStatement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.TerminologyBoxStatement">TerminologyBoxStatement</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.impl.ModuleElement">
+              <h3>Inherited from <a href="ModuleElement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ModuleElement">ModuleElement</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.impl.LogicalElement">
+              <h3>Inherited from <a href="LogicalElement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.LogicalElement">LogicalElement</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.impl.IdentityKind">
+              <h3>Inherited from <a href="IdentityKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.IdentityKind">IdentityKind</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.impl.CrossReferencabilityKind">
+              <h3>Inherited from <a href="CrossReferencabilityKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.CrossReferencabilityKind">CrossReferencabilityKind</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.api.SpecializationAxiom">
+              <h3>Inherited from <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.SpecializationAxiom" class="extype" target="_top">api.SpecializationAxiom</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.api.ElementCrossReferenceTuple">
+              <h3>Inherited from <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ElementCrossReferenceTuple" class="extype" target="_top">api.ElementCrossReferenceTuple</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.api.CrossReferencableKind">
+              <h3>Inherited from <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.CrossReferencableKind" class="extype" target="_top">api.CrossReferencableKind</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.api.ExtrinsicIdentityKind">
+              <h3>Inherited from <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ExtrinsicIdentityKind" class="extype" target="_top">api.ExtrinsicIdentityKind</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.api.TermAxiom">
+              <h3>Inherited from <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.TermAxiom" class="extype" target="_top">api.TermAxiom</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.api.TerminologyBoxStatement">
+              <h3>Inherited from <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.TerminologyBoxStatement" class="extype" target="_top">api.TerminologyBoxStatement</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.api.ModuleElement">
+              <h3>Inherited from <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ModuleElement" class="extype" target="_top">api.ModuleElement</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.api.LogicalElement">
+              <h3>Inherited from <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.LogicalElement" class="extype" target="_top">api.LogicalElement</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.api.IdentityKind">
+              <h3>Inherited from <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.IdentityKind" class="extype" target="_top">api.IdentityKind</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.api.CrossReferencabilityKind">
+              <h3>Inherited from <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.CrossReferencabilityKind" class="extype" target="_top">api.CrossReferencabilityKind</a></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

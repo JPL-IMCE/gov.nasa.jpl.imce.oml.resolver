@@ -1,0 +1,1047 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>OMLResolvedTable - gov.nasa.jpl.imce.oml.resolver - gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable</title>
+          <meta name="description" content="OMLResolvedTable - gov.nasa.jpl.imce.oml.resolver - gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable" />
+          <meta name="keywords" content="OMLResolvedTable gov.nasa.jpl.imce.oml.resolver gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../../../lib/tools.tooltip.js"></script>
+      <script type="text/javascript" src="../../../../../../lib/modernizr.custom.js"></script><script type="text/javascript" src="../../../../../../lib/diagrams.js" id="diagrams-js"></script>
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../../../index.html';
+            var hash = 'gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="type">
+      <div id="definition">
+        <a href="OMLResolvedTable$.html" title="See companion object"><img alt="Class/Object" src="../../../../../../lib/class_to_object_big.png" /></a>
+        <p id="owner"><a href="../../../../../package.html" class="extype" name="gov">gov</a>.<a href="../../../../package.html" class="extype" name="gov.nasa">nasa</a>.<a href="../../../package.html" class="extype" name="gov.nasa.jpl">jpl</a>.<a href="../../package.html" class="extype" name="gov.nasa.jpl.imce">imce</a>.<a href="../package.html" class="extype" name="gov.nasa.jpl.imce.oml">oml</a>.<a href="package.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver">resolver</a></p>
+        <h1><a href="OMLResolvedTable$.html" title="See companion object">OMLResolvedTable</a></h1><h3><span class="morelinks"><div>
+            Related Docs:
+            <a href="OMLResolvedTable$.html" title="See companion object">object OMLResolvedTable</a>
+            | <a href="package.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver">package resolver</a>
+          </div></span></h3><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <span class="name">OMLResolvedTable</span><span class="params">(<span name="extents">extents: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Seq" class="extype" target="_top">Seq</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Extent" class="extype" target="_top">Extent</a>] = <span class="symbol">Seq.empty</span></span>, <span name="logicalElements">logicalElements: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.LogicalElement" class="extype" target="_top">LogicalElement</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Extent" class="extype" target="_top">Extent</a>] = <span class="symbol">Map.empty</span></span>, <span name="annotationPropertyValues">annotationPropertyValues: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Seq" class="extype" target="_top">Seq</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.AnnotationPropertyValue" class="extype" target="_top">AnnotationPropertyValue</a>] = <span class="symbol">Seq.empty</span></span>, <span name="terminologyBoxOfTerminologyBoxAxiom">terminologyBoxOfTerminologyBoxAxiom: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.TerminologyBoxAxiom" class="extype" target="_top">TerminologyBoxAxiom</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.TerminologyBox" class="extype" target="_top">TerminologyBox</a>] = <span class="symbol">Map.empty</span></span>, <span name="terminologyBoxOfTerminologyBoxStatement">terminologyBoxOfTerminologyBoxStatement: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.TerminologyBoxStatement" class="extype" target="_top">TerminologyBoxStatement</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.TerminologyBox" class="extype" target="_top">TerminologyBox</a>] = <span class="symbol">Map.empty</span></span>, <span name="chainRuleOfRuleBodySegment">chainRuleOfRuleBodySegment: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment" class="extype" target="_top">RuleBodySegment</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ChainRule" class="extype" target="_top">ChainRule</a>] = <span class="symbol">Map.empty</span></span>, <span name="ruleBodySegmentOfSegmentPredicate">ruleBodySegmentOfSegmentPredicate: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.SegmentPredicate" class="extype" target="_top">SegmentPredicate</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment" class="extype" target="_top">RuleBodySegment</a>] = <span class="symbol">Map.empty</span></span>, <span name="ruleBodySegmentOfRuleBodySegment">ruleBodySegmentOfRuleBodySegment: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment" class="extype" target="_top">RuleBodySegment</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment" class="extype" target="_top">RuleBodySegment</a>] = <span class="symbol">Map.empty</span></span>, <span name="restrictionStructuredDataPropertyContextOfRestrictionStructuredDataPropertyTuple">restrictionStructuredDataPropertyContextOfRestrictionStructuredDataPropertyTuple: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RestrictionStructuredDataPropertyTuple" class="extype" target="_top">RestrictionStructuredDataPropertyTuple</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RestrictionStructuredDataPropertyContext" class="extype" target="_top">RestrictionStructuredDataPropertyContext</a>] = <span class="symbol">Map.empty</span></span>, <span name="restrictionStructuredDataPropertyContextOfRestrictionScalarDataPropertyValue">restrictionStructuredDataPropertyContextOfRestrictionScalarDataPropertyValue: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RestrictionScalarDataPropertyValue" class="extype" target="_top">RestrictionScalarDataPropertyValue</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RestrictionStructuredDataPropertyContext" class="extype" target="_top">RestrictionStructuredDataPropertyContext</a>] = <span class="symbol">Map.empty</span></span>, <span name="bundleOfTerminologyBundleAxiom">bundleOfTerminologyBundleAxiom: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.TerminologyBundleAxiom" class="extype" target="_top">TerminologyBundleAxiom</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Bundle" class="extype" target="_top">Bundle</a>] = <span class="symbol">Map.empty</span></span>, <span name="bundleOfTerminologyBundleStatement">bundleOfTerminologyBundleStatement: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.TerminologyBundleStatement" class="extype" target="_top">TerminologyBundleStatement</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Bundle" class="extype" target="_top">Bundle</a>] = <span class="symbol">Map.empty</span></span>, <span name="conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom">conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DisjointUnionOfConceptsAxiom" class="extype" target="_top">DisjointUnionOfConceptsAxiom</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ConceptTreeDisjunction" class="extype" target="_top">ConceptTreeDisjunction</a>] = <span class="symbol">Map.empty</span></span>, <span name="descriptionBoxOfDescriptionBoxRefinement">descriptionBoxOfDescriptionBoxRefinement: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBoxRefinement" class="extype" target="_top">DescriptionBoxRefinement</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>] = <span class="symbol">Map.empty</span></span>, <span name="descriptionBoxOfDescriptionBoxExtendsClosedWorldDefinitions">descriptionBoxOfDescriptionBoxExtendsClosedWorldDefinitions: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBoxExtendsClosedWorldDefinitions" class="extype" target="_top">DescriptionBoxExtendsClosedWorldDefinitions</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>] = <span class="symbol">Map.empty</span></span>, <span name="descriptionBoxOfConceptInstance">descriptionBoxOfConceptInstance: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ConceptInstance" class="extype" target="_top">ConceptInstance</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>] = <span class="symbol">Map.empty</span></span>, <span name="descriptionBoxOfReifiedRelationshipInstance">descriptionBoxOfReifiedRelationshipInstance: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipInstance" class="extype" target="_top">ReifiedRelationshipInstance</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>] = <span class="symbol">Map.empty</span></span>, <span name="descriptionBoxOfReifiedRelationshipInstanceDomain">descriptionBoxOfReifiedRelationshipInstanceDomain: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipInstanceDomain" class="extype" target="_top">ReifiedRelationshipInstanceDomain</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>] = <span class="symbol">Map.empty</span></span>, <span name="descriptionBoxOfReifiedRelationshipInstanceRange">descriptionBoxOfReifiedRelationshipInstanceRange: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipInstanceRange" class="extype" target="_top">ReifiedRelationshipInstanceRange</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>] = <span class="symbol">Map.empty</span></span>, <span name="descriptionBoxOfUnreifiedRelationshipInstanceTuple">descriptionBoxOfUnreifiedRelationshipInstanceTuple: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.UnreifiedRelationshipInstanceTuple" class="extype" target="_top">UnreifiedRelationshipInstanceTuple</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>] = <span class="symbol">Map.empty</span></span>, <span name="descriptionBoxOfSingletonInstanceScalarDataPropertyValue">descriptionBoxOfSingletonInstanceScalarDataPropertyValue: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceScalarDataPropertyValue" class="extype" target="_top">SingletonInstanceScalarDataPropertyValue</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>] = <span class="symbol">Map.empty</span></span>, <span name="descriptionBoxOfSingletonInstanceStructuredDataPropertyValue">descriptionBoxOfSingletonInstanceStructuredDataPropertyValue: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceStructuredDataPropertyValue" class="extype" target="_top">SingletonInstanceStructuredDataPropertyValue</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>] = <span class="symbol">Map.empty</span></span>, <span name="singletonInstanceStructuredDataPropertyContextOfStructuredDataPropertyTuple">singletonInstanceStructuredDataPropertyContextOfStructuredDataPropertyTuple: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.StructuredDataPropertyTuple" class="extype" target="_top">StructuredDataPropertyTuple</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceStructuredDataPropertyContext" class="extype" target="_top">SingletonInstanceStructuredDataPropertyContext</a>] = <span class="symbol">Map.empty</span></span>, <span name="singletonInstanceStructuredDataPropertyContextOfScalarDataPropertyValue">singletonInstanceStructuredDataPropertyContextOfScalarDataPropertyValue: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ScalarDataPropertyValue" class="extype" target="_top">ScalarDataPropertyValue</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceStructuredDataPropertyContext" class="extype" target="_top">SingletonInstanceStructuredDataPropertyContext</a>] = <span class="symbol">Map.empty</span></span>)</span><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A global table of resolved OML Elements.
+</p></div><dl class="paramcmts block"><dt class="param">extents</dt><dd class="cmt"><p>The set of OML Extents resolved.</p></dd><dt class="param">logicalElements</dt><dd class="cmt"><p>The OML Extent of each OML LogicalElement resolved.</p></dd><dt class="param">annotationPropertyValues</dt><dd class="cmt"><p>The set of OML AnnotationPropertyValues across all OML Extents.</p></dd><dt class="param">terminologyBoxOfTerminologyBoxAxiom</dt><dd class="cmt"><p>The OML TerminologyBox of each OML TerminologyBoxAxiom resolved.</p></dd><dt class="param">terminologyBoxOfTerminologyBoxStatement</dt><dd class="cmt"><p>The OML TerminologyBox of each OML TerminologyBoxStatement resolved.</p></dd><dt class="param">chainRuleOfRuleBodySegment</dt><dd class="cmt"><p>The OML ChainRule of each OML RuleBodySegment resolved.</p></dd><dt class="param">ruleBodySegmentOfSegmentPredicate</dt><dd class="cmt"><p>The OML RuleBodySegment of each OML SegmentPredicate resolved.</p></dd><dt class="param">ruleBodySegmentOfRuleBodySegment</dt><dd class="cmt"><p>The OML RuleBodySegment of each OML RuleBodySegment resolved.</p></dd><dt class="param">restrictionStructuredDataPropertyContextOfRestrictionStructuredDataPropertyTuple</dt><dd class="cmt"><p>The OML RestrictionStructuredDataPropertyContext of each OML RestrictionStructuredDataPropertyTuple resolved.</p></dd><dt class="param">restrictionStructuredDataPropertyContextOfRestrictionScalarDataPropertyValue</dt><dd class="cmt"><p>The OML RestrictionStructuredDataPropertyContext of each OML RestrictionScalarDataPropertyValue resolved.</p></dd><dt class="param">bundleOfTerminologyBundleAxiom</dt><dd class="cmt"><p>The OML Bundle of each OML TerminologyBundleAxiom resolved.</p></dd><dt class="param">bundleOfTerminologyBundleStatement</dt><dd class="cmt"><p>The OML Bundle of each OML TerminologyBundleStatement resolved.</p></dd><dt class="param">conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom</dt><dd class="cmt"><p>The OML ConceptTreeDisjunction of each OML DisjointUnionOfConceptsAxiom resolved.</p></dd><dt class="param">descriptionBoxOfDescriptionBoxRefinement</dt><dd class="cmt"><p>The OML DescriptionBox of each OML DescriptionBoxRefinement resolved.</p></dd><dt class="param">descriptionBoxOfDescriptionBoxExtendsClosedWorldDefinitions</dt><dd class="cmt"><p>The OML DescriptionBox of each DescriptionBoxExtendsClosedWorldDefinitions resolved.</p></dd><dt class="param">descriptionBoxOfConceptInstance</dt><dd class="cmt"><p>The OML DescriptionBox of each OML ConceptInstance resolved.</p></dd><dt class="param">descriptionBoxOfReifiedRelationshipInstance</dt><dd class="cmt"><p>The OML DescriptionBox of each OML ReifiedRelationshipInstance resolved.</p></dd><dt class="param">descriptionBoxOfReifiedRelationshipInstanceDomain</dt><dd class="cmt"><p>The OML DescriptionBox of each OML ReifiedRelationshipInstanceDomain resolved.</p></dd><dt class="param">descriptionBoxOfReifiedRelationshipInstanceRange</dt><dd class="cmt"><p>The OML DescriptionBox of each OML ReifiedRelationshipInstanceRange resolved.</p></dd><dt class="param">descriptionBoxOfUnreifiedRelationshipInstanceTuple</dt><dd class="cmt"><p>The OML DescriptionBox of each OML UnreifiedRelationshipInstanceTuple resolved.</p></dd><dt class="param">descriptionBoxOfSingletonInstanceScalarDataPropertyValue</dt><dd class="cmt"><p>The OML DescriptionBox of each OML SingletonInstanceScalarDataPropertyValue resolved.</p></dd><dt class="param">descriptionBoxOfSingletonInstanceStructuredDataPropertyValue</dt><dd class="cmt"><p>The OML DescriptionBox of each OML SingletonInstanceStructuredDataPropertyValue resolved.</p></dd><dt class="param">singletonInstanceStructuredDataPropertyContextOfStructuredDataPropertyTuple</dt><dd class="cmt"><p>The OML SingletonInstanceStructuredDataPropertyContext of each OML StructuredDataPropertyTuple resolved.</p></dd><dt class="param">singletonInstanceStructuredDataPropertyContextOfScalarDataPropertyValue</dt><dd class="cmt"><p>The OML SingletonInstanceStructuredDataPropertyContext of each OML ScalarDataPropertyValue resolved.</p></dd></dl><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Serializable" class="extype" target="_top">Serializable</a>, <span class="extype" name="java.io.Serializable">Serializable</span>, <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Product" class="extype" target="_top">Product</a>, <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Equals" class="extype" target="_top">Equals</a>, <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a></div>
+        </div><div class="toggleContainer block diagram-container" id="inheritance-diagram-container">
+                <span class="toggle diagram-link">Type Hierarchy</span>
+                <div class="diagram" id="inheritance-diagram"><svg class="class-diagram" id="graph1" viewBox="0.00 0.00 201.00 120.00" height="120pt" width="201pt" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g transform="scale(1 1) rotate(0) translate(4 116)" class="graph" id="graph0"><polygon points="-4,4 -4,-116 197,-116 197,4 -4,4" stroke="none" fill="white"></polygon><g class="cluster" id="clust1"></g><g class="cluster" id="clust2"></g><!-- node0 --><g class="node this class" id="graph1_0"><g id="a_this class|graph1_0"><a xlink:title="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable (this class)" xlink:href="#inheritance-diagram"><polygon points="156,-50 28,-50 28,-24 156,-24 156,-50" stroke="#115f3b" fill="#0a955b"></polygon><image xlink:href="../../../../../../lib/class_diagram.png" y="-43" x="40" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="10.00" font-family="Arial" y="-34.5" x="60" text-anchor="start">OMLResolvedTable</text></a></g></g><!-- node1 --><g class="node trait" id="graph1_1"><g id="a_trait|graph1_1"><a xlink:title="scala.Product"><polygon points="78.25,-112 -0.25,-112 -0.25,-86 78.25,-86 78.25,-112" stroke="#37657d" fill="#498aad"></polygon><image xlink:href="../../../../../../lib/trait_diagram.png" y="-105" x="12" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="10.00" font-family="Arial" y="-96.5" x="32" text-anchor="start">Product</text></a></g></g><!-- node1&#45;&gt;node0 --><g class="edge inheritance" id="graph1_1_0"><g id="a_inheritance|graph1_1_0"><a xlink:title="OMLResolvedTable is a subtype of Product"><path d="M53.1094,-82.0271C61.9547,-72.0135 73.177,-59.3091 81.2906,-50.1238" stroke="#d4d4d4" fill="none"></path><polygon points="51.724,-80.9521 49.7253,-85.8581 54.3471,-83.2693 51.724,-80.9521" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node2 --><g class="node trait" id="graph1_2"><g id="a_trait|graph1_2"><a xlink:title="scala.Serializable"><polygon points="193,-112 97,-112 97,-86 193,-86 193,-112" stroke="#37657d" fill="#498aad"></polygon><image xlink:href="../../../../../../lib/trait_diagram.png" y="-105" x="109" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="10.00" font-family="Arial" y="-96.5" x="129" text-anchor="start">Serializable</text></a></g></g><!-- node2&#45;&gt;node0 --><g class="edge inheritance" id="graph1_2_0"><g id="a_inheritance|graph1_2_0"><a xlink:title="OMLResolvedTable is a subtype of Serializable"><path d="M130.891,-82.0271C122.045,-72.0135 110.823,-59.3091 102.709,-50.1238" stroke="#d4d4d4" fill="none"></path><polygon points="129.653,-83.2693 134.275,-85.8581 132.276,-80.9521 129.653,-83.2693" stroke="#d4d4d4" fill="none"></polygon></a></g></g></g></svg></div>
+              </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable"><span>OMLResolvedTable</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show All</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        <div id="constructors" class="members">
+              <h3>Instance Constructors</h3>
+              <ol><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="&lt;init&gt;(extents:scala.collection.immutable.Seq[gov.nasa.jpl.imce.oml.resolver.api.Extent],logicalElements:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.LogicalElement,gov.nasa.jpl.imce.oml.resolver.api.Extent],annotationPropertyValues:scala.collection.immutable.Seq[gov.nasa.jpl.imce.oml.resolver.api.AnnotationPropertyValue],terminologyBoxOfTerminologyBoxAxiom:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.TerminologyBoxAxiom,gov.nasa.jpl.imce.oml.resolver.api.TerminologyBox],terminologyBoxOfTerminologyBoxStatement:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.TerminologyBoxStatement,gov.nasa.jpl.imce.oml.resolver.api.TerminologyBox],chainRuleOfRuleBodySegment:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment,gov.nasa.jpl.imce.oml.resolver.api.ChainRule],ruleBodySegmentOfSegmentPredicate:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.SegmentPredicate,gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment],ruleBodySegmentOfRuleBodySegment:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment,gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment],restrictionStructuredDataPropertyContextOfRestrictionStructuredDataPropertyTuple:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.RestrictionStructuredDataPropertyTuple,gov.nasa.jpl.imce.oml.resolver.api.RestrictionStructuredDataPropertyContext],restrictionStructuredDataPropertyContextOfRestrictionScalarDataPropertyValue:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.RestrictionScalarDataPropertyValue,gov.nasa.jpl.imce.oml.resolver.api.RestrictionStructuredDataPropertyContext],bundleOfTerminologyBundleAxiom:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.TerminologyBundleAxiom,gov.nasa.jpl.imce.oml.resolver.api.Bundle],bundleOfTerminologyBundleStatement:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.TerminologyBundleStatement,gov.nasa.jpl.imce.oml.resolver.api.Bundle],conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.DisjointUnionOfConceptsAxiom,gov.nasa.jpl.imce.oml.resolver.api.ConceptTreeDisjunction],descriptionBoxOfDescriptionBoxRefinement:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.DescriptionBoxRefinement,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox],descriptionBoxOfDescriptionBoxExtendsClosedWorldDefinitions:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.DescriptionBoxExtendsClosedWorldDefinitions,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox],descriptionBoxOfConceptInstance:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.ConceptInstance,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox],descriptionBoxOfReifiedRelationshipInstance:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipInstance,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox],descriptionBoxOfReifiedRelationshipInstanceDomain:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipInstanceDomain,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox],descriptionBoxOfReifiedRelationshipInstanceRange:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipInstanceRange,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox],descriptionBoxOfUnreifiedRelationshipInstanceTuple:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.UnreifiedRelationshipInstanceTuple,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox],descriptionBoxOfSingletonInstanceScalarDataPropertyValue:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceScalarDataPropertyValue,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox],descriptionBoxOfSingletonInstanceStructuredDataPropertyValue:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceStructuredDataPropertyValue,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox],singletonInstanceStructuredDataPropertyContextOfStructuredDataPropertyTuple:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.StructuredDataPropertyTuple,gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceStructuredDataPropertyContext],singletonInstanceStructuredDataPropertyContextOfScalarDataPropertyValue:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.ScalarDataPropertyValue,gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceStructuredDataPropertyContext]):gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable"></a>
+      <a id="&lt;init&gt;:OMLResolvedTable"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">OMLResolvedTable</span><span class="params">(<span name="extents">extents: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Seq" class="extype" target="_top">Seq</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Extent" class="extype" target="_top">Extent</a>] = <span class="symbol">Seq.empty</span></span>, <span name="logicalElements">logicalElements: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.LogicalElement" class="extype" target="_top">LogicalElement</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Extent" class="extype" target="_top">Extent</a>] = <span class="symbol">Map.empty</span></span>, <span name="annotationPropertyValues">annotationPropertyValues: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Seq" class="extype" target="_top">Seq</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.AnnotationPropertyValue" class="extype" target="_top">AnnotationPropertyValue</a>] = <span class="symbol">Seq.empty</span></span>, <span name="terminologyBoxOfTerminologyBoxAxiom">terminologyBoxOfTerminologyBoxAxiom: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.TerminologyBoxAxiom" class="extype" target="_top">TerminologyBoxAxiom</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.TerminologyBox" class="extype" target="_top">TerminologyBox</a>] = <span class="symbol">Map.empty</span></span>, <span name="terminologyBoxOfTerminologyBoxStatement">terminologyBoxOfTerminologyBoxStatement: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.TerminologyBoxStatement" class="extype" target="_top">TerminologyBoxStatement</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.TerminologyBox" class="extype" target="_top">TerminologyBox</a>] = <span class="symbol">Map.empty</span></span>, <span name="chainRuleOfRuleBodySegment">chainRuleOfRuleBodySegment: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment" class="extype" target="_top">RuleBodySegment</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ChainRule" class="extype" target="_top">ChainRule</a>] = <span class="symbol">Map.empty</span></span>, <span name="ruleBodySegmentOfSegmentPredicate">ruleBodySegmentOfSegmentPredicate: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.SegmentPredicate" class="extype" target="_top">SegmentPredicate</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment" class="extype" target="_top">RuleBodySegment</a>] = <span class="symbol">Map.empty</span></span>, <span name="ruleBodySegmentOfRuleBodySegment">ruleBodySegmentOfRuleBodySegment: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment" class="extype" target="_top">RuleBodySegment</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment" class="extype" target="_top">RuleBodySegment</a>] = <span class="symbol">Map.empty</span></span>, <span name="restrictionStructuredDataPropertyContextOfRestrictionStructuredDataPropertyTuple">restrictionStructuredDataPropertyContextOfRestrictionStructuredDataPropertyTuple: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RestrictionStructuredDataPropertyTuple" class="extype" target="_top">RestrictionStructuredDataPropertyTuple</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RestrictionStructuredDataPropertyContext" class="extype" target="_top">RestrictionStructuredDataPropertyContext</a>] = <span class="symbol">Map.empty</span></span>, <span name="restrictionStructuredDataPropertyContextOfRestrictionScalarDataPropertyValue">restrictionStructuredDataPropertyContextOfRestrictionScalarDataPropertyValue: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RestrictionScalarDataPropertyValue" class="extype" target="_top">RestrictionScalarDataPropertyValue</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RestrictionStructuredDataPropertyContext" class="extype" target="_top">RestrictionStructuredDataPropertyContext</a>] = <span class="symbol">Map.empty</span></span>, <span name="bundleOfTerminologyBundleAxiom">bundleOfTerminologyBundleAxiom: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.TerminologyBundleAxiom" class="extype" target="_top">TerminologyBundleAxiom</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Bundle" class="extype" target="_top">Bundle</a>] = <span class="symbol">Map.empty</span></span>, <span name="bundleOfTerminologyBundleStatement">bundleOfTerminologyBundleStatement: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.TerminologyBundleStatement" class="extype" target="_top">TerminologyBundleStatement</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Bundle" class="extype" target="_top">Bundle</a>] = <span class="symbol">Map.empty</span></span>, <span name="conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom">conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DisjointUnionOfConceptsAxiom" class="extype" target="_top">DisjointUnionOfConceptsAxiom</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ConceptTreeDisjunction" class="extype" target="_top">ConceptTreeDisjunction</a>] = <span class="symbol">Map.empty</span></span>, <span name="descriptionBoxOfDescriptionBoxRefinement">descriptionBoxOfDescriptionBoxRefinement: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBoxRefinement" class="extype" target="_top">DescriptionBoxRefinement</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>] = <span class="symbol">Map.empty</span></span>, <span name="descriptionBoxOfDescriptionBoxExtendsClosedWorldDefinitions">descriptionBoxOfDescriptionBoxExtendsClosedWorldDefinitions: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBoxExtendsClosedWorldDefinitions" class="extype" target="_top">DescriptionBoxExtendsClosedWorldDefinitions</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>] = <span class="symbol">Map.empty</span></span>, <span name="descriptionBoxOfConceptInstance">descriptionBoxOfConceptInstance: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ConceptInstance" class="extype" target="_top">ConceptInstance</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>] = <span class="symbol">Map.empty</span></span>, <span name="descriptionBoxOfReifiedRelationshipInstance">descriptionBoxOfReifiedRelationshipInstance: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipInstance" class="extype" target="_top">ReifiedRelationshipInstance</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>] = <span class="symbol">Map.empty</span></span>, <span name="descriptionBoxOfReifiedRelationshipInstanceDomain">descriptionBoxOfReifiedRelationshipInstanceDomain: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipInstanceDomain" class="extype" target="_top">ReifiedRelationshipInstanceDomain</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>] = <span class="symbol">Map.empty</span></span>, <span name="descriptionBoxOfReifiedRelationshipInstanceRange">descriptionBoxOfReifiedRelationshipInstanceRange: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipInstanceRange" class="extype" target="_top">ReifiedRelationshipInstanceRange</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>] = <span class="symbol">Map.empty</span></span>, <span name="descriptionBoxOfUnreifiedRelationshipInstanceTuple">descriptionBoxOfUnreifiedRelationshipInstanceTuple: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.UnreifiedRelationshipInstanceTuple" class="extype" target="_top">UnreifiedRelationshipInstanceTuple</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>] = <span class="symbol">Map.empty</span></span>, <span name="descriptionBoxOfSingletonInstanceScalarDataPropertyValue">descriptionBoxOfSingletonInstanceScalarDataPropertyValue: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceScalarDataPropertyValue" class="extype" target="_top">SingletonInstanceScalarDataPropertyValue</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>] = <span class="symbol">Map.empty</span></span>, <span name="descriptionBoxOfSingletonInstanceStructuredDataPropertyValue">descriptionBoxOfSingletonInstanceStructuredDataPropertyValue: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceStructuredDataPropertyValue" class="extype" target="_top">SingletonInstanceStructuredDataPropertyValue</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>] = <span class="symbol">Map.empty</span></span>, <span name="singletonInstanceStructuredDataPropertyContextOfStructuredDataPropertyTuple">singletonInstanceStructuredDataPropertyContextOfStructuredDataPropertyTuple: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.StructuredDataPropertyTuple" class="extype" target="_top">StructuredDataPropertyTuple</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceStructuredDataPropertyContext" class="extype" target="_top">SingletonInstanceStructuredDataPropertyContext</a>] = <span class="symbol">Map.empty</span></span>, <span name="singletonInstanceStructuredDataPropertyContextOfScalarDataPropertyValue">singletonInstanceStructuredDataPropertyContextOfScalarDataPropertyValue: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ScalarDataPropertyValue" class="extype" target="_top">ScalarDataPropertyValue</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceStructuredDataPropertyContext" class="extype" target="_top">SingletonInstanceStructuredDataPropertyContext</a>] = <span class="symbol">Map.empty</span></span>)</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@&lt;init&gt;(extents:scala.collection.immutable.Seq[gov.nasa.jpl.imce.oml.resolver.api.Extent],logicalElements:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.LogicalElement,gov.nasa.jpl.imce.oml.resolver.api.Extent],annotationPropertyValues:scala.collection.immutable.Seq[gov.nasa.jpl.imce.oml.resolver.api.AnnotationPropertyValue],terminologyBoxOfTerminologyBoxAxiom:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.TerminologyBoxAxiom,gov.nasa.jpl.imce.oml.resolver.api.TerminologyBox],terminologyBoxOfTerminologyBoxStatement:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.TerminologyBoxStatement,gov.nasa.jpl.imce.oml.resolver.api.TerminologyBox],chainRuleOfRuleBodySegment:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment,gov.nasa.jpl.imce.oml.resolver.api.ChainRule],ruleBodySegmentOfSegmentPredicate:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.SegmentPredicate,gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment],ruleBodySegmentOfRuleBodySegment:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment,gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment],restrictionStructuredDataPropertyContextOfRestrictionStructuredDataPropertyTuple:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.RestrictionStructuredDataPropertyTuple,gov.nasa.jpl.imce.oml.resolver.api.RestrictionStructuredDataPropertyContext],restrictionStructuredDataPropertyContextOfRestrictionScalarDataPropertyValue:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.RestrictionScalarDataPropertyValue,gov.nasa.jpl.imce.oml.resolver.api.RestrictionStructuredDataPropertyContext],bundleOfTerminologyBundleAxiom:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.TerminologyBundleAxiom,gov.nasa.jpl.imce.oml.resolver.api.Bundle],bundleOfTerminologyBundleStatement:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.TerminologyBundleStatement,gov.nasa.jpl.imce.oml.resolver.api.Bundle],conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.DisjointUnionOfConceptsAxiom,gov.nasa.jpl.imce.oml.resolver.api.ConceptTreeDisjunction],descriptionBoxOfDescriptionBoxRefinement:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.DescriptionBoxRefinement,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox],descriptionBoxOfDescriptionBoxExtendsClosedWorldDefinitions:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.DescriptionBoxExtendsClosedWorldDefinitions,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox],descriptionBoxOfConceptInstance:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.ConceptInstance,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox],descriptionBoxOfReifiedRelationshipInstance:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipInstance,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox],descriptionBoxOfReifiedRelationshipInstanceDomain:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipInstanceDomain,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox],descriptionBoxOfReifiedRelationshipInstanceRange:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipInstanceRange,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox],descriptionBoxOfUnreifiedRelationshipInstanceTuple:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.UnreifiedRelationshipInstanceTuple,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox],descriptionBoxOfSingletonInstanceScalarDataPropertyValue:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceScalarDataPropertyValue,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox],descriptionBoxOfSingletonInstanceStructuredDataPropertyValue:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceStructuredDataPropertyValue,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox],singletonInstanceStructuredDataPropertyContextOfStructuredDataPropertyTuple:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.StructuredDataPropertyTuple,gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceStructuredDataPropertyContext],singletonInstanceStructuredDataPropertyContextOfScalarDataPropertyValue:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.ScalarDataPropertyValue,gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceStructuredDataPropertyContext]):gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">extents</dt><dd class="cmt"><p>The set of OML Extents resolved.</p></dd><dt class="param">logicalElements</dt><dd class="cmt"><p>The OML Extent of each OML LogicalElement resolved.</p></dd><dt class="param">annotationPropertyValues</dt><dd class="cmt"><p>The set of OML AnnotationPropertyValues across all OML Extents.</p></dd><dt class="param">terminologyBoxOfTerminologyBoxAxiom</dt><dd class="cmt"><p>The OML TerminologyBox of each OML TerminologyBoxAxiom resolved.</p></dd><dt class="param">terminologyBoxOfTerminologyBoxStatement</dt><dd class="cmt"><p>The OML TerminologyBox of each OML TerminologyBoxStatement resolved.</p></dd><dt class="param">chainRuleOfRuleBodySegment</dt><dd class="cmt"><p>The OML ChainRule of each OML RuleBodySegment resolved.</p></dd><dt class="param">ruleBodySegmentOfSegmentPredicate</dt><dd class="cmt"><p>The OML RuleBodySegment of each OML SegmentPredicate resolved.</p></dd><dt class="param">ruleBodySegmentOfRuleBodySegment</dt><dd class="cmt"><p>The OML RuleBodySegment of each OML RuleBodySegment resolved.</p></dd><dt class="param">restrictionStructuredDataPropertyContextOfRestrictionStructuredDataPropertyTuple</dt><dd class="cmt"><p>The OML RestrictionStructuredDataPropertyContext of each OML RestrictionStructuredDataPropertyTuple resolved.</p></dd><dt class="param">restrictionStructuredDataPropertyContextOfRestrictionScalarDataPropertyValue</dt><dd class="cmt"><p>The OML RestrictionStructuredDataPropertyContext of each OML RestrictionScalarDataPropertyValue resolved.</p></dd><dt class="param">bundleOfTerminologyBundleAxiom</dt><dd class="cmt"><p>The OML Bundle of each OML TerminologyBundleAxiom resolved.</p></dd><dt class="param">bundleOfTerminologyBundleStatement</dt><dd class="cmt"><p>The OML Bundle of each OML TerminologyBundleStatement resolved.</p></dd><dt class="param">conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom</dt><dd class="cmt"><p>The OML ConceptTreeDisjunction of each OML DisjointUnionOfConceptsAxiom resolved.</p></dd><dt class="param">descriptionBoxOfDescriptionBoxRefinement</dt><dd class="cmt"><p>The OML DescriptionBox of each OML DescriptionBoxRefinement resolved.</p></dd><dt class="param">descriptionBoxOfDescriptionBoxExtendsClosedWorldDefinitions</dt><dd class="cmt"><p>The OML DescriptionBox of each DescriptionBoxExtendsClosedWorldDefinitions resolved.</p></dd><dt class="param">descriptionBoxOfConceptInstance</dt><dd class="cmt"><p>The OML DescriptionBox of each OML ConceptInstance resolved.</p></dd><dt class="param">descriptionBoxOfReifiedRelationshipInstance</dt><dd class="cmt"><p>The OML DescriptionBox of each OML ReifiedRelationshipInstance resolved.</p></dd><dt class="param">descriptionBoxOfReifiedRelationshipInstanceDomain</dt><dd class="cmt"><p>The OML DescriptionBox of each OML ReifiedRelationshipInstanceDomain resolved.</p></dd><dt class="param">descriptionBoxOfReifiedRelationshipInstanceRange</dt><dd class="cmt"><p>The OML DescriptionBox of each OML ReifiedRelationshipInstanceRange resolved.</p></dd><dt class="param">descriptionBoxOfUnreifiedRelationshipInstanceTuple</dt><dd class="cmt"><p>The OML DescriptionBox of each OML UnreifiedRelationshipInstanceTuple resolved.</p></dd><dt class="param">descriptionBoxOfSingletonInstanceScalarDataPropertyValue</dt><dd class="cmt"><p>The OML DescriptionBox of each OML SingletonInstanceScalarDataPropertyValue resolved.</p></dd><dt class="param">descriptionBoxOfSingletonInstanceStructuredDataPropertyValue</dt><dd class="cmt"><p>The OML DescriptionBox of each OML SingletonInstanceStructuredDataPropertyValue resolved.</p></dd><dt class="param">singletonInstanceStructuredDataPropertyContextOfStructuredDataPropertyTuple</dt><dd class="cmt"><p>The OML SingletonInstanceStructuredDataPropertyContext of each OML StructuredDataPropertyTuple resolved.</p></dd><dt class="param">singletonInstanceStructuredDataPropertyContextOfScalarDataPropertyValue</dt><dd class="cmt"><p>The OML SingletonInstanceStructuredDataPropertyContext of each OML ScalarDataPropertyValue resolved.</p></dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@##():Int" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@==(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#allAspectSpecializationAxioms" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="allAspectSpecializationAxioms:scala.collection.immutable.Iterable[gov.nasa.jpl.imce.oml.resolver.api.AspectSpecializationAxiom]"></a>
+      <a id="allAspectSpecializationAxioms:Iterable[AspectSpecializationAxiom]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">allAspectSpecializationAxioms</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Iterable" class="extype" target="_top">Iterable</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.AspectSpecializationAxiom" class="extype" target="_top">AspectSpecializationAxiom</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@allAspectSpecializationAxioms:scala.collection.immutable.Iterable[gov.nasa.jpl.imce.oml.resolver.api.AspectSpecializationAxiom]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#allAspects" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="allAspects:scala.collection.immutable.Iterable[gov.nasa.jpl.imce.oml.resolver.api.Aspect]"></a>
+      <a id="allAspects:Iterable[Aspect]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">allAspects</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Iterable" class="extype" target="_top">Iterable</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Aspect" class="extype" target="_top">Aspect</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@allAspects:scala.collection.immutable.Iterable[gov.nasa.jpl.imce.oml.resolver.api.Aspect]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#allConceptSpecializationAxioms" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="allConceptSpecializationAxioms:scala.collection.immutable.Iterable[gov.nasa.jpl.imce.oml.resolver.api.ConceptSpecializationAxiom]"></a>
+      <a id="allConceptSpecializationAxioms:Iterable[ConceptSpecializationAxiom]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">allConceptSpecializationAxioms</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Iterable" class="extype" target="_top">Iterable</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ConceptSpecializationAxiom" class="extype" target="_top">ConceptSpecializationAxiom</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@allConceptSpecializationAxioms:scala.collection.immutable.Iterable[gov.nasa.jpl.imce.oml.resolver.api.ConceptSpecializationAxiom]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#allConcepts" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="allConcepts:scala.collection.immutable.Iterable[gov.nasa.jpl.imce.oml.resolver.api.Concept]"></a>
+      <a id="allConcepts:Iterable[Concept]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">allConcepts</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Iterable" class="extype" target="_top">Iterable</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Concept" class="extype" target="_top">Concept</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@allConcepts:scala.collection.immutable.Iterable[gov.nasa.jpl.imce.oml.resolver.api.Concept]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#allReifiedRelationshipSpecializationAxioms" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="allReifiedRelationshipSpecializationAxioms:scala.collection.immutable.Iterable[gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipSpecializationAxiom]"></a>
+      <a id="allReifiedRelationshipSpecializationAxioms:Iterable[ReifiedRelationshipSpecializationAxiom]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">allReifiedRelationshipSpecializationAxioms</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Iterable" class="extype" target="_top">Iterable</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipSpecializationAxiom" class="extype" target="_top">ReifiedRelationshipSpecializationAxiom</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@allReifiedRelationshipSpecializationAxioms:scala.collection.immutable.Iterable[gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipSpecializationAxiom]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#allReifiedRelationships" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="allReifiedRelationships:scala.collection.immutable.Iterable[gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationship]"></a>
+      <a id="allReifiedRelationships:Iterable[ReifiedRelationship]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">allReifiedRelationships</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Iterable" class="extype" target="_top">Iterable</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationship" class="extype" target="_top">ReifiedRelationship</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@allReifiedRelationships:scala.collection.immutable.Iterable[gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationship]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#allSubDataPropertyOfAxioms" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="allSubDataPropertyOfAxioms:scala.collection.immutable.Iterable[gov.nasa.jpl.imce.oml.resolver.api.SubDataPropertyOfAxiom]"></a>
+      <a id="allSubDataPropertyOfAxioms:Iterable[SubDataPropertyOfAxiom]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">allSubDataPropertyOfAxioms</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Iterable" class="extype" target="_top">Iterable</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.SubDataPropertyOfAxiom" class="extype" target="_top">SubDataPropertyOfAxiom</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@allSubDataPropertyOfAxioms:scala.collection.immutable.Iterable[gov.nasa.jpl.imce.oml.resolver.api.SubDataPropertyOfAxiom]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#allSubObjectPropertyOfAxioms" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="allSubObjectPropertyOfAxioms:scala.collection.immutable.Iterable[gov.nasa.jpl.imce.oml.resolver.api.SubObjectPropertyOfAxiom]"></a>
+      <a id="allSubObjectPropertyOfAxioms:Iterable[SubObjectPropertyOfAxiom]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">allSubObjectPropertyOfAxioms</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Iterable" class="extype" target="_top">Iterable</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.SubObjectPropertyOfAxiom" class="extype" target="_top">SubObjectPropertyOfAxiom</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@allSubObjectPropertyOfAxioms:scala.collection.immutable.Iterable[gov.nasa.jpl.imce.oml.resolver.api.SubObjectPropertyOfAxiom]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#annotationPropertyValues" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="annotationPropertyValues:scala.collection.immutable.Seq[gov.nasa.jpl.imce.oml.resolver.api.AnnotationPropertyValue]"></a>
+      <a id="annotationPropertyValues:Seq[AnnotationPropertyValue]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">annotationPropertyValues</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Seq" class="extype" target="_top">Seq</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.AnnotationPropertyValue" class="extype" target="_top">AnnotationPropertyValue</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@annotationPropertyValues:scala.collection.immutable.Seq[gov.nasa.jpl.imce.oml.resolver.api.AnnotationPropertyValue]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The set of OML AnnotationPropertyValues across all OML Extents.</p>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#bundleOfTerminologyBundleAxiom" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="bundleOfTerminologyBundleAxiom:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.TerminologyBundleAxiom,gov.nasa.jpl.imce.oml.resolver.api.Bundle]"></a>
+      <a id="bundleOfTerminologyBundleAxiom:Map[TerminologyBundleAxiom,Bundle]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">bundleOfTerminologyBundleAxiom</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.TerminologyBundleAxiom" class="extype" target="_top">TerminologyBundleAxiom</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Bundle" class="extype" target="_top">Bundle</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@bundleOfTerminologyBundleAxiom:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.TerminologyBundleAxiom,gov.nasa.jpl.imce.oml.resolver.api.Bundle]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The OML Bundle of each OML TerminologyBundleAxiom resolved.</p>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#bundleOfTerminologyBundleStatement" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="bundleOfTerminologyBundleStatement:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.TerminologyBundleStatement,gov.nasa.jpl.imce.oml.resolver.api.Bundle]"></a>
+      <a id="bundleOfTerminologyBundleStatement:Map[TerminologyBundleStatement,Bundle]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">bundleOfTerminologyBundleStatement</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.TerminologyBundleStatement" class="extype" target="_top">TerminologyBundleStatement</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Bundle" class="extype" target="_top">Bundle</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@bundleOfTerminologyBundleStatement:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.TerminologyBundleStatement,gov.nasa.jpl.imce.oml.resolver.api.Bundle]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The OML Bundle of each OML TerminologyBundleStatement resolved.</p>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#chainRuleOfRuleBodySegment" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="chainRuleOfRuleBodySegment:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment,gov.nasa.jpl.imce.oml.resolver.api.ChainRule]"></a>
+      <a id="chainRuleOfRuleBodySegment:Map[RuleBodySegment,ChainRule]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">chainRuleOfRuleBodySegment</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment" class="extype" target="_top">RuleBodySegment</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ChainRule" class="extype" target="_top">ChainRule</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@chainRuleOfRuleBodySegment:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment,gov.nasa.jpl.imce.oml.resolver.api.ChainRule]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The OML ChainRule of each OML RuleBodySegment resolved.</p>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@clone():Object" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.DisjointUnionOfConceptsAxiom,gov.nasa.jpl.imce.oml.resolver.api.ConceptTreeDisjunction]"></a>
+      <a id="conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom:Map[DisjointUnionOfConceptsAxiom,ConceptTreeDisjunction]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DisjointUnionOfConceptsAxiom" class="extype" target="_top">DisjointUnionOfConceptsAxiom</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ConceptTreeDisjunction" class="extype" target="_top">ConceptTreeDisjunction</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@conceptTreeDisjunctionOfDisjointUnionOfConceptsAxiom:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.DisjointUnionOfConceptsAxiom,gov.nasa.jpl.imce.oml.resolver.api.ConceptTreeDisjunction]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The OML ConceptTreeDisjunction of each OML DisjointUnionOfConceptsAxiom resolved.</p>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#descriptionBoxOfConceptInstance" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="descriptionBoxOfConceptInstance:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.ConceptInstance,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox]"></a>
+      <a id="descriptionBoxOfConceptInstance:Map[ConceptInstance,DescriptionBox]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">descriptionBoxOfConceptInstance</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ConceptInstance" class="extype" target="_top">ConceptInstance</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@descriptionBoxOfConceptInstance:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.ConceptInstance,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The OML DescriptionBox of each OML ConceptInstance resolved.</p>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#descriptionBoxOfDescriptionBoxExtendsClosedWorldDefinitions" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="descriptionBoxOfDescriptionBoxExtendsClosedWorldDefinitions:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.DescriptionBoxExtendsClosedWorldDefinitions,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox]"></a>
+      <a id="descriptionBoxOfDescriptionBoxExtendsClosedWorldDefinitions:Map[DescriptionBoxExtendsClosedWorldDefinitions,DescriptionBox]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">descriptionBoxOfDescriptionBoxExtendsClosedWorldDefinitions</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBoxExtendsClosedWorldDefinitions" class="extype" target="_top">DescriptionBoxExtendsClosedWorldDefinitions</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@descriptionBoxOfDescriptionBoxExtendsClosedWorldDefinitions:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.DescriptionBoxExtendsClosedWorldDefinitions,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The OML DescriptionBox of each DescriptionBoxExtendsClosedWorldDefinitions resolved.</p>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#descriptionBoxOfDescriptionBoxRefinement" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="descriptionBoxOfDescriptionBoxRefinement:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.DescriptionBoxRefinement,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox]"></a>
+      <a id="descriptionBoxOfDescriptionBoxRefinement:Map[DescriptionBoxRefinement,DescriptionBox]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">descriptionBoxOfDescriptionBoxRefinement</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBoxRefinement" class="extype" target="_top">DescriptionBoxRefinement</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@descriptionBoxOfDescriptionBoxRefinement:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.DescriptionBoxRefinement,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The OML DescriptionBox of each OML DescriptionBoxRefinement resolved.</p>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#descriptionBoxOfReifiedRelationshipInstance" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="descriptionBoxOfReifiedRelationshipInstance:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipInstance,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox]"></a>
+      <a id="descriptionBoxOfReifiedRelationshipInstance:Map[ReifiedRelationshipInstance,DescriptionBox]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">descriptionBoxOfReifiedRelationshipInstance</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipInstance" class="extype" target="_top">ReifiedRelationshipInstance</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@descriptionBoxOfReifiedRelationshipInstance:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipInstance,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The OML DescriptionBox of each OML ReifiedRelationshipInstance resolved.</p>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#descriptionBoxOfReifiedRelationshipInstanceDomain" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="descriptionBoxOfReifiedRelationshipInstanceDomain:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipInstanceDomain,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox]"></a>
+      <a id="descriptionBoxOfReifiedRelationshipInstanceDomain:Map[ReifiedRelationshipInstanceDomain,DescriptionBox]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">descriptionBoxOfReifiedRelationshipInstanceDomain</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipInstanceDomain" class="extype" target="_top">ReifiedRelationshipInstanceDomain</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@descriptionBoxOfReifiedRelationshipInstanceDomain:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipInstanceDomain,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The OML DescriptionBox of each OML ReifiedRelationshipInstanceDomain resolved.</p>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#descriptionBoxOfReifiedRelationshipInstanceRange" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="descriptionBoxOfReifiedRelationshipInstanceRange:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipInstanceRange,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox]"></a>
+      <a id="descriptionBoxOfReifiedRelationshipInstanceRange:Map[ReifiedRelationshipInstanceRange,DescriptionBox]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">descriptionBoxOfReifiedRelationshipInstanceRange</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipInstanceRange" class="extype" target="_top">ReifiedRelationshipInstanceRange</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@descriptionBoxOfReifiedRelationshipInstanceRange:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipInstanceRange,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The OML DescriptionBox of each OML ReifiedRelationshipInstanceRange resolved.</p>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#descriptionBoxOfSingletonInstanceScalarDataPropertyValue" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="descriptionBoxOfSingletonInstanceScalarDataPropertyValue:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceScalarDataPropertyValue,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox]"></a>
+      <a id="descriptionBoxOfSingletonInstanceScalarDataPropertyValue:Map[SingletonInstanceScalarDataPropertyValue,DescriptionBox]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">descriptionBoxOfSingletonInstanceScalarDataPropertyValue</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceScalarDataPropertyValue" class="extype" target="_top">SingletonInstanceScalarDataPropertyValue</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@descriptionBoxOfSingletonInstanceScalarDataPropertyValue:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceScalarDataPropertyValue,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The OML DescriptionBox of each OML SingletonInstanceScalarDataPropertyValue resolved.</p>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#descriptionBoxOfSingletonInstanceStructuredDataPropertyValue" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="descriptionBoxOfSingletonInstanceStructuredDataPropertyValue:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceStructuredDataPropertyValue,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox]"></a>
+      <a id="descriptionBoxOfSingletonInstanceStructuredDataPropertyValue:Map[SingletonInstanceStructuredDataPropertyValue,DescriptionBox]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">descriptionBoxOfSingletonInstanceStructuredDataPropertyValue</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceStructuredDataPropertyValue" class="extype" target="_top">SingletonInstanceStructuredDataPropertyValue</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@descriptionBoxOfSingletonInstanceStructuredDataPropertyValue:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceStructuredDataPropertyValue,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The OML DescriptionBox of each OML SingletonInstanceStructuredDataPropertyValue resolved.</p>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#descriptionBoxOfUnreifiedRelationshipInstanceTuple" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="descriptionBoxOfUnreifiedRelationshipInstanceTuple:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.UnreifiedRelationshipInstanceTuple,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox]"></a>
+      <a id="descriptionBoxOfUnreifiedRelationshipInstanceTuple:Map[UnreifiedRelationshipInstanceTuple,DescriptionBox]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">descriptionBoxOfUnreifiedRelationshipInstanceTuple</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.UnreifiedRelationshipInstanceTuple" class="extype" target="_top">UnreifiedRelationshipInstanceTuple</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox" class="extype" target="_top">DescriptionBox</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@descriptionBoxOfUnreifiedRelationshipInstanceTuple:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.UnreifiedRelationshipInstanceTuple,gov.nasa.jpl.imce.oml.resolver.api.DescriptionBox]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The OML DescriptionBox of each OML UnreifiedRelationshipInstanceTuple resolved.</p>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#extents" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="extents:scala.collection.immutable.Seq[gov.nasa.jpl.imce.oml.resolver.api.Extent]"></a>
+      <a id="extents:Seq[Extent]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">extents</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Seq" class="extype" target="_top">Seq</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Extent" class="extype" target="_top">Extent</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@extents:scala.collection.immutable.Seq[gov.nasa.jpl.imce.oml.resolver.api.Extent]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The set of OML Extents resolved.</p>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@finalize():Unit" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@getClass():Class[_]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#getViaExtent" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getViaExtent[U&lt;:gov.nasa.jpl.imce.oml.resolver.api.LogicalElement,V](u:U,uv:(U,gov.nasa.jpl.imce.oml.resolver.api.Extent)=&gt;V):V"></a>
+      <a id="getViaExtent[U&lt;:LogicalElement,V](U,(U,Extent)⇒V):V"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getViaExtent</span><span class="tparams">[<span name="U">U &lt;: <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.LogicalElement" class="extype" target="_top">LogicalElement</a></span>, <span name="V">V</span>]</span><span class="params">(<span name="u">u: <span class="extype" name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable.getViaExtent.U">U</span></span>, <span name="uv">uv: (<span class="extype" name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable.getViaExtent.U">U</span>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Extent" class="extype" target="_top">Extent</a>) ⇒ <span class="extype" name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable.getViaExtent.V">V</span></span>)</span><span class="result">: <span class="extype" name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable.getViaExtent.V">V</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@getViaExtent[U&lt;:gov.nasa.jpl.imce.oml.resolver.api.LogicalElement,V](u:U,uv:(U,gov.nasa.jpl.imce.oml.resolver.api.Extent)=&gt;V):V" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Convenience method for Extent-based queries.</p><div class="fullcomment"><div class="comment cmt"><p>Convenience method for Extent-based queries.</p><p>Examples:</p><pre><span class="kw">val</span> ort: OMLResolvedTable = ...
+<span class="kw">val</span> r: api.Resource = ...
+<span class="kw">val</span> airi: <span class="std">Option</span>[<span class="std">String</span>] = ort.getViaExtent(r, api.Resource.abbrevIRI)</pre><pre><span class="kw">val</span> ort: OMLResolvedTable = ...
+<span class="kw">val</span> t: api.Term = ...
+<span class="kw">val</span> airi: <span class="std">Option</span>[<span class="std">String</span>] = ort.getViaExtent(t, api.Resource.abbrevIRI)</pre></div><dl class="paramcmts block"><dt class="tparam">U</dt><dd class="cmt"><p>A subtype of gov.nasa.jpl.imce.oml.resolver.api.Element</p></dd><dt class="tparam">V</dt><dd class="cmt"><p>Return type of the Extent-based query function</p></dd><dt class="param">u</dt><dd class="cmt"><p>Element to be queried</p></dd><dt class="param">uv</dt><dd class="cmt"><p>Extent-based query function</p></dd><dt>returns</dt><dd class="cmt"><p>The result of invoking the Extent-based query on the element with its corresponding extent.</p></dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#logicalElements" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="logicalElements:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.LogicalElement,gov.nasa.jpl.imce.oml.resolver.api.Extent]"></a>
+      <a id="logicalElements:Map[LogicalElement,Extent]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">logicalElements</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.LogicalElement" class="extype" target="_top">LogicalElement</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Extent" class="extype" target="_top">Extent</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@logicalElements:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.LogicalElement,gov.nasa.jpl.imce.oml.resolver.api.Extent]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The OML Extent of each OML LogicalElement resolved.</p>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@notify():Unit" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@notifyAll():Unit" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#restrictionStructuredDataPropertyContextOfRestrictionScalarDataPropertyValue" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="restrictionStructuredDataPropertyContextOfRestrictionScalarDataPropertyValue:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.RestrictionScalarDataPropertyValue,gov.nasa.jpl.imce.oml.resolver.api.RestrictionStructuredDataPropertyContext]"></a>
+      <a id="restrictionStructuredDataPropertyContextOfRestrictionScalarDataPropertyValue:Map[RestrictionScalarDataPropertyValue,RestrictionStructuredDataPropertyContext]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">restrictionStructuredDataPropertyContextOfRestrictionScalarDataPropertyValue</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RestrictionScalarDataPropertyValue" class="extype" target="_top">RestrictionScalarDataPropertyValue</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RestrictionStructuredDataPropertyContext" class="extype" target="_top">RestrictionStructuredDataPropertyContext</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@restrictionStructuredDataPropertyContextOfRestrictionScalarDataPropertyValue:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.RestrictionScalarDataPropertyValue,gov.nasa.jpl.imce.oml.resolver.api.RestrictionStructuredDataPropertyContext]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The OML RestrictionStructuredDataPropertyContext of each OML RestrictionScalarDataPropertyValue resolved.</p>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#restrictionStructuredDataPropertyContextOfRestrictionStructuredDataPropertyTuple" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="restrictionStructuredDataPropertyContextOfRestrictionStructuredDataPropertyTuple:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.RestrictionStructuredDataPropertyTuple,gov.nasa.jpl.imce.oml.resolver.api.RestrictionStructuredDataPropertyContext]"></a>
+      <a id="restrictionStructuredDataPropertyContextOfRestrictionStructuredDataPropertyTuple:Map[RestrictionStructuredDataPropertyTuple,RestrictionStructuredDataPropertyContext]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">restrictionStructuredDataPropertyContextOfRestrictionStructuredDataPropertyTuple</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RestrictionStructuredDataPropertyTuple" class="extype" target="_top">RestrictionStructuredDataPropertyTuple</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RestrictionStructuredDataPropertyContext" class="extype" target="_top">RestrictionStructuredDataPropertyContext</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@restrictionStructuredDataPropertyContextOfRestrictionStructuredDataPropertyTuple:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.RestrictionStructuredDataPropertyTuple,gov.nasa.jpl.imce.oml.resolver.api.RestrictionStructuredDataPropertyContext]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The OML RestrictionStructuredDataPropertyContext of each OML RestrictionStructuredDataPropertyTuple resolved.</p>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#ruleBodySegmentOfRuleBodySegment" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ruleBodySegmentOfRuleBodySegment:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment,gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment]"></a>
+      <a id="ruleBodySegmentOfRuleBodySegment:Map[RuleBodySegment,RuleBodySegment]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ruleBodySegmentOfRuleBodySegment</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment" class="extype" target="_top">RuleBodySegment</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment" class="extype" target="_top">RuleBodySegment</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@ruleBodySegmentOfRuleBodySegment:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment,gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The OML RuleBodySegment of each OML RuleBodySegment resolved.</p>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#ruleBodySegmentOfSegmentPredicate" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ruleBodySegmentOfSegmentPredicate:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.SegmentPredicate,gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment]"></a>
+      <a id="ruleBodySegmentOfSegmentPredicate:Map[SegmentPredicate,RuleBodySegment]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ruleBodySegmentOfSegmentPredicate</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.SegmentPredicate" class="extype" target="_top">SegmentPredicate</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment" class="extype" target="_top">RuleBodySegment</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@ruleBodySegmentOfSegmentPredicate:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.SegmentPredicate,gov.nasa.jpl.imce.oml.resolver.api.RuleBodySegment]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The OML RuleBodySegment of each OML SegmentPredicate resolved.</p>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#singletonInstanceStructuredDataPropertyContextOfScalarDataPropertyValue" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="singletonInstanceStructuredDataPropertyContextOfScalarDataPropertyValue:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.ScalarDataPropertyValue,gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceStructuredDataPropertyContext]"></a>
+      <a id="singletonInstanceStructuredDataPropertyContextOfScalarDataPropertyValue:Map[ScalarDataPropertyValue,SingletonInstanceStructuredDataPropertyContext]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">singletonInstanceStructuredDataPropertyContextOfScalarDataPropertyValue</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ScalarDataPropertyValue" class="extype" target="_top">ScalarDataPropertyValue</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceStructuredDataPropertyContext" class="extype" target="_top">SingletonInstanceStructuredDataPropertyContext</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@singletonInstanceStructuredDataPropertyContextOfScalarDataPropertyValue:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.ScalarDataPropertyValue,gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceStructuredDataPropertyContext]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The OML SingletonInstanceStructuredDataPropertyContext of each OML ScalarDataPropertyValue resolved.</p>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#singletonInstanceStructuredDataPropertyContextOfStructuredDataPropertyTuple" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="singletonInstanceStructuredDataPropertyContextOfStructuredDataPropertyTuple:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.StructuredDataPropertyTuple,gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceStructuredDataPropertyContext]"></a>
+      <a id="singletonInstanceStructuredDataPropertyContextOfStructuredDataPropertyTuple:Map[StructuredDataPropertyTuple,SingletonInstanceStructuredDataPropertyContext]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">singletonInstanceStructuredDataPropertyContextOfStructuredDataPropertyTuple</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.StructuredDataPropertyTuple" class="extype" target="_top">StructuredDataPropertyTuple</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceStructuredDataPropertyContext" class="extype" target="_top">SingletonInstanceStructuredDataPropertyContext</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@singletonInstanceStructuredDataPropertyContextOfStructuredDataPropertyTuple:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.StructuredDataPropertyTuple,gov.nasa.jpl.imce.oml.resolver.api.SingletonInstanceStructuredDataPropertyContext]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The OML SingletonInstanceStructuredDataPropertyContext of each OML StructuredDataPropertyTuple resolved.</p>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#terminologyBoxOfTerminologyBoxAxiom" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="terminologyBoxOfTerminologyBoxAxiom:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.TerminologyBoxAxiom,gov.nasa.jpl.imce.oml.resolver.api.TerminologyBox]"></a>
+      <a id="terminologyBoxOfTerminologyBoxAxiom:Map[TerminologyBoxAxiom,TerminologyBox]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">terminologyBoxOfTerminologyBoxAxiom</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.TerminologyBoxAxiom" class="extype" target="_top">TerminologyBoxAxiom</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.TerminologyBox" class="extype" target="_top">TerminologyBox</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@terminologyBoxOfTerminologyBoxAxiom:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.TerminologyBoxAxiom,gov.nasa.jpl.imce.oml.resolver.api.TerminologyBox]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The OML TerminologyBox of each OML TerminologyBoxAxiom resolved.</p>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#terminologyBoxOfTerminologyBoxStatement" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="terminologyBoxOfTerminologyBoxStatement:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.TerminologyBoxStatement,gov.nasa.jpl.imce.oml.resolver.api.TerminologyBox]"></a>
+      <a id="terminologyBoxOfTerminologyBoxStatement:Map[TerminologyBoxStatement,TerminologyBox]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">terminologyBoxOfTerminologyBoxStatement</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Map" class="extype" target="_top">Map</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.TerminologyBoxStatement" class="extype" target="_top">TerminologyBoxStatement</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.TerminologyBox" class="extype" target="_top">TerminologyBox</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@terminologyBoxOfTerminologyBoxStatement:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.TerminologyBoxStatement,gov.nasa.jpl.imce.oml.resolver.api.TerminologyBox]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The OML TerminologyBox of each OML TerminologyBoxStatement resolved.</p>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@toString():String" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable">OMLResolvedTable</a> → AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@wait():Unit" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Long" class="extype" target="_top">Long</a></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Long" class="extype" target="_top">Long</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.OMLResolvedTable@wait(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.Serializable">
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></h3>
+            </div><div class="parent" name="java.io.Serializable">
+              <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
+            </div><div class="parent" name="scala.Product">
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Product" class="extype" target="_top">Product</a></h3>
+            </div><div class="parent" name="scala.Equals">
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Equals" class="extype" target="_top">Equals</a></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

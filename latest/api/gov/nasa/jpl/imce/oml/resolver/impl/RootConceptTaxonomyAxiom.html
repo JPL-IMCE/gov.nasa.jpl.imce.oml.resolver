@@ -1,0 +1,650 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>RootConceptTaxonomyAxiom - gov.nasa.jpl.imce.oml.resolver - gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom</title>
+          <meta name="description" content="RootConceptTaxonomyAxiom - gov.nasa.jpl.imce.oml.resolver - gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom" />
+          <meta name="keywords" content="RootConceptTaxonomyAxiom gov.nasa.jpl.imce.oml.resolver gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../../../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../../../../lib/tools.tooltip.js"></script>
+      <script type="text/javascript" src="../../../../../../../lib/modernizr.custom.js"></script><script type="text/javascript" src="../../../../../../../lib/diagrams.js" id="diagrams-js"></script>
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../../../../index.html';
+            var hash = 'gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="type">
+      <div id="definition">
+        <img alt="Class" src="../../../../../../../lib/class_big.png" />
+        <p id="owner"><a href="../../../../../../package.html" class="extype" name="gov">gov</a>.<a href="../../../../../package.html" class="extype" name="gov.nasa">nasa</a>.<a href="../../../../package.html" class="extype" name="gov.nasa.jpl">jpl</a>.<a href="../../../package.html" class="extype" name="gov.nasa.jpl.imce">imce</a>.<a href="../../package.html" class="extype" name="gov.nasa.jpl.imce.oml">oml</a>.<a href="../package.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver">resolver</a>.<a href="package.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl">impl</a></p>
+        <h1>RootConceptTaxonomyAxiom</h1><h3><span class="morelinks"><div>Related Doc:
+            <a href="package.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl">package impl</a>
+          </div></span></h3><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <span class="name">RootConceptTaxonomyAxiom</span><span class="result"> extends <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RootConceptTaxonomyAxiom" class="extype" target="_top">api.RootConceptTaxonomyAxiom</a> with <a href="TerminologyBundleStatement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.TerminologyBundleStatement">TerminologyBundleStatement</a> with <a href="ConceptTreeDisjunction.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ConceptTreeDisjunction">ConceptTreeDisjunction</a> with <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Serializable" class="extype" target="_top">Serializable</a>, <span class="extype" name="java.io.Serializable">Serializable</span>, <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Product" class="extype" target="_top">Product</a>, <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Equals" class="extype" target="_top">Equals</a>, <a href="ConceptTreeDisjunction.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ConceptTreeDisjunction">ConceptTreeDisjunction</a>, <a href="ElementCrossReferenceTuple.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ElementCrossReferenceTuple">ElementCrossReferenceTuple</a>, <a href="CrossReferencableKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.CrossReferencableKind">CrossReferencableKind</a>, <a href="ExtrinsicIdentityKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ExtrinsicIdentityKind">ExtrinsicIdentityKind</a>, <a href="TerminologyBundleStatement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.TerminologyBundleStatement">TerminologyBundleStatement</a>, <a href="ModuleElement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ModuleElement">ModuleElement</a>, <a href="LogicalElement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.LogicalElement">LogicalElement</a>, <a href="IdentityKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.IdentityKind">IdentityKind</a>, <a href="CrossReferencabilityKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.CrossReferencabilityKind">CrossReferencabilityKind</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RootConceptTaxonomyAxiom" class="extype" target="_top">api.RootConceptTaxonomyAxiom</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ConceptTreeDisjunction" class="extype" target="_top">api.ConceptTreeDisjunction</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ElementCrossReferenceTuple" class="extype" target="_top">api.ElementCrossReferenceTuple</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.CrossReferencableKind" class="extype" target="_top">api.CrossReferencableKind</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ExtrinsicIdentityKind" class="extype" target="_top">api.ExtrinsicIdentityKind</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.TerminologyBundleStatement" class="extype" target="_top">api.TerminologyBundleStatement</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ModuleElement" class="extype" target="_top">api.ModuleElement</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.LogicalElement" class="extype" target="_top">api.LogicalElement</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.IdentityKind" class="extype" target="_top">api.IdentityKind</a>, <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.CrossReferencabilityKind" class="extype" target="_top">api.CrossReferencabilityKind</a>, <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a></div>
+        </div><div class="toggleContainer block diagram-container" id="inheritance-diagram-container">
+                <span class="toggle diagram-link">Type Hierarchy</span>
+                <div class="diagram" id="inheritance-diagram"><svg class="class-diagram" id="graph1" viewBox="0.00 0.00 766.00 120.00" height="120pt" width="766pt" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g transform="scale(1 1) rotate(0) translate(4 116)" class="graph" id="graph0"><polygon points="-4,4 -4,-116 762,-116 762,4 -4,4" stroke="none" fill="white"></polygon><g class="cluster" id="clust1"></g><g class="cluster" id="clust2"></g><!-- node0 --><g class="node this class" id="graph1_0"><g id="a_this class|graph1_0"><a xlink:title="gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom (this class)" xlink:href="#inheritance-diagram"><polygon points="559,-50 385,-50 385,-24 559,-24 559,-50" stroke="#115f3b" fill="#0a955b"></polygon><image xlink:href="../../../../../../../lib/class_diagram.png" y="-43" x="397" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="10.00" font-family="Arial" y="-34.5" x="417" text-anchor="start">RootConceptTaxonomyAxiom</text></a></g></g><!-- node1 --><g class="node trait" id="graph1_1"><g id="a_trait|graph1_1"><a xlink:title="gov.nasa.jpl.imce.oml.resolver.api.RootConceptTaxonomyAxiom"><polygon points="190,-112 0,-112 0,-86 190,-86 190,-112" stroke="#37657d" fill="#498aad"></polygon><image xlink:href="../../../../../../../lib/trait_diagram.png" y="-105" x="12" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="10.00" font-family="Arial" y="-96.5" x="32" text-anchor="start">api.RootConceptTaxonomyAxiom</text></a></g></g><!-- node1&#45;&gt;node0 --><g class="edge inheritance" id="graph1_1_0"><g id="a_inheritance|graph1_1_0"><a xlink:title="RootConceptTaxonomyAxiom is a subtype of api.RootConceptTaxonomyAxiom"><path d="M175.888,-85.1266C241.19,-74.7337 332.402,-60.2172 396.283,-50.0504" stroke="#d4d4d4" fill="none"></path><polygon points="175.501,-83.4161 170.838,-85.9303 176.051,-86.8726 175.501,-83.4161" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node2 --><g class="node trait" id="graph1_2"><g id="a_trait|graph1_2"><a xlink:title="gov.nasa.jpl.imce.oml.resolver.impl.TerminologyBundleStatement" xlink:href="TerminologyBundleStatement.html#inheritance-diagram"><polygon points="380,-112 208,-112 208,-86 380,-86 380,-112" stroke="#37657d" fill="#498aad"></polygon><image xlink:href="../../../../../../../lib/trait_diagram.png" y="-105" x="220" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="10.00" font-family="Arial" y="-96.5" x="240" text-anchor="start">TerminologyBundleStatement</text></a></g></g><!-- node2&#45;&gt;node0 --><g class="edge inheritance" id="graph1_2_0"><g id="a_inheritance|graph1_2_0"><a xlink:title="RootConceptTaxonomyAxiom is a subtype of TerminologyBundleStatement"><path d="M334.842,-84.2331C365.484,-73.9041 407.025,-59.9016 436.337,-50.0213" stroke="#d4d4d4" fill="none"></path><polygon points="334.2,-82.6026 330.021,-85.8581 335.318,-85.9193 334.2,-82.6026" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node3 --><g class="node trait" id="graph1_3"><g id="a_trait|graph1_3"><a xlink:title="gov.nasa.jpl.imce.oml.resolver.impl.ConceptTreeDisjunction" xlink:href="ConceptTreeDisjunction.html#inheritance-diagram"><polygon points="546,-112 398,-112 398,-86 546,-86 546,-112" stroke="#37657d" fill="#498aad"></polygon><image xlink:href="../../../../../../../lib/trait_diagram.png" y="-105" x="410" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="10.00" font-family="Arial" y="-96.5" x="430" text-anchor="start">ConceptTreeDisjunction</text></a></g></g><!-- node3&#45;&gt;node0 --><g class="edge inheritance" id="graph1_3_0"><g id="a_inheritance|graph1_3_0"><a xlink:title="RootConceptTaxonomyAxiom is a subtype of ConceptTreeDisjunction"><path d="M472,-80.6826C472,-70.8961 472,-58.9026 472,-50.1238" stroke="#d4d4d4" fill="none"></path><polygon points="470.25,-80.8581 472,-85.8581 473.75,-80.8581 470.25,-80.8581" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node4 --><g class="node trait" id="graph1_4"><g id="a_trait|graph1_4"><a xlink:title="scala.Product"><polygon points="643.25,-112 564.75,-112 564.75,-86 643.25,-86 643.25,-112" stroke="#37657d" fill="#498aad"></polygon><image xlink:href="../../../../../../../lib/trait_diagram.png" y="-105" x="577" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="10.00" font-family="Arial" y="-96.5" x="597" text-anchor="start">Product</text></a></g></g><!-- node4&#45;&gt;node0 --><g class="edge inheritance" id="graph1_4_0"><g id="a_inheritance|graph1_4_0"><a xlink:title="RootConceptTaxonomyAxiom is a subtype of Product"><path d="M572.6,-83.7273C550.071,-73.4867 520.042,-59.8374 498.672,-50.1238" stroke="#d4d4d4" fill="none"></path><polygon points="572.012,-85.3822 577.288,-85.8581 573.46,-82.1959 572.012,-85.3822" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node5 --><g class="node trait" id="graph1_5"><g id="a_trait|graph1_5"><a xlink:title="scala.Serializable"><polygon points="758,-112 662,-112 662,-86 758,-86 758,-112" stroke="#37657d" fill="#498aad"></polygon><image xlink:href="../../../../../../../lib/trait_diagram.png" y="-105" x="674" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="10.00" font-family="Arial" y="-96.5" x="694" text-anchor="start">Serializable</text></a></g></g><!-- node5&#45;&gt;node0 --><g class="edge inheritance" id="graph1_5_0"><g id="a_inheritance|graph1_5_0"><a xlink:title="RootConceptTaxonomyAxiom is a subtype of Serializable"><path d="M657.191,-84.6868C616.098,-74.3272 559.563,-60.0746 519.8,-50.0504" stroke="#d4d4d4" fill="none"></path><polygon points="656.847,-86.4049 662.123,-85.9303 657.703,-83.011 656.847,-86.4049" stroke="#d4d4d4" fill="none"></polygon></a></g></g></g></svg></div>
+              </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom"><span>RootConceptTaxonomyAxiom</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.ConceptTreeDisjunction"><span>ConceptTreeDisjunction</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.ElementCrossReferenceTuple"><span>ElementCrossReferenceTuple</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.CrossReferencableKind"><span>CrossReferencableKind</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.ExtrinsicIdentityKind"><span>ExtrinsicIdentityKind</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.TerminologyBundleStatement"><span>TerminologyBundleStatement</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.ModuleElement"><span>ModuleElement</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.LogicalElement"><span>LogicalElement</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.IdentityKind"><span>IdentityKind</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.impl.CrossReferencabilityKind"><span>CrossReferencabilityKind</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.RootConceptTaxonomyAxiom"><span>RootConceptTaxonomyAxiom</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.ConceptTreeDisjunction"><span>ConceptTreeDisjunction</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.ElementCrossReferenceTuple"><span>ElementCrossReferenceTuple</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.CrossReferencableKind"><span>CrossReferencableKind</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.ExtrinsicIdentityKind"><span>ExtrinsicIdentityKind</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.TerminologyBundleStatement"><span>TerminologyBundleStatement</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.ModuleElement"><span>ModuleElement</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.LogicalElement"><span>LogicalElement</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.IdentityKind"><span>IdentityKind</span></li><li class="in" name="gov.nasa.jpl.imce.oml.resolver.api.CrossReferencabilityKind"><span>CrossReferencabilityKind</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show All</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@##():Int" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@==(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom#allNestedElements" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="allNestedElements()(implicitextent:gov.nasa.jpl.imce.oml.resolver.api.Extent):scala.collection.immutable.Set[_&lt;:gov.nasa.jpl.imce.oml.resolver.api.LogicalElement]"></a>
+      <a id="allNestedElements()(Extent):Set[_&lt;:api.LogicalElement]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">allNestedElements</span><span class="params">()</span><span class="params">(<span class="implicit">implicit </span><span name="extent">extent: <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Extent" class="extype" target="_top">Extent</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Set" class="extype" target="_top">Set</a>[_ &lt;: <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.LogicalElement" class="extype" target="_top">api.LogicalElement</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@allNestedElements()(implicitextent:gov.nasa.jpl.imce.oml.resolver.api.Extent):scala.collection.immutable.Set[_&lt;:gov.nasa.jpl.imce.oml.resolver.api.LogicalElement]" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom">RootConceptTaxonomyAxiom</a> → RootConceptTaxonomyAxiom → ConceptTreeDisjunction → ModuleElement</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom#bundle" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="bundle:gov.nasa.jpl.imce.oml.resolver.api.Bundle"></a>
+      <a id="bundle:api.Bundle"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">bundle</span><span class="result">: <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Bundle" class="extype" target="_top">api.Bundle</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@bundle:gov.nasa.jpl.imce.oml.resolver.api.Bundle" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom">RootConceptTaxonomyAxiom</a> → <a href="TerminologyBundleStatement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.TerminologyBundleStatement">TerminologyBundleStatement</a> → TerminologyBundleStatement</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom#bundleContainer" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="bundleContainer()(implicitextent:gov.nasa.jpl.imce.oml.resolver.api.Extent):Option[gov.nasa.jpl.imce.oml.resolver.api.Bundle]"></a>
+      <a id="bundleContainer()(Extent):Option[api.Bundle]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">bundleContainer</span><span class="params">()</span><span class="params">(<span class="implicit">implicit </span><span name="extent">extent: <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Extent" class="extype" target="_top">Extent</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Option" class="extype" target="_top">Option</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Bundle" class="extype" target="_top">api.Bundle</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@bundleContainer()(implicitextent:gov.nasa.jpl.imce.oml.resolver.api.Extent):Option[gov.nasa.jpl.imce.oml.resolver.api.Bundle]" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom">RootConceptTaxonomyAxiom</a> → RootConceptTaxonomyAxiom → ConceptTreeDisjunction</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom#canEqual" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="canEqual(that:Any):Boolean"></a>
+      <a id="canEqual(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">canEqual</span><span class="params">(<span name="that">that: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@canEqual(that:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom">RootConceptTaxonomyAxiom</a> → Equals → <a href="ConceptTreeDisjunction.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ConceptTreeDisjunction">ConceptTreeDisjunction</a> → <a href="ElementCrossReferenceTuple.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ElementCrossReferenceTuple">ElementCrossReferenceTuple</a> → <a href="CrossReferencableKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.CrossReferencableKind">CrossReferencableKind</a> → <a href="ExtrinsicIdentityKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ExtrinsicIdentityKind">ExtrinsicIdentityKind</a> → <a href="TerminologyBundleStatement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.TerminologyBundleStatement">TerminologyBundleStatement</a> → <a href="ModuleElement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ModuleElement">ModuleElement</a> → <a href="LogicalElement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.LogicalElement">LogicalElement</a> → <a href="IdentityKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.IdentityKind">IdentityKind</a> → CrossReferencabilityKind</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@clone():Object" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(other:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="other">other: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@equals(other:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom">RootConceptTaxonomyAxiom</a> → Equals → AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@finalize():Unit" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@getClass():Class[_]" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode:Int"></a>
+      <a id="hashCode:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@hashCode:Int" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom">RootConceptTaxonomyAxiom</a> → AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.impl.TerminologyBundleStatement#moduleContext" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="moduleContext()(implicitextent:gov.nasa.jpl.imce.oml.resolver.api.Extent):Option[gov.nasa.jpl.imce.oml.resolver.api.Module]"></a>
+      <a id="moduleContext()(Extent):Option[api.Module]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">moduleContext</span><span class="params">()</span><span class="params">(<span class="implicit">implicit </span><span name="extent">extent: <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Extent" class="extype" target="_top">Extent</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Option" class="extype" target="_top">Option</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Module" class="extype" target="_top">api.Module</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@moduleContext()(implicitextent:gov.nasa.jpl.imce.oml.resolver.api.Extent):Option[gov.nasa.jpl.imce.oml.resolver.api.Module]" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TerminologyBundleStatement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.TerminologyBundleStatement">TerminologyBundleStatement</a> → TerminologyBundleStatement → LogicalElement</dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@notify():Unit" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@notifyAll():Unit" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom#root" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="root:gov.nasa.jpl.imce.oml.resolver.api.Concept"></a>
+      <a id="root:api.Concept"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">root</span><span class="result">: <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Concept" class="extype" target="_top">api.Concept</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@root:gov.nasa.jpl.imce.oml.resolver.api.Concept" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom">RootConceptTaxonomyAxiom</a> → RootConceptTaxonomyAxiom</dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom#uuid" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="uuid:gov.nasa.jpl.imce.oml.resolver.api.taggedTypes.RootConceptTaxonomyAxiomUUID"></a>
+      <a id="uuid:RootConceptTaxonomyAxiomUUID"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">uuid</span><span class="result">: <span class="extype" name="gov.nasa.jpl.imce.oml.resolver.api.taggedTypes.RootConceptTaxonomyAxiomUUID">RootConceptTaxonomyAxiomUUID</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@uuid:gov.nasa.jpl.imce.oml.resolver.api.taggedTypes.RootConceptTaxonomyAxiomUUID" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom">RootConceptTaxonomyAxiom</a> → <a href="ConceptTreeDisjunction.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ConceptTreeDisjunction">ConceptTreeDisjunction</a> → <a href="ElementCrossReferenceTuple.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ElementCrossReferenceTuple">ElementCrossReferenceTuple</a> → <a href="CrossReferencableKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.CrossReferencableKind">CrossReferencableKind</a> → <a href="ExtrinsicIdentityKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ExtrinsicIdentityKind">ExtrinsicIdentityKind</a> → <a href="TerminologyBundleStatement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.TerminologyBundleStatement">TerminologyBundleStatement</a> → <a href="ModuleElement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ModuleElement">ModuleElement</a> → <a href="LogicalElement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.LogicalElement">LogicalElement</a> → <a href="IdentityKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.IdentityKind">IdentityKind</a> → <a href="CrossReferencabilityKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.CrossReferencabilityKind">CrossReferencabilityKind</a> → RootConceptTaxonomyAxiom → ConceptTreeDisjunction → ElementCrossReferenceTuple → CrossReferencableKind → ExtrinsicIdentityKind → TerminologyBundleStatement → ModuleElement → LogicalElement → IdentityKind → CrossReferencabilityKind</dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.api.CrossReferencabilityKind#vertexId" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="vertexId:Long"></a>
+      <a id="vertexId:Long"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">vertexId</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Long" class="extype" target="_top">Long</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@vertexId:Long" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>CrossReferencabilityKind</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@wait():Unit" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Long" class="extype" target="_top">Long</a></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Long" class="extype" target="_top">Long</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.impl.RootConceptTaxonomyAxiom@wait(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.Serializable">
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></h3>
+            </div><div class="parent" name="java.io.Serializable">
+              <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
+            </div><div class="parent" name="scala.Product">
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Product" class="extype" target="_top">Product</a></h3>
+            </div><div class="parent" name="scala.Equals">
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Equals" class="extype" target="_top">Equals</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.impl.ConceptTreeDisjunction">
+              <h3>Inherited from <a href="ConceptTreeDisjunction.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ConceptTreeDisjunction">ConceptTreeDisjunction</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.impl.ElementCrossReferenceTuple">
+              <h3>Inherited from <a href="ElementCrossReferenceTuple.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ElementCrossReferenceTuple">ElementCrossReferenceTuple</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.impl.CrossReferencableKind">
+              <h3>Inherited from <a href="CrossReferencableKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.CrossReferencableKind">CrossReferencableKind</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.impl.ExtrinsicIdentityKind">
+              <h3>Inherited from <a href="ExtrinsicIdentityKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ExtrinsicIdentityKind">ExtrinsicIdentityKind</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.impl.TerminologyBundleStatement">
+              <h3>Inherited from <a href="TerminologyBundleStatement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.TerminologyBundleStatement">TerminologyBundleStatement</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.impl.ModuleElement">
+              <h3>Inherited from <a href="ModuleElement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.ModuleElement">ModuleElement</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.impl.LogicalElement">
+              <h3>Inherited from <a href="LogicalElement.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.LogicalElement">LogicalElement</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.impl.IdentityKind">
+              <h3>Inherited from <a href="IdentityKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.IdentityKind">IdentityKind</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.impl.CrossReferencabilityKind">
+              <h3>Inherited from <a href="CrossReferencabilityKind.html" class="extype" name="gov.nasa.jpl.imce.oml.resolver.impl.CrossReferencabilityKind">CrossReferencabilityKind</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.api.RootConceptTaxonomyAxiom">
+              <h3>Inherited from <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.RootConceptTaxonomyAxiom" class="extype" target="_top">api.RootConceptTaxonomyAxiom</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.api.ConceptTreeDisjunction">
+              <h3>Inherited from <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ConceptTreeDisjunction" class="extype" target="_top">api.ConceptTreeDisjunction</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.api.ElementCrossReferenceTuple">
+              <h3>Inherited from <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ElementCrossReferenceTuple" class="extype" target="_top">api.ElementCrossReferenceTuple</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.api.CrossReferencableKind">
+              <h3>Inherited from <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.CrossReferencableKind" class="extype" target="_top">api.CrossReferencableKind</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.api.ExtrinsicIdentityKind">
+              <h3>Inherited from <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ExtrinsicIdentityKind" class="extype" target="_top">api.ExtrinsicIdentityKind</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.api.TerminologyBundleStatement">
+              <h3>Inherited from <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.TerminologyBundleStatement" class="extype" target="_top">api.TerminologyBundleStatement</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.api.ModuleElement">
+              <h3>Inherited from <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ModuleElement" class="extype" target="_top">api.ModuleElement</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.api.LogicalElement">
+              <h3>Inherited from <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.LogicalElement" class="extype" target="_top">api.LogicalElement</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.api.IdentityKind">
+              <h3>Inherited from <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.IdentityKind" class="extype" target="_top">api.IdentityKind</a></h3>
+            </div><div class="parent" name="gov.nasa.jpl.imce.oml.resolver.api.CrossReferencabilityKind">
+              <h3>Inherited from <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.CrossReferencabilityKind" class="extype" target="_top">api.CrossReferencabilityKind</a></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>
