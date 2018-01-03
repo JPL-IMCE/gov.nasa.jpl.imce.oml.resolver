@@ -16,7 +16,7 @@
  * License Terms
  */
 
-package gov.nasa.jpl.imce.oml
+package gov.nasa.jpl.imce.oml.resolver
 
 import scala.collection.immutable.{::, List, Nil, Seq, Set, Vector}
 import scala.reflect.ClassTag
@@ -27,9 +27,12 @@ import scalax.collection.GraphEdge.DiEdge
 import scalaz._
 import Scalaz._
 
-package object graphs {
+/**
+  * Hierarchical Topological Sort for directed hypergraphs where a node is a graph.
+  */
+object GraphUtilities {
 
-  def subGraphPrecedence
+  protected def subGraphPrecedence
   [N: ClassTag, E[M] <: DiEdge[M]]
   (g: Graph[N, E])
   (lt: Graph[N, E], gt: Graph[N, E])

@@ -16,16 +16,20 @@
  * License Terms
  */
 
-package gov.nasa.jpl.imce.oml.tables
+package gov.nasa.jpl.imce.oml.resolver
 
 import ammonite.ops.Path
 import org.apache.commons.compress.archivers.zip.ZipFile
 
+import gov.nasa.jpl.imce.oml.tables.{taggedTypes,OMLSpecificationTables}
 import scala.collection.immutable.{Map, Seq}
 import scala.collection.JavaConversions._
 import scala.Predef.ArrowAssoc
 
-package object reader {
+/**
+  * Utilities for reading OML Tabular files (`*.omlzip`)
+  */
+object TableUtilities {
 
   /**
     * Maps the IRIs of OML Modules in a given OMLSpecificationTables.

@@ -16,27 +16,38 @@
  * License Terms
  */
 
-package gov.nasa.jpl.imce.oml
+package gov.nasa.jpl.imce.oml.resolver
 
 import java.util.UUID
 
+import gov.nasa.jpl.imce.oml.covariantTag
 import gov.nasa.jpl.imce.oml.covariantTag.@@
-import gov.nasa.jpl.imce.oml.graphs.hierarchicalTopologicalSort
-import gov.nasa.jpl.imce.oml.resolver.impl.OMLResolvedFactoryImpl
+import gov.nasa.jpl.imce.oml.tables
 import gov.nasa.jpl.imce.oml.uuid.JVMUUIDGenerator
 
 import scala.collection.immutable.{Map, Seq, Set}
-import scala.{None,Some,StringContext,Unit}
-import scala.Predef.{ArrowAssoc,String}
+import scala.{None, Some, StringContext, Unit}
+import scala.Predef.{ArrowAssoc, String}
 import scalaz._
 import Scalaz._
 import scalax.collection.GraphEdge.NodeProduct
 import scalax.collection.immutable.Graph
 
-package object resolver {
+/**
+  * OML Resolver Support.
+  *
+  */
+object ResolverUtilities {
 
   type Throwables = Set[java.lang.Throwable]
 
+  /**
+    * Convenience conversion of `UUID @@ Tag` to `String @@ Tag` for a given `Tag`.
+    *
+    * @param uuid Tagged UUID
+    * @tparam Tag Tag type
+    * @return The `String @@ Tag` representation of `uuid`.
+    */
   implicit def toUUIDString[Tag](uuid: UUID @@ Tag)
   : String @@ Tag
   = covariantTag[Tag][String](uuid.toString)
@@ -51,7 +62,7 @@ package object resolver {
   : Throwables \/ OMLTablesResolver
   = {
     val omlUUIDg = JVMUUIDGenerator()
-    val factory = OMLResolvedFactoryImpl(omlUUIDg)
+    val factory = impl.OMLResolvedFactoryImpl(omlUUIDg)
     val init = OMLTablesResolver.initializeTablesResolver(factory)
     init.right
   }
@@ -66,17 +77,17 @@ package object resolver {
     */
   def resolveTables
   (r: Throwables \/ OMLTablesResolver, ts: Seq[(tables.taggedTypes.IRI, tables.OMLSpecificationTables)])
-  : Throwables \/ Seq[resolver.api.Extent]
+  : Throwables \/ Seq[api.Extent]
   = for {
     resolved <- ts.foldLeft[Throwables \/ OMLTablesResolver] {
-      resolver.initializeResolver()
+      initializeResolver()
     } { case (acc, (iri, table)) =>
 
       for {
         prev <- acc
         current = prev.copy(queue = table)
 
-        res <- resolver.OMLTablesResolver.resolve(current)
+        res <- OMLTablesResolver.resolve(current)
           .toDisjunction
           .leftMap(Set[java.lang.Throwable](_))
 
@@ -87,7 +98,7 @@ package object resolver {
         else
           ().right[Throwables]
 
-        next = resolver.OMLTablesResolver.accumulateResultContext(res)
+        next = OMLTablesResolver.accumulateResultContext(res)
       } yield next
     }
 
@@ -139,7 +150,7 @@ package object resolver {
     g = g2
 
     moduleSort <-
-      hierarchicalTopologicalSort[api.Module, ModuleGraphEdge](Seq(g))
+      GraphUtilities.hierarchicalTopologicalSort[api.Module, ModuleGraphEdge](Seq(g))
         .map(_.reverse)
 
     result <- moduleSort.foldLeft(Seq.empty[(api.Module, api.Extent)].right[Throwables]) { case (acc, m) =>
