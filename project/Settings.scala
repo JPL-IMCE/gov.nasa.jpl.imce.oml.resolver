@@ -4,9 +4,9 @@ import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 
 object Settings {
 
-  val name = "gov.nasa.jpl.imce.omf.resolver"
+  val name = "gov.nasa.jpl.imce.oml.resolver"
 
-  val namespace = "gov.nasa.jpl.imce.omf.resolver"
+  val namespace = "gov.nasa.jpl.imce.oml.resolver"
 
   val organization = "gov.nasa.jpl.imce"
 
@@ -32,7 +32,7 @@ object Settings {
   )
 
   object versions {
-    val jpl_omf_schema_tables = "0.90.0-M43"
+    val jpl_omf_schema_tables = "0.90.0-M44"
     val scala = "2.11.11"
     val scalaJ8CompatVersion = "0.8.0"
 

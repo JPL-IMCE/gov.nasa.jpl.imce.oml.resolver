@@ -109,23 +109,17 @@ case class OMLResolvedTable
     *
     * Examples:
     *
-    * ```scala
+    * {{{
     * val ort: OMLResolvedTable = ...
     * val r: api.Resource = ...
-    * val airi: Option[String] = ort.getViaExtent[api.Resource with api.Element, Option[String]](r, api.Resource.abbrevIRI)
-    * ```
+    * val airi: Option[String] = ort.getViaExtent(r, api.Resource.abbrevIRI)
+    * }}}
     *
-    * In the above example, it is necessary to specify the type parameters explicitly because
-    * the type inference would result in type bounds that would too specific to compile; i.e.:
-    * `ort.getViaExtent[api.Resource, Option[String]](r, api.Resource.abbrevIRI)`
-    *
-    * ```scala
+    * {{{
     * val ort: OMLResolvedTable = ...
     * val t: api.Term = ...
     * val airi: Option[String] = ort.getViaExtent(t, api.Resource.abbrevIRI)
-    * ```
-    *
-    * In the above example, type inference produces adequate type bounds; explicit type annotation is unnecessary.
+    * }}}
     *
     * @param u Element to be queried
     * @param uv Extent-based query function

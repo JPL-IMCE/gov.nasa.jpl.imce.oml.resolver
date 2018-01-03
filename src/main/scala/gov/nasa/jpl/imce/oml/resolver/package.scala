@@ -21,37 +21,141 @@ package gov.nasa.jpl.imce.oml
 import java.util.UUID
 
 import gov.nasa.jpl.imce.oml.covariantTag.@@
+import gov.nasa.jpl.imce.oml.graphs.hierarchicalTopologicalSort
 import gov.nasa.jpl.imce.oml.resolver.impl.OMLResolvedFactoryImpl
 import gov.nasa.jpl.imce.oml.uuid.JVMUUIDGenerator
 
-import scala.util.Try
-import scala.Predef.String
+import scala.collection.immutable.{Map, Seq, Set}
+import scala.{None,Some,StringContext,Unit}
+import scala.Predef.{ArrowAssoc,String}
+import scalaz._
+import Scalaz._
+import scalax.collection.GraphEdge.NodeProduct
+import scalax.collection.immutable.Graph
 
 package object resolver {
+
+  type Throwables = Set[java.lang.Throwable]
 
   implicit def toUUIDString[Tag](uuid: UUID @@ Tag)
   : String @@ Tag
   = covariantTag[Tag][String](uuid.toString)
 
+  /**
+    * Initialize an OMLTablesResolver for converting OML Tables data to the OML Resolver API.
+    *
+    * @return An OMLTablesResolver.
+    */
   def initializeResolver
   ()
-  : Try[OMLTablesResolver]
+  : Throwables \/ OMLTablesResolver
   = {
     val omlUUIDg = JVMUUIDGenerator()
     val factory = OMLResolvedFactoryImpl(omlUUIDg)
     val init = OMLTablesResolver.initializeTablesResolver(factory)
-    Try(init)
+    init.right
   }
 
+  /**
+    * Resolve a sorted collection of pairs of OML Module IRI and corresponding OMLSpecificationTables data.
+    *
+    * @param r An OMLTablesResolver.
+    * @param ts A sequence of pairs of OML Module IRI & corresponding OMLSpecificationTables data.
+    * @return A sorted collection of OML Resolver API Extents corresponding to
+    *         the OML Modules resolved from their OMLSpecificationTables data.
+    */
   def resolveTables
-  (r: Try[OMLTablesResolver], ts: tables.OMLSpecificationTables)
-  : Try[OMLTablesResolver]
+  (r: Throwables \/ OMLTablesResolver, ts: Seq[(tables.taggedTypes.IRI, tables.OMLSpecificationTables)])
+  : Throwables \/ Seq[resolver.api.Extent]
   = for {
-    current <- r
-    prev = current.copy(queue = ts)
-    updated <- OMLTablesResolver.resolve(prev)
-    next <- OMLResolutionError.checkResolution(updated)
-  } yield next
+    resolved <- ts.foldLeft[Throwables \/ OMLTablesResolver] {
+      resolver.initializeResolver()
+    } { case (acc, (iri, table)) =>
 
+      for {
+        prev <- acc
+        current = prev.copy(queue = table)
+
+        res <- resolver.OMLTablesResolver.resolve(current)
+          .toDisjunction
+          .leftMap(Set[java.lang.Throwable](_))
+
+        _ <- if (!res.queue.isEmpty)
+          Set[java.lang.Throwable](new java.lang.IllegalArgumentException(
+            s"Conversion of $iri incomplete:\n"+res.queue.show
+          )).left[Unit]
+        else
+          ().right[Throwables]
+
+        next = resolver.OMLTablesResolver.accumulateResultContext(res)
+      } yield next
+    }
+
+    extents = resolved.otherContexts // allContexts === Extent.empty ++ otherContexts
+
+  } yield extents
+
+  /**
+    * Compute a topological sort of the OML Modules according to
+    * the order induced by the source/target of OML ModuleEdges relations.
+    *
+    * @param moduleExtents A set of OML Modules & their corresponding OML Extents.
+    * @param edgeExtents A set of OML ModuleEdges & their corresponding OML Extents.
+    * @return The topological sort of the OML Modules & their OML Extents.
+    */
+  def sortExtents
+  (moduleExtents: Map[api.Module, api.Extent],
+   edgeExtents: Map[api.ModuleEdge, api.Extent])
+  : Throwables \/ Seq[(api.Module, api.Extent)]
+  = for {
+    m2e <- moduleExtents.right[Throwables]
+
+    g0 = Graph[api.Module, ModuleGraphEdge]()
+
+    g1 = moduleExtents.foldLeft(g0) {
+      case (gi, (mi, _)) =>
+        gi + mi
+    }
+
+    g2 <- edgeExtents.foldLeft(g1.right[Throwables]) { case (acc, (me, ext)) =>
+      for {
+        gi <- acc
+        source <- me.sourceModule()(ext) match {
+          case Some(s) =>
+            s.right[Throwables]
+          case _ =>
+            Set[java.lang.Throwable](new java.lang.IllegalArgumentException(
+              s"No source module for edge: $me"
+            )).left
+        }
+        targetIRI = me.targetModule()(ext)
+        gj = gi.toOuterNodes.find(_.iri == targetIRI).fold(gi) { target: api.Module =>
+          val edge = new ModuleGraphEdge[api.Module](NodeProduct(source, target), me)
+          gi + edge
+        }
+      } yield gj
+    }
+
+    g = g2
+
+    moduleSort <-
+      hierarchicalTopologicalSort[api.Module, ModuleGraphEdge](Seq(g))
+        .map(_.reverse)
+
+    result <- moduleSort.foldLeft(Seq.empty[(api.Module, api.Extent)].right[Throwables]) { case (acc, m) =>
+      for {
+        prev <- acc
+        e <- m2e.get(m) match {
+          case Some(_e) =>
+            _e.right[Throwables]
+          case None =>
+            Set[java.lang.Throwable](new java.lang.IllegalArgumentException(
+              s"No extent for module: $m"
+            )).left
+        }
+        next = prev :+ (m -> e)
+      } yield next
+    }
+  } yield result
 
 }

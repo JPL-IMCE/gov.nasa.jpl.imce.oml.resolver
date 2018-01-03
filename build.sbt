@@ -37,14 +37,6 @@ lazy val core = Project("oml-resolver", file("."))
 
     scalaVersion := Settings.versions.scala,
 
-    // 'omlResolver' will be a command-line script to run a single application
-    mainClass in Compile := Some("gov.nasa.jpl.imce.oml.resolver.Test1"),
-
-    executableScriptName := "omlResolver",
-
-    // skip doc on stage
-    mappings in (Compile, packageDoc) := Seq(),
-
     SettingsHelper.makeDeploymentSettings(Universal, packageZipTarball in Universal, "tgz"),
 
     SettingsHelper.makeDeploymentSettings(UniversalDocs, packageXzTarball in UniversalDocs, "tgz"),
@@ -72,6 +64,15 @@ lazy val core = Project("oml-resolver", file("."))
     scalacOptions in (Test, compile) += s"-P:artima-supersafe:config-file:${baseDirectory.value}/project/supersafe.cfg",
     scalacOptions in (Compile, doc) += "-Xplugin-disable:artima-supersafe",
     scalacOptions in (Test, doc) += "-Xplugin-disable:artima-supersafe",
+
+    scalacOptions in (Compile,doc) ++= Seq(
+      "-diagrams",
+      "-doc-title", name.value,
+      "-doc-root-content", baseDirectory.value + "/rootdoc.txt"),
+
+    autoAPIMappings := true,
+
+    apiURL := Some(url("https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.resolver/latest/api/")),
 
     libraryDependencies ++= Seq(
       "com.fasterxml.uuid" % "java-uuid-generator" % "3.1.+",

@@ -18,20 +18,27 @@
 
 package gov.nasa.jpl.imce.oml.resolver
 
-import scala.util.{Failure,Try}
+import scala.collection.immutable.Set
+import scala.util.{Failure,Success,Try}
 import scala.Predef.String
+import scalaz._, Scalaz._
 
 case class OMLResolutionError(message: String)
 extends java.lang.IllegalArgumentException(message)
 
 object OMLResolutionError {
 
-  def checkResolution(resolver: OMLTablesResolver)
-  : Try[OMLTablesResolver]
-  = if (resolver.queue.isEmpty)
-    Try(resolver)
-  else {
-    val message = "Incomplete resolution of OML Tables:\n" + resolver.queue.show
-    Failure(OMLResolutionError(message))
+  def checkResolution(resolver: Try[OMLTablesResolver])
+  : Set[java.lang.Throwable] \/ OMLTablesResolver
+  = resolver match {
+    case Success(r) =>
+      if (r.queue.isEmpty)
+        r.right
+      else {
+        val message = "Incomplete resolution of OML Tables:\n" + r.queue.show
+        Set[java.lang.Throwable](OMLResolutionError(message)).left
+      }
+    case Failure(t) =>
+      Set(t).left
   }
 }

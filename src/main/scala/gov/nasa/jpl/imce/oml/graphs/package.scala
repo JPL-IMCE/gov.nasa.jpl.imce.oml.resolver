@@ -70,9 +70,24 @@ package object graphs {
     }
   }
 
+  /**
+    * Hierarchical Topological Sort of a Hypergraph.
+    *
+    * @param queue A collection of graphs, each of type `Graph[N, E]`
+    * @param nOrder Ordering among graph nodes of type `N`
+    * @tparam N Type of graph nodes
+    * @tparam E Type of graph edges
+    * @return If successful, the topological sort of all the nodes of the graphs in `queue`.
+    */
+  def hierarchicalTopologicalSort[N: ClassTag, E[M] <: DiEdge[M]]
+  (queue: Seq[Graph[N, E]])
+  (implicit nOrder: Ordering[N])
+  : Set[java.lang.Throwable] \/ Seq[N]
+  = hierarchicalTopologicalSort(queue, Seq.empty)
+
   @scala.annotation.tailrec
-  final def hierarchicalTopologicalSort[N: ClassTag, E[M] <: DiEdge[M]]
-  (queue: Seq[Graph[N, E]], result: Seq[N] = Seq.empty)
+  protected final def hierarchicalTopologicalSort[N: ClassTag, E[M] <: DiEdge[M]]
+  (queue: Seq[Graph[N, E]], result: Seq[N])
   (implicit nOrder: Ordering[N])
   : Set[java.lang.Throwable] \/ Seq[N]
   = queue match {

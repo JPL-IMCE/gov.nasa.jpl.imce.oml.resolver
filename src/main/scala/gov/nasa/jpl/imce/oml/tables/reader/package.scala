@@ -21,10 +21,80 @@ package gov.nasa.jpl.imce.oml.tables
 import ammonite.ops.Path
 import org.apache.commons.compress.archivers.zip.ZipFile
 
-import scala.collection.immutable.Seq
+import scala.collection.immutable.{Map, Seq}
 import scala.collection.JavaConversions._
+import scala.Predef.ArrowAssoc
 
 package object reader {
+
+  /**
+    * Maps the IRIs of OML Modules in a given OMLSpecificationTables.
+    *
+    * @param t An OMLSpecificationTables.
+    * @return a map of each OML Module IRI to `t`.
+    */
+  def tableModules(t: OMLSpecificationTables): Map[taggedTypes.IRI, OMLSpecificationTables]
+  = t.terminologyGraphs.map(_.iri -> t).toMap ++
+    t.bundles.map(_.iri -> t).toMap  ++
+    t.descriptionBoxes.map(_.iri-> t).toMap
+
+  /**
+    * Extracts the OML ModuleEdges as tuples of IRIs (source to target).
+    *
+    * @param t An OMLSpecificationTables
+    * @return The source/target IRIs of each OML ModuleEdge in `t`.
+    */
+  def tableEdges(t: OMLSpecificationTables): Seq[(taggedTypes.IRI, taggedTypes.IRI)]
+  = {
+    val tboxes: Map[taggedTypes.TerminologyBoxUUID, taggedTypes.IRI]
+    = t.terminologyGraphs.map(g => g.uuid -> g.iri).toMap ++
+      t.bundles.map(g => g.uuid -> g.iri).toMap
+
+    val dboxes: Map[taggedTypes.DescriptionBoxUUID, taggedTypes.IRI]
+    = t.descriptionBoxes.map(d => d.uuid -> d.iri).toMap
+
+    t
+      .terminologyExtensionAxioms
+      .map(e => tboxes(e.tboxUUID) -> e.extendedTerminologyIRI) ++
+      t
+        .terminologyNestingAxioms
+        .map(e => tboxes(e.tboxUUID) -> e.nestingTerminologyIRI) ++
+      t
+        .bundledTerminologyAxioms
+        .map(e => tboxes(e.bundleUUID) -> e.bundledTerminologyIRI) ++
+      t
+        .descriptionBoxRefinements
+        .map(e => dboxes(e.refiningDescriptionBoxUUID) -> e.refinedDescriptionBoxIRI) ++
+      t
+        .descriptionBoxExtendsClosedWorldDefinitions
+        .map(e => dboxes(e.descriptionBoxUUID) -> e.closedWorldDefinitionsIRI)
+  }
+
+  /**
+    * Read a single '*.omlzip' file.
+    *
+    * @param file
+    * @return The OMLSpecificationTables contents read from `file`.
+    */
+  def readOMLZipFile
+  (file: Path)
+  : OMLSpecificationTables
+  = {
+    import scala.collection.JavaConversions.enumerationAsScalaIterator
+    val zip = new ZipFile(file.toIO)
+    val result =
+      zip
+        .getEntries
+        .to[Seq]
+        .par
+        .aggregate(OMLSpecificationTables.createEmptyOMLSpecificationTables())(
+          seqop = OMLSpecificationTables.readZipArchive(zip),
+          combop = OMLSpecificationTables.mergeTables)
+
+    zip.close()
+
+    result
+  }
 
   /**
     * Read `*.omlzip` files and aggregate the OML tables from each file.
@@ -67,7 +137,6 @@ package object reader {
 
 
   /**
-    *
     * Read `*.omlzip` files and aggregate the OML tables from each file.
     *
     * Note: The aggregation is done sequentially across all `*.omlzip` files
