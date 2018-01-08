@@ -41,3 +41,5 @@ gov.nasa.jpl.imce.oml.resolver 0.90.0 is a major update of 0.80.0
 - [#25 Code refactoring to simplify the OML Converters logic.](https://github.com/JPL-IMCE/gov.nasa.jpl.imce.oml.resolver/issues/25)
 
 - [#26 Refactor for scaladoc.](https://github.com/JPL-IMCE/gov.nasa.jpl.imce.oml.resolver/issues/26)
+
+- [#27 Updates for partitioning OML tables by OML module](https://github.com/JPL-IMCE/gov.nasa.jpl.imce.oml.resolver/issues/27)
