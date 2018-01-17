@@ -11,7 +11,6 @@
 
 = OML Utilities =
 
-== [[gov.nasa.jpl.imce.oml.resolver.FileSystemUtilities oml.resolver.FileSystemUtilities]] ==
 == [[gov.nasa.jpl.imce.oml.resolver.GraphUtilities oml.resolver.GraphUtilities]] ==
 == [[gov.nasa.jpl.imce.oml.resolver.ResolverUtilities oml.resolver.ResolverUtilities]] ==
 == [[gov.nasa.jpl.imce.oml.resolver.TableUtilities oml.resolver.TableUtilities]] ==
