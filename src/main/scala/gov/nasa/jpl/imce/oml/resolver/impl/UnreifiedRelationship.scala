@@ -38,7 +38,15 @@ case class UnreifiedRelationship private[impl]
 )
 extends resolver.api.UnreifiedRelationship
   with EntityRelationship
+  with RestrictableRelationship
 {
+
+  override def relation
+  ()
+	  : resolver.api.EntityRelationship
+	  = {
+	    this
+	  }
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
 	  case _: UnreifiedRelationship => true

@@ -23,9 +23,9 @@ import gov.nasa.jpl.imce.oml._
 case class EntityUniversalRestrictionAxiom private[impl] 
 	(
 	 override val uuid: resolver.api.taggedTypes.EntityUniversalRestrictionAxiomUUID,
-	 override val restrictedRelation: resolver.api.EntityRelationship,
 	 override val restrictedDomain: resolver.api.Entity,
-	 override val restrictedRange: resolver.api.Entity
+	 override val restrictedRange: resolver.api.Entity,
+	 override val restrictedRelationship: resolver.api.RestrictableRelationship
 )
 extends resolver.api.EntityUniversalRestrictionAxiom
   with EntityRestrictionAxiom
@@ -38,15 +38,15 @@ extends resolver.api.EntityUniversalRestrictionAxiom
 
   override val hashCode
   : scala.Int
-  = (uuid, restrictedRelation, restrictedDomain, restrictedRange).##
+  = (uuid, restrictedDomain, restrictedRange, restrictedRelationship).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
     case that: EntityUniversalRestrictionAxiom =>
       (that canEqual this) &&
       (this.uuid == that.uuid) &&
-      (this.restrictedRelation == that.restrictedRelation) &&
       (this.restrictedDomain == that.restrictedDomain) &&
-      (this.restrictedRange == that.restrictedRange)
+      (this.restrictedRange == that.restrictedRange) &&
+      (this.restrictedRelationship == that.restrictedRelationship)
 
     case _ =>
       false

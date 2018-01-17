@@ -34,14 +34,22 @@ case class ReifiedRelationship private[impl]
 	 override val isReflexive: scala.Boolean,
 	 override val isSymmetric: scala.Boolean,
 	 override val isTransitive: scala.Boolean,
-	 override val name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName,
-	 override val unreifiedPropertyName: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName,
-	 override val unreifiedInversePropertyName: scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName]
+	 override val name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName
 )
 extends resolver.api.ReifiedRelationship
   with EntityRelationship
   with ConceptualEntity
 {
+
+  override def allNestedElements
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.collection.immutable.Set[_ <: resolver.api.LogicalElement]
+	  = {
+	    
+	    		scala.collection.immutable.Set[resolver.api.LogicalElement]() ++
+	    		extent.forwardProperty.get(this) ++
+	    		extent.inverseProperty.get(this)
+	  }
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
 	  case _: ReifiedRelationship => true
@@ -50,7 +58,7 @@ extends resolver.api.ReifiedRelationship
 
   override val hashCode
   : scala.Int
-  = (uuid, source, target, isAsymmetric, isEssential, isFunctional, isInverseEssential, isInverseFunctional, isIrreflexive, isReflexive, isSymmetric, isTransitive, name, unreifiedPropertyName, unreifiedInversePropertyName).##
+  = (uuid, source, target, isAsymmetric, isEssential, isFunctional, isInverseEssential, isInverseFunctional, isIrreflexive, isReflexive, isSymmetric, isTransitive, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
     case that: ReifiedRelationship =>
@@ -67,9 +75,7 @@ extends resolver.api.ReifiedRelationship
       (this.isReflexive == that.isReflexive) &&
       (this.isSymmetric == that.isSymmetric) &&
       (this.isTransitive == that.isTransitive) &&
-      (this.name == that.name) &&
-      (this.unreifiedPropertyName == that.unreifiedPropertyName) &&
-      (this.unreifiedInversePropertyName == that.unreifiedInversePropertyName)
+      (this.name == that.name)
 
     case _ =>
       false

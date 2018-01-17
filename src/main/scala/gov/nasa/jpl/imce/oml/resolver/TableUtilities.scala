@@ -226,28 +226,8 @@ object TableUtilities {
     val bodySegments = ruleBodySegments._1 ++ otherBodySegments._1
     val bodySegmentsUUIDs = bodySegments.map(_.uuid)
 
-    val aspectPredicates
-    = ts.aspectPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
-    val conceptPredicates
-    = ts.conceptPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
-    val reifiedRelationshipPredicates
-    = ts.reifiedRelationshipPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
-    val reifiedRelationshipPropertyPredicates
-    = ts.reifiedRelationshipPropertyPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
-    val reifiedRelationshipSourcePropertyPredicates
-    = ts.reifiedRelationshipSourcePropertyPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
-    val reifiedRelationshipTargetPropertyPredicates
-    = ts.reifiedRelationshipTargetPropertyPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
-    val unreifiedRelationshipPropertyPredicates
-    = ts.unreifiedRelationshipPropertyPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
-    val reifiedRelationshipInversePropertyPredicates
-    = ts.reifiedRelationshipInversePropertyPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
-    val reifiedRelationshipSourceInversePropertyPredicates
-    = ts.reifiedRelationshipSourceInversePropertyPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
-    val reifiedRelationshipTargetInversePropertyPredicates
-    = ts.reifiedRelationshipTargetInversePropertyPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
-    val unreifiedRelationshipInversePropertyPredicates
-    = ts.unreifiedRelationshipInversePropertyPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
+    val segmentPredicates
+    = ts.segmentPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
 
     val entityExistentialRestrictionAxioms
     = ts.entityExistentialRestrictionAxioms.partition(_.tboxUUID == g.uuid)
@@ -318,17 +298,7 @@ object TableUtilities {
       unreifiedRelationships._1.map(_.uuid) ++
       chainRules._1.map(_.uuid) ++
       bodySegments.map(_.uuid) ++
-      aspectPredicates._1.map(_.uuid) ++
-      conceptPredicates._1.map(_.uuid) ++
-      reifiedRelationshipPredicates._1.map(_.uuid) ++
-      reifiedRelationshipPropertyPredicates._1.map(_.uuid) ++
-      reifiedRelationshipSourcePropertyPredicates._1.map(_.uuid) ++
-      reifiedRelationshipTargetPropertyPredicates._1.map(_.uuid) ++
-      unreifiedRelationshipPropertyPredicates._1.map(_.uuid) ++
-      reifiedRelationshipInversePropertyPredicates._1.map(_.uuid) ++
-      reifiedRelationshipSourceInversePropertyPredicates._1.map(_.uuid) ++
-      reifiedRelationshipTargetInversePropertyPredicates._1.map(_.uuid) ++
-      unreifiedRelationshipInversePropertyPredicates._1.map(_.uuid) ++
+      segmentPredicates._1.map(_.uuid) ++
       entityExistentialRestrictionAxioms._1.map(_.uuid) ++
       entityUniversalRestrictionAxioms._1.map(_.uuid) ++
       entityScalarDataPropertyExistentialRestrictionAxioms._1.map(_.uuid) ++
@@ -382,17 +352,7 @@ object TableUtilities {
       chainRules = chainRules._1,
       ruleBodySegments = bodySegments,
 
-      aspectPredicates = aspectPredicates._1,
-      conceptPredicates = conceptPredicates._1,
-      reifiedRelationshipPredicates = reifiedRelationshipPredicates._1,
-      reifiedRelationshipPropertyPredicates = reifiedRelationshipPropertyPredicates._1,
-      reifiedRelationshipSourcePropertyPredicates = reifiedRelationshipSourcePropertyPredicates._1,
-      reifiedRelationshipTargetPropertyPredicates = reifiedRelationshipTargetPropertyPredicates._1,
-      unreifiedRelationshipPropertyPredicates = unreifiedRelationshipPropertyPredicates._1,
-      reifiedRelationshipInversePropertyPredicates = reifiedRelationshipInversePropertyPredicates._1,
-      reifiedRelationshipSourceInversePropertyPredicates = reifiedRelationshipSourceInversePropertyPredicates._1,
-      reifiedRelationshipTargetInversePropertyPredicates = reifiedRelationshipTargetInversePropertyPredicates._1,
-      unreifiedRelationshipInversePropertyPredicates = unreifiedRelationshipInversePropertyPredicates._1,
+      segmentPredicates = segmentPredicates._1,
 
       entityExistentialRestrictionAxioms = entityExistentialRestrictionAxioms._1,
       entityUniversalRestrictionAxioms = entityUniversalRestrictionAxioms._1,
@@ -451,17 +411,7 @@ object TableUtilities {
       chainRules = chainRules._2,
       ruleBodySegments = ruleBodySegments._2 ++ otherBodySegments._2,
 
-      aspectPredicates = aspectPredicates._2,
-      conceptPredicates = conceptPredicates._2,
-      reifiedRelationshipPredicates = reifiedRelationshipPredicates._2,
-      reifiedRelationshipPropertyPredicates = reifiedRelationshipPropertyPredicates._2,
-      reifiedRelationshipSourcePropertyPredicates = reifiedRelationshipSourcePropertyPredicates._2,
-      reifiedRelationshipTargetPropertyPredicates = reifiedRelationshipTargetPropertyPredicates._2,
-      unreifiedRelationshipPropertyPredicates = unreifiedRelationshipPropertyPredicates._2,
-      reifiedRelationshipInversePropertyPredicates = reifiedRelationshipInversePropertyPredicates._2,
-      reifiedRelationshipSourceInversePropertyPredicates = reifiedRelationshipSourceInversePropertyPredicates._2,
-      reifiedRelationshipTargetInversePropertyPredicates = reifiedRelationshipTargetInversePropertyPredicates._2,
-      unreifiedRelationshipInversePropertyPredicates = unreifiedRelationshipInversePropertyPredicates._2,
+      segmentPredicates = segmentPredicates._2,
 
       entityExistentialRestrictionAxioms = entityExistentialRestrictionAxioms._2,
       entityUniversalRestrictionAxioms = entityUniversalRestrictionAxioms._2,
@@ -563,28 +513,8 @@ object TableUtilities {
     val bodySegments = ruleBodySegments._1 ++ otherBodySegments._1
     val bodySegmentsUUIDs = bodySegments.map(_.uuid)
 
-    val aspectPredicates
-    = ts.aspectPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
-    val conceptPredicates
-    = ts.conceptPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
-    val reifiedRelationshipPredicates
-    = ts.reifiedRelationshipPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
-    val reifiedRelationshipPropertyPredicates
-    = ts.reifiedRelationshipPropertyPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
-    val reifiedRelationshipSourcePropertyPredicates
-    = ts.reifiedRelationshipSourcePropertyPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
-    val reifiedRelationshipTargetPropertyPredicates
-    = ts.reifiedRelationshipTargetPropertyPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
-    val unreifiedRelationshipPropertyPredicates
-    = ts.unreifiedRelationshipPropertyPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
-    val reifiedRelationshipInversePropertyPredicates
-    = ts.reifiedRelationshipInversePropertyPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
-    val reifiedRelationshipSourceInversePropertyPredicates
-    = ts.reifiedRelationshipSourceInversePropertyPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
-    val reifiedRelationshipTargetInversePropertyPredicates
-    = ts.reifiedRelationshipTargetInversePropertyPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
-    val unreifiedRelationshipInversePropertyPredicates
-    = ts.unreifiedRelationshipInversePropertyPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
+    val segmentPredicates
+    = ts.segmentPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
 
     val entityExistentialRestrictionAxioms
     = ts.entityExistentialRestrictionAxioms.partition(_.tboxUUID == b.uuid)
@@ -673,17 +603,7 @@ object TableUtilities {
       unreifiedRelationships._1.map(_.uuid) ++
       chainRules._1.map(_.uuid) ++
       bodySegments.map(_.uuid) ++
-      aspectPredicates._1.map(_.uuid) ++
-      conceptPredicates._1.map(_.uuid) ++
-      reifiedRelationshipPredicates._1.map(_.uuid) ++
-      reifiedRelationshipPropertyPredicates._1.map(_.uuid) ++
-      reifiedRelationshipSourcePropertyPredicates._1.map(_.uuid) ++
-      reifiedRelationshipTargetPropertyPredicates._1.map(_.uuid) ++
-      unreifiedRelationshipPropertyPredicates._1.map(_.uuid) ++
-      reifiedRelationshipInversePropertyPredicates._1.map(_.uuid) ++
-      reifiedRelationshipSourceInversePropertyPredicates._1.map(_.uuid) ++
-      reifiedRelationshipTargetInversePropertyPredicates._1.map(_.uuid) ++
-      unreifiedRelationshipInversePropertyPredicates._1.map(_.uuid) ++
+      segmentPredicates._1.map(_.uuid) ++
       entityExistentialRestrictionAxioms._1.map(_.uuid) ++
       entityUniversalRestrictionAxioms._1.map(_.uuid) ++
       entityScalarDataPropertyExistentialRestrictionAxioms._1.map(_.uuid) ++
@@ -740,17 +660,7 @@ object TableUtilities {
       chainRules = chainRules._1,
       ruleBodySegments = bodySegments,
 
-      aspectPredicates = aspectPredicates._1,
-      conceptPredicates = conceptPredicates._1,
-      reifiedRelationshipPredicates = reifiedRelationshipPredicates._1,
-      reifiedRelationshipPropertyPredicates = reifiedRelationshipPropertyPredicates._1,
-      reifiedRelationshipSourcePropertyPredicates = reifiedRelationshipSourcePropertyPredicates._1,
-      reifiedRelationshipTargetPropertyPredicates = reifiedRelationshipTargetPropertyPredicates._1,
-      unreifiedRelationshipPropertyPredicates = unreifiedRelationshipPropertyPredicates._1,
-      reifiedRelationshipInversePropertyPredicates = reifiedRelationshipInversePropertyPredicates._1,
-      reifiedRelationshipSourceInversePropertyPredicates = reifiedRelationshipSourceInversePropertyPredicates._1,
-      reifiedRelationshipTargetInversePropertyPredicates = reifiedRelationshipTargetInversePropertyPredicates._1,
-      unreifiedRelationshipInversePropertyPredicates = unreifiedRelationshipInversePropertyPredicates._1,
+      segmentPredicates = segmentPredicates._1,
 
       entityExistentialRestrictionAxioms = entityExistentialRestrictionAxioms._1,
       entityUniversalRestrictionAxioms = entityUniversalRestrictionAxioms._1,
@@ -813,17 +723,7 @@ object TableUtilities {
       chainRules = chainRules._2,
       ruleBodySegments = ruleBodySegments._2 ++ otherBodySegments._2,
 
-      aspectPredicates = aspectPredicates._2,
-      conceptPredicates = conceptPredicates._2,
-      reifiedRelationshipPredicates = reifiedRelationshipPredicates._2,
-      reifiedRelationshipPropertyPredicates = reifiedRelationshipPropertyPredicates._2,
-      reifiedRelationshipSourcePropertyPredicates = reifiedRelationshipSourcePropertyPredicates._2,
-      reifiedRelationshipTargetPropertyPredicates = reifiedRelationshipTargetPropertyPredicates._2,
-      unreifiedRelationshipPropertyPredicates = unreifiedRelationshipPropertyPredicates._2,
-      reifiedRelationshipInversePropertyPredicates = reifiedRelationshipInversePropertyPredicates._2,
-      reifiedRelationshipSourceInversePropertyPredicates = reifiedRelationshipSourceInversePropertyPredicates._2,
-      reifiedRelationshipTargetInversePropertyPredicates = reifiedRelationshipTargetInversePropertyPredicates._2,
-      unreifiedRelationshipInversePropertyPredicates = unreifiedRelationshipInversePropertyPredicates._2,
+      segmentPredicates = segmentPredicates._2,
 
       entityExistentialRestrictionAxioms = entityExistentialRestrictionAxioms._2,
       entityUniversalRestrictionAxioms = entityUniversalRestrictionAxioms._2,

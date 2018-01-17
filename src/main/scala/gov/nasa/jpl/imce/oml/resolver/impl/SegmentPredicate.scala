@@ -20,12 +20,32 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-trait SegmentPredicate
+case class SegmentPredicate private[impl] 
+	(
+	 override val uuid: resolver.api.taggedTypes.SegmentPredicateUUID,
+	 override val bodySegment: resolver.api.RuleBodySegment,
+	 override val predicate: scala.Option[resolver.api.Predicate],
+	 override val reifiedRelationshipSource: scala.Option[resolver.api.ReifiedRelationship],
+	 override val reifiedRelationshipInverseSource: scala.Option[resolver.api.ReifiedRelationship],
+	 override val reifiedRelationshipTarget: scala.Option[resolver.api.ReifiedRelationship],
+	 override val reifiedRelationshipInverseTarget: scala.Option[resolver.api.ReifiedRelationship],
+	 override val unreifiedRelationshipInverse: scala.Option[resolver.api.UnreifiedRelationship]
+)
 extends resolver.api.SegmentPredicate
   with ElementCrossReferenceTuple
 {
-  override val uuid: resolver.api.taggedTypes.SegmentPredicateUUID
-  override val bodySegment: resolver.api.RuleBodySegment
+
+  def termPredicate
+  ()
+	  : scala.Option[resolver.api.Term]
+	  = {
+	    predicate.map(_.term()) orElse 
+	    	reifiedRelationshipSource orElse 
+	    	reifiedRelationshipInverseSource orElse
+	    	reifiedRelationshipTarget orElse
+	    	reifiedRelationshipInverseTarget orElse
+	    	unreifiedRelationshipInverse
+	  }
 
   def moduleContext
   ()(implicit extent: resolver.api.Extent)
@@ -39,4 +59,23 @@ extends resolver.api.SegmentPredicate
  	  case _ => false
   }
 
+  override val hashCode
+  : scala.Int
+  = (uuid, bodySegment, predicate, reifiedRelationshipSource, reifiedRelationshipInverseSource, reifiedRelationshipTarget, reifiedRelationshipInverseTarget, unreifiedRelationshipInverse).##
+
+  override def equals(other: scala.Any): scala.Boolean = other match {
+    case that: SegmentPredicate =>
+      (that canEqual this) &&
+      (this.uuid == that.uuid) &&
+      (this.bodySegment == that.bodySegment) &&
+      (this.predicate == that.predicate) &&
+      (this.reifiedRelationshipSource == that.reifiedRelationshipSource) &&
+      (this.reifiedRelationshipInverseSource == that.reifiedRelationshipInverseSource) &&
+      (this.reifiedRelationshipTarget == that.reifiedRelationshipTarget) &&
+      (this.reifiedRelationshipInverseTarget == that.reifiedRelationshipInverseTarget) &&
+      (this.unreifiedRelationshipInverse == that.unreifiedRelationshipInverse)
+
+    case _ =>
+      false
+  }
 }

@@ -23,8 +23,16 @@ import gov.nasa.jpl.imce.oml._
 trait Entity
 extends resolver.api.Entity
   with Term
+  with Predicate
 {
   override val uuid: resolver.api.taggedTypes.EntityUUID
+
+  override def term
+  ()
+	  : resolver.api.Term
+	  = {
+	    this
+	  }
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
 	  case _: Entity => true

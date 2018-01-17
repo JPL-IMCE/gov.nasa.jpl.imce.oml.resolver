@@ -18,16 +18,12 @@
 
 package gov.nasa.jpl.imce.oml.resolver
 
-import java.util.UUID
-
-import gov.nasa.jpl.imce.oml.covariantTag
-import gov.nasa.jpl.imce.oml.covariantTag.@@
 import gov.nasa.jpl.imce.oml.tables
 import gov.nasa.jpl.imce.oml.uuid.JVMUUIDGenerator
 
 import scala.collection.immutable.{Map, Seq, Set}
 import scala.{None, Some, StringContext, Unit}
-import scala.Predef.{ArrowAssoc, String}
+import scala.Predef.ArrowAssoc
 import scalaz._
 import Scalaz._
 import scalax.collection.GraphEdge.NodeProduct
@@ -40,17 +36,6 @@ import scalax.collection.immutable.Graph
 object ResolverUtilities {
 
   type Throwables = Set[java.lang.Throwable]
-
-  /**
-    * Convenience conversion of `UUID @@ Tag` to `String @@ Tag` for a given `Tag`.
-    *
-    * @param uuid Tagged UUID
-    * @tparam Tag Tag type
-    * @return The `String @@ Tag` representation of `uuid`.
-    */
-  implicit def toUUIDString[Tag](uuid: UUID @@ Tag)
-  : String @@ Tag
-  = covariantTag[Tag][String](uuid.toString)
 
   /**
     * Initialize an OMLTablesResolver for converting OML Tables data to the OML Resolver API.

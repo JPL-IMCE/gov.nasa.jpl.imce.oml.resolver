@@ -13,21 +13,27 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- * License Terms
  */
 
 package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-trait BinarySegmentForwardPropertyPredicate
-extends resolver.api.BinarySegmentForwardPropertyPredicate
-  with BinarySegmentPropertyPredicate
+trait RestrictableRelationship
+extends resolver.api.RestrictableRelationship
+  with Predicate
 {
-  override val uuid: resolver.api.taggedTypes.BinarySegmentForwardPropertyPredicateUUID
+  override val uuid: resolver.api.taggedTypes.RestrictableRelationshipUUID
+
+  override def term
+  ()
+	  : resolver.api.Term
+	  = {
+	    relation()
+	  }
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-	  case _: BinarySegmentForwardPropertyPredicate => true
+	  case _: RestrictableRelationship => true
  	  case _ => false
   }
 

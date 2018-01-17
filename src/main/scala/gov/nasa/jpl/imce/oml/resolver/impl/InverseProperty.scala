@@ -13,44 +13,70 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- * License Terms
  */
 
 package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-case class ReifiedRelationshipTargetPropertyPredicate private[impl] 
+case class InverseProperty private[impl] 
 	(
-	 override val uuid: resolver.api.taggedTypes.ReifiedRelationshipTargetPropertyPredicateUUID,
-	 override val bodySegment: resolver.api.RuleBodySegment,
+	 override val uuid: resolver.api.taggedTypes.InversePropertyUUID,
+	 override val name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName,
 	 override val reifiedRelationship: resolver.api.ReifiedRelationship
 )
-extends resolver.api.ReifiedRelationshipTargetPropertyPredicate
-  with BinarySegmentForwardPropertyPredicate
+extends resolver.api.InverseProperty
+  with RestrictableRelationship
 {
 
-  override def termPredicate
+  override def iri
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.Option[gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI]
+	  = {
+	    extent
+	    	    .terminologyBoxOfTerminologyBoxStatement
+	    	    .get(reifiedRelationship)
+	    	    .flatMap(tbox => tbox.iri().map(i =>  gov.nasa.jpl.imce.oml.tables.taggedTypes.iri(i + "#" + name)))
+	  }
+
+  override def abbrevIRI
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.Option[scala.Predef.String]
+	  = {
+	    extent
+	    	    .terminologyBoxOfTerminologyBoxStatement
+	    	    .get(reifiedRelationship)
+	    	    .map(tbox => tbox.nsPrefix+":"+name)
+	  }
+
+  override def relation
   ()
-	  : resolver.api.Term
+	  : resolver.api.EntityRelationship
 	  = {
 	    reifiedRelationship
 	  }
 
+  override def moduleContext
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.Option[resolver.api.Module]
+	  = {
+	    reifiedRelationship.moduleContext()
+	  }
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-	  case _: ReifiedRelationshipTargetPropertyPredicate => true
+	  case _: InverseProperty => true
  	  case _ => false
   }
 
   override val hashCode
   : scala.Int
-  = (uuid, bodySegment, reifiedRelationship).##
+  = (uuid, name, reifiedRelationship).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-    case that: ReifiedRelationshipTargetPropertyPredicate =>
+    case that: InverseProperty =>
       (that canEqual this) &&
       (this.uuid == that.uuid) &&
-      (this.bodySegment == that.bodySegment) &&
+      (this.name == that.name) &&
       (this.reifiedRelationship == that.reifiedRelationship)
 
     case _ =>
