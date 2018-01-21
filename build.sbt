@@ -94,20 +94,20 @@ lazy val core = Project("oml-resolver", file("."))
     dependencyOverrides += "com.fasterxml.jackson.module" %% "jackson-module-scala" % Settings.versions.spark_jackson % "compile"
   )
   .dependsOn(ProjectRef(file("../gov.nasa.jpl.imce.oml.tables"), "tablesJVM"))
-//  .dependsOnSourceProjectRefOrLibraryArtifacts(
-//    "gov.nasa.jpl.imce.oml.tables",
-//    "gov.nasa.jpl.imce.oml.tables",
-//    Some("compile;test->compile"),
-//    Seq(
-//      "gov.nasa.jpl.imce" %% "gov-nasa-jpl-imce-oml-tables"
-//        % Settings.versions.jpl_omf_schema_tables
-//        % "compile" withSources(),
-//
-//      "gov.nasa.jpl.imce" %% "gov-nasa-jpl-imce-oml-tables"
-//        % Settings.versions.jpl_omf_schema_tables artifacts
-//        Artifact("gov-nasa-jpl-imce-oml-tables", "zip", "zip", "resource")
-//    )
-//  )
+  .dependsOnSourceProjectRefOrLibraryArtifacts(
+    "gov.nasa.jpl.imce.oml.tables",
+    "gov.nasa.jpl.imce.oml.tables",
+    Some("compile;test->compile"),
+    Seq(
+      "gov.nasa.jpl.imce" %% "gov-nasa-jpl-imce-oml-tables"
+        % Settings.versions.jpl_omf_schema_tables
+        % "compile" withSources(),
+
+      "gov.nasa.jpl.imce" %% "gov-nasa-jpl-imce-oml-tables"
+        % Settings.versions.jpl_omf_schema_tables artifacts
+        Artifact("gov-nasa-jpl-imce-oml-tables", "zip", "zip", "resource")
+    )
+  )
 
 def dynamicScriptsResourceSettings(projectName: String): Seq[Setting[_]] = {
 
