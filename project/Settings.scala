@@ -10,7 +10,7 @@ object Settings {
 
   val organization = "gov.nasa.jpl.imce"
 
-  val version = "0.91.3"
+  val version = "0.91.4"
 
   val scalacOptions = Seq(
     "-deprecation",
