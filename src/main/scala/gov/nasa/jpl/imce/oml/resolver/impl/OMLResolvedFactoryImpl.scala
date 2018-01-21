@@ -829,20 +829,35 @@ extends resolver.api.OMLResolvedFactory {
 	 : (resolver.api.Extent, resolver.api.RuleBodySegment)
 	 = {
 	   // factoryMethodWithUUIDGenerator (scala...)
-	   // container: previousSegment RuleBodySegment
-	   // contained: nextSegment RuleBodySegment
+	   
+	   // container1: previousSegment RuleBodySegment
+	   // contained1: nextSegment RuleBodySegment
+	   // container2: rule ChainRule
+	   // contained2: firstSegment RuleBodySegment
 	   val ruleBodySegment = RuleBodySegment( uuid, previousSegment, rule )
-	   scala.Tuple2(
-	     previousSegment.fold {
-	     extent.copy(
-	      ruleBodySegmentByUUID = extent.ruleBodySegmentByUUID + (uuid -> ruleBodySegment))
-	     }{ _previousSegment_ =>
-	     extent.copy(
-	      nextSegment = extent.withRuleBodySegment(_previousSegment_, ruleBodySegment),
-	      ruleBodySegmentOfRuleBodySegment = extent.ruleBodySegmentOfRuleBodySegment + (ruleBodySegment -> _previousSegment_),
-	      ruleBodySegmentByUUID = extent.ruleBodySegmentByUUID + (uuid -> ruleBodySegment))
-	     },
-	   	ruleBodySegment)
+	   val extent1 = previousSegment.fold {
+	   	extent.copy(
+	   	  ruleBodySegmentByUUID = extent.ruleBodySegmentByUUID + (uuid -> ruleBodySegment)
+	   	)
+	   }{ _previousSegment_ =>
+	   	extent.copy(
+	   	  nextSegment = extent.withRuleBodySegment(_previousSegment_, ruleBodySegment),
+	   	  ruleBodySegmentOfRuleBodySegment = extent.ruleBodySegmentOfRuleBodySegment + (ruleBodySegment -> _previousSegment_),
+	   	  ruleBodySegmentByUUID = extent.ruleBodySegmentByUUID + (uuid -> ruleBodySegment)
+	   	)
+	   }
+	   val extent2 = rule.fold {
+	   	extent1.copy(
+	   	  ruleBodySegmentByUUID = extent.ruleBodySegmentByUUID + (uuid -> ruleBodySegment)
+	   	)
+	   }{ _rule_ =>
+	   	extent1.copy(
+	   	  firstSegment = extent.withRuleBodySegment(_rule_, ruleBodySegment),
+	   	  chainRuleOfRuleBodySegment = extent.chainRuleOfRuleBodySegment + (ruleBodySegment -> _rule_),
+	   	  ruleBodySegmentByUUID = extent.ruleBodySegmentByUUID + (uuid -> ruleBodySegment)
+	   	)
+	   }
+	   scala.Tuple2(extent2,ruleBodySegment)
 	 }
 	 		  
 	 // Scalar
@@ -965,15 +980,15 @@ extends resolver.api.OMLResolvedFactory {
 	   unreifiedRelationshipInverse: scala.Option[resolver.api.UnreifiedRelationship] )
 	 : (resolver.api.Extent, resolver.api.SegmentPredicate)
 	 = {
-	   // factoryMethodWithUUIDGenerator (scala...)
+	   // factoryMethodWithImplicitlyDerivedUUID
 	   // container: bodySegment RuleBodySegment
 	   // contained: predicate SegmentPredicate
 	   val segmentPredicate = SegmentPredicate( uuid, bodySegment, predicate, reifiedRelationshipSource, reifiedRelationshipInverseSource, reifiedRelationshipTarget, reifiedRelationshipInverseTarget, unreifiedRelationshipInverse )
 	   scala.Tuple2(
-	     extent.copy(
-	      predicate = extent.withSegmentPredicate(bodySegment, segmentPredicate),
-	      ruleBodySegmentOfSegmentPredicate = extent.ruleBodySegmentOfSegmentPredicate + (segmentPredicate -> bodySegment),
-	      segmentPredicateByUUID = extent.segmentPredicateByUUID + (uuid -> segmentPredicate)),
+	   	extent.copy(
+	   	  predicate = extent.withSegmentPredicate(bodySegment, segmentPredicate),
+	   	  ruleBodySegmentOfSegmentPredicate = extent.ruleBodySegmentOfSegmentPredicate + (segmentPredicate -> bodySegment),
+	   	  segmentPredicateByUUID = extent.segmentPredicateByUUID + (uuid -> segmentPredicate)),
 	   	segmentPredicate)
 	 }
 	 		  
