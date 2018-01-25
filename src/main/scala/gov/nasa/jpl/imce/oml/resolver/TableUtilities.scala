@@ -25,7 +25,7 @@ import gov.nasa.jpl.imce.oml.tables
 import gov.nasa.jpl.imce.oml.tables.{taggedTypes,OMLSpecificationTables}
 import scala.collection.immutable.{::, Nil, Map, Seq}
 import scala.collection.JavaConversions._
-import scala.Boolean
+import scala.{Boolean,StringContext}
 import scala.Predef.{require,ArrowAssoc}
 
 /**
@@ -206,6 +206,14 @@ object TableUtilities {
 
     val reifiedRelationships
     = ts.reifiedRelationships.partition(_.tboxUUID == g.uuid)
+    val forwardProperties
+    = ts.forwardProperties.partition { fp: tables.ForwardProperty =>
+      reifiedRelationships._1.exists { rr: tables.ReifiedRelationship =>
+        rr.uuid == fp.reifiedRelationshipUUID }}
+    val inverseProperties
+    = ts.inverseProperties.partition { ip: tables.InverseProperty =>
+      reifiedRelationships._1.exists { rr: tables.ReifiedRelationship =>
+        rr.uuid == ip.reifiedRelationshipUUID }}
     val unreifiedRelationships
     = ts.unreifiedRelationships.partition(_.tboxUUID == g.uuid)
 
@@ -295,6 +303,8 @@ object TableUtilities {
       scalarDataProperties._1.map(_.uuid) ++
       structuredDataProperties._1.map(_.uuid) ++
       reifiedRelationships._1.map(_.uuid) ++
+      forwardProperties._1.map(_.uuid) ++
+      inverseProperties._1.map(_.uuid) ++
       unreifiedRelationships._1.map(_.uuid) ++
       chainRules._1.map(_.uuid) ++
       bodySegments.map(_.uuid) ++
@@ -347,6 +357,8 @@ object TableUtilities {
       structuredDataProperties = structuredDataProperties._1,
 
       reifiedRelationships = reifiedRelationships._1,
+      forwardProperties = forwardProperties._1,
+      inverseProperties = inverseProperties._1,
       unreifiedRelationships = unreifiedRelationships._1,
 
       chainRules = chainRules._1,
@@ -406,6 +418,8 @@ object TableUtilities {
       structuredDataProperties = structuredDataProperties._2,
 
       reifiedRelationships = reifiedRelationships._2,
+      forwardProperties = forwardProperties._2,
+      inverseProperties = inverseProperties._2,
       unreifiedRelationships = unreifiedRelationships._2,
 
       chainRules = chainRules._2,
@@ -493,6 +507,14 @@ object TableUtilities {
 
     val reifiedRelationships
     = ts.reifiedRelationships.partition(_.tboxUUID == b.uuid)
+    val forwardProperties
+    = ts.forwardProperties.partition { fp: tables.ForwardProperty =>
+      reifiedRelationships._1.exists { rr: tables.ReifiedRelationship =>
+        rr.uuid == fp.reifiedRelationshipUUID }}
+    val inverseProperties
+    = ts.inverseProperties.partition { ip: tables.InverseProperty =>
+      reifiedRelationships._1.exists { rr: tables.ReifiedRelationship =>
+        rr.uuid == ip.reifiedRelationshipUUID }}
     val unreifiedRelationships
     = ts.unreifiedRelationships.partition(_.tboxUUID == b.uuid)
 
@@ -600,6 +622,8 @@ object TableUtilities {
       scalarDataProperties._1.map(_.uuid) ++
       structuredDataProperties._1.map(_.uuid) ++
       reifiedRelationships._1.map(_.uuid) ++
+      forwardProperties._1.map(_.uuid) ++
+      inverseProperties._1.map(_.uuid) ++
       unreifiedRelationships._1.map(_.uuid) ++
       chainRules._1.map(_.uuid) ++
       bodySegments.map(_.uuid) ++
@@ -655,6 +679,8 @@ object TableUtilities {
       structuredDataProperties = structuredDataProperties._1,
 
       reifiedRelationships = reifiedRelationships._1,
+      forwardProperties = forwardProperties._1,
+      inverseProperties = inverseProperties._1,
       unreifiedRelationships = unreifiedRelationships._1,
 
       chainRules = chainRules._1,
@@ -718,6 +744,8 @@ object TableUtilities {
       structuredDataProperties = structuredDataProperties._2,
 
       reifiedRelationships = reifiedRelationships._2,
+      forwardProperties = forwardProperties._2,
+      inverseProperties = inverseProperties._2,
       unreifiedRelationships = unreifiedRelationships._2,
 
       chainRules = chainRules._2,
@@ -915,7 +943,15 @@ object TableUtilities {
     val (bundles, rest2) = extractBundles(Map.empty, rest1)
     val (descriptionBoxes, rest3) = extractDescriptionBoxes(Map.empty, rest2)
 
-    require(rest3.isEmpty)
+    require(
+      rest3.isEmpty,
+      s"partitionModules failed\n" +
+      s"${graphs.size} terminology graphs\n"+
+      s"${bundles.size} bundles\n"+
+      s"${descriptionBoxes.size} description boxes\n"+
+      s"remaining:\n"+
+      rest3.show
+    )
 
     graphs ++ bundles ++ descriptionBoxes
   }
