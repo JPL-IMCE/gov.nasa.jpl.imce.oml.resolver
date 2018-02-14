@@ -7,3 +7,5 @@ gov.nasa.jpl.imce.oml.resolver 0.91 is an API-breaking update of 0.90
 ## [#29 Fix generated code for OMLResolvedFactoryImpl.createRuleBodySegment](https://github.com/JPL-IMCE/gov.nasa.jpl.imce.oml.resolver/issues/29)
 
 ## [#30 Partitioning of OML TerminologyGraphs & Bundles is incomplete.](https://github.com/JPL-IMCE/gov.nasa.jpl.imce.oml.resolver/issues/30)
+
+## [#31 GraphUtilities.hierarchicalTopologicalSort fails for strongly connected graphs.](https://github.com/JPL-IMCE/gov.nasa.jpl.imce.oml.resolver/issues/31)

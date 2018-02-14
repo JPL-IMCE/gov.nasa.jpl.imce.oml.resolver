@@ -99,7 +99,7 @@ object GraphUtilities {
     case g :: gs =>
 
       if (g.isAcyclic) {
-        val gsorted = g.topologicalSort().right.get.toOuter.toOuter.to[Seq]
+        val gsorted: Seq[N] = g.topologicalSort().right.get.toOuter.toOuter.to[Seq]
         hierarchicalTopologicalSort(gs, result ++ gsorted)
       } else {
         val sccs1 = g.strongComponentTraverser()
@@ -114,10 +114,12 @@ object GraphUtilities {
 
           case n :: ns =>
             if (n.isAcyclic) {
-              val rs: Seq[N] = n.toOuterNodes.to[Seq]
-              hierarchicalTopologicalSort(ns ++ gs, result ++ rs)
+              val nsorted: Seq[N] = n.topologicalSort().right.get.toOuter.toOuter.to[Seq]
+              hierarchicalTopologicalSort(ns ++ gs, result ++ nsorted)
             } else {
-              hierarchicalTopologicalSort(sccs ++ gs, result)
+              val ncomponent: Seq[N] = n.toOuterNodes.to[Seq]
+              val gn = g -- n
+              hierarchicalTopologicalSort(gn +: (ns ++ gs), result ++ ncomponent)
             }
         }
       }
