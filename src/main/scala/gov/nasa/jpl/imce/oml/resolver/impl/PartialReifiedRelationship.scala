@@ -20,68 +20,46 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-case class ReifiedRelationship private[impl] 
+case class PartialReifiedRelationship private[impl] 
 	(
-	 override val uuid: resolver.api.taggedTypes.ReifiedRelationshipUUID,
+	 override val uuid: resolver.api.taggedTypes.PartialReifiedRelationshipUUID,
 	 override val source: resolver.api.Entity,
 	 override val target: resolver.api.Entity,
-	 override val isAsymmetric: scala.Boolean,
-	 override val isEssential: scala.Boolean,
-	 override val isFunctional: scala.Boolean,
-	 override val isInverseEssential: scala.Boolean,
-	 override val isInverseFunctional: scala.Boolean,
-	 override val isIrreflexive: scala.Boolean,
-	 override val isReflexive: scala.Boolean,
-	 override val isSymmetric: scala.Boolean,
-	 override val isTransitive: scala.Boolean,
 	 override val name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName
 )
-extends resolver.api.ReifiedRelationship
+extends resolver.api.PartialReifiedRelationship
   with ConceptualRelationship
-  with CharacterizedEntityRelationship
 {
 
   override def allNestedElements
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.LogicalElement]
 	  = {
-	    
-	    		scala.collection.immutable.Set[resolver.api.LogicalElement]() ++
-	    		extent.forwardProperty.get(this) ++
-	    		extent.inverseProperty.get(this)
+	    scala.collection.immutable.Set.empty[resolver.api.LogicalElement]
 	  }
 
   override def rootReifiedRelationships
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.ReifiedRelationship]
 	  = {
-	    scala.collection.immutable.Set[resolver.api.ReifiedRelationship](this)
+	    resolver.ResolverUtilities.rootReifiedRelationships(this)
 	  }
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-	  case _: ReifiedRelationship => true
+	  case _: PartialReifiedRelationship => true
  	  case _ => false
   }
 
   override val hashCode
   : scala.Int
-  = (uuid, source, target, isAsymmetric, isEssential, isFunctional, isInverseEssential, isInverseFunctional, isIrreflexive, isReflexive, isSymmetric, isTransitive, name).##
+  = (uuid, source, target, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-    case that: ReifiedRelationship =>
+    case that: PartialReifiedRelationship =>
       (that canEqual this) &&
       (this.uuid == that.uuid) &&
       (this.source == that.source) &&
       (this.target == that.target) &&
-      (this.isAsymmetric == that.isAsymmetric) &&
-      (this.isEssential == that.isEssential) &&
-      (this.isFunctional == that.isFunctional) &&
-      (this.isInverseEssential == that.isInverseEssential) &&
-      (this.isInverseFunctional == that.isInverseFunctional) &&
-      (this.isIrreflexive == that.isIrreflexive) &&
-      (this.isReflexive == that.isReflexive) &&
-      (this.isSymmetric == that.isSymmetric) &&
-      (this.isTransitive == that.isTransitive) &&
       (this.name == that.name)
 
     case _ =>

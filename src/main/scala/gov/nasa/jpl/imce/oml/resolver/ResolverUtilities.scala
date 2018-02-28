@@ -154,4 +154,89 @@ object ResolverUtilities {
     }
   } yield result
 
+  def allModulesIncludingFrom
+  (m: api.Module)
+  (implicit ext: api.Extent)
+  : Set[api.Module]
+  = {
+    val moduleByIRI
+    : Map[tables.taggedTypes.IRI, api.Module]
+    = ext.terminologyGraphs.values.map { m => m.iri -> m }.toMap ++
+      ext.bundles.values.map { m => m.iri -> m }.toMap ++
+      ext.descriptionBoxes.values.map { m => m.iri -> m }.toMap
+
+    def step
+    (fringe: Set[api.Module],
+     acc: Set[api.Module])
+    : Set[api.Module]
+    = if (fringe.isEmpty)
+      acc
+    else {
+      val edges = fringe.foldLeft[Set[api.ModuleEdge]](Set.empty[api.ModuleEdge]) {
+        case (acc, m) =>
+          acc ++ m.moduleEdges()
+      }
+
+      val next = edges.flatMap { e => moduleByIRI.get(e.targetModule()) }
+
+      step(next, acc ++ next)
+    }
+
+    step(Set(m), Set(m))
+  }
+
+  def allTerminologyBoxesIncludingFrom
+  (m: api.Module)
+  (implicit ext: api.Extent)
+  : Set[api.TerminologyBox]
+  = {
+    val moduleByIRI
+    : Map[tables.taggedTypes.IRI, api.TerminologyBox]
+    = ext.terminologyGraphs.values.map { m => m.iri -> m }.toMap ++
+      ext.bundles.values.map { m => m.iri -> m }.toMap
+
+    def step
+    (fringe: Set[api.TerminologyBox],
+     acc: Set[api.TerminologyBox])
+    : Set[api.TerminologyBox]
+    = if (fringe.isEmpty)
+      acc
+    else {
+      val edges = fringe.foldLeft[Set[api.ModuleEdge]](Set.empty[api.ModuleEdge]) {
+        case (acc, m) =>
+          acc ++ m.moduleEdges()
+      }
+
+      val next = edges.flatMap { e => moduleByIRI.get(e.targetModule()) }
+
+      step(next, acc ++ next)
+    }
+
+    m match {
+      case tbox: api.TerminologyBox =>
+        step(Set(tbox), Set(tbox))
+      case _ =>
+        Set.empty
+    }
+
+  }
+
+  def rootReifiedRelationships
+  (pr: api.PartialReifiedRelationship)
+  (implicit ext: api.Extent)
+  : Set[api.ReifiedRelationship]
+  = ext.terminologyBoxOfTerminologyBoxStatement.get(pr) match {
+    case Some(tbox) =>
+      import Filterable.filterable
+      val allTboxes = allTerminologyBoxesIncludingFrom(tbox)
+      val allSpecializationAxioms = allTboxes.flatMap { m =>
+        ext
+          .boxStatements
+          .getOrElse(m, Set.empty)
+          .selectByKindOf { case ax: api.ReifiedRelationshipSpecializationAxiom => ax }
+      }
+      Set.empty
+    case None =>
+      Set.empty
+  }
 }

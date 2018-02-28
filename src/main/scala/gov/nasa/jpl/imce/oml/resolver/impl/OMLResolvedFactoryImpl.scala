@@ -617,6 +617,28 @@ extends resolver.api.OMLResolvedFactory {
 	   	numericScalarRestriction)
 	 }
 	 		  
+	 // PartialReifiedRelationship
+	 override def createPartialReifiedRelationship
+	 ( extent: resolver.api.Extent,
+	   uuid: resolver.api.taggedTypes.PartialReifiedRelationshipUUID,
+	   tbox: resolver.api.TerminologyBox,
+	   source: resolver.api.Entity,
+	   target: resolver.api.Entity,
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName )
+	 : (resolver.api.Extent, resolver.api.PartialReifiedRelationship)
+	 = {
+	   // factoryMethodWithUUIDGenerator
+	   // container: tbox TerminologyBox
+	   // contained: boxStatements TerminologyBoxStatement
+	   val partialReifiedRelationship = PartialReifiedRelationship( uuid, source, target, name )
+	   scala.Tuple2(
+	     extent.copy(
+	      boxStatements = extent.withTerminologyBoxStatement(tbox, partialReifiedRelationship),
+	      terminologyBoxOfTerminologyBoxStatement = extent.terminologyBoxOfTerminologyBoxStatement + (partialReifiedRelationship -> tbox),
+	      terminologyBoxStatementByUUID = extent.terminologyBoxStatementByUUID + (uuid -> partialReifiedRelationship)),
+	   	partialReifiedRelationship)
+	 }
+	 		  
 	 // PlainLiteralScalarRestriction
 	 override def createPlainLiteralScalarRestriction
 	 ( extent: resolver.api.Extent,
@@ -679,14 +701,14 @@ extends resolver.api.OMLResolvedFactory {
 	 ( extent: resolver.api.Extent,
 	   uuid: resolver.api.taggedTypes.ReifiedRelationshipInstanceUUID,
 	   descriptionBox: resolver.api.DescriptionBox,
-	   singletonReifiedRelationshipClassifier: resolver.api.ReifiedRelationship,
+	   singletonConceptualRelationshipClassifier: resolver.api.ConceptualRelationship,
 	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName )
 	 : (resolver.api.Extent, resolver.api.ReifiedRelationshipInstance)
 	 = {
 	   // factoryMethodWithUUIDGenerator
 	   // container: descriptionBox DescriptionBox
 	   // contained: reifiedRelationshipInstances ReifiedRelationshipInstance
-	   val reifiedRelationshipInstance = ReifiedRelationshipInstance( uuid, singletonReifiedRelationshipClassifier, name )
+	   val reifiedRelationshipInstance = ReifiedRelationshipInstance( uuid, singletonConceptualRelationshipClassifier, name )
 	   scala.Tuple2(
 	     extent.copy(
 	      reifiedRelationshipInstances = extent.withReifiedRelationshipInstance(descriptionBox, reifiedRelationshipInstance),
@@ -742,8 +764,8 @@ extends resolver.api.OMLResolvedFactory {
 	 ( extent: resolver.api.Extent,
 	   uuid: resolver.api.taggedTypes.ReifiedRelationshipSpecializationAxiomUUID,
 	   tbox: resolver.api.TerminologyBox,
-	   superRelationship: resolver.api.ReifiedRelationship,
-	   subRelationship: resolver.api.ReifiedRelationship )
+	   superRelationship: resolver.api.ConceptualRelationship,
+	   subRelationship: resolver.api.ConceptualRelationship )
 	 : (resolver.api.Extent, resolver.api.ReifiedRelationshipSpecializationAxiom)
 	 = {
 	   // factoryMethodWithDerivedUUID

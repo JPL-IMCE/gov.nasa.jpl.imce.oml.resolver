@@ -23,8 +23,8 @@ import gov.nasa.jpl.imce.oml._
 case class ReifiedRelationshipSpecializationAxiom private[impl] 
 	(
 	 override val uuid: resolver.api.taggedTypes.ReifiedRelationshipSpecializationAxiomUUID,
-	 override val superRelationship: resolver.api.ReifiedRelationship,
-	 override val subRelationship: resolver.api.ReifiedRelationship
+	 override val superRelationship: resolver.api.ConceptualRelationship,
+	 override val subRelationship: resolver.api.ConceptualRelationship
 )
 extends resolver.api.ReifiedRelationshipSpecializationAxiom
   with SpecializationAxiom

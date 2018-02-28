@@ -20,31 +20,15 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-trait EntityRelationship
-extends resolver.api.EntityRelationship
-  with Term
-  with DirectedBinaryRelationshipKind
+trait ConceptualRelationship
+extends resolver.api.ConceptualRelationship
+  with ConceptualEntity
+  with EntityRelationship
 {
-  override val uuid: resolver.api.taggedTypes.EntityRelationshipUUID
-  override val source: resolver.api.Entity
-  override val target: resolver.api.Entity
-
-  override def relationDomain
-  ()
-	  : resolver.api.Term
-	  = {
-	    source
-	  }
-
-  override def relationRange
-  ()
-	  : resolver.api.Term
-	  = {
-	    target
-	  }
+  override val uuid: resolver.api.taggedTypes.ConceptualRelationshipUUID
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-	  case _: EntityRelationship => true
+	  case _: ConceptualRelationship => true
  	  case _ => false
   }
 

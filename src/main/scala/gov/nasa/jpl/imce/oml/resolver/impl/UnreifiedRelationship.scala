@@ -37,7 +37,7 @@ case class UnreifiedRelationship private[impl]
 	 override val name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName
 )
 extends resolver.api.UnreifiedRelationship
-  with EntityRelationship
+  with CharacterizedEntityRelationship
   with RestrictableRelationship
 {
 

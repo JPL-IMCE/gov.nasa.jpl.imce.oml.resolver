@@ -23,7 +23,7 @@ import gov.nasa.jpl.imce.oml._
 case class ReifiedRelationshipInstance private[impl] 
 	(
 	 override val uuid: resolver.api.taggedTypes.ReifiedRelationshipInstanceUUID,
-	 override val singletonReifiedRelationshipClassifier: resolver.api.ReifiedRelationship,
+	 override val singletonConceptualRelationshipClassifier: resolver.api.ConceptualRelationship,
 	 override val name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName
 )
 extends resolver.api.ReifiedRelationshipInstance
@@ -34,7 +34,7 @@ extends resolver.api.ReifiedRelationshipInstance
   ()
 	  : resolver.api.ConceptualEntity
 	  = {
-	    singletonReifiedRelationshipClassifier
+	    singletonConceptualRelationshipClassifier
 	  }
 
   def descriptionBox
@@ -58,13 +58,13 @@ extends resolver.api.ReifiedRelationshipInstance
 
   override val hashCode
   : scala.Int
-  = (uuid, singletonReifiedRelationshipClassifier, name).##
+  = (uuid, singletonConceptualRelationshipClassifier, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
     case that: ReifiedRelationshipInstance =>
       (that canEqual this) &&
       (this.uuid == that.uuid) &&
-      (this.singletonReifiedRelationshipClassifier == that.singletonReifiedRelationshipClassifier) &&
+      (this.singletonConceptualRelationshipClassifier == that.singletonConceptualRelationshipClassifier) &&
       (this.name == that.name)
 
     case _ =>

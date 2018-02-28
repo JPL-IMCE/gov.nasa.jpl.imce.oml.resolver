@@ -1,0 +1,5 @@
+gov.nasa.jpl.imce.oml.resolver 0.92 is an API-breaking update of 0.91
+ 
+# Issues Resolved
+
+## [#32 Update for new SpecializedReifiedRelationship pattern](https://github.com/JPL-IMCE/gov.nasa.jpl.imce.oml.resolver/issues/32)

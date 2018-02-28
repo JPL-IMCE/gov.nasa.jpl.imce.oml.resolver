@@ -18,10 +18,12 @@
 
 package gov.nasa.jpl.imce.oml.resolver
 
+import gov.nasa.jpl.imce.oml.parallelSort
+
 import scala.collection.immutable.{::, List, Nil, Seq, Set, Vector}
 import scala.reflect.ClassTag
 import scala.{Boolean,Ordering}
-import scala.Predef.require
+import scala.Predef.{identity,require}
 import scalax.collection.Graph
 import scalax.collection.GraphEdge.DiEdge
 import scalaz._
@@ -66,8 +68,8 @@ object GraphUtilities {
       if (inverse)
         false
       else {
-        val lns = lt.toOuterNodes.to[Vector].sorted
-        val rns = gt.toOuterNodes.to[Vector].sorted
+        val lns = parallelSort.parSortBy(lt.toOuterNodes.to[Vector], identity[N])
+        val rns = parallelSort.parSortBy(gt.toOuterNodes.to[Vector], identity[N])
         nOrder.compare(lns.head, rns.head) <= 0
       }
     }
@@ -106,7 +108,8 @@ object GraphUtilities {
         val sccs2 = sccs1.map(_.toGraph)
         val sccs3 = sccs2.to[List]
         val sccs4 = sccs3.filter(_.nonEmpty)
-        val sccs = sccs4.sortWith(subGraphPrecedence(g))
+        val sccs = parallelSort
+          .parSortBy(sccs4, identity[Graph[N, E]])(Ordering.fromLessThan(subGraphPrecedence(g)))
 
         sccs match {
           case Nil =>
