@@ -20,14 +20,14 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-case class PartialReifiedRelationship private[impl] 
+case class ReifiedRelationshipRestriction private[impl] 
 	(
-	 override val uuid: resolver.api.taggedTypes.PartialReifiedRelationshipUUID,
+	 override val uuid: resolver.api.taggedTypes.ReifiedRelationshipRestrictionUUID,
 	 override val source: resolver.api.Entity,
 	 override val target: resolver.api.Entity,
 	 override val name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName
 )
-extends resolver.api.PartialReifiedRelationship
+extends resolver.api.ReifiedRelationshipRestriction
   with ConceptualRelationship
 {
 
@@ -46,7 +46,7 @@ extends resolver.api.PartialReifiedRelationship
 	  }
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-	  case _: PartialReifiedRelationship => true
+	  case _: ReifiedRelationshipRestriction => true
  	  case _ => false
   }
 
@@ -55,7 +55,7 @@ extends resolver.api.PartialReifiedRelationship
   = (uuid, source, target, name).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-    case that: PartialReifiedRelationship =>
+    case that: ReifiedRelationshipRestriction =>
       (that canEqual this) &&
       (this.uuid == that.uuid) &&
       (this.source == that.source) &&

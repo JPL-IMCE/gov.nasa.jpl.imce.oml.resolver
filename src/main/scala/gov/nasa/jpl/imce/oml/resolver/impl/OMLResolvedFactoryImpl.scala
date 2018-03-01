@@ -617,28 +617,6 @@ extends resolver.api.OMLResolvedFactory {
 	   	numericScalarRestriction)
 	 }
 	 		  
-	 // PartialReifiedRelationship
-	 override def createPartialReifiedRelationship
-	 ( extent: resolver.api.Extent,
-	   uuid: resolver.api.taggedTypes.PartialReifiedRelationshipUUID,
-	   tbox: resolver.api.TerminologyBox,
-	   source: resolver.api.Entity,
-	   target: resolver.api.Entity,
-	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName )
-	 : (resolver.api.Extent, resolver.api.PartialReifiedRelationship)
-	 = {
-	   // factoryMethodWithUUIDGenerator
-	   // container: tbox TerminologyBox
-	   // contained: boxStatements TerminologyBoxStatement
-	   val partialReifiedRelationship = PartialReifiedRelationship( uuid, source, target, name )
-	   scala.Tuple2(
-	     extent.copy(
-	      boxStatements = extent.withTerminologyBoxStatement(tbox, partialReifiedRelationship),
-	      terminologyBoxOfTerminologyBoxStatement = extent.terminologyBoxOfTerminologyBoxStatement + (partialReifiedRelationship -> tbox),
-	      terminologyBoxStatementByUUID = extent.terminologyBoxStatementByUUID + (uuid -> partialReifiedRelationship)),
-	   	partialReifiedRelationship)
-	 }
-	 		  
 	 // PlainLiteralScalarRestriction
 	 override def createPlainLiteralScalarRestriction
 	 ( extent: resolver.api.Extent,
@@ -757,6 +735,28 @@ extends resolver.api.OMLResolvedFactory {
 	   	  descriptionBoxOfReifiedRelationshipInstanceRange = extent.descriptionBoxOfReifiedRelationshipInstanceRange + (reifiedRelationshipInstanceRange -> descriptionBox),
 	   	  reifiedRelationshipInstanceRangeByUUID = extent.reifiedRelationshipInstanceRangeByUUID + (uuid -> reifiedRelationshipInstanceRange)),
 	   	reifiedRelationshipInstanceRange)
+	 }
+	 		  
+	 // ReifiedRelationshipRestriction
+	 override def createReifiedRelationshipRestriction
+	 ( extent: resolver.api.Extent,
+	   uuid: resolver.api.taggedTypes.ReifiedRelationshipRestrictionUUID,
+	   tbox: resolver.api.TerminologyBox,
+	   source: resolver.api.Entity,
+	   target: resolver.api.Entity,
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName )
+	 : (resolver.api.Extent, resolver.api.ReifiedRelationshipRestriction)
+	 = {
+	   // factoryMethodWithUUIDGenerator
+	   // container: tbox TerminologyBox
+	   // contained: boxStatements TerminologyBoxStatement
+	   val reifiedRelationshipRestriction = ReifiedRelationshipRestriction( uuid, source, target, name )
+	   scala.Tuple2(
+	     extent.copy(
+	      boxStatements = extent.withTerminologyBoxStatement(tbox, reifiedRelationshipRestriction),
+	      terminologyBoxOfTerminologyBoxStatement = extent.terminologyBoxOfTerminologyBoxStatement + (reifiedRelationshipRestriction -> tbox),
+	      terminologyBoxStatementByUUID = extent.terminologyBoxStatementByUUID + (uuid -> reifiedRelationshipRestriction)),
+	   	reifiedRelationshipRestriction)
 	 }
 	 		  
 	 // ReifiedRelationshipSpecializationAxiom

@@ -222,7 +222,7 @@ object ResolverUtilities {
   }
 
   def rootReifiedRelationships
-  (pr: api.PartialReifiedRelationship)
+  (pr: api.ReifiedRelationshipRestriction)
   (implicit ext: api.Extent)
   : Set[api.ReifiedRelationship]
   = ext.terminologyBoxOfTerminologyBoxStatement.get(pr) match {
