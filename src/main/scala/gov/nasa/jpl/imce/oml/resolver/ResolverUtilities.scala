@@ -103,17 +103,25 @@ object ResolverUtilities {
   (moduleExtents: Map[api.Module, api.Extent],
    edgeExtents: Map[api.ModuleEdge, api.Extent])
   : Throwables \/ Seq[(api.Module, api.Extent)]
-  = for {
-    m2e <- moduleExtents.right[Throwables]
-
-    g0 = Graph[api.Module, ModuleGraphEdge]()
-
-    g1 = moduleExtents.foldLeft(g0) {
-      case (gi, (mi, _)) =>
-        gi + mi
+  = {
+    val iri2module
+    : Map[tables.taggedTypes.IRI, api.Module]
+    = moduleExtents.foldLeft(Map.empty[tables.taggedTypes.IRI, api.Module]) { case (acc, (m, _)) =>
+      acc + (m.iri -> m)
     }
 
-    g2 <- edgeExtents.foldLeft(g1.right[Throwables]) { case (acc, (me, ext)) =>
+    def nodeOp
+    (gi: Graph[api.Module, ModuleGraphEdge],
+     m_ext: (api.Module, api.Extent))
+    : Graph[api.Module, ModuleGraphEdge]
+    = gi + m_ext._1
+
+    def edgeOp
+    (acc: Throwables \/ Graph[api.Module, ModuleGraphEdge],
+     me_ext: (api.ModuleEdge, api.Extent))
+    : Throwables \/ Graph[api.Module, ModuleGraphEdge]
+    = {
+      val (me, ext) = (me_ext._1, me_ext._2)
       for {
         gi <- acc
         source <- me.sourceModule()(ext) match {
@@ -125,34 +133,44 @@ object ResolverUtilities {
             )).left
         }
         targetIRI = me.targetModule()(ext)
-        gj = gi.toOuterNodes.find(_.iri == targetIRI).fold(gi) { target: api.Module =>
+
+        gj = iri2module.get(targetIRI).fold(gi) { target: api.Module =>
           val edge = new ModuleGraphEdge[api.Module](NodeProduct(source, target), me)
           gi + edge
         }
       } yield gj
     }
 
-    g = g2
+    def resultOp
+    (acc: Throwables \/ (Seq[(api.Module, api.Extent)], Set[api.Module]),
+     m: api.Module)
+    : Throwables \/ (Seq[(api.Module, api.Extent)], Set[api.Module])
+    = for {
+      prev_visited <- acc
+      (prev, visited) = prev_visited
+      e <- moduleExtents.get(m) match {
+        case Some(_e) =>
+          _e.right[Throwables]
+        case None =>
+          Set[java.lang.Throwable](new java.lang.IllegalArgumentException(
+            s"No extent for module: $m"
+          )).left
+      }
+      next = if (visited.contains(m)) prev else prev :+ (m -> e)
+    } yield next -> (visited + m)
 
-    moduleSort <-
-      GraphUtilities.hierarchicalTopologicalSort[api.Module, ModuleGraphEdge](Seq(g))
-        .map(_.reverse)
+    val sorted = for {
+      g1 <- moduleExtents.foldLeft(Graph[api.Module, ModuleGraphEdge]())(nodeOp).right[Throwables]
 
-    result <- moduleSort.foldLeft(Seq.empty[(api.Module, api.Extent)].right[Throwables]) { case (acc, m) =>
-      for {
-        prev <- acc
-        e <- m2e.get(m) match {
-          case Some(_e) =>
-            _e.right[Throwables]
-          case None =>
-            Set[java.lang.Throwable](new java.lang.IllegalArgumentException(
-              s"No extent for module: $m"
-            )).left
-        }
-        next = prev :+ (m -> e)
-      } yield next
-    }
-  } yield result
+      g2 <- edgeExtents.foldLeft(g1.right[Throwables])(edgeOp)
+
+      moduleSort <- GraphUtilities.hierarchicalTopologicalSort[api.Module, ModuleGraphEdge](Seq(g2)).map(_.reverse)
+
+      result <- moduleSort.foldLeft((Seq.empty[(api.Module, api.Extent)], Set.empty[api.Module]).right[Throwables])(resultOp)
+    } yield result._1
+
+    sorted
+  }
 
   def allModulesIncludingFrom
   (m: api.Module)
