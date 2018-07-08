@@ -435,23 +435,63 @@
       <p class="shortcomment cmt">Resolve a sorted collection of pairs of OML Module IRI and corresponding OMLSpecificationTables data.</p><div class="fullcomment"><div class="comment cmt"><p>Resolve a sorted collection of pairs of OML Module IRI and corresponding OMLSpecificationTables data.
 </p></div><dl class="paramcmts block"><dt class="param">r</dt><dd class="cmt"><p>An OMLTablesResolver.</p></dd><dt class="param">ts</dt><dd class="cmt"><p>A sequence of pairs of OML Module IRI &amp; corresponding OMLSpecificationTables data.</p></dd><dt>returns</dt><dd class="cmt"><p>A sorted collection of OML Resolver API Extents corresponding to
         the OML Modules resolved from their OMLSpecificationTables data.</p></dd></dl></div>
-    </li><li name="gov.nasa.jpl.imce.oml.resolver.ResolverUtilities#rootReifiedRelationships" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="rootReifiedRelationships(pr:gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipRestriction)(implicitext:gov.nasa.jpl.imce.oml.resolver.api.Extent):scala.collection.immutable.Set[gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationship]"></a>
-      <a id="rootReifiedRelationships(ReifiedRelationshipRestriction)(Extent):Set[ReifiedRelationship]"></a>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.ResolverUtilities#rootCharacterizedEntityRelationships" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="rootCharacterizedEntityRelationships(horizon:scala.collection.immutable.Set[gov.nasa.jpl.imce.oml.resolver.api.ConceptualRelationship],candidates:scala.collection.immutable.Set[gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipSpecializationAxiom],results:scala.collection.immutable.Set[gov.nasa.jpl.imce.oml.resolver.api.CharacterizedEntityRelationship])(implicitext:gov.nasa.jpl.imce.oml.resolver.api.Extent):scala.collection.immutable.Set[gov.nasa.jpl.imce.oml.resolver.api.CharacterizedEntityRelationship]"></a>
+      <a id="rootCharacterizedEntityRelationships(Set[ConceptualRelationship],Set[ReifiedRelationshipSpecializationAxiom],Set[CharacterizedEntityRelationship])(Extent):Set[CharacterizedEntityRelationship]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">rootCharacterizedEntityRelationships</span><span class="params">(<span name="horizon">horizon: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Set" class="extype" target="_top">Set</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ConceptualRelationship" class="extype" target="_top">ConceptualRelationship</a>]</span>, <span name="candidates">candidates: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Set" class="extype" target="_top">Set</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipSpecializationAxiom" class="extype" target="_top">ReifiedRelationshipSpecializationAxiom</a>]</span>, <span name="results">results: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Set" class="extype" target="_top">Set</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.CharacterizedEntityRelationship" class="extype" target="_top">CharacterizedEntityRelationship</a>]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="ext">ext: <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Extent" class="extype" target="_top">Extent</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Set" class="extype" target="_top">Set</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.CharacterizedEntityRelationship" class="extype" target="_top">CharacterizedEntityRelationship</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.ResolverUtilities$@rootCharacterizedEntityRelationships(horizon:scala.collection.immutable.Set[gov.nasa.jpl.imce.oml.resolver.api.ConceptualRelationship],candidates:scala.collection.immutable.Set[gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipSpecializationAxiom],results:scala.collection.immutable.Set[gov.nasa.jpl.imce.oml.resolver.api.CharacterizedEntityRelationship])(implicitext:gov.nasa.jpl.imce.oml.resolver.api.Extent):scala.collection.immutable.Set[gov.nasa.jpl.imce.oml.resolver.api.CharacterizedEntityRelationship]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@tailrec</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.ResolverUtilities#rootCharacterizedEntityRelationships" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="rootCharacterizedEntityRelationships(rrr:gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipRestriction)(implicitext:gov.nasa.jpl.imce.oml.resolver.api.Extent):scala.collection.immutable.Set[gov.nasa.jpl.imce.oml.resolver.api.CharacterizedEntityRelationship]"></a>
+      <a id="rootCharacterizedEntityRelationships(ReifiedRelationshipRestriction)(Extent):Set[CharacterizedEntityRelationship]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">rootReifiedRelationships</span><span class="params">(<span name="pr">pr: <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipRestriction" class="extype" target="_top">ReifiedRelationshipRestriction</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="ext">ext: <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Extent" class="extype" target="_top">Extent</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Set" class="extype" target="_top">Set</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationship" class="extype" target="_top">ReifiedRelationship</a>]</span>
+        <span class="name">rootCharacterizedEntityRelationships</span><span class="params">(<span name="rrr">rrr: <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipRestriction" class="extype" target="_top">ReifiedRelationshipRestriction</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="ext">ext: <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Extent" class="extype" target="_top">Extent</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Set" class="extype" target="_top">Set</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.CharacterizedEntityRelationship" class="extype" target="_top">CharacterizedEntityRelationship</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.ResolverUtilities$@rootReifiedRelationships(pr:gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipRestriction)(implicitext:gov.nasa.jpl.imce.oml.resolver.api.Extent):scala.collection.immutable.Set[gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationship]" title="Permalink" target="_top">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.ResolverUtilities$@rootCharacterizedEntityRelationships(rrr:gov.nasa.jpl.imce.oml.resolver.api.ReifiedRelationshipRestriction)(implicitext:gov.nasa.jpl.imce.oml.resolver.api.Extent):scala.collection.immutable.Set[gov.nasa.jpl.imce.oml.resolver.api.CharacterizedEntityRelationship]" title="Permalink" target="_top">
         <img src="../../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
+    </li><li name="gov.nasa.jpl.imce.oml.resolver.ResolverUtilities#rootCharacterizedEntityRelationships" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="rootCharacterizedEntityRelationships(crr:gov.nasa.jpl.imce.oml.resolver.api.CardinalityRestrictedReifiedRelationship)(implicitext:gov.nasa.jpl.imce.oml.resolver.api.Extent):scala.collection.immutable.Set[gov.nasa.jpl.imce.oml.resolver.api.CharacterizedEntityRelationship]"></a>
+      <a id="rootCharacterizedEntityRelationships(CardinalityRestrictedReifiedRelationship)(Extent):Set[CharacterizedEntityRelationship]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">rootCharacterizedEntityRelationships</span><span class="params">(<span name="crr">crr: <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.CardinalityRestrictedReifiedRelationship" class="extype" target="_top">CardinalityRestrictedReifiedRelationship</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="ext">ext: <a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.Extent" class="extype" target="_top">Extent</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.collection.immutable.Set" class="extype" target="_top">Set</a>[<a href="https://jpl-imce.github.io/gov.nasa.jpl.imce.oml.tables/latest/api/index.html#gov.nasa.jpl.imce.oml.resolver.api.CharacterizedEntityRelationship" class="extype" target="_top">CharacterizedEntityRelationship</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../../index.html#gov.nasa.jpl.imce.oml.resolver.ResolverUtilities$@rootCharacterizedEntityRelationships(crr:gov.nasa.jpl.imce.oml.resolver.api.CardinalityRestrictedReifiedRelationship)(implicitext:gov.nasa.jpl.imce.oml.resolver.api.Extent):scala.collection.immutable.Set[gov.nasa.jpl.imce.oml.resolver.api.CharacterizedEntityRelationship]" title="Permalink" target="_top">
+        <img src="../../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@tailrec</span><span class="args">()</span>
+              
+        </dd></dl></div>
     </li><li name="gov.nasa.jpl.imce.oml.resolver.ResolverUtilities#sortExtents" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="sortExtents(moduleExtents:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.Module,gov.nasa.jpl.imce.oml.resolver.api.Extent],edgeExtents:scala.collection.immutable.Map[gov.nasa.jpl.imce.oml.resolver.api.ModuleEdge,gov.nasa.jpl.imce.oml.resolver.api.Extent]):scalaz.\/[gov.nasa.jpl.imce.oml.resolver.ResolverUtilities.Throwables,scala.collection.immutable.Seq[(gov.nasa.jpl.imce.oml.resolver.api.Module,gov.nasa.jpl.imce.oml.resolver.api.Extent)]]"></a>
       <a id="sortExtents(Map[Module,Extent],Map[ModuleEdge,Extent]):\/[Throwables,Seq[(Module,Extent)]]"></a>
