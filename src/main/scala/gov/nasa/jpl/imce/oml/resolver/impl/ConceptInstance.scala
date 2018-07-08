@@ -23,7 +23,7 @@ import gov.nasa.jpl.imce.oml._
 case class ConceptInstance private[impl] 
 	(
 	 override val uuid: resolver.api.taggedTypes.ConceptInstanceUUID,
-	 override val singletonConceptClassifier: resolver.api.Concept,
+	 override val singletonConceptClassifier: resolver.api.ConceptKind,
 	 override val name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName
 )
 extends resolver.api.ConceptInstance

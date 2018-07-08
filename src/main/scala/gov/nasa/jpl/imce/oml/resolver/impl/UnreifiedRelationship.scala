@@ -41,6 +41,20 @@ extends resolver.api.UnreifiedRelationship
   with RestrictableRelationship
 {
 
+  override def relationSource
+  ()
+	  : resolver.api.Entity
+	  = {
+	    source
+	  }
+
+  override def relationTarget
+  ()
+	  : resolver.api.Entity
+	  = {
+	    target
+	  }
+
   override def relation
   ()
 	  : resolver.api.EntityRelationship

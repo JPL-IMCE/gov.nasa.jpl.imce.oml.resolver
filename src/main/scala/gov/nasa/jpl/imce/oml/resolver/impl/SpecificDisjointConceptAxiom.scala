@@ -23,7 +23,7 @@ import gov.nasa.jpl.imce.oml._
 case class SpecificDisjointConceptAxiom private[impl] 
 	(
 	 override val uuid: resolver.api.taggedTypes.SpecificDisjointConceptAxiomUUID,
-	 override val disjointLeaf: resolver.api.Concept
+	 override val disjointLeaf: resolver.api.ConceptKind
 )
 extends resolver.api.SpecificDisjointConceptAxiom
   with DisjointUnionOfConceptsAxiom

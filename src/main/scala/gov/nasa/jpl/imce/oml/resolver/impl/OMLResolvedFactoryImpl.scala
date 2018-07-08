@@ -117,7 +117,7 @@ extends resolver.api.OMLResolvedFactory {
 	 ( extent: resolver.api.Extent,
 	   uuid: resolver.api.taggedTypes.AspectSpecializationAxiomUUID,
 	   tbox: resolver.api.TerminologyBox,
-	   superAspect: resolver.api.Aspect,
+	   superAspect: resolver.api.AspectKind,
 	   subEntity: resolver.api.Entity )
 	 : (resolver.api.Extent, resolver.api.AspectSpecializationAxiom)
 	 = {
@@ -191,6 +191,78 @@ extends resolver.api.OMLResolvedFactory {
 	   	bundledTerminologyAxiom)
 	 }
 	 		  
+	 // CardinalityRestrictedAspect
+	 override def createCardinalityRestrictedAspect
+	 ( extent: resolver.api.Extent,
+	   uuid: resolver.api.taggedTypes.CardinalityRestrictedAspectUUID,
+	   tbox: resolver.api.TerminologyBox,
+	   restrictedRange: scala.Option[resolver.api.Entity],
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName,
+	   restrictedCardinality: gov.nasa.jpl.imce.oml.tables.taggedTypes.PositiveIntegerLiteral,
+	   restrictedRelationship: resolver.api.RestrictableRelationship,
+	   restrictionKind: gov.nasa.jpl.imce.oml.tables.CardinalityRestrictionKind )
+	 : (resolver.api.Extent, resolver.api.CardinalityRestrictedAspect)
+	 = {
+	   // factoryMethodWithUUIDGenerator
+	   // container: tbox TerminologyBox
+	   // contained: boxStatements TerminologyBoxStatement
+	   val cardinalityRestrictedAspect = CardinalityRestrictedAspect( uuid, restrictedRange, name, restrictedCardinality, restrictedRelationship, restrictionKind )
+	   scala.Tuple2(
+	     extent.copy(
+	      boxStatements = extent.withTerminologyBoxStatement(tbox, cardinalityRestrictedAspect),
+	      terminologyBoxOfTerminologyBoxStatement = extent.terminologyBoxOfTerminologyBoxStatement + (cardinalityRestrictedAspect -> tbox),
+	      terminologyBoxStatementByUUID = extent.terminologyBoxStatementByUUID + (uuid -> cardinalityRestrictedAspect)),
+	   	cardinalityRestrictedAspect)
+	 }
+	 		  
+	 // CardinalityRestrictedConcept
+	 override def createCardinalityRestrictedConcept
+	 ( extent: resolver.api.Extent,
+	   uuid: resolver.api.taggedTypes.CardinalityRestrictedConceptUUID,
+	   tbox: resolver.api.TerminologyBox,
+	   restrictedRange: scala.Option[resolver.api.Entity],
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName,
+	   restrictedCardinality: gov.nasa.jpl.imce.oml.tables.taggedTypes.PositiveIntegerLiteral,
+	   restrictedRelationship: resolver.api.RestrictableRelationship,
+	   restrictionKind: gov.nasa.jpl.imce.oml.tables.CardinalityRestrictionKind )
+	 : (resolver.api.Extent, resolver.api.CardinalityRestrictedConcept)
+	 = {
+	   // factoryMethodWithUUIDGenerator
+	   // container: tbox TerminologyBox
+	   // contained: boxStatements TerminologyBoxStatement
+	   val cardinalityRestrictedConcept = CardinalityRestrictedConcept( uuid, restrictedRange, name, restrictedCardinality, restrictedRelationship, restrictionKind )
+	   scala.Tuple2(
+	     extent.copy(
+	      boxStatements = extent.withTerminologyBoxStatement(tbox, cardinalityRestrictedConcept),
+	      terminologyBoxOfTerminologyBoxStatement = extent.terminologyBoxOfTerminologyBoxStatement + (cardinalityRestrictedConcept -> tbox),
+	      terminologyBoxStatementByUUID = extent.terminologyBoxStatementByUUID + (uuid -> cardinalityRestrictedConcept)),
+	   	cardinalityRestrictedConcept)
+	 }
+	 		  
+	 // CardinalityRestrictedReifiedRelationship
+	 override def createCardinalityRestrictedReifiedRelationship
+	 ( extent: resolver.api.Extent,
+	   uuid: resolver.api.taggedTypes.CardinalityRestrictedReifiedRelationshipUUID,
+	   tbox: resolver.api.TerminologyBox,
+	   restrictedRange: scala.Option[resolver.api.Entity],
+	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName,
+	   restrictedCardinality: gov.nasa.jpl.imce.oml.tables.taggedTypes.PositiveIntegerLiteral,
+	   restrictedRelationship: resolver.api.RestrictableRelationship,
+	   restrictionKind: gov.nasa.jpl.imce.oml.tables.CardinalityRestrictionKind )
+	 : (resolver.api.Extent, resolver.api.CardinalityRestrictedReifiedRelationship)
+	 = {
+	   // factoryMethodWithUUIDGenerator
+	   // container: tbox TerminologyBox
+	   // contained: boxStatements TerminologyBoxStatement
+	   val cardinalityRestrictedReifiedRelationship = CardinalityRestrictedReifiedRelationship( uuid, restrictedRange, name, restrictedCardinality, restrictedRelationship, restrictionKind )
+	   scala.Tuple2(
+	     extent.copy(
+	      boxStatements = extent.withTerminologyBoxStatement(tbox, cardinalityRestrictedReifiedRelationship),
+	      terminologyBoxOfTerminologyBoxStatement = extent.terminologyBoxOfTerminologyBoxStatement + (cardinalityRestrictedReifiedRelationship -> tbox),
+	      terminologyBoxStatementByUUID = extent.terminologyBoxStatementByUUID + (uuid -> cardinalityRestrictedReifiedRelationship)),
+	   	cardinalityRestrictedReifiedRelationship)
+	 }
+	 		  
 	 // ChainRule
 	 override def createChainRule
 	 ( extent: resolver.api.Extent,
@@ -237,7 +309,7 @@ extends resolver.api.OMLResolvedFactory {
 	 ( extent: resolver.api.Extent,
 	   uuid: resolver.api.taggedTypes.ConceptDesignationTerminologyAxiomUUID,
 	   tbox: resolver.api.TerminologyBox,
-	   designatedConcept: resolver.api.Concept,
+	   designatedConcept: resolver.api.ConceptKind,
 	   designatedTerminology: gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI )
 	 : (resolver.api.Extent, resolver.api.ConceptDesignationTerminologyAxiom)
 	 = {
@@ -258,7 +330,7 @@ extends resolver.api.OMLResolvedFactory {
 	 ( extent: resolver.api.Extent,
 	   uuid: resolver.api.taggedTypes.ConceptInstanceUUID,
 	   descriptionBox: resolver.api.DescriptionBox,
-	   singletonConceptClassifier: resolver.api.Concept,
+	   singletonConceptClassifier: resolver.api.ConceptKind,
 	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName )
 	 : (resolver.api.Extent, resolver.api.ConceptInstance)
 	 = {
@@ -279,8 +351,8 @@ extends resolver.api.OMLResolvedFactory {
 	 ( extent: resolver.api.Extent,
 	   uuid: resolver.api.taggedTypes.ConceptSpecializationAxiomUUID,
 	   tbox: resolver.api.TerminologyBox,
-	   superConcept: resolver.api.Concept,
-	   subConcept: resolver.api.Concept )
+	   superConcept: resolver.api.ConceptKind,
+	   subConcept: resolver.api.ConceptKind )
 	 : (resolver.api.Extent, resolver.api.ConceptSpecializationAxiom)
 	 = {
 	   // factoryMethodWithDerivedUUID
@@ -827,7 +899,7 @@ extends resolver.api.OMLResolvedFactory {
 	 ( extent: resolver.api.Extent,
 	   uuid: resolver.api.taggedTypes.RootConceptTaxonomyAxiomUUID,
 	   bundle: resolver.api.Bundle,
-	   root: resolver.api.Concept )
+	   root: resolver.api.ConceptKind )
 	 : (resolver.api.Extent, resolver.api.RootConceptTaxonomyAxiom)
 	 = {
 	   // factoryMethodWithDerivedUUID
@@ -1063,7 +1135,7 @@ extends resolver.api.OMLResolvedFactory {
 	 ( extent: resolver.api.Extent,
 	   uuid: resolver.api.taggedTypes.SpecificDisjointConceptAxiomUUID,
 	   disjointTaxonomyParent: resolver.api.ConceptTreeDisjunction,
-	   disjointLeaf: resolver.api.Concept )
+	   disjointLeaf: resolver.api.ConceptKind )
 	 : (resolver.api.Extent, resolver.api.SpecificDisjointConceptAxiom)
 	 = {
 	   // factoryMethodWithDerivedUUID
@@ -1267,7 +1339,7 @@ extends resolver.api.OMLResolvedFactory {
 	 ( extent: resolver.api.Extent,
 	   uuid: resolver.api.taggedTypes.TerminologyNestingAxiomUUID,
 	   tbox: resolver.api.TerminologyBox,
-	   nestingContext: resolver.api.Concept,
+	   nestingContext: resolver.api.ConceptKind,
 	   nestingTerminology: gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI )
 	 : (resolver.api.Extent, resolver.api.TerminologyNestingAxiom)
 	 = {

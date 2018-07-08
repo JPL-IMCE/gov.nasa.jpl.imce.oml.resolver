@@ -26,21 +26,19 @@ extends resolver.api.EntityRelationship
   with DirectedBinaryRelationshipKind
 {
   override val uuid: resolver.api.taggedTypes.EntityRelationshipUUID
-  override val source: resolver.api.Entity
-  override val target: resolver.api.Entity
 
   override def relationDomain
   ()
 	  : resolver.api.Term
 	  = {
-	    source
+	    relationSource
 	  }
 
   override def relationRange
   ()
 	  : resolver.api.Term
 	  = {
-	    target
+	    relationTarget
 	  }
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {

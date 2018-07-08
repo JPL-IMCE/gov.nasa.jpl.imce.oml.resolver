@@ -239,11 +239,25 @@ object ResolverUtilities {
 
   }
 
-  def rootReifiedRelationships
-  (pr: api.ReifiedRelationshipRestriction)
+  @scala.annotation.tailrec
+  final def rootCharacterizedEntityRelationships
+  (crr: api.CardinalityRestrictedReifiedRelationship)
   (implicit ext: api.Extent)
-  : Set[api.ReifiedRelationship]
-  = ext.terminologyBoxOfTerminologyBoxStatement.get(pr) match {
+  : Set[api.CharacterizedEntityRelationship]
+  = crr.restrictedRelationship.relation() match {
+    case x: api.CharacterizedEntityRelationship =>
+      Set(x)
+    case x: api.ReifiedRelationshipRestriction =>
+      rootCharacterizedEntityRelationships(x)
+    case x: api.CardinalityRestrictedReifiedRelationship =>
+      rootCharacterizedEntityRelationships(x)
+  }
+
+  def rootCharacterizedEntityRelationships
+  (rrr: api.ReifiedRelationshipRestriction)
+  (implicit ext: api.Extent)
+  : Set[api.CharacterizedEntityRelationship]
+  = ext.terminologyBoxOfTerminologyBoxStatement.get(rrr) match {
     case Some(tbox) =>
       import Filterable.filterable
       val allTboxes = allTerminologyBoxesIncludingFrom(tbox)
@@ -253,8 +267,31 @@ object ResolverUtilities {
           .getOrElse(m, Set.empty)
           .selectByKindOf { case ax: api.ReifiedRelationshipSpecializationAxiom => ax }
       }
-      Set.empty
+      rootCharacterizedEntityRelationships(Set(rrr), allSpecializationAxioms, Set.empty)
     case None =>
       Set.empty
   }
+
+  @scala.annotation.tailrec
+  final def rootCharacterizedEntityRelationships
+  (horizon: Set[api.ConceptualRelationship],
+   candidates: Set[api.ReifiedRelationshipSpecializationAxiom],
+   results: Set[api.CharacterizedEntityRelationship])
+  (implicit ext: api.Extent)
+  : Set[api.CharacterizedEntityRelationship]
+  = {
+    val axioms = candidates.filter { ax => horizon.contains(ax.subRelationship) }
+    if (axioms.isEmpty)
+      results
+    else {
+      import Filterable.filterable
+
+      val parents = axioms.map(_.superRelationship)
+      val moreResults = parents.selectByKindOf { case rr: api.ReifiedRelationship => rr }
+      val nextHorizon = parents.selectByKindOf { case cr: api.ConceptualRelationship => cr }
+      rootCharacterizedEntityRelationships(nextHorizon, candidates, results ++ moreResults)
+    }
+  }
+
+
 }

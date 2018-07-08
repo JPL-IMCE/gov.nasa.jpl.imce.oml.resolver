@@ -23,7 +23,7 @@ import gov.nasa.jpl.imce.oml._
 case class AspectSpecializationAxiom private[impl] 
 	(
 	 override val uuid: resolver.api.taggedTypes.AspectSpecializationAxiomUUID,
-	 override val superAspect: resolver.api.Aspect,
+	 override val superAspect: resolver.api.AspectKind,
 	 override val subEntity: resolver.api.Entity
 )
 extends resolver.api.AspectSpecializationAxiom

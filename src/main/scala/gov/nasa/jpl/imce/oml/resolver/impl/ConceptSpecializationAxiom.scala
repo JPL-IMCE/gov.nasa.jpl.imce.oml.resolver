@@ -23,8 +23,8 @@ import gov.nasa.jpl.imce.oml._
 case class ConceptSpecializationAxiom private[impl] 
 	(
 	 override val uuid: resolver.api.taggedTypes.ConceptSpecializationAxiomUUID,
-	 override val superConcept: resolver.api.Concept,
-	 override val subConcept: resolver.api.Concept
+	 override val superConcept: resolver.api.ConceptKind,
+	 override val subConcept: resolver.api.ConceptKind
 )
 extends resolver.api.ConceptSpecializationAxiom
   with SpecializationAxiom

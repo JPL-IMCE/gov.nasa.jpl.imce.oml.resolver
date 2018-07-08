@@ -20,14 +20,16 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-case class ReifiedRelationshipRestriction private[impl] 
+case class CardinalityRestrictedReifiedRelationship private[impl] 
 	(
-	 override val uuid: resolver.api.taggedTypes.ReifiedRelationshipRestrictionUUID,
-	 override val source: resolver.api.Entity,
-	 override val target: resolver.api.Entity,
-	 override val name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName
+	 override val uuid: resolver.api.taggedTypes.CardinalityRestrictedReifiedRelationshipUUID,
+	 override val restrictedRange: scala.Option[resolver.api.Entity],
+	 override val name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName,
+	 override val restrictedCardinality: gov.nasa.jpl.imce.oml.tables.taggedTypes.PositiveIntegerLiteral,
+	 override val restrictedRelationship: resolver.api.RestrictableRelationship,
+	 override val restrictionKind: gov.nasa.jpl.imce.oml.tables.CardinalityRestrictionKind
 )
-extends resolver.api.ReifiedRelationshipRestriction
+extends resolver.api.CardinalityRestrictedReifiedRelationship
   with ConceptualRelationship
 {
 
@@ -35,21 +37,14 @@ extends resolver.api.ReifiedRelationshipRestriction
   ()
 	  : resolver.api.Entity
 	  = {
-	    source
+	    restrictedRelationship.relation().relationSource()
 	  }
 
   override def relationTarget
   ()
 	  : resolver.api.Entity
 	  = {
-	    target
-	  }
-
-  override def allNestedElements
-  ()(implicit extent: resolver.api.Extent)
-	  : scala.collection.immutable.Set[_ <: resolver.api.LogicalElement]
-	  = {
-	    scala.collection.immutable.Set.empty[resolver.api.LogicalElement]
+	    restrictedRelationship.relation().relationTarget()
 	  }
 
   override def rootCharacterizedEntityRelationships
@@ -60,21 +55,23 @@ extends resolver.api.ReifiedRelationshipRestriction
 	  }
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-	  case _: ReifiedRelationshipRestriction => true
+	  case _: CardinalityRestrictedReifiedRelationship => true
  	  case _ => false
   }
 
   override val hashCode
   : scala.Int
-  = (uuid, source, target, name).##
+  = (uuid, restrictedRange, name, restrictedCardinality, restrictedRelationship, restrictionKind).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-    case that: ReifiedRelationshipRestriction =>
+    case that: CardinalityRestrictedReifiedRelationship =>
       (that canEqual this) &&
       (this.uuid == that.uuid) &&
-      (this.source == that.source) &&
-      (this.target == that.target) &&
-      (this.name == that.name)
+      (this.restrictedRange == that.restrictedRange) &&
+      (this.name == that.name) &&
+      (this.restrictedCardinality == that.restrictedCardinality) &&
+      (this.restrictedRelationship == that.restrictedRelationship) &&
+      (this.restrictionKind == that.restrictionKind)
 
     case _ =>
       false
