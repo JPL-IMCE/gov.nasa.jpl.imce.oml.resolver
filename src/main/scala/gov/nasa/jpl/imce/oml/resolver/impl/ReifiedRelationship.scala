@@ -41,6 +41,20 @@ extends resolver.api.ReifiedRelationship
   with CharacterizedEntityRelationship
 {
 
+  override def relationSource
+  ()
+	  : resolver.api.Entity
+	  = {
+	    source
+	  }
+
+  override def relationTarget
+  ()
+	  : resolver.api.Entity
+	  = {
+	    target
+	  }
+
   override def allNestedElements
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.LogicalElement]
@@ -51,9 +65,9 @@ extends resolver.api.ReifiedRelationship
 	    		extent.inverseProperty.get(this)
 	  }
 
-  override def rootReifiedRelationships
+  override def rootCharacterizedEntityRelationships
   ()(implicit extent: resolver.api.Extent)
-	  : scala.collection.immutable.Set[_ <: resolver.api.ReifiedRelationship]
+	  : scala.collection.immutable.Set[_ <: resolver.api.CharacterizedEntityRelationship]
 	  = {
 	    scala.collection.immutable.Set[resolver.api.ReifiedRelationship](this)
 	  }

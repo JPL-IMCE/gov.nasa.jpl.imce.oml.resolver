@@ -20,29 +20,37 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-case class Concept private[impl] 
+case class CardinalityRestrictedConcept private[impl] 
 	(
-	 override val uuid: resolver.api.taggedTypes.ConceptUUID,
-	 override val name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName
+	 override val uuid: resolver.api.taggedTypes.CardinalityRestrictedConceptUUID,
+	 override val restrictedRange: scala.Option[resolver.api.Entity],
+	 override val name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName,
+	 override val restrictedCardinality: gov.nasa.jpl.imce.oml.tables.taggedTypes.PositiveIntegerLiteral,
+	 override val restrictedRelationship: resolver.api.RestrictableRelationship,
+	 override val restrictionKind: gov.nasa.jpl.imce.oml.tables.CardinalityRestrictionKind
 )
-extends resolver.api.Concept
+extends resolver.api.CardinalityRestrictedConcept
   with ConceptKind
 {
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-	  case _: Concept => true
+	  case _: CardinalityRestrictedConcept => true
  	  case _ => false
   }
 
   override val hashCode
   : scala.Int
-  = (uuid, name).##
+  = (uuid, restrictedRange, name, restrictedCardinality, restrictedRelationship, restrictionKind).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-    case that: Concept =>
+    case that: CardinalityRestrictedConcept =>
       (that canEqual this) &&
       (this.uuid == that.uuid) &&
-      (this.name == that.name)
+      (this.restrictedRange == that.restrictedRange) &&
+      (this.name == that.name) &&
+      (this.restrictedCardinality == that.restrictedCardinality) &&
+      (this.restrictedRelationship == that.restrictedRelationship) &&
+      (this.restrictionKind == that.restrictionKind)
 
     case _ =>
       false

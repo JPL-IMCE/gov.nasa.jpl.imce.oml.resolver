@@ -20,31 +20,16 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-case class Concept private[impl] 
-	(
-	 override val uuid: resolver.api.taggedTypes.ConceptUUID,
-	 override val name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName
-)
-extends resolver.api.Concept
-  with ConceptKind
+trait ConceptKind
+extends resolver.api.ConceptKind
+  with ConceptualEntity
+  with UnaryTermKind
 {
+  override val uuid: resolver.api.taggedTypes.ConceptKindUUID
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-	  case _: Concept => true
+	  case _: ConceptKind => true
  	  case _ => false
   }
 
-  override val hashCode
-  : scala.Int
-  = (uuid, name).##
-
-  override def equals(other: scala.Any): scala.Boolean = other match {
-    case that: Concept =>
-      (that canEqual this) &&
-      (this.uuid == that.uuid) &&
-      (this.name == that.name)
-
-    case _ =>
-      false
-  }
 }

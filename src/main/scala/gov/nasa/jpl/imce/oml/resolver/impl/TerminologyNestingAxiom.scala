@@ -24,7 +24,7 @@ case class TerminologyNestingAxiom private[impl]
 	(
 	 override val uuid: resolver.api.taggedTypes.TerminologyNestingAxiomUUID,
 	 override val tbox: resolver.api.TerminologyBox,
-	 override val nestingContext: resolver.api.Concept,
+	 override val nestingContext: resolver.api.ConceptKind,
 	 override val nestingTerminology: gov.nasa.jpl.imce.oml.tables.taggedTypes.IRI
 )
 extends resolver.api.TerminologyNestingAxiom

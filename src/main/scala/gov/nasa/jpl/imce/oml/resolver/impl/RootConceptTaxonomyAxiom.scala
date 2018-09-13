@@ -24,7 +24,7 @@ case class RootConceptTaxonomyAxiom private[impl]
 	(
 	 override val uuid: resolver.api.taggedTypes.RootConceptTaxonomyAxiomUUID,
 	 override val bundle: resolver.api.Bundle,
-	 override val root: resolver.api.Concept
+	 override val root: resolver.api.ConceptKind
 )
 extends resolver.api.RootConceptTaxonomyAxiom
   with TerminologyBundleStatement
