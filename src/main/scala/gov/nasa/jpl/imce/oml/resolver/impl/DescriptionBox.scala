@@ -43,6 +43,10 @@ extends resolver.api.DescriptionBox
 	  = {
 	    extent.lookupConceptInstances(this) ++
 	    		extent.lookupReifiedRelationshipInstances(this) ++
+	    		extent.lookupInstanceRelationshipEnumerationRestrictions(this) ++
+	    		extent.lookupInstanceRelationshipValueRestrictions(this) ++
+	    		extent.lookupInstanceRelationshipExistentialRangeRestrictions(this) ++
+	    		extent.lookupInstanceRelationshipUniversalRangeRestrictions(this) ++
 	    		extent.lookupReifiedRelationshipInstanceDomains(this) ++
 	    		extent.lookupReifiedRelationshipInstanceRanges(this) ++
 	    		extent.lookupUnreifiedRelationshipInstanceTuples(this) ++
