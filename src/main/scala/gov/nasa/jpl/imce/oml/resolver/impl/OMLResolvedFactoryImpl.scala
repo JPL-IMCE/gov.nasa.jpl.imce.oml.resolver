@@ -269,7 +269,7 @@ extends resolver.api.OMLResolvedFactory {
 	   uuid: resolver.api.taggedTypes.ChainRuleUUID,
 	   tbox: resolver.api.TerminologyBox,
 	   name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName,
-	   head: resolver.api.UnreifiedRelationship )
+	   head: resolver.api.RestrictableRelationship )
 	 : (resolver.api.Extent, resolver.api.ChainRule)
 	 = {
 	   // factoryMethodWithUUIDGenerator
@@ -642,6 +642,113 @@ extends resolver.api.OMLResolvedFactory {
 	      terminologyBoxOfTerminologyBoxStatement = extent.terminologyBoxOfTerminologyBoxStatement + (iRIScalarRestriction -> tbox),
 	      terminologyBoxStatementByUUID = extent.terminologyBoxStatementByUUID + (uuid -> iRIScalarRestriction)),
 	   	iRIScalarRestriction)
+	 }
+	 		  
+	 // InstanceRelationshipEnumerationRestriction
+	 override def createInstanceRelationshipEnumerationRestriction
+	 ( extent: resolver.api.Extent,
+	   uuid: resolver.api.taggedTypes.InstanceRelationshipEnumerationRestrictionUUID,
+	   descriptionBox: resolver.api.DescriptionBox,
+	   domain: resolver.api.ConceptualEntitySingletonInstance,
+	   restrictedRelationship: resolver.api.RestrictableRelationship )
+	 : (resolver.api.Extent, resolver.api.InstanceRelationshipEnumerationRestriction)
+	 = {
+	   // factoryMethodWithDerivedUUID
+	   // container: descriptionBox DescriptionBox
+	   // contained: instanceRelationshipEnumerationRestrictions InstanceRelationshipEnumerationRestriction
+	   val instanceRelationshipEnumerationRestriction = InstanceRelationshipEnumerationRestriction( uuid, domain, restrictedRelationship )
+	   scala.Tuple2(
+	   	extent.copy(
+	   	  instanceRelationshipEnumerationRestrictions = extent.withInstanceRelationshipEnumerationRestriction(descriptionBox, instanceRelationshipEnumerationRestriction),
+	   	  descriptionBoxOfInstanceRelationshipEnumerationRestriction = extent.descriptionBoxOfInstanceRelationshipEnumerationRestriction + (instanceRelationshipEnumerationRestriction -> descriptionBox),
+	   	  instanceRelationshipEnumerationRestrictionByUUID = extent.instanceRelationshipEnumerationRestrictionByUUID + (uuid -> instanceRelationshipEnumerationRestriction)),
+	   	instanceRelationshipEnumerationRestriction)
+	 }
+	 		  
+	 // InstanceRelationshipExistentialRangeRestriction
+	 override def createInstanceRelationshipExistentialRangeRestriction
+	 ( extent: resolver.api.Extent,
+	   uuid: resolver.api.taggedTypes.InstanceRelationshipExistentialRangeRestrictionUUID,
+	   descriptionBox: resolver.api.DescriptionBox,
+	   domain: resolver.api.ConceptualEntitySingletonInstance,
+	   range: resolver.api.Entity,
+	   restrictedRelationship: resolver.api.RestrictableRelationship )
+	 : (resolver.api.Extent, resolver.api.InstanceRelationshipExistentialRangeRestriction)
+	 = {
+	   // factoryMethodWithDerivedUUID
+	   // container: descriptionBox DescriptionBox
+	   // contained: instanceRelationshipExistentialRangeRestrictions InstanceRelationshipExistentialRangeRestriction
+	   val instanceRelationshipExistentialRangeRestriction = InstanceRelationshipExistentialRangeRestriction( uuid, domain, range, restrictedRelationship )
+	   scala.Tuple2(
+	   	extent.copy(
+	   	  instanceRelationshipExistentialRangeRestrictions = extent.withInstanceRelationshipExistentialRangeRestriction(descriptionBox, instanceRelationshipExistentialRangeRestriction),
+	   	  descriptionBoxOfInstanceRelationshipExistentialRangeRestriction = extent.descriptionBoxOfInstanceRelationshipExistentialRangeRestriction + (instanceRelationshipExistentialRangeRestriction -> descriptionBox),
+	   	  instanceRelationshipExistentialRangeRestrictionByUUID = extent.instanceRelationshipExistentialRangeRestrictionByUUID + (uuid -> instanceRelationshipExistentialRangeRestriction)),
+	   	instanceRelationshipExistentialRangeRestriction)
+	 }
+	 		  
+	 // InstanceRelationshipOneOfRestriction
+	 override def createInstanceRelationshipOneOfRestriction
+	 ( extent: resolver.api.Extent,
+	   uuid: resolver.api.taggedTypes.InstanceRelationshipOneOfRestrictionUUID,
+	   range: resolver.api.ConceptualEntitySingletonInstance,
+	   enumeration: resolver.api.InstanceRelationshipEnumerationRestriction )
+	 : (resolver.api.Extent, resolver.api.InstanceRelationshipOneOfRestriction)
+	 = {
+	   // factoryMethodWithDerivedUUID
+	   // container: enumeration InstanceRelationshipEnumerationRestriction
+	   // contained: references InstanceRelationshipOneOfRestriction
+	   val instanceRelationshipOneOfRestriction = InstanceRelationshipOneOfRestriction( uuid, range )
+	   scala.Tuple2(
+	   	extent.copy(
+	   	  references = extent.withInstanceRelationshipOneOfRestriction(enumeration, instanceRelationshipOneOfRestriction),
+	   	  instanceRelationshipEnumerationRestrictionOfInstanceRelationshipOneOfRestriction = extent.instanceRelationshipEnumerationRestrictionOfInstanceRelationshipOneOfRestriction + (instanceRelationshipOneOfRestriction -> enumeration),
+	   	  instanceRelationshipOneOfRestrictionByUUID = extent.instanceRelationshipOneOfRestrictionByUUID + (uuid -> instanceRelationshipOneOfRestriction)),
+	   	instanceRelationshipOneOfRestriction)
+	 }
+	 		  
+	 // InstanceRelationshipUniversalRangeRestriction
+	 override def createInstanceRelationshipUniversalRangeRestriction
+	 ( extent: resolver.api.Extent,
+	   uuid: resolver.api.taggedTypes.InstanceRelationshipUniversalRangeRestrictionUUID,
+	   descriptionBox: resolver.api.DescriptionBox,
+	   domain: resolver.api.ConceptualEntitySingletonInstance,
+	   range: resolver.api.Entity,
+	   restrictedRelationship: resolver.api.RestrictableRelationship )
+	 : (resolver.api.Extent, resolver.api.InstanceRelationshipUniversalRangeRestriction)
+	 = {
+	   // factoryMethodWithDerivedUUID
+	   // container: descriptionBox DescriptionBox
+	   // contained: instanceRelationshipUniversalRangeRestrictions InstanceRelationshipUniversalRangeRestriction
+	   val instanceRelationshipUniversalRangeRestriction = InstanceRelationshipUniversalRangeRestriction( uuid, domain, range, restrictedRelationship )
+	   scala.Tuple2(
+	   	extent.copy(
+	   	  instanceRelationshipUniversalRangeRestrictions = extent.withInstanceRelationshipUniversalRangeRestriction(descriptionBox, instanceRelationshipUniversalRangeRestriction),
+	   	  descriptionBoxOfInstanceRelationshipUniversalRangeRestriction = extent.descriptionBoxOfInstanceRelationshipUniversalRangeRestriction + (instanceRelationshipUniversalRangeRestriction -> descriptionBox),
+	   	  instanceRelationshipUniversalRangeRestrictionByUUID = extent.instanceRelationshipUniversalRangeRestrictionByUUID + (uuid -> instanceRelationshipUniversalRangeRestriction)),
+	   	instanceRelationshipUniversalRangeRestriction)
+	 }
+	 		  
+	 // InstanceRelationshipValueRestriction
+	 override def createInstanceRelationshipValueRestriction
+	 ( extent: resolver.api.Extent,
+	   uuid: resolver.api.taggedTypes.InstanceRelationshipValueRestrictionUUID,
+	   descriptionBox: resolver.api.DescriptionBox,
+	   domain: resolver.api.ConceptualEntitySingletonInstance,
+	   range: resolver.api.ConceptualEntitySingletonInstance,
+	   restrictedRelationship: resolver.api.RestrictableRelationship )
+	 : (resolver.api.Extent, resolver.api.InstanceRelationshipValueRestriction)
+	 = {
+	   // factoryMethodWithDerivedUUID
+	   // container: descriptionBox DescriptionBox
+	   // contained: instanceRelationshipValueRestrictions InstanceRelationshipValueRestriction
+	   val instanceRelationshipValueRestriction = InstanceRelationshipValueRestriction( uuid, domain, range, restrictedRelationship )
+	   scala.Tuple2(
+	   	extent.copy(
+	   	  instanceRelationshipValueRestrictions = extent.withInstanceRelationshipValueRestriction(descriptionBox, instanceRelationshipValueRestriction),
+	   	  descriptionBoxOfInstanceRelationshipValueRestriction = extent.descriptionBoxOfInstanceRelationshipValueRestriction + (instanceRelationshipValueRestriction -> descriptionBox),
+	   	  instanceRelationshipValueRestrictionByUUID = extent.instanceRelationshipValueRestrictionByUUID + (uuid -> instanceRelationshipValueRestriction)),
+	   	instanceRelationshipValueRestriction)
 	 }
 	 		  
 	 // InverseProperty

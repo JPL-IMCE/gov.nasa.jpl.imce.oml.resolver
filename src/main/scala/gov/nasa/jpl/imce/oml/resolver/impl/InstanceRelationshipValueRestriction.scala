@@ -20,44 +20,55 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-case class AnonymousConceptUnionAxiom private[impl] 
+case class InstanceRelationshipValueRestriction private[impl] 
 	(
-	 override val uuid: resolver.api.taggedTypes.AnonymousConceptUnionAxiomUUID,
-	 override val name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName
+	 override val uuid: resolver.api.taggedTypes.InstanceRelationshipValueRestrictionUUID,
+	 override val domain: resolver.api.ConceptualEntitySingletonInstance,
+	 override val range: resolver.api.ConceptualEntitySingletonInstance,
+	 override val restrictedRelationship: resolver.api.RestrictableRelationship
 )
-extends resolver.api.AnonymousConceptUnionAxiom
-  with DisjointUnionOfConceptsAxiom
-  with ConceptTreeDisjunction
+extends resolver.api.InstanceRelationshipValueRestriction
+  with TerminologyInstanceAssertion
+  with ElementCrossReferenceTuple
 {
 
-  override def bundleContainer
+  def descriptionBox
   ()(implicit extent: resolver.api.Extent)
-	  : scala.Option[resolver.api.Bundle]
+	  : scala.Option[resolver.api.DescriptionBox]
 	  = {
-	    conceptTreeDisjunctionParent().flatMap(_.bundleContainer())
+	    extent.descriptionBoxOfInstanceRelationshipValueRestriction.get(this)
+	  }
+
+  def moduleContext
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.Option[resolver.api.Module]
+	  = {
+	    descriptionBox()
 	  }
 
   def allNestedElements
   ()(implicit extent: resolver.api.Extent)
 	  : scala.collection.immutable.Set[_ <: resolver.api.LogicalElement]
 	  = {
-	    extent.lookupDisjunctions(this).flatMap{ d => scala.collection.immutable.Set.empty[resolver.api.LogicalElement] + d ++ d.allNestedElements() }
+	    scala.collection.immutable.Set.empty[resolver.api.LogicalElement]
 	  }
 
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-	  case _: AnonymousConceptUnionAxiom => true
+	  case _: InstanceRelationshipValueRestriction => true
  	  case _ => false
   }
 
   override val hashCode
   : scala.Int
-  = (uuid, name).##
+  = (uuid, domain, range, restrictedRelationship).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-    case that: AnonymousConceptUnionAxiom =>
+    case that: InstanceRelationshipValueRestriction =>
       (that canEqual this) &&
       (this.uuid == that.uuid) &&
-      (this.name == that.name)
+      (this.domain == that.domain) &&
+      (this.range == that.range) &&
+      (this.restrictedRelationship == that.restrictedRelationship)
 
     case _ =>
       false

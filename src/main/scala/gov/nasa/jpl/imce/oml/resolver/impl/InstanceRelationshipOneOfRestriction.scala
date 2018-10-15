@@ -20,31 +20,43 @@ package gov.nasa.jpl.imce.oml.resolver.impl
 
 import gov.nasa.jpl.imce.oml._
 
-case class ChainRule private[impl] 
+case class InstanceRelationshipOneOfRestriction private[impl] 
 	(
-	 override val uuid: resolver.api.taggedTypes.ChainRuleUUID,
-	 override val name: gov.nasa.jpl.imce.oml.tables.taggedTypes.LocalName,
-	 override val head: resolver.api.RestrictableRelationship
+	 override val uuid: resolver.api.taggedTypes.InstanceRelationshipOneOfRestrictionUUID,
+	 override val range: resolver.api.ConceptualEntitySingletonInstance
 )
-extends resolver.api.ChainRule
-  with Rule
+extends resolver.api.InstanceRelationshipOneOfRestriction
+  with ElementCrossReferenceTuple
 {
 
+  def moduleContext
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.Option[resolver.api.Module]
+	  = {
+	    extent.instanceRelationshipEnumerationRestrictionOfInstanceRelationshipOneOfRestriction.get(this).flatMap(_.descriptionBox())
+	  }
+
+  def allNestedElements
+  ()(implicit extent: resolver.api.Extent)
+	  : scala.collection.immutable.Set[_ <: resolver.api.LogicalElement]
+	  = {
+	    scala.collection.immutable.Set.empty[resolver.api.LogicalElement]
+	  }
+
   override def canEqual(that: scala.Any): scala.Boolean = that match {
-	  case _: ChainRule => true
+	  case _: InstanceRelationshipOneOfRestriction => true
  	  case _ => false
   }
 
   override val hashCode
   : scala.Int
-  = (uuid, name, head).##
+  = (uuid, range).##
 
   override def equals(other: scala.Any): scala.Boolean = other match {
-    case that: ChainRule =>
+    case that: InstanceRelationshipOneOfRestriction =>
       (that canEqual this) &&
       (this.uuid == that.uuid) &&
-      (this.name == that.name) &&
-      (this.head == that.head)
+      (this.range == that.range)
 
     case _ =>
       false
