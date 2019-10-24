@@ -161,8 +161,13 @@ object TableUtilities {
 
     val aspects
     = ts.aspects.partition(_.tboxUUID == g.uuid)
+    val cardinalityRestrictedAspects
+    = ts.cardinalityRestrictedAspects.partition(_.tboxUUID == g.uuid)
+
     val concepts
     = ts.concepts.partition(_.tboxUUID == g.uuid)
+    val cardinalityRestrictedConcepts
+    = ts.cardinalityRestrictedConcepts.partition(_.tboxUUID == g.uuid)
 
     val scalars
     = ts.scalars.partition(_.tboxUUID == g.uuid)
@@ -206,6 +211,9 @@ object TableUtilities {
 
     val reifiedRelationships
     = ts.reifiedRelationships.partition(_.tboxUUID == g.uuid)
+    val cardinalityRestrictedReifiedRelationships
+    = ts.cardinalityRestrictedReifiedRelationships.partition(_.tboxUUID == g.uuid)
+
     val forwardProperties
     = ts.forwardProperties.partition { fp: tables.ForwardProperty =>
       reifiedRelationships._1.exists { rr: tables.ReifiedRelationship =>
@@ -283,7 +291,9 @@ object TableUtilities {
     = Set.empty[tables.taggedTypes.LogicalElementUUID] ++
       Seq(g.uuid) ++
       aspects._1.map(_.uuid) ++
+      cardinalityRestrictedAspects._1.map(_.uuid) ++
       concepts._1.map(_.uuid) ++
+      cardinalityRestrictedConcepts._1.map(_.uuid) ++
       scalars._1.map(_.uuid) ++
       structures._1.map(_.uuid) ++
       conceptDesignationTerminologyAxioms._1.map(_.uuid) ++
@@ -303,6 +313,7 @@ object TableUtilities {
       scalarDataProperties._1.map(_.uuid) ++
       structuredDataProperties._1.map(_.uuid) ++
       reifiedRelationships._1.map(_.uuid) ++
+      cardinalityRestrictedReifiedRelationships._1.map(_.uuid) ++
       forwardProperties._1.map(_.uuid) ++
       inverseProperties._1.map(_.uuid) ++
       unreifiedRelationships._1.map(_.uuid) ++
@@ -332,7 +343,10 @@ object TableUtilities {
       annotationProperties = annotationProperties._1,
 
       aspects = aspects._1,
+      cardinalityRestrictedAspects = cardinalityRestrictedAspects._1,
+
       concepts = concepts._1,
+      cardinalityRestrictedConcepts = cardinalityRestrictedConcepts._1,
 
       scalars = scalars._1,
       structures = structures._1,
@@ -357,6 +371,8 @@ object TableUtilities {
       structuredDataProperties = structuredDataProperties._1,
 
       reifiedRelationships = reifiedRelationships._1,
+      cardinalityRestrictedReifiedRelationships = cardinalityRestrictedReifiedRelationships._1,
+
       forwardProperties = forwardProperties._1,
       inverseProperties = inverseProperties._1,
       unreifiedRelationships = unreifiedRelationships._1,
@@ -393,7 +409,10 @@ object TableUtilities {
       annotationProperties = annotationProperties._2,
 
       aspects = aspects._2,
+      cardinalityRestrictedAspects = cardinalityRestrictedAspects._2,
+
       concepts = concepts._2,
+      cardinalityRestrictedConcepts = cardinalityRestrictedConcepts._2,
 
       scalars = scalars._2,
       structures = structures._2,
@@ -418,6 +437,8 @@ object TableUtilities {
       structuredDataProperties = structuredDataProperties._2,
 
       reifiedRelationships = reifiedRelationships._2,
+      cardinalityRestrictedReifiedRelationships = cardinalityRestrictedReifiedRelationships._2,
+
       forwardProperties = forwardProperties._2,
       inverseProperties = inverseProperties._2,
       unreifiedRelationships = unreifiedRelationships._2,
@@ -460,8 +481,13 @@ object TableUtilities {
 
     val aspects
     = ts.aspects.partition(_.tboxUUID == b.uuid)
+    val cardinalityRestrictedAspects
+    = ts.cardinalityRestrictedAspects.partition(_.tboxUUID == b.uuid)
+
     val concepts
     = ts.concepts.partition(_.tboxUUID == b.uuid)
+    val cardinalityRestrictedConcepts
+    = ts.cardinalityRestrictedConcepts.partition(_.tboxUUID == b.uuid)
 
     val scalars
     = ts.scalars.partition(_.tboxUUID == b.uuid)
@@ -507,6 +533,9 @@ object TableUtilities {
 
     val reifiedRelationships
     = ts.reifiedRelationships.partition(_.tboxUUID == b.uuid)
+    val cardinalityRestrictedReifiedRelationships
+    = ts.cardinalityRestrictedReifiedRelationships.partition(_.tboxUUID == b.uuid)
+
     val forwardProperties
     = ts.forwardProperties.partition { fp: tables.ForwardProperty =>
       reifiedRelationships._1.exists { rr: tables.ReifiedRelationship =>
@@ -602,7 +631,9 @@ object TableUtilities {
     = Set.empty[tables.taggedTypes.LogicalElementUUID] ++
       Seq(b.uuid) ++
       aspects._1.map(_.uuid) ++
+      cardinalityRestrictedAspects._1.map(_.uuid) ++
       concepts._1.map(_.uuid) ++
+      cardinalityRestrictedConcepts._1.map(_.uuid) ++
       scalars._1.map(_.uuid) ++
       structures._1.map(_.uuid) ++
       conceptDesignationTerminologyAxioms._1.map(_.uuid) ++
@@ -622,6 +653,7 @@ object TableUtilities {
       scalarDataProperties._1.map(_.uuid) ++
       structuredDataProperties._1.map(_.uuid) ++
       reifiedRelationships._1.map(_.uuid) ++
+      cardinalityRestrictedReifiedRelationships._1.map(_.uuid) ++
       forwardProperties._1.map(_.uuid) ++
       inverseProperties._1.map(_.uuid) ++
       unreifiedRelationships._1.map(_.uuid) ++
@@ -654,7 +686,10 @@ object TableUtilities {
       annotationProperties = annotationProperties._1,
 
       aspects = aspects._1,
+      cardinalityRestrictedAspects = cardinalityRestrictedAspects._1,
+
       concepts = concepts._1,
+      cardinalityRestrictedConcepts = cardinalityRestrictedConcepts._1,
 
       scalars = scalars._1,
       structures = structures._1,
@@ -679,6 +714,8 @@ object TableUtilities {
       structuredDataProperties = structuredDataProperties._1,
 
       reifiedRelationships = reifiedRelationships._1,
+      cardinalityRestrictedReifiedRelationships = cardinalityRestrictedReifiedRelationships._1,
+
       forwardProperties = forwardProperties._1,
       inverseProperties = inverseProperties._1,
       unreifiedRelationships = unreifiedRelationships._1,
@@ -719,7 +756,10 @@ object TableUtilities {
       annotationProperties = annotationProperties._2,
 
       aspects = aspects._2,
+      cardinalityRestrictedAspects = cardinalityRestrictedAspects._2,
+
       concepts = concepts._2,
+      cardinalityRestrictedConcepts = cardinalityRestrictedConcepts._2,
 
       scalars = scalars._2,
       structures = structures._2,
@@ -744,6 +784,8 @@ object TableUtilities {
       structuredDataProperties = structuredDataProperties._2,
 
       reifiedRelationships = reifiedRelationships._2,
+      cardinalityRestrictedReifiedRelationships = cardinalityRestrictedReifiedRelationships._2,
+
       forwardProperties = forwardProperties._2,
       inverseProperties = inverseProperties._2,
       unreifiedRelationships = unreifiedRelationships._2,
