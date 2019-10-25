@@ -1,0 +1,5 @@
+gov.nasa.jpl.imce.oml.resolver 0.96 is a dependency-change update from 0.95
+ 
+# Issues Resolved
+
+## [#37 Add support for OWL HasValue restriction on OML individuals](https://github.com/JPL-IMCE/gov.nasa.jpl.imce.oml.resolver/issues/37)

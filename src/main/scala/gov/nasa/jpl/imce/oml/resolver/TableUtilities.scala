@@ -647,6 +647,7 @@ object TableUtilities {
       scalarOneOfRestrictions._1.map(_.uuid) ++
       scalarOneOfLiteralAxioms._1.map(_.uuid) ++
       stringScalarRestrictions._1.map(_.uuid) ++
+      synonymScalarRestrictions._1.map(_.uuid) ++
       timeScalarRestrictions._1.map(_.uuid) ++
       entityScalarDataProperties._1.map(_.uuid) ++
       entityStructuredDataProperties._1.map(_.uuid) ++
@@ -706,6 +707,7 @@ object TableUtilities {
       scalarOneOfRestrictions = scalarOneOfRestrictions._1,
       scalarOneOfLiteralAxioms = scalarOneOfLiteralAxioms._1,
       stringScalarRestrictions = stringScalarRestrictions._1,
+      synonymScalarRestrictions = synonymScalarRestrictions._1,
       timeScalarRestrictions = timeScalarRestrictions._1,
 
       entityScalarDataProperties = entityScalarDataProperties._1,
@@ -776,6 +778,7 @@ object TableUtilities {
       scalarOneOfRestrictions = scalarOneOfRestrictions._2,
       scalarOneOfLiteralAxioms = scalarOneOfLiteralAxioms._2,
       stringScalarRestrictions = stringScalarRestrictions._2,
+      synonymScalarRestrictions = synonymScalarRestrictions._2,
       timeScalarRestrictions = timeScalarRestrictions._2,
 
       entityScalarDataProperties = entityScalarDataProperties._2,
