@@ -23,7 +23,7 @@ import org.apache.commons.compress.archivers.zip.ZipFile
 
 import gov.nasa.jpl.imce.oml.tables
 import gov.nasa.jpl.imce.oml.tables.{taggedTypes,OMLSpecificationTables}
-import scala.collection.immutable.{::, Nil, Map, Seq}
+import scala.collection.immutable.{::, Nil, Map, Seq, Set}
 import scala.collection.JavaConversions._
 import scala.{Boolean,StringContext}
 import scala.Predef.{require,ArrowAssoc}
@@ -97,7 +97,7 @@ object TableUtilities {
 
   @scala.annotation.tailrec
   protected def collectAndPartitionRestrictionStructuredDataPropertyTuples
-  (seeds: Seq[tables.taggedTypes.RestrictionStructuredDataPropertyContextUUID],
+  (seeds: Set[_ <: tables.taggedTypes.RestrictionStructuredDataPropertyContextUUID],
    acc: Seq[tables.RestrictionStructuredDataPropertyTuple],
    rest: Seq[tables.RestrictionStructuredDataPropertyTuple])
   : (Seq[tables.RestrictionStructuredDataPropertyTuple],
@@ -116,7 +116,7 @@ object TableUtilities {
 
   @scala.annotation.tailrec
   protected def collectAndPartitionConceptTreeDisjunctions
-  (seeds: Seq[tables.taggedTypes.ConceptTreeDisjunctionUUID],
+  (seeds: Set[_ <: tables.taggedTypes.ConceptTreeDisjunctionUUID],
    acc: Seq[tables.AnonymousConceptUnionAxiom],
    rest: Seq[tables.AnonymousConceptUnionAxiom])
   : (Seq[tables.AnonymousConceptUnionAxiom],
@@ -135,7 +135,7 @@ object TableUtilities {
 
   @scala.annotation.tailrec
   protected def collectAndPartitionStructuredDataPropertyTuples
-  (seeds: Seq[tables.taggedTypes.SingletonInstanceStructuredDataPropertyContextUUID],
+  (seeds: Set[_ <: tables.taggedTypes.SingletonInstanceStructuredDataPropertyContextUUID],
    acc: Seq[tables.StructuredDataPropertyTuple],
    rest: Seq[tables.StructuredDataPropertyTuple])
   : (Seq[tables.StructuredDataPropertyTuple],
@@ -161,8 +161,13 @@ object TableUtilities {
 
     val aspects
     = ts.aspects.partition(_.tboxUUID == g.uuid)
+    val cardinalityRestrictedAspects
+    = ts.cardinalityRestrictedAspects.partition(_.tboxUUID == g.uuid)
+
     val concepts
     = ts.concepts.partition(_.tboxUUID == g.uuid)
+    val cardinalityRestrictedConcepts
+    = ts.cardinalityRestrictedConcepts.partition(_.tboxUUID == g.uuid)
 
     val scalars
     = ts.scalars.partition(_.tboxUUID == g.uuid)
@@ -206,6 +211,9 @@ object TableUtilities {
 
     val reifiedRelationships
     = ts.reifiedRelationships.partition(_.tboxUUID == g.uuid)
+    val cardinalityRestrictedReifiedRelationships
+    = ts.cardinalityRestrictedReifiedRelationships.partition(_.tboxUUID == g.uuid)
+
     val forwardProperties
     = ts.forwardProperties.partition { fp: tables.ForwardProperty =>
       reifiedRelationships._1.exists { rr: tables.ReifiedRelationship =>
@@ -220,7 +228,7 @@ object TableUtilities {
     val chainRules
     = ts.chainRules.partition(_.tboxUUID == g.uuid)
     val chainRulesUUIDs
-    = chainRules._1.map(_.uuid)
+    = chainRules._1.map(_.uuid).to[Set]
 
     val (headBodySegments, tailBodySegments)
     = ts.ruleBodySegments.partition(_.ruleUUID.nonEmpty)
@@ -232,7 +240,7 @@ object TableUtilities {
     = collectAndPartitionRuleBodySegments(ruleBodySegments._1, tailBodySegments)
 
     val bodySegments = ruleBodySegments._1 ++ otherBodySegments._1
-    val bodySegmentsUUIDs = bodySegments.map(_.uuid)
+    val bodySegmentsUUIDs = bodySegments.map(_.uuid).to[Set]
 
     val segmentPredicates
     = ts.segmentPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
@@ -253,13 +261,13 @@ object TableUtilities {
 
     val restrictionStructuredDataPropertyTuples
     = collectAndPartitionRestrictionStructuredDataPropertyTuples(
-      entityStructuredDataPropertyParticularRestrictionAxioms._1.map(_.uuid),
+      entityStructuredDataPropertyParticularRestrictionAxioms._1.map(_.uuid).to[Set],
       Seq.empty,
       ts.restrictionStructuredDataPropertyTuples)
 
     val restrictionStructuredDataPropertyContextUUIDs
     = entityStructuredDataPropertyParticularRestrictionAxioms._1.map(_.uuid) ++
-      restrictionStructuredDataPropertyTuples._1.map(_.uuid)
+      restrictionStructuredDataPropertyTuples._1.map(_.uuid).to[Set]
 
     val restrictionScalarDataPropertyValues
     = ts.restrictionScalarDataPropertyValues.partition { v =>
@@ -279,11 +287,13 @@ object TableUtilities {
     = ts.subObjectPropertyOfAxioms.partition(_.tboxUUID == g.uuid)
 
     val allLogicalUUIDs
-    : Seq[tables.taggedTypes.LogicalElementUUID]
-    = Seq.empty[tables.taggedTypes.LogicalElementUUID] ++
+    : Set[tables.taggedTypes.LogicalElementUUID]
+    = Set.empty[tables.taggedTypes.LogicalElementUUID] ++
       Seq(g.uuid) ++
       aspects._1.map(_.uuid) ++
+      cardinalityRestrictedAspects._1.map(_.uuid) ++
       concepts._1.map(_.uuid) ++
+      cardinalityRestrictedConcepts._1.map(_.uuid) ++
       scalars._1.map(_.uuid) ++
       structures._1.map(_.uuid) ++
       conceptDesignationTerminologyAxioms._1.map(_.uuid) ++
@@ -303,6 +313,7 @@ object TableUtilities {
       scalarDataProperties._1.map(_.uuid) ++
       structuredDataProperties._1.map(_.uuid) ++
       reifiedRelationships._1.map(_.uuid) ++
+      cardinalityRestrictedReifiedRelationships._1.map(_.uuid) ++
       forwardProperties._1.map(_.uuid) ++
       inverseProperties._1.map(_.uuid) ++
       unreifiedRelationships._1.map(_.uuid) ++
@@ -332,7 +343,10 @@ object TableUtilities {
       annotationProperties = annotationProperties._1,
 
       aspects = aspects._1,
+      cardinalityRestrictedAspects = cardinalityRestrictedAspects._1,
+
       concepts = concepts._1,
+      cardinalityRestrictedConcepts = cardinalityRestrictedConcepts._1,
 
       scalars = scalars._1,
       structures = structures._1,
@@ -357,6 +371,8 @@ object TableUtilities {
       structuredDataProperties = structuredDataProperties._1,
 
       reifiedRelationships = reifiedRelationships._1,
+      cardinalityRestrictedReifiedRelationships = cardinalityRestrictedReifiedRelationships._1,
+
       forwardProperties = forwardProperties._1,
       inverseProperties = inverseProperties._1,
       unreifiedRelationships = unreifiedRelationships._1,
@@ -393,7 +409,10 @@ object TableUtilities {
       annotationProperties = annotationProperties._2,
 
       aspects = aspects._2,
+      cardinalityRestrictedAspects = cardinalityRestrictedAspects._2,
+
       concepts = concepts._2,
+      cardinalityRestrictedConcepts = cardinalityRestrictedConcepts._2,
 
       scalars = scalars._2,
       structures = structures._2,
@@ -418,6 +437,8 @@ object TableUtilities {
       structuredDataProperties = structuredDataProperties._2,
 
       reifiedRelationships = reifiedRelationships._2,
+      cardinalityRestrictedReifiedRelationships = cardinalityRestrictedReifiedRelationships._2,
+
       forwardProperties = forwardProperties._2,
       inverseProperties = inverseProperties._2,
       unreifiedRelationships = unreifiedRelationships._2,
@@ -460,8 +481,13 @@ object TableUtilities {
 
     val aspects
     = ts.aspects.partition(_.tboxUUID == b.uuid)
+    val cardinalityRestrictedAspects
+    = ts.cardinalityRestrictedAspects.partition(_.tboxUUID == b.uuid)
+
     val concepts
     = ts.concepts.partition(_.tboxUUID == b.uuid)
+    val cardinalityRestrictedConcepts
+    = ts.cardinalityRestrictedConcepts.partition(_.tboxUUID == b.uuid)
 
     val scalars
     = ts.scalars.partition(_.tboxUUID == b.uuid)
@@ -507,6 +533,9 @@ object TableUtilities {
 
     val reifiedRelationships
     = ts.reifiedRelationships.partition(_.tboxUUID == b.uuid)
+    val cardinalityRestrictedReifiedRelationships
+    = ts.cardinalityRestrictedReifiedRelationships.partition(_.tboxUUID == b.uuid)
+
     val forwardProperties
     = ts.forwardProperties.partition { fp: tables.ForwardProperty =>
       reifiedRelationships._1.exists { rr: tables.ReifiedRelationship =>
@@ -521,7 +550,7 @@ object TableUtilities {
     val chainRules
     = ts.chainRules.partition(_.tboxUUID == b.uuid)
     val chainRulesUUIDs
-    = chainRules._1.map(_.uuid)
+    = chainRules._1.map(_.uuid).to[Set]
 
     val (headBodySegments, tailBodySegments)
     = ts.ruleBodySegments.partition(_.ruleUUID.nonEmpty)
@@ -533,7 +562,7 @@ object TableUtilities {
     = collectAndPartitionRuleBodySegments(ruleBodySegments._1, tailBodySegments)
 
     val bodySegments = ruleBodySegments._1 ++ otherBodySegments._1
-    val bodySegmentsUUIDs = bodySegments.map(_.uuid)
+    val bodySegmentsUUIDs = bodySegments.map(_.uuid).to[Set]
 
     val segmentPredicates
     = ts.segmentPredicates.partition(p => bodySegmentsUUIDs.contains(p.bodySegmentUUID))
@@ -554,13 +583,13 @@ object TableUtilities {
 
     val restrictionStructuredDataPropertyTuples
     = collectAndPartitionRestrictionStructuredDataPropertyTuples(
-      entityStructuredDataPropertyParticularRestrictionAxioms._1.map(_.uuid),
+      entityStructuredDataPropertyParticularRestrictionAxioms._1.map(_.uuid).to[Set],
       Seq.empty,
       ts.restrictionStructuredDataPropertyTuples)
 
     val restrictionStructuredDataPropertyContextUUIDs
     = entityStructuredDataPropertyParticularRestrictionAxioms._1.map(_.uuid) ++
-      restrictionStructuredDataPropertyTuples._1.map(_.uuid)
+      restrictionStructuredDataPropertyTuples._1.map(_.uuid).to[Set]
 
     val restrictionScalarDataPropertyValues
     = ts.restrictionScalarDataPropertyValues.partition { v =>
@@ -584,13 +613,13 @@ object TableUtilities {
 
     val anonymousConceptUnionAxioms
     = collectAndPartitionConceptTreeDisjunctions(
-      rootConceptTaxonomyAxioms._1.map(_.uuid),
+      rootConceptTaxonomyAxioms._1.map(_.uuid).to[Set],
       Seq.empty,
       ts.anonymousConceptUnionAxioms)
 
     val conceptTreeDisjunctionUUIDs
     = rootConceptTaxonomyAxioms._1.map(_.uuid) ++
-      anonymousConceptUnionAxioms._1.map(_.uuid)
+      anonymousConceptUnionAxioms._1.map(_.uuid).to[Set]
 
     val specificDisjointConceptAxioms
     = ts.specificDisjointConceptAxioms.partition { s =>
@@ -598,11 +627,13 @@ object TableUtilities {
     }
 
     val allLogicalUUIDs
-    : Seq[tables.taggedTypes.LogicalElementUUID]
-    = Seq.empty[tables.taggedTypes.LogicalElementUUID] ++
+    : Set[tables.taggedTypes.LogicalElementUUID]
+    = Set.empty[tables.taggedTypes.LogicalElementUUID] ++
       Seq(b.uuid) ++
       aspects._1.map(_.uuid) ++
+      cardinalityRestrictedAspects._1.map(_.uuid) ++
       concepts._1.map(_.uuid) ++
+      cardinalityRestrictedConcepts._1.map(_.uuid) ++
       scalars._1.map(_.uuid) ++
       structures._1.map(_.uuid) ++
       conceptDesignationTerminologyAxioms._1.map(_.uuid) ++
@@ -616,12 +647,14 @@ object TableUtilities {
       scalarOneOfRestrictions._1.map(_.uuid) ++
       scalarOneOfLiteralAxioms._1.map(_.uuid) ++
       stringScalarRestrictions._1.map(_.uuid) ++
+      synonymScalarRestrictions._1.map(_.uuid) ++
       timeScalarRestrictions._1.map(_.uuid) ++
       entityScalarDataProperties._1.map(_.uuid) ++
       entityStructuredDataProperties._1.map(_.uuid) ++
       scalarDataProperties._1.map(_.uuid) ++
       structuredDataProperties._1.map(_.uuid) ++
       reifiedRelationships._1.map(_.uuid) ++
+      cardinalityRestrictedReifiedRelationships._1.map(_.uuid) ++
       forwardProperties._1.map(_.uuid) ++
       inverseProperties._1.map(_.uuid) ++
       unreifiedRelationships._1.map(_.uuid) ++
@@ -654,7 +687,10 @@ object TableUtilities {
       annotationProperties = annotationProperties._1,
 
       aspects = aspects._1,
+      cardinalityRestrictedAspects = cardinalityRestrictedAspects._1,
+
       concepts = concepts._1,
+      cardinalityRestrictedConcepts = cardinalityRestrictedConcepts._1,
 
       scalars = scalars._1,
       structures = structures._1,
@@ -671,6 +707,7 @@ object TableUtilities {
       scalarOneOfRestrictions = scalarOneOfRestrictions._1,
       scalarOneOfLiteralAxioms = scalarOneOfLiteralAxioms._1,
       stringScalarRestrictions = stringScalarRestrictions._1,
+      synonymScalarRestrictions = synonymScalarRestrictions._1,
       timeScalarRestrictions = timeScalarRestrictions._1,
 
       entityScalarDataProperties = entityScalarDataProperties._1,
@@ -679,6 +716,8 @@ object TableUtilities {
       structuredDataProperties = structuredDataProperties._1,
 
       reifiedRelationships = reifiedRelationships._1,
+      cardinalityRestrictedReifiedRelationships = cardinalityRestrictedReifiedRelationships._1,
+
       forwardProperties = forwardProperties._1,
       inverseProperties = inverseProperties._1,
       unreifiedRelationships = unreifiedRelationships._1,
@@ -719,7 +758,10 @@ object TableUtilities {
       annotationProperties = annotationProperties._2,
 
       aspects = aspects._2,
+      cardinalityRestrictedAspects = cardinalityRestrictedAspects._2,
+
       concepts = concepts._2,
+      cardinalityRestrictedConcepts = cardinalityRestrictedConcepts._2,
 
       scalars = scalars._2,
       structures = structures._2,
@@ -736,6 +778,7 @@ object TableUtilities {
       scalarOneOfRestrictions = scalarOneOfRestrictions._2,
       scalarOneOfLiteralAxioms = scalarOneOfLiteralAxioms._2,
       stringScalarRestrictions = stringScalarRestrictions._2,
+      synonymScalarRestrictions = synonymScalarRestrictions._2,
       timeScalarRestrictions = timeScalarRestrictions._2,
 
       entityScalarDataProperties = entityScalarDataProperties._2,
@@ -744,6 +787,8 @@ object TableUtilities {
       structuredDataProperties = structuredDataProperties._2,
 
       reifiedRelationships = reifiedRelationships._2,
+      cardinalityRestrictedReifiedRelationships = cardinalityRestrictedReifiedRelationships._2,
+
       forwardProperties = forwardProperties._2,
       inverseProperties = inverseProperties._2,
       unreifiedRelationships = unreifiedRelationships._2,
@@ -810,13 +855,13 @@ object TableUtilities {
 
     val structuredDataPropertyTuples
     = collectAndPartitionStructuredDataPropertyTuples(
-      singletonInstanceStructuredDataPropertyValues._1.map(_.uuid),
+      singletonInstanceStructuredDataPropertyValues._1.map(_.uuid).to[Set],
       Seq.empty,
       ts.structuredDataPropertyTuples)
 
     val singletonInstanceStructuredDataPropertyContextUUIDs
     = singletonInstanceStructuredDataPropertyValues._1.map(_.uuid) ++
-      structuredDataPropertyTuples._1.map(_.uuid)
+      structuredDataPropertyTuples._1.map(_.uuid).to[Set]
 
     val scalarDataPropertyValues
     = ts.scalarDataPropertyValues.partition { v =>
@@ -824,8 +869,8 @@ object TableUtilities {
     }
 
     val allLogicalUUIDs
-    : Seq[tables.taggedTypes.LogicalElementUUID]
-    = Seq.empty[tables.taggedTypes.LogicalElementUUID] ++
+    : Set[tables.taggedTypes.LogicalElementUUID]
+    = Set.empty[tables.taggedTypes.LogicalElementUUID] ++
       Seq(d.uuid) ++
       descriptionBoxExtendsClosedWorldDefinitions._1.map(_.uuid) ++
       descriptionBoxRefinements._1.map(_.uuid) ++
@@ -908,7 +953,7 @@ object TableUtilities {
     = omlTables.terminologyGraphs match {
       case Nil =>
         (acc, omlTables)
-      case (g :: _) =>
+      case g :: _ =>
         val (gIRI, gTables, other) = partitionTerminologyGraph(g, omlTables)
         extractTerminologyGraphs(acc + (gIRI -> gTables), other)
     }
@@ -921,7 +966,7 @@ object TableUtilities {
     = omlTables.bundles match {
       case Nil =>
         (acc, omlTables)
-      case (b :: _) =>
+      case b :: _ =>
         val (bIRI, bTables, other) = partitionBundle(b, omlTables)
         extractBundles(acc + (bIRI -> bTables), other)
     }
@@ -934,7 +979,7 @@ object TableUtilities {
     = omlTables.descriptionBoxes match {
       case Nil =>
         (acc, omlTables)
-      case (d :: _) =>
+      case d :: _ =>
         val (dIRI, dTables, other) = partitionDescriptionBox(d, omlTables)
         extractDescriptionBoxes(acc + (dIRI -> dTables), other)
     }
@@ -959,7 +1004,7 @@ object TableUtilities {
   /**
     * Read a single '*.omlzip' file.
     *
-    * @param file
+    * @param file *.omlzip file
     * @return The OMLSpecificationTables contents read from `file`.
     */
   def readOMLZipFile

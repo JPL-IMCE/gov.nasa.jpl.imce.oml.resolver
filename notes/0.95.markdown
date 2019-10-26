@@ -1,0 +1,8 @@
+gov.nasa.jpl.imce.oml.resolver 0.95 is a dependency-change update from 0.94
+ 
+# Issues Resolved
+
+## [#35 Add support for CardinalityRestrictions](https://github.com/JPL-IMCE/gov.nasa.jpl.imce.oml.resolver/issues/35)
+
+Note: This support turned out to be incomplete, see: https://github.com/JPL-IMCE/gov.nasa.jpl.imce.oml.resolver/issues/39
+
