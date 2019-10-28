@@ -95,7 +95,7 @@ lazy val core = Project("oml-resolver", file("."))
   )
   //.dependsOn(ProjectRef(file("../gov.nasa.jpl.imce.oml.tables"), "tablesJVM"))
   .dependsOnSourceProjectRefOrLibraryArtifacts(
-    "gov.nasa.jpl.imce.oml.tables",
+    "tablesJVM",
     "gov.nasa.jpl.imce.oml.tables",
     Some("compile;test->compile"),
     Seq(
