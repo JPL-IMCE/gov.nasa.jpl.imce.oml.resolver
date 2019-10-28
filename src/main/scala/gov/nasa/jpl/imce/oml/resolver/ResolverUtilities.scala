@@ -22,12 +22,16 @@ import gov.nasa.jpl.imce.oml.tables
 import gov.nasa.jpl.imce.oml.uuid.JVMUUIDGenerator
 
 import scala.collection.immutable.{Map, Seq, Set}
-import scala.{None, Some, StringContext, Unit}
+import scala.{Boolean, Int, None, Some, StringContext, Unit}
 import scala.Predef.ArrowAssoc
 import scalaz._
 import Scalaz._
 import scalax.collection.GraphEdge.NodeProduct
 import scalax.collection.immutable.Graph
+
+import scala.annotation.tailrec
+import scala.collection.mutable
+import scala.util.Try
 
 /**
   * OML Resolver Support.
@@ -52,6 +56,57 @@ object ResolverUtilities {
     init.right
   }
 
+  def resolveTablesMapperStep
+  (r: OMLTablesResolver,
+   ts: Seq[(tables.taggedTypes.IRI, tables.OMLSpecificationTables)],
+   resolveFunction: OMLTablesResolver => Try[OMLTablesResolver])
+  : Throwables \/ (OMLTablesResolver, Seq[(tables.taggedTypes.IRI, tables.OMLSpecificationTables)], Boolean)
+  = {
+    for {
+      resolved <- ts.foldLeft[Throwables \/ (OMLTablesResolver, Seq[(tables.taggedTypes.IRI, tables.OMLSpecificationTables)], Boolean)] {
+        (r, Seq.empty, false).right
+      } { case (acc, (iri, table)) =>
+
+        for {
+          prev <- acc
+          (ri, tsi, continue) = prev
+          current = ri.copy(queue = table)
+
+          rj <- resolveFunction(current)
+            .toDisjunction
+            .leftMap(Set[java.lang.Throwable](_))
+
+          tsj = tsi :+ (iri -> rj.queue)
+
+          sizei = remaining(table)
+          sizej = remaining(rj.queue)
+
+          more = continue || (sizej < sizei)
+
+          next = (rj, tsj, more)
+        } yield next
+      }
+    } yield resolved
+  }
+
+  @tailrec
+  def resolveTablesMapper
+  (r: OMLTablesResolver,
+   ts: Seq[(tables.taggedTypes.IRI, tables.OMLSpecificationTables)],
+   resolveFunction: OMLTablesResolver => Try[OMLTablesResolver])
+  : Throwables \/ (OMLTablesResolver, Seq[(tables.taggedTypes.IRI, tables.OMLSpecificationTables)])
+  = {
+    resolveTablesMapperStep(r, ts, resolveFunction) match {
+      case \/-((r, ts, more)) =>
+        if (more)
+          resolveTablesMapper(r, ts, resolveFunction)
+        else
+          (r, ts).right
+      case -\/(errors) =>
+        -\/(errors)
+    }
+  }
+
   /**
     * Resolve a sorted collection of pairs of OML Module IRI and corresponding OMLSpecificationTables data.
     *
@@ -64,31 +119,28 @@ object ResolverUtilities {
   (r: Throwables \/ OMLTablesResolver, ts: Seq[(tables.taggedTypes.IRI, tables.OMLSpecificationTables)])
   : Throwables \/ Seq[api.Extent]
   = for {
-    resolved <- ts.foldLeft[Throwables \/ OMLTablesResolver] {
-      initializeResolver()
-    } { case (acc, (iri, table)) =>
+    r1 <- r
+    res2 <- resolveTablesMapper(r1, ts, OMLTablesResolver.resolve1)
+    (r2, ts2) = res2
+    res3 <- resolveTablesMapper(r2, ts2, OMLTablesResolver.resolve2)
+    (r3, ts3) = res3
+    res4 <- resolveTablesMapper(r3, ts3, OMLTablesResolver.resolve3)
+    (r4, ts4) = res4
 
-      for {
-        prev <- acc
-        current = prev.copy(queue = table)
+    remaining = ts4.filterNot(_._2.isEmpty)
 
-        res <- OMLTablesResolver.resolve(current)
-          .toDisjunction
-          .leftMap(Set[java.lang.Throwable](_))
+    _ <- if (remaining.nonEmpty) {
+      val buff = new mutable.StringBuilder()
+      buff ++= s"Conversion incomplete ${remaining.size} tables with unresolved tuples:\n"
+      remaining.foreach { case (iri, ts) =>
+        buff ++= s"Conversion of $iri incomplete\n${ts.show}\n"
+      }
+      Set[java.lang.Throwable](new java.lang.IllegalArgumentException(buff.toString)).left[Unit]
+    } else
+      ().right[Throwables]
 
-        _ <- if (!res.queue.isEmpty)
-          Set[java.lang.Throwable](new java.lang.IllegalArgumentException(
-            s"Conversion of $iri incomplete:\n"+res.queue.show
-          )).left[Unit]
-        else
-          ().right[Throwables]
-
-        next = OMLTablesResolver.accumulateResultContext(res)
-      } yield next
-    }
-
-    extents = resolved.otherContexts // allContexts === Extent.empty ++ otherContexts
-
+    next = OMLTablesResolver.accumulateResultContext(r4)
+    extents = next.otherContexts // allContexts === Extent.empty ++ otherContexts
   } yield extents
 
   /**
@@ -183,6 +235,7 @@ object ResolverUtilities {
       ext.bundles.values.map { m => m.iri -> m }.toMap ++
       ext.descriptionBoxes.values.map { m => m.iri -> m }.toMap
 
+    @tailrec
     def step
     (fringe: Set[api.Module],
      acc: Set[api.Module])
@@ -213,6 +266,7 @@ object ResolverUtilities {
     = ext.terminologyGraphs.values.map { m => m.iri -> m }.toMap ++
       ext.bundles.values.map { m => m.iri -> m }.toMap
 
+    @tailrec
     def step
     (fringe: Set[api.TerminologyBox],
      acc: Set[api.TerminologyBox])
@@ -294,4 +348,74 @@ object ResolverUtilities {
   }
 
 
+  def remaining(ts: tables.OMLSpecificationTables): Int
+  = ts.terminologyGraphs.size +
+    ts.bundles.size +
+    ts.descriptionBoxes.size +
+    ts.annotationProperties.size +
+    ts.aspects.size +
+    ts.concepts.size +
+    ts.scalars.size +
+    ts.structures.size +
+    ts.conceptDesignationTerminologyAxioms.size +
+    ts.terminologyExtensionAxioms.size +
+    ts.terminologyNestingAxioms.size +
+    ts.bundledTerminologyAxioms.size +
+    ts.descriptionBoxExtendsClosedWorldDefinitions.size +
+    ts.descriptionBoxRefinements.size +
+    ts.binaryScalarRestrictions.size +
+    ts.iriScalarRestrictions.size +
+    ts.numericScalarRestrictions.size +
+    ts.plainLiteralScalarRestrictions.size +
+    ts.scalarOneOfRestrictions.size +
+    ts.scalarOneOfLiteralAxioms.size +
+    ts.stringScalarRestrictions.size +
+    ts.synonymScalarRestrictions.size +
+    ts.timeScalarRestrictions.size +
+    ts.entityScalarDataProperties.size +
+    ts.entityStructuredDataProperties.size +
+    ts.scalarDataProperties.size +
+    ts.structuredDataProperties.size +
+    ts.reifiedRelationships.size +
+    ts.reifiedRelationshipRestrictions.size +
+    ts.forwardProperties.size +
+    ts.inverseProperties.size +
+    ts.unreifiedRelationships.size +
+    ts.chainRules.size +
+    ts.ruleBodySegments.size +
+    ts.segmentPredicates.size +
+    ts.entityExistentialRestrictionAxioms.size +
+    ts.entityUniversalRestrictionAxioms.size +
+    ts.entityScalarDataPropertyExistentialRestrictionAxioms.size +
+    ts.entityScalarDataPropertyParticularRestrictionAxioms.size +
+    ts.entityScalarDataPropertyUniversalRestrictionAxioms.size +
+    ts.entityStructuredDataPropertyParticularRestrictionAxioms.size +
+    ts.restrictionStructuredDataPropertyTuples.size +
+    ts.restrictionScalarDataPropertyValues.size +
+    ts.aspectSpecializationAxioms.size +
+    ts.conceptSpecializationAxioms.size +
+    ts.reifiedRelationshipSpecializationAxioms.size +
+    ts.subDataPropertyOfAxioms.size +
+    ts.subObjectPropertyOfAxioms.size +
+    ts.rootConceptTaxonomyAxioms.size +
+    ts.anonymousConceptUnionAxioms.size +
+    ts.specificDisjointConceptAxioms.size +
+    ts.conceptInstances.size +
+    ts.reifiedRelationshipInstances.size +
+    ts.reifiedRelationshipInstanceDomains.size +
+    ts.reifiedRelationshipInstanceRanges.size +
+    ts.unreifiedRelationshipInstanceTuples.size +
+    ts.singletonInstanceStructuredDataPropertyValues.size +
+    ts.singletonInstanceScalarDataPropertyValues.size +
+    ts.structuredDataPropertyTuples.size +
+    ts.scalarDataPropertyValues.size +
+    ts.annotationPropertyValues.size +
+    ts.cardinalityRestrictedAspects.size +
+    ts.cardinalityRestrictedConcepts.size +
+    ts.cardinalityRestrictedReifiedRelationships.size +
+    ts.instanceRelationshipEnumerationRestrictions.size +
+    ts.instanceRelationshipExistentialRangeRestrictions.size +
+    ts.instanceRelationshipOneOfRestrictions.size +
+    ts.instanceRelationshipUniversalRangeRestrictions.size +
+    ts.instanceRelationshipValueRestrictions.size
 }

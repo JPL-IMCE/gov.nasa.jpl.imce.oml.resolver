@@ -121,8 +121,9 @@ object GraphUtilities {
               hierarchicalTopologicalSort(ns ++ gs, result ++ nsorted)
             } else {
               val ncomponent: Seq[N] = n.toOuterNodes.to[Seq]
-              val gn = g -- n
-              hierarchicalTopologicalSort(gn +: (ns ++ gs), result ++ ncomponent)
+              val gn: Graph[N, E] = g -- n
+              val gm = ns.foldLeft[Graph[N, E]](gn) { _ ++ _ }
+              hierarchicalTopologicalSort(gm :: gs, result ++ ncomponent)
             }
         }
       }
